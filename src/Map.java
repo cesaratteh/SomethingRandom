@@ -4,7 +4,12 @@ public class Map {
 
     Map(Tile seedTile){
         mapSeedTile = seedTile;
+        mapSeedTile.setLevel(1);
 
+    }
+
+    public Tile getSeedTile(){
+        return mapSeedTile;
     }
 
     public void placeNewTile(Tile tileToBePlaced){

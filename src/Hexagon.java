@@ -133,4 +133,11 @@ public class Hexagon {
         this.hasTotoro = hasTotoro;
     }
 
+    public Terrain getTerrain() {
+        return hexTerrain;
+    }
+
+    public Tile getTileContainedIn() {
+        return TileContainedIn;
+    }
 }

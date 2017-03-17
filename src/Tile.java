@@ -27,5 +27,28 @@ public class Tile {
         return level;
     }
 
+    public Hexagon getHex1() {
+        return hex1;
+    }
 
+    public Hexagon getHex2() {
+        return hex2;
+    }
+
+    public Hexagon getVolcanoHex() {
+        return volcanoHex;
+    }
+
+    public void setLevel(int lvl) {
+        this.level = lvl;
+    }
+
+
+    public long getID(){return ID;}
+
+
+    public boolean hasNeighbor() {
+        /* Check the sides of the tile, see if it has at least one neighbor */
+        return false;
+    }
 }
