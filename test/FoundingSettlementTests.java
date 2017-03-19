@@ -2,9 +2,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by Priyam on 3/16/2017.
- */
 public class FoundingSettlementTests {
     private Tile tile;
     private Player player1;

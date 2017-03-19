@@ -1,6 +1,3 @@
-/**
- * Created by Priyam on 3/16/2017.
- */
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

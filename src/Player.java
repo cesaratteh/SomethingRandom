@@ -1,6 +1,3 @@
-/**
- * Created by Priyam on 3/16/2017.
- */
 public class Player {
     private int totoroCount;
     private int meepleCount;
