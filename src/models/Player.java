@@ -1,3 +1,5 @@
+package models;
+
 public class Player {
 
     //-----------
@@ -20,7 +22,7 @@ public class Player {
 
     void placeTotoro() {
         if (!isHasTotorosLeft()) {
-            throw new RuntimeException("Can't place totoro. Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
+            throw new RuntimeException("Can't place totoro. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
 
         numberOfTotorosLeft--;
@@ -28,7 +30,7 @@ public class Player {
 
     void placeMeeples(final int numberOfMeeplesToPlace) {
         if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
-            throw new RuntimeException("Can't place meeples. Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
+            throw new RuntimeException("Can't place meeples. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
 
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;

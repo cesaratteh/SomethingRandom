@@ -1,3 +1,6 @@
+package models;
+
+import models.Tile;
 
 public class Map {
     private Tile mapSeedTile;

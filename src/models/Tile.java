@@ -1,5 +1,6 @@
+package models;
 
-import java.lang.Math;
+import models.Hexagon;
 
 public class Tile {
     private Hexagon hex1;

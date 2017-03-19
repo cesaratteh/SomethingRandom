@@ -1,3 +1,5 @@
+package models;
+
 public class Hexagon {
 
     //-----------
@@ -31,7 +33,7 @@ public class Hexagon {
 
     public void addTotoro() {
         if(!isEmpty())
-            throw new RuntimeException("Adding totoro when Hexagon is not empty");
+            throw new RuntimeException("Adding totoro when models.Hexagon is not empty");
 
         hasTotoro = true;
     }

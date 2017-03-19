@@ -1,3 +1,9 @@
+package models;
+
+import models.Hexagon;
+import models.Player;
+import models.Terrain;
+import models.Tile;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
