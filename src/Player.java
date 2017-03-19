@@ -1,15 +1,61 @@
 public class Player {
-    private int totoroCount;
-    private int meepleCount;
 
-    public void foundSettlement(Hexagon target) {
+    //-----------
+    // Attributes
+
+    private int numberOfTotorosLeft;
+    private int numberOfMeeplesLeft;
+
+    //------------
+    //Constructors
+
+    public Player()
+    {
+        this.numberOfMeeplesLeft = NUMBER_OF_STARTING_MEEPLES;
+        this.numberOfTotorosLeft = NUMBER_OF_STARTING_TOTOROS;
     }
 
-    public int getTotoroCount() {
-        return totoroCount;
+    //--------
+    // Methods
+
+    void placeTotoro() {
+        if (!isHasTotorosLeft()) {
+            throw new RuntimeException("Can't place totoro. Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
+        }
+
+        numberOfTotorosLeft--;
     }
 
-    public int getMeepleCount() {
-        return meepleCount;
+    void placeMeeples(final int numberOfMeeplesToPlace) {
+        if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
+            throw new RuntimeException("Can't place meeples. Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
+        }
+
+        numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
+
+    boolean isHasTotorosLeft() {
+        return numberOfTotorosLeft != 0;
+    }
+
+    boolean isHasEnoughMeeples(final int numberOfMeeples) {
+        return numberOfMeeplesLeft >= numberOfMeeples;
+    }
+
+    //-----------
+    // Getters
+
+    public int getNumberOfTotorosLeft() {
+        return numberOfTotorosLeft;
+    }
+
+    public int getNumberOfMeeplesLeft() {
+        return numberOfMeeplesLeft;
+    }
+
+    //----------
+    // Constants
+
+    private static final int NUMBER_OF_STARTING_MEEPLES = 10;
+    private static final int NUMBER_OF_STARTING_TOTOROS = 2;
 }

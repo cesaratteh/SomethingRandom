@@ -1,143 +1,71 @@
-
-import java.lang.Math;
-
 public class Hexagon {
-    private Terrain hexTerrain;
-    private boolean hexIsEmpty;
-    private Tile TileContainedIn;
-    private int meepleCount;
+
+    //-----------
+    // Attributes
+
+    private Terrain terrainType;
+    private int tileId;
+    private int numberOfMeeples;
     private boolean hasTotoro;
 
-    private Hexagon hexA; // connected to hexB in a Tile
-    private Hexagon hexB; // connected to hexA in a Tile
-    private Hexagon hexC;
-    private Hexagon hexD;
-    private Hexagon hexE;
-    private Hexagon hexF;
+    //-------------
+    // Constructors
 
-
-    Hexagon(Tile containingTile, boolean isVolcano){
-        TileContainedIn = containingTile;
-        meepleCount = 0;
+    public Hexagon(final Terrain terrainType, final int tileId) {
+        this.terrainType = terrainType;
+        this.tileId = tileId;
+        numberOfMeeples = 0;
         hasTotoro = false;
-        hexIsEmpty = true;
-        if(isVolcano)
-            hexTerrain = Terrain.Volcano;
-        else
-            hexTerrain = generateTerrain();
-
     }
 
-    private Terrain generateTerrain() {
-        int terrainCode = (int)(Math.random()*4);
-        switch(terrainCode){
-            case 0:
-                return Terrain.Jungle;
-            case 1:
-                return Terrain.Lake;
-            case 2:
-                return Terrain.Grasslands;
-            case 3:
-                return Terrain.Rocky;
-        }
-        //TODO: put in an error here
-        return null;
+    //--------
+    // Methods
+
+    public void addMeeples(final int numberOfMeeples)
+    {
+        if(this.numberOfMeeples != 0)
+            throw new RuntimeException("Can't Added meeples twice"); // TODO: 3/19/2017 Replace with LOGGING
+
+        this.numberOfMeeples = numberOfMeeples;
     }
 
-    private void changeMeeples(int newMeepleCount, int playerMeepleCount) {
+    public void addTotoro() {
+        if(!isEmpty())
+            throw new RuntimeException("Adding totoro when Hexagon is not empty");
 
-        if (playerMeepleCount >= TileContainedIn.getLevel()
-                && hexIsEmpty) {
-            meepleCount = newMeepleCount;
-            hexIsEmpty = false;
+        hasTotoro = true;
+    }
 
-        } else {
-            //TODO: game over
+    public void nukeHexagon()
+    {
+        if(hasTotoro)
+        {
+            throw new RuntimeException("Can't nuke Totoro"); // TODO: 3/19/2017 Replace with LOGGING
         }
 
+        this.numberOfMeeples = 0;
     }
-
 
     public boolean isEmpty(){
-        return hexIsEmpty;
+        return (numberOfMeeples == 0) && !(hasTotoro);
     }
 
-    public Hexagon getHexA(){
-        return hexA;
-    }
-
-    public Hexagon getHexB(){
-        return hexB;
-    }
-
-    public Hexagon getHexC(){
-        return hexC;
-    }
-
-    public Hexagon getHexD(){
-        return hexD;
-    }
-
-    public Hexagon getHexE(){
-        return hexE;
-    }
-
-    public Hexagon getHexF(){
-        return hexF;
-    }
-
-
-
-    public void setHexA(Hexagon hexA) {
-        this.hexA = hexA;
-    }
-
-    public void setHexB(Hexagon hexB) {
-        this.hexB = hexB;
-    }
-
-    public void setHexC(Hexagon hexC) {
-        this.hexC = hexC;
-    }
-
-    public void setHexD(Hexagon hexD) {
-        this.hexD = hexD;
-    }
-
-    public void setHexE(Hexagon hexE) {
-        this.hexE = hexE;
-    }
-
-    public void setHexF(Hexagon hexF) {
-        this.hexF = hexF;
-    }
-
-
-
-    public int getMeepleCount() {
-        return meepleCount;
-    }
-
-    public void setMeepleCount(int meepleCount) {
-        this.meepleCount = meepleCount;
-    }
-
-
-
-
-    public boolean getHasTotoro() {
+    public boolean isHasTotoro() {
         return hasTotoro;
     }
 
-    public void setHasTotoro(boolean hasTotoro) {
-        this.hasTotoro = hasTotoro;
+    //----------
+    // Getters
+
+    public int getNumberOfMeeples() {
+        return numberOfMeeples;
     }
 
-    public Terrain getTerrain() {
-        return hexTerrain;
+    public Terrain getTerrainType() {
+        return terrainType;
     }
 
-    public Tile getTileContainedIn() {
-        return TileContainedIn;
+    public int getTileId() {
+        return tileId;
     }
 }
