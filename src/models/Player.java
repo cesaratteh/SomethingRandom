@@ -58,6 +58,6 @@ public class Player {
     //----------
     // Constants
 
-    private static final int NUMBER_OF_STARTING_MEEPLES = 10;
-    private static final int NUMBER_OF_STARTING_TOTOROS = 2;
+    private static final int NUMBER_OF_STARTING_MEEPLES = 20;
+    private static final int NUMBER_OF_STARTING_TOTOROS = 3;
 }

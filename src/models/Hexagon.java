@@ -5,16 +5,18 @@ public class Hexagon {
     //-----------
     // Attributes
 
-    private Terrain terrainType;
     private int tileId;
+    private int level;
+    private Terrain terrainType;
     private int numberOfMeeples;
     private boolean hasTotoro;
 
     //-------------
     // Constructors
 
-    public Hexagon(final Terrain terrainType, final int tileId) {
+    public Hexagon(final Terrain terrainType, final int level, final int tileId) {
         this.terrainType = terrainType;
+        this.level = level;
         this.tileId = tileId;
         numberOfMeeples = 0;
         hasTotoro = false;
@@ -59,6 +61,14 @@ public class Hexagon {
     //----------
     // Getters
 
+    public int getTileId() {
+        return tileId;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     public int getNumberOfMeeples() {
         return numberOfMeeples;
     }
@@ -67,7 +77,4 @@ public class Hexagon {
         return terrainType;
     }
 
-    public int getTileId() {
-        return tileId;
-    }
 }

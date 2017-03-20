@@ -1,7 +1,5 @@
 package models;
 
-import models.Map;
-import models.Tile;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
