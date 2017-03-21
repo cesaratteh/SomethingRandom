@@ -12,12 +12,11 @@ public class MapSpot {
     private int x;
     private int y;
 
-
     //-------------
     // Constructors
 
     public MapSpot(final int x, final int y) {
-        if ((x % 2) != (x % 2)) {
+        if ((x % 2) != (y % 2)) {
             throw new RuntimeException("Creating an invalid map spot");
         }
 
