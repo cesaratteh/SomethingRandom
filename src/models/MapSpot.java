@@ -1,7 +1,7 @@
 package models;
 
 /**
- * x,y have to be both odd or both even
+ * x,y have to be both odd or both even.
  * Assuming 0 is even
  */
 public class MapSpot {

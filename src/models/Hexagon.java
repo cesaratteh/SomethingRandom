@@ -27,8 +27,8 @@ public class Hexagon {
 
     public void addMeeples(final int numberOfMeeples)
     {
-        if(this.numberOfMeeples != 0)
-            throw new RuntimeException("Can't Added meeples twice"); // TODO: 3/19/2017 Replace with LOGGING
+        if(!isEmpty())
+            throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
 
         this.numberOfMeeples = numberOfMeeples;
     }
