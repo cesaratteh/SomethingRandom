@@ -20,7 +20,7 @@ public class Player {
     //--------
     // Methods
 
-    void placeTotoro() {
+    void takeATotoroFromPlayer() {
         if (!isHasTotorosLeft()) {
             throw new RuntimeException("Can't place totoro. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -28,7 +28,7 @@ public class Player {
         numberOfTotorosLeft--;
     }
 
-    void placeMeeples(final int numberOfMeeplesToPlace) {
+    void takeXMeeplesFromPlayer(final int numberOfMeeplesToPlace) {
         if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
             throw new RuntimeException("Can't place meeples. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -37,7 +37,7 @@ public class Player {
     }
 
     boolean isHasTotorosLeft() {
-        return numberOfTotorosLeft != 0;
+        return numberOfTotorosLeft > 0;
     }
 
     boolean isHasEnoughMeeples(final int numberOfMeeples) {
