@@ -59,4 +59,5 @@ public class Map {
     // Constants
 
     private static final int NUMBER_OF_STARTING_TILES_PER_PLAYER = 24; // FIXME: 3/19/2017 Filler number; Find the actual number of starting tiles
+
 }
