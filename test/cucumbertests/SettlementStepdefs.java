@@ -112,4 +112,58 @@ public class SettlementStepdefs {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
+
+    @Given("^There are (\\d+) existing Settlements$")
+    public void thereAreExistingSettlements(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The (\\d+) Settlements become adjacent$")
+    public void theSettlementsBecomeAdjacent(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^Merge the (\\d+) Settlements together$")
+    public void mergeTheSettlementsTogether(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^There is a Settlement of size (\\d+) or more without a Totoro$")
+    public void thereIsASettlementOfSizeOrMoreWithoutATotoro(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Player attempts to place a Totoro on a non-volcano empty Hexagon$")
+    public void thePlayerAttemptsToPlaceATotoroOnANonVolcanoEmptyHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Totoro is placed otherwise the game is ended$")
+    public void theTotoroIsPlacedOtherwiseTheGameIsEnded() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^There is a Hexagon that is at level (\\d+) or more and a Settlement without a Tiger$")
+    public void thereIsAHexagonThatIsAtLevelOrMoreAndASettlementWithoutATiger(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Player attempts to place a Tiger on a non-volano empty Hexagon$")
+    public void thePlayerAttemptsToPlaceATigerOnANonVolanoEmptyHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Tiger is placed otherwise the game is ended$")
+    public void theTigerIsPlacedOtherwiseTheGameIsEnded() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
 }

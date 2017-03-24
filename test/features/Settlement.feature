@@ -27,3 +27,15 @@ Feature: Settlement
     Then The Settlement Expands to all adjacent Hexagons from the chosen Hexagon
     And Meeples are placed on the new Settlement Hexagons
     And Meeples are subtracted from the Player's set of Meeples
+
+    Given There are 2 existing Settlements
+    When The 2 Settlements become adjacent
+    Then Merge the 2 Settlements together
+
+    Given There is a Settlement of size 5 or more without a Totoro
+    When The Player attempts to place a Totoro on a non-volcano empty Hexagon
+    Then The Totoro is placed otherwise the game is ended
+
+    Given There is a Hexagon that is at level 3 or more and a Settlement without a Tiger
+    When The Player attempts to place a Tiger on a non-volano empty Hexagon
+    Then The Tiger is placed otherwise the game is ended
