@@ -10,17 +10,36 @@ import models.*;
 
 public class TileStepdefs {
 
+    private Terrain generateRandomTerrain() {
+        int terrainCode = (int)(Math.random()*5);
+        switch(terrainCode){
+            case 0:
+                return Terrain.JUNGLE;
+            case 1:
+                return Terrain.LAKE;
+            case 2:
+                return Terrain.GRASSLAND;
+            case 3:
+                return Terrain.ROCKY;
+            case 4:
+                return Terrain.VOLCANO;
+        }
+        return null;
+    }
+
     private Player player1;
+    private Player player2;
 
     @Before
     public void beforeScenario(){
-        Player player1 = new Player();
-        Player player2 = new Player();
+        player1 = new Player();
+        player2 = new Player();
     }
 
     @Given("^A Player draws a Tile$")
     public void aPlayerDrawsATile() throws Throwable {
-       // Tile t = player1.drawTile();
+         //player1.drawTile();
+         //Tile t = player1.drawTile();
 
         throw new PendingException();
     }
@@ -28,6 +47,7 @@ public class TileStepdefs {
     @When("^The Tile is chosen from the set of remaining Tiles$")
     public void theTileIsChosenFromTheSetOfRemainingTiles() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+
         throw new PendingException();
     }
 
@@ -51,6 +71,7 @@ public class TileStepdefs {
 
     @Then("^The Hexagon has a Terrain$")
     public void theHexagonHasATerrain() throws Throwable {
+
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

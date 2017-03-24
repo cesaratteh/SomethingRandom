@@ -1,16 +1,30 @@
 package cucumbertests;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import models.Map;
+import models.Player;
 
 public class GameBoardStepdefs {
+
+    private Map GameBoard;
+    private Player player1;
+    private Player player2;
+
+    @Before
+    public void beforeScenario(){
+        GameBoard = new Map();
+        player1 = new Player();
+        player2 = new Player();
+    }
+
     @Given("^There are no Tiles$")
     public void thereAreNoTiles() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+       // GameBoard.getMiddleHexagon() == null;
     }
 
     @When("^A Tile is placed$")
