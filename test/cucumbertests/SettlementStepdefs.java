@@ -1,0 +1,115 @@
+package cucumbertests;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+/**
+ * Created by WillMarcantel on 3/22/17.
+ */
+public class SettlementStepdefs {
+
+    @Given("^A Settlement is being founded on level (\\d+)$")
+    public void aSettlementIsBeingFoundedOnLevel(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^A Meeple is placed on a non-volcano Hexagon$")
+    public void aMeepleIsPlacedOnANonVolcanoHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The turn ends with a legal move$")
+    public void theTurnEndsWithALegalMove() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The Meeple is subtracted from the Player's set of Meeples$")
+    public void theMeepleIsSubtractedFromThePlayerSSetOfMeeples() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^A Totoro is placed on a non-volcano Hexagon$")
+    public void aTotoroIsPlacedOnANonVolcanoHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The move is illegal$")
+    public void theMoveIsIllegal() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^A Settlement is being founded on a level other than (\\d+)$")
+    public void aSettlementIsBeingFoundedOnALevelOtherThan(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^The Player is out of Meeples and Totoros$")
+    public void thePlayerIsOutOfMeeplesAndTotoros() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Player attempts to start a Settlement on a level (\\d+) Hexagon$")
+    public void thePlayerAttemptsToStartASettlementOnALevelHexagon(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Player loses$")
+    public void thePlayerLoses() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^The Player has an existing Settlement$")
+    public void thePlayerHasAnExistingSettlement() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Player decides to Expand their Settlement from a Hexagon$")
+    public void thePlayerDecidesToExpandTheirSettlementFromAHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The Player has suffcient Meeples$")
+    public void thePlayerHasSuffcientMeeples() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Settlement Expands to all adjacent Hexagons from the chosen Hexagon$")
+    public void theSettlementExpandsToAllAdjacentHexagonsFromTheChosenHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^Meeples are placed on the new Settlement Hexagons$")
+    public void meeplesArePlacedOnTheNewSettlementHexagons() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^Meeples are subtracted from the Player's set of Meeples$")
+    public void meeplesAreSubtractedFromThePlayerSSetOfMeeples() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The game ends$")
+    public void theGameEnds() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+}
