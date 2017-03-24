@@ -43,7 +43,7 @@ public class Map {
 
     public MapSpot getMiddleHexagonMapSpot() {
         final int n = calculateMaximumMapWidthAndHeight();
-        return new MapSpot(n, n);
+        return new MapSpot(calculateMaximumMapWidthAndHeight()/2, calculateMaximumMapWidthAndHeight()/2);
     }
 
     /**
