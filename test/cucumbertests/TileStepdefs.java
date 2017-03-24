@@ -8,9 +8,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.*;
 
-/**
- * Created by WillMarcantel on 3/22/17.
- */
 public class TileStepdefs {
 
     private Player player1;
