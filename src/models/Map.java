@@ -43,7 +43,7 @@ public class Map {
 
     public MapSpot getMiddleHexagonMapSpot() {
         final int n = calculateMaximumMapWidthAndHeight();
-        return new MapSpot(n/2, n/2);                   //FIXME: 3/23/2017 Using (n,n) creates ArrayIndexOutOfBoundsException; Find starting index
+        return new MapSpot(calculateMaximumMapWidthAndHeight()/2, calculateMaximumMapWidthAndHeight()/2);
     }
 
     /**
