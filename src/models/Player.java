@@ -36,6 +36,8 @@ public class Player {
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
 
+
+
     boolean isHasTotorosLeft() {
         return numberOfTotorosLeft > 0;
     }

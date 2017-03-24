@@ -1,18 +1,27 @@
 package cucumbertests;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import models.*;
 
-/**
- * Created by WillMarcantel on 3/22/17.
- */
 public class TileStepdefs {
+
+    private Player player1;
+
+    @Before
+    public void beforeScenario(){
+        Player player1 = new Player();
+        Player player2 = new Player();
+    }
+
     @Given("^A Player draws a Tile$")
     public void aPlayerDrawsATile() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+       // Tile t = player1.drawTile();
+
         throw new PendingException();
     }
 
@@ -48,6 +57,48 @@ public class TileStepdefs {
 
     @And("^The Hexagon has an empty space for Meeples or Totoros$")
     public void theHexagonHasAnEmptySpaceForMeeplesOrTotoros() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^There are Tiles on level (\\d+) or higher on the board$")
+    public void thereAreTilesOnLevelOrHigherOnTheBoard(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Player wants to nuke some Hexagons with a new Tile$")
+    public void thePlayerWantsToNukeSomeHexagonsWithANewTile() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^At least (\\d+) of the Hexagons are on different Tiles$")
+    public void atLeastOfTheHexagonsAreOnDifferentTiles(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^All of the Hexagons are on the same level$")
+    public void allOfTheHexagonsAreOnTheSameLevel() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Player nukes the Hexagons$")
+    public void thePlayerNukesTheHexagons() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^Places the Tile$")
+    public void placesTheTile() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^All of the Hexagons belong to the same Tile$")
+    public void allOfTheHexagonsBelongToTheSameTile() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
