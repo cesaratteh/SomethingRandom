@@ -27,6 +27,73 @@ public class MapSpot {
     //-------
     //Methods
 
+    public MapSpot left() {
+        final int tempX = this.x - 2;
+        final int tempY = this.y;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+    public MapSpot topLeft() {
+        final int tempX = this.x - 1;
+        final int tempY = this.y - 1;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+    public MapSpot topRight() {
+        final int tempX = this.x + 1;
+        final int tempY = this.y - 1;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+    public MapSpot right() {
+        final int tempX = this.x + 2;
+        final int tempY = this.y;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+    public MapSpot bottomRight() {
+        final int tempX = this.x + 1;
+        final int tempY = this.y + 1;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+    public MapSpot bottomLeft() {
+        final int tempX = this.x - 1;
+        final int tempY = this.y + 1;
+
+        if (isMapSpotValid(tempX, tempY)) {
+            return new MapSpot(tempX, tempY);
+        } else {
+            return null;
+        }
+    }
+
+
     private boolean isMapSpotValid(final int x, final int y) {
         boolean inHexagonalPlace;
         boolean insideMapBoundary;
