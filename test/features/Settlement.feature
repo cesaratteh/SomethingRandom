@@ -12,6 +12,16 @@ Feature: Settlement
     Then The move is illegal
     And The game ends
 
+    Given A Settlement is being founded on level 1
+    When A Tiger is placed on a non-volcano Hexagon
+    Then The move is illegal
+    And The game ends
+
+    Given A Settlement is creating a tiger playground on level 1 or 2
+    When A Tiger is placed on a non-volcano Hexagon
+    Then The move is illegal
+    And The game ends
+
     Given A Settlement is being founded on a level other than 1
     When A Meeple is placed on a non-volcano Hexagon
     Then The move is illegal
@@ -24,7 +34,7 @@ Feature: Settlement
     Given The Player has an existing Settlement
     When The Player decides to Expand their Settlement from a Hexagon
     And The Player has suffcient Meeples
-    Then The Settlement Expands to all adjacent Hexagons from the chosen Hexagon
+    Then The Settlement Expands to all adjacent Hexagons from the chosen settlement
     And Meeples are placed on the new Settlement Hexagons
     And Meeples are subtracted from the Player's set of Meeples
 
@@ -36,6 +46,7 @@ Feature: Settlement
     When The Player attempts to place a Totoro on a non-volcano empty Hexagon
     Then The Totoro is placed otherwise the game is ended
 
-    Given There is a Hexagon that is at level 3 or more and a Settlement without a Tiger
+    Given There is a unsettled Hexagon that is at level 3 or more
+    And The Hexagon is connected to a settlement without a Tiger
     When The Player attempts to place a Tiger on a non-volano empty Hexagon
     Then The Tiger is placed otherwise the game is ended

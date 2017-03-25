@@ -123,4 +123,16 @@ public class TileStepdefs {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
+
+    @Then("^The move is illegal$")
+    public void themoveIsIllegal() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The game is over$")
+    public void theGameIsOver() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
 }

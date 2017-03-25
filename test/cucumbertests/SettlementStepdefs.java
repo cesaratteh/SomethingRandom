@@ -163,4 +163,34 @@ public class SettlementStepdefs {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
+
+    @When("^A Tiger is placed on a non-volcano Hexagon$")
+    public void aTigerIsPlacedOnANonVolcanoHexagon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^A Settlement is creating a tiger playground on level 1 or 2$")
+    public void aSettlementIsCreatingATigerPlaygroundOnLevel1Or2(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The Settlement Expands to all adjacent Hexagons from the chosen settlement$")
+    public void theSettlementExpandsToAllAdjacentHexagonsFromTheChosenSettlement() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^There is a unsettled Hexagon that is at level 3 or more$")
+    public void thereIsAUnsettledHexagonThatIsAtLevel3OrMore(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The Hexagon is connected to a settlement without a Tiger$")
+    public void theHexagonIsConnectedToASettlementWithoutATiger() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
 }
