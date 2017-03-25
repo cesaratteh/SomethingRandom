@@ -17,8 +17,8 @@ public class Hexagon {
     //-------------
     // Constructors
 
-    public Hexagon(final Team occupiedBy, final Terrain terrainType, final int level, final int tileId) {
-        this.occupiedBy = occupiedBy;
+    public Hexagon(final Terrain terrainType, final int level, final int tileId) {
+        this.occupiedBy = Team.UNKNOWN;
         this.terrainType = terrainType;
         this.level = level;
         this.tileId = tileId;
@@ -29,18 +29,20 @@ public class Hexagon {
     //--------
     // Methods
 
-    public void addMeeples(final int numberOfMeeples)
+    public void addMeeples(final int numberOfMeeples, final Team team)
     {
         if(!isEmpty())
             throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
 
+        this.occupiedBy = team;
         this.numberOfMeeples = numberOfMeeples;
     }
 
-    public void addTotoro() {
+    public void addTotoro(final Team team) {
         if(!isEmpty())
             throw new RuntimeException("Adding totoro when models.Hexagon is not empty");
 
+        this.occupiedBy = team;
         hasTotoro = true;
     }
 

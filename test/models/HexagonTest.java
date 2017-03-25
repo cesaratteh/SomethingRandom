@@ -14,11 +14,11 @@ public class HexagonTest {
     public void getTeamTest() {
         final Team team = RandomGenerator.generateRandomTeam();
 
-        final Hexagon hexagon = new Hexagon(team,
-                RandomGenerator.generateRandomTerrainType(),
+        final Hexagon hexagon = new Hexagon(RandomGenerator.generateRandomTerrainType(),
                 0,
                 1);
 
+        hexagon.addMeeples(1, team);
         assertEquals(team, hexagon.getOccupiedBy());
     }
 
@@ -27,8 +27,7 @@ public class HexagonTest {
         final Terrain terrain = RandomGenerator.generateRandomTerrainType();
 
         final Hexagon hexagon =
-                new Hexagon(RandomGenerator.generateRandomTeam(),
-                        terrain,
+                new Hexagon(terrain,
                         RandomGenerator.generateRandomLevel(),
                         RandomGenerator.generateRandomTileId());
 
@@ -40,8 +39,7 @@ public class HexagonTest {
         final int level = random.nextInt(Integer.MAX_VALUE);
 
         final Hexagon hexagon =
-                new Hexagon(RandomGenerator.generateRandomTeam(),
-                        RandomGenerator.generateRandomTerrainType(),
+                new Hexagon(RandomGenerator.generateRandomTerrainType(),
                         level,
                         RandomGenerator.generateRandomTileId());
 
@@ -54,8 +52,7 @@ public class HexagonTest {
         final int tiledId = random.nextInt(Integer.MAX_VALUE);
 
         final Hexagon hexagon =
-                new Hexagon(RandomGenerator.generateRandomTeam(),
-                        RandomGenerator.generateRandomTerrainType(),
+                new Hexagon(RandomGenerator.generateRandomTerrainType(),
                         RandomGenerator.generateRandomLevel(),
                         tiledId);
 
@@ -77,7 +74,7 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAdd);
+        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam());
         assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
     }
 
@@ -88,15 +85,15 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAddFirst);
-        hexagon.addMeeples(numberOfMeeplesToAddSecond);
+        hexagon.addMeeples(numberOfMeeplesToAddFirst, RandomGenerator.generateRandomTeam());
+        hexagon.addMeeples(numberOfMeeplesToAddSecond, RandomGenerator.generateRandomTeam());
     }
 
     @Test
     public void addingTotoroTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addTotoro();
+        hexagon.addTotoro(RandomGenerator.generateRandomTeam());
         assertEquals(true, hexagon.isHasTotoro());
     }
 
@@ -106,7 +103,7 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAdd);
+        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam());
 
         assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
         hexagon.nukeHexagon();
@@ -116,7 +113,7 @@ public class HexagonTest {
     @Test
     public void ConvertTerrainToCharTest(){
 
-        final Hexagon hexagon = new Hexagon(RandomGenerator.generateRandomTeam(), Terrain.VOLCANO,
+        final Hexagon hexagon = new Hexagon(Terrain.VOLCANO,
                                             RandomGenerator.generateRandomLevel(),
                                             RandomGenerator.generateRandomTileId());
         char K = hexagon.ConvertTerrainToCharacter();

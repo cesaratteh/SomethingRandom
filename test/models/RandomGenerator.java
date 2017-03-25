@@ -30,8 +30,7 @@ public class RandomGenerator {
 
     public static Hexagon generateRandomHexagon() {
 
-        final Hexagon hexagon = new Hexagon(generateRandomTeam(),
-                generateRandomTerrainType(),
+        final Hexagon hexagon = new Hexagon(generateRandomTerrainType(),
                 generateRandomLevel(),
                 generateRandomTileId());
 
