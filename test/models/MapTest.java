@@ -12,13 +12,6 @@ public class MapTest {
 
     final private Random random = new Random();
 
-    private Terrain getRandomTerrainType() {
-        final int randomIndex = random.nextInt(Terrain.values().length);
-        final Terrain[] values = Terrain.values();
-
-        return values[randomIndex];
-    }
-
     @Test
     public void getMapSizeTest() {
         final Map map = new Map();
@@ -29,8 +22,8 @@ public class MapTest {
     @Test
     public void getMapTest() {
         final Map map = new Map();
-        final Terrain terrain = getRandomTerrainType();
-        final Hexagon hexagon = new Hexagon(terrain, 1, 1);
+
+        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
         map.addHexagon(map.getMiddleHexagonMapSpot(), hexagon);
 
@@ -51,14 +44,11 @@ public class MapTest {
     @Test
     public void addHexagonTest() {
         final Map map = new Map();
-        final Terrain terrain = getRandomTerrainType();
 
         final int x = random.nextInt(map.getMapSize());
         final MapSpot mapSpot = new MapSpot(x, (x % 2 == 0) ? 0 : 1);
-        final Hexagon hexagon =
-                new Hexagon(terrain,
-                        random.nextInt(),
-                        random.nextInt());
+        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
+
         map.addHexagon(mapSpot, hexagon);
         assertEquals(map.getHexagon(mapSpot), hexagon);
     }
@@ -66,12 +56,10 @@ public class MapTest {
     @Test
     public void getMiddleHexagonTest() {
         final Map map = new Map();
-        final Terrain terrain = getRandomTerrainType();
         final MapSpot mapSpot = map.getMiddleHexagonMapSpot();
-        final Hexagon hexagon =
-                new Hexagon(terrain,
-                        random.nextInt(),
-                        random.nextInt());
+
+        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
+
         map.addHexagon(mapSpot, hexagon);
         assertEquals(map.getMiddleHexagon(), hexagon);
     }

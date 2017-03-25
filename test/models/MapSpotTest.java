@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MapSpotTest {
 
-    Random random = new Random();
+    final Random random = new Random();
 
     @Test
     public void getXTest() {

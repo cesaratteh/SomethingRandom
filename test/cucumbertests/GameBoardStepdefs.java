@@ -48,13 +48,14 @@ public class GameBoardStepdefs {
 
     @When("^A Tile is placed$")
     public void aTileIsPlaced() throws Throwable {
-        Hex1 = new Hexagon(generateRandomTerrain(),0,0);
-        Hex2 = new Hexagon(generateRandomTerrain(),0,0);
-        Hex3 = new Hexagon(Terrain.VOLCANO,0,0);
-
-        GameBoard.addHexagon(new MapSpot(0,0),Hex1);
-        GameBoard.addHexagon(new MapSpot(2,0),Hex2);
-        GameBoard.addHexagon(new MapSpot(1,1),Hex3);
+//        Hex1 = new Hexagon(generateRandomTerrain(),0,0);
+//        Hex2 = new Hexagon(generateRandomTerrain(),0,0);
+//        Hex3 = new Hexagon(Terrain.VOLCANO,0,0);
+//
+//        GameBoard.addHexagon(new MapSpot(0,0),Hex1);
+//        GameBoard.addHexagon(new MapSpot(2,0),Hex2);
+//        GameBoard.addHexagon(new MapSpot(1,1),Hex3);
+        // FIXME: 3/25/2017 Added new dependency to constructor of hexagon. You can probably use RandomGenerator.generateRandomHexagon()
     }
 
     @Then("^The Tile starts a new board$")

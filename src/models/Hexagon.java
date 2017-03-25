@@ -5,6 +5,7 @@ public class Hexagon {
     //-----------
     // Attributes
 
+    private Team occupiedBy;
     private int tileId;
     private int level;
     private Terrain terrainType;
@@ -14,7 +15,8 @@ public class Hexagon {
     //-------------
     // Constructors
 
-    public Hexagon(final Terrain terrainType, final int level, final int tileId) {
+    public Hexagon(final Team occupiedBy, final Terrain terrainType, final int level, final int tileId) {
+        this.occupiedBy = occupiedBy;
         this.terrainType = terrainType;
         this.level = level;
         this.tileId = tileId;
@@ -60,6 +62,10 @@ public class Hexagon {
 
     //----------
     // Getters
+
+    public Team getOccupiedBy() {
+        return occupiedBy;
+    }
 
     public int getTileId() {
         return tileId;
