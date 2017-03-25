@@ -1,5 +1,7 @@
 package models;
 
+
+
 public class Hexagon {
 
     //-----------
@@ -83,8 +85,14 @@ public class Hexagon {
         return terrainType;
     }
 
-    public Character ConvertTerrainToCharacter(){
-        Character TerrainChar =' ';
+    public char ConvertTerrainToCharacter(){
+        char TerrainChar = ' ';
+
+
+
+        switch (terrainType){
+            case VOLCANO:    TerrainChar ='V';
+        }
 
 
 
