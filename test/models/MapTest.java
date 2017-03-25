@@ -64,4 +64,16 @@ public class MapTest {
         assertEquals(map.getMiddleHexagon(), hexagon);
     }
 
+
+    @Test
+    public void PrintMapTest(){
+        final Map map = new Map();
+
+        final MapSpot mapSpot = map.getMiddleHexagonMapSpot();
+        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
+        map.addHexagon(mapSpot, hexagon);
+
+        map.PrintMap();
+    }
+
 }

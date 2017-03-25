@@ -66,4 +66,40 @@ public class Map {
 
     private static final int NUMBER_OF_STARTING_TILES_PER_PLAYER = 24; // FIXME: 3/19/2017 Filler number; Find the actual number of starting tiles
 
+
+    public void PrintMap(){
+        int IsEvenRow=1;
+        for(int i =0; i< mapSize; i++){
+
+            for(int k =0; k< mapSize; k++){
+
+                Hexagon Temp = map[k][i];
+                if (Temp != null){
+                    if (IsEvenRow % 2 == 0){
+                        System.out.print("H ");
+                    }
+                    else{
+                        System.out.print(" H");
+                    }
+
+                }
+                else{
+                    if (IsEvenRow % 2 == 0){
+                        System.out.print("  ");
+                    }
+                    else{
+                        System.out.print("  ");
+                    }
+
+                }
+
+            }
+            System.out.println();
+            IsEvenRow++;
+        }
+
+
+
+    }
+
 }
