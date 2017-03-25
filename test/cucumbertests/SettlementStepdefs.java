@@ -50,14 +50,14 @@ public class SettlementStepdefs {
         throw new PendingException();
     }
 
-    @Given("^The Player is out of Meeples and Totoros$")
-    public void thePlayerIsOutOfMeeplesAndTotoros() throws Throwable {
+    @Given("^The Player is out of Meeples and Totoros and Tigers$")
+    public void thePlayerIsOutOfMeeplesAndTotorosAndTigers() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
-    @When("^The Player attempts to start a Settlement on a level (\\d+) Hexagon$")
-    public void thePlayerAttemptsToStartASettlementOnALevelHexagon(int arg0) throws Throwable {
+    @When("^The Player attempts a build option$")
+    public void thePlayerAttemptsABuildOption(int arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

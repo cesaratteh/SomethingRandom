@@ -58,7 +58,7 @@ public class GameBoardStepdefs {
         // FIXME: 3/25/2017 Added new dependency to constructor of hexagon. You can probably use RandomGenerator.generateRandomHexagon()
     }
 
-    @Then("^The Tile starts a new board$")
+    @Then("^The Tile starts a new board in the center$")
     public void theTileStartsANewBoard() throws Throwable {
         if(GameBoard.getMiddleHexagon() != null){
             //do stuff

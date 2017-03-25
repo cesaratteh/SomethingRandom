@@ -33,6 +33,12 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
+    @Given("^The Player chose the expand settlement action$")
+    public void thePlayerChoseTheExpandSettlementAction() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
     @When("^A Player's turn ends$")
     public void aPlayerSTurnEnds() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -69,6 +75,12 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
+    @And("^The Tiger was successfully placed$")
+    public void theTigerWasSuccessfullyPlaced() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
     @Then("^Player receives (\\d+) points$")
     public void playerReceivesPoints(int arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -101,6 +113,42 @@ public class PlayerStepdefs{
 
     @When("^One player finishes their turn$")
     public void onePlayerFinishesTheirTurn() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The game ends$")
+    public void theGameEnds() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^The players tie$")
+    public void thatPlayersTie() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^One player who had played all their pieces$")
+    public void onePlayerWhoHadPlayedAllTheirPieces() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^The other player loses$")
+    public void theOtherPlayerLoses() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^Player chose the build tiger action$")
+    public void playerChoseTheBuildTigerAction() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The chosen hex is on level 3 or greater$")
+    public void theChosenHexIsOnLevel3OrGreater() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

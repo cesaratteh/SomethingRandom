@@ -32,6 +32,12 @@ public class NukeStepdefs {
         throw new PendingException();
     }
 
+    @And("^They are not the only member of a settlement$")
+    public void theyAreNotTheOnlyMemberOfASettlement() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
     @When("^The Hexagons are Nuked$")
     public void theHexagonsAreNuked() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -46,6 +52,12 @@ public class NukeStepdefs {
 
     @And("^The population of the Hexagons are removed$")
     public void thePopulationOfTheHexagonsAreRemoved() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^One is added to the level$")
+    public void theLevelUp() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

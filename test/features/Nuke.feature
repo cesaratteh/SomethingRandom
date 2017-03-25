@@ -6,9 +6,11 @@ Feature: Nuke
     And The Hexagons are part of at least 2 different Tiles
     And They do not contain a Totoro
     And They do not contain a Tiger
+    And They are not the only member of a settlement
     When The Hexagons are Nuked
     Then The new Tile is placed on top of the Hexagons
     And The population of the Hexagons are removed
+    And One is added to the level
 
     Given There are Hexagons that are on the same level
     And  The Hexagons are part of at least 2 different Tiles

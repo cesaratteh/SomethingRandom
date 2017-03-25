@@ -4,7 +4,7 @@ Feature: GameBoard
 
     Given There are no Tiles
     When A Tile is placed
-    Then The Tile starts a new board
+    Then The Tile starts a new board in the center
     And The Tile is on level one
 
     Given There is an existing board

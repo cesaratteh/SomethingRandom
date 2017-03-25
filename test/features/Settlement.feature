@@ -17,8 +17,8 @@ Feature: Settlement
     Then The move is illegal
     And The game ends
 
-    Given The Player is out of Meeples and Totoros
-    When The Player attempts to start a Settlement on a level 1 Hexagon
+    Given The Player is out of Meeples and Totoros and Tigers
+    When The Player attempts a build option
     Then The Player loses
 
     Given The Player has an existing Settlement
