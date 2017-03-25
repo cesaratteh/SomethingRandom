@@ -89,17 +89,31 @@ public class Hexagon {
 
     public char ConvertTerrainToCharacter(){
         char TerrainChar = ' ';
-
-
-
         switch (terrainType){
-            case VOLCANO:    TerrainChar ='V';
+            case VOLCANO:    TerrainChar = 'V';
+            break;
+            case GRASSLAND:  TerrainChar = 'G';
+            break;
+            case JUNGLE:     TerrainChar = 'J';
+            break;
+            case LAKE:       TerrainChar = 'L';
+            break;
+            case ROCKY:      TerrainChar = 'R';
+            break;
         }
-
-
-
-
-        return(TerrainChar);
+       return(TerrainChar);
     }
+    public char ConvertTeamToChar(){
+        char TeamChar = ' ';
+        switch (occupiedBy){
+            case FRIENDLY:    TeamChar = 'F';
+                break;
+            case ENEMY:       TeamChar = 'E';
+                break;
+            case UNKNOWN:     TeamChar = 'U';
+                break;
 
+        }
+        return(TeamChar);
+    }
 }

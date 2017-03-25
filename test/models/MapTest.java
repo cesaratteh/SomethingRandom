@@ -72,10 +72,13 @@ public class MapTest {
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
         Hexagon hexagon = RandomGenerator.generateRandomHexagon();
         map.addHexagon(mapSpot, hexagon);
+        hexagon.addMeeples(hexagon.getLevel(),Team.FRIENDLY);
 
         MapSpot Spot2 = mapSpot.topLeft();
         hexagon = RandomGenerator.generateRandomHexagon();
         map.addHexagon(Spot2, hexagon);
+        hexagon.addTotoro(Team.ENEMY);
+
 
         MapSpot Spot3 = mapSpot.topRight();
         hexagon = RandomGenerator.generateRandomHexagon();

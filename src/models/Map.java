@@ -84,9 +84,9 @@ public class Map {
 
 
                 if (Temp != null){
-                    int level = Temp.getLevel();
-                    Terrain TerrainType = Temp.getTerrainType();
-                    ThisLine+= "H-  ";
+
+                    String Slevel = String.valueOf(Temp.getLevel());
+                    ThisLine+= Slevel + Temp.ConvertTerrainToCharacter() + "  ";
 
                 }
 
@@ -102,7 +102,7 @@ public class Map {
 
             Boolean LineIsEmpty = true;
             for (int k = 0; k < mapSize*4; k++){
-                if(ThisLine.charAt(k) == 'H') {
+                if(ThisLine.charAt(k) != ' ') {
                     //System.out.print("Ran");
                     LineIsEmpty = false;
                 }
@@ -117,24 +117,80 @@ public class Map {
             }
             IsEvenRow++;
         }
+        String[] Lines2 = new String[mapSize];
+        LinesToPrint = mapSize;
+        AddtoLines=0;
+        IsEvenRow = 1;
+        for(int i =0; i< mapSize; i++){
+            String ThisLine = "        ";
+
+            for(int k =0; k< mapSize; k++){
+                Hexagon Temp = map[k][i];
+
+
+                if (Temp != null){
+
+                    String Slevel = String.valueOf(Temp.getLevel());
+                    if(Temp.isEmpty()){
+                        ThisLine+="-U  ";
+                    }
+                    else if(Temp.isHasTotoro() == true){
+                        ThisLine+= "T" + Temp.ConvertTeamToChar() + "  ";
+                    }
+                    else{
+                        ThisLine+= (String.valueOf(Temp.getNumberOfMeeples()) + Temp.ConvertTeamToChar() + "  " );
+                    }
+
+
+                }
+
+                else{
+                    if (IsEvenRow % 2 == 0){
+                        ThisLine+="    ";;
+                    }
+                    else{
+                        ThisLine+="    ";;
+                    }
+                }
+            }
+
+            Boolean LineIsEmpty = true;
+            for (int k = 0; k < mapSize*4; k++){
+                if(ThisLine.charAt(k) != ' ') {
+
+                    LineIsEmpty = false;
+                }
+            }
+
+            if(LineIsEmpty == false){
+                Lines2[AddtoLines] = ThisLine;
+                AddtoLines++;
+            }
+            else{
+                LinesToPrint--;
+            }
+            IsEvenRow++;
+        }
+
         int MinValue=mapSize*4;
         int MaxValue = 0;
 
         for(int j = 0; j < LinesToPrint; j++){
             for(int k = 0; k<mapSize*4; k++){
                 Boolean FirstHex = true;
-                if(Lines[j].charAt(k) == 'H' && FirstHex == true){
+                if(Lines[j].charAt(k) != ' ' && FirstHex == true){
                     MinValue= Math.min(MinValue,k);
                     FirstHex = false;
                 }
                 else{}
-                if(Lines[j].charAt(k) == 'H'){
+                if(Lines[j].charAt(k) != ' '){
                     MaxValue = Math.max(k,MaxValue);
                 }
             }
         }
         for(int j = 0; j < LinesToPrint; j++){
             System.out.println(Lines[j].substring(MinValue-4,MaxValue+4));
+            System.out.println(Lines2[j].substring(MinValue-4,MaxValue+4));
         }
     }
 
