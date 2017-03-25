@@ -5,7 +5,7 @@ public class Map {
     //-----------
     // Attributes
 
-    private static final int mapSize = calculateMaximumMapWidthAndHeight();
+    public static final int mapSize = calculateMaximumMapWidthAndHeight();
     private Hexagon[][] map;
 
     //-------------
