@@ -64,7 +64,7 @@ public class MapTest {
         assertEquals(map.getMiddleHexagon(), hexagon);
     }
 
-
+    /*
     @Test
     public void PrintMapTest(){
         final Map map = new Map();
@@ -83,5 +83,5 @@ public class MapTest {
 
         map.PrintMap();
     }
-
+    */
 }

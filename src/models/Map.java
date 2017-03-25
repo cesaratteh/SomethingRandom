@@ -81,7 +81,14 @@ public class Map {
 
             for(int k =0; k< mapSize; k++){
                 Hexagon Temp = map[k][i];
-                if (Temp != null){ ThisLine+="H-  ";}
+
+
+                if (Temp != null){
+                    int level = Temp.getLevel();
+                    Terrain TerrainType = Temp.getTerrainType();
+                    ThisLine+= "H-  ";
+
+                }
 
                 else{
                     if (IsEvenRow % 2 == 0){

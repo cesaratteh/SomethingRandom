@@ -113,8 +113,18 @@ public class HexagonTest {
         assertEquals(0, hexagon.getNumberOfMeeples());
     }
 
+   /* @Test
+    public void ConvertTerrainToCharTest(){
+
+        final Hexagon hexagon = new Hexagon(RandomGenerator.generateRandomTeam(), Terrain.VOLCANO,
+                                            RandomGenerator.generateRandomLevel(),
+                                            RandomGenerator.generateRandomTileId());
+        assertEquals('V', hexagon.ConvertTerrainToCharacter() );
 
 
+    }
+
+*/
 
 
 }

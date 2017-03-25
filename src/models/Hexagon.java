@@ -83,4 +83,13 @@ public class Hexagon {
         return terrainType;
     }
 
+    public Character ConvertTerrainToCharacter(){
+        Character TerrainChar =' ';
+
+
+
+
+        return(TerrainChar);
+    }
+
 }
