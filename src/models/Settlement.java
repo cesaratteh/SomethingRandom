@@ -1,40 +1,56 @@
 package models;
 
-
 import java.util.ArrayList;
 
 public class Settlement {
+
     //-----------
     // Attributes
 
-    private int size;
-    private ArrayList<MapSpot> listOfHexes;
-    private int numberOfMeeples;
-    private int numberOfTotoro;
+    private ArrayList<MapSpot> mapSpots;
     private Team team;
+    private int numberOfMeeples;
+    private int numberOfTotoros;
 
     //-------------
     // Constructors
 
-    public Settlement(final ArrayList<MapSpot> listOfHexes, final Team team, Map map ){
-        this.listOfHexes = listOfHexes;
+    public Settlement(final Team team){
+        mapSpots = new ArrayList<>();
         this.team = team;
-        this.size = listOfHexes.size();
-        for(int i = 0; i<listOfHexes.size(); i++){
-            this.numberOfMeeples += map.getHexagon(listOfHexes.get(i)).getNumberOfMeeples();
-            if(map.getHexagon(listOfHexes.get(i)).isHasTotoro()) this.numberOfTotoro++;
-        }
+        this.numberOfMeeples = 0;
+        this.numberOfTotoros = 0;
+    }
 
+    //--------
+    // Methods
+
+    public void add(final MapSpot mapSpot, final Hexagon hexagon) {
+        mapSpots.add(mapSpot);
+        numberOfMeeples += hexagon.getNumberOfMeeples();
+        numberOfTotoros += (hexagon.isHasTotoro()) ? 1 : 0;
     }
 
     //--------
     // Getters
 
-    public int getSize(){return size;}
-    public int getNumberOfTotoro() {return numberOfTotoro;}
-    public int getNumberOfMeeples() {return numberOfMeeples;}
-    public ArrayList<MapSpot> getListOfHexes() {return listOfHexes;}
-    public Team getTeam(){return team;}
+    public int getSize(){
+        return mapSpots.size();
+    }
 
+    public int getNumberOfMeeples() {
+        return numberOfMeeples;
+    }
 
+    public int getNumberOfTotoros() {
+        return numberOfTotoros;
+    }
+
+    public ArrayList<MapSpot> getMapSpots() {
+        return mapSpots;
+    }
+
+    public Team getTeam(){
+        return team;
+    }
 }
