@@ -69,9 +69,17 @@ public class MapTest {
     public void PrintMapTest(){
         final Map map = new Map();
 
-        final MapSpot mapSpot = map.getMiddleHexagonMapSpot();
-        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
+        MapSpot mapSpot = map.getMiddleHexagonMapSpot();
+        Hexagon hexagon = RandomGenerator.generateRandomHexagon();
         map.addHexagon(mapSpot, hexagon);
+
+        MapSpot Spot2 = mapSpot.topLeft();
+        hexagon = RandomGenerator.generateRandomHexagon();
+        map.addHexagon(Spot2, hexagon);
+
+        MapSpot Spot3 = mapSpot.topRight();
+        hexagon = RandomGenerator.generateRandomHexagon();
+        map.addHexagon(Spot3, hexagon);
 
         map.PrintMap();
     }
