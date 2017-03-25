@@ -16,12 +16,34 @@ public class MapSpot {
     // Constructors
 
     public MapSpot(final int x, final int y) {
-        if ((x % 2) != (y % 2)) {
+        if (!isMapSpotValid(x, y)) {
             throw new RuntimeException("Creating an invalid map spot");
         }
 
         this.x = x;
         this.y = y;
+    }
+
+    //-------
+    //Methods
+
+    private boolean isMapSpotValid(final int x, final int y) {
+        boolean inHexagonalPlace;
+        boolean insideMapBoundary;
+
+        if ((x % 2) != (y % 2)) {
+            inHexagonalPlace = false;
+        } else {
+            inHexagonalPlace = true;
+        }
+
+        if ((x >= Map.mapSize) | (y >= Map.mapSize)) {
+            insideMapBoundary = false;
+        } else {
+            insideMapBoundary = true;
+        }
+
+        return inHexagonalPlace && insideMapBoundary;
     }
 
     //---------
