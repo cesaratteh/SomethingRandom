@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 /**
  * x,y have to be both odd or both even.
  * Assuming 0 is even
@@ -26,6 +28,18 @@ public class MapSpot {
 
     //-------
     //Methods
+
+    public ArrayList<MapSpot> getAdjacentMapSpots() {
+        final ArrayList<MapSpot> adjacentMapSpots = new ArrayList<>();
+        adjacentMapSpots.add(this.left());
+        adjacentMapSpots.add(this.topLeft());
+        adjacentMapSpots.add(this.topRight());
+        adjacentMapSpots.add(this.right());
+        adjacentMapSpots.add(this.bottomRight());
+        adjacentMapSpots.add(this.bottomLeft());
+
+        return adjacentMapSpots;
+    }
 
     public MapSpot left() {
         final int tempX = this.x - 2;
