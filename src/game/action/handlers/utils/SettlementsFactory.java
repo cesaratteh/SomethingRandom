@@ -11,6 +11,9 @@ public class SettlementsFactory {
 
     private Map map;
 
+    //--------
+    // Methods
+
     /**
      * Uses something very similar to BFS (instead of doing Breadth First Search, it's doing 'Terrain & Team First Search')
      * @param team

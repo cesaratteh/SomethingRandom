@@ -137,5 +137,4 @@ public class MapSpotTest {
             assertEquals(y + 1, bottomLeft.getY());
         }
     }
-
 }
