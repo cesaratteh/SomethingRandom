@@ -137,4 +137,8 @@ public class MapSpot {
     public int getY() {
         return y;
     }
+
+    public boolean isEqual(MapSpot mapSpot) {
+        return this.getX() == mapSpot.getX() && this.getY() == mapSpot.getY();
+    }
 }

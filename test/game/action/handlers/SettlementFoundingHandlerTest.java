@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-
 public class SettlementFoundingHandlerTest {
 
     private Map map;

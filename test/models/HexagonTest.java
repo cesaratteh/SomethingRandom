@@ -98,6 +98,14 @@ public class HexagonTest {
     }
 
     @Test
+    public void addingTigerTest(){
+        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
+
+        hexagon.addTiger(RandomGenerator.generateRandomTeam());
+        assertEquals(true, hexagon.isHasTiger());
+    }
+
+    @Test
     public void nukingHexagonTest() {
         final int numberOfMeeplesToAdd = random.nextInt(100);
 
