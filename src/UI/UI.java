@@ -21,8 +21,6 @@ public class UI extends Application {
 
     private void drawMap(GraphicsContext gc) {
 
-        gc.setFill(Color.WHITE);
-        gc.setLineWidth(4);
         Map map = new Map();
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 
@@ -31,12 +29,18 @@ public class UI extends Application {
 
         map.addHexagon(mapSpot, temp);
 
-        map.addHexagon(mapSpot.left(), new Hexagon(Terrain.GRASSLAND, 4, 2));
-        map.addHexagon(mapSpot.topLeft(), new Hexagon(Terrain.GRASSLAND, 4, 2));
-        map.addHexagon(mapSpot.topRight(), new Hexagon(Terrain.GRASSLAND, 4, 2));
-        map.addHexagon(mapSpot.right(), new Hexagon(Terrain.GRASSLAND, 4, 2));
-        map.addHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.GRASSLAND, 4, 2));
-        map.addHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.GRASSLAND, 4, 2));
+        temp = new Hexagon(Terrain.JUNGLE, 2, 4);
+        temp.addMeeples(3, Team.ENEMY);
+
+        map.addHexagon(mapSpot.left(),temp);
+        map.addHexagon(mapSpot.topLeft(), new Hexagon(Terrain.LAKE, 4, 2));
+        map.addHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
+        map.addHexagon(mapSpot.right(), new Hexagon(Terrain.VOLCANO, 4, 2));
+        map.addHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
+        map.addHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.ROCKY, 4, 2));
+
+        gc.setFill(Color.WHITE);
+        gc.setLineWidth(4);
 
         final Hexagon[][] hexagonArray = map.getHexagonArray();
 
@@ -77,12 +81,37 @@ public class UI extends Application {
                 Hexagon hexagon = map.getHexagon(currentMapSpot);
 
                 if (hexagon != null) {
-                    if (hexagon.getOccupiedBy() == Team.FRIENDLY) {
-                        gc.setStroke(Color.GREEN);
-                    } else if (hexagon.getOccupiedBy() == Team.ENEMY) {
-                        gc.setStroke(Color.RED);
-                    } else {
-                        gc.setStroke(Color.BLACK);
+                    switch (hexagon.getOccupiedBy()) {
+                        case FRIENDLY:
+                            gc.setStroke(Color.GREEN);
+                            break;
+                        case ENEMY:
+                            gc.setStroke(Color.RED);
+                            break;
+                        default:
+                            gc.setStroke(Color.BLACK);
+                            break;
+                    }
+
+                    switch (hexagon.getTerrainType()) {
+                        case GRASSLAND:
+                            gc.setFill(Color.LAWNGREEN);
+                            break;
+                        case JUNGLE:
+                            gc.setFill(Color.FORESTGREEN);
+                            break;
+                        case LAKE:
+                            gc.setFill(Color.DODGERBLUE);
+                            break;
+                        case VOLCANO:
+                            gc.setFill(Color.DARKORANGE);
+                            break;
+                        case ROCKY:
+                            gc.setFill(Color.GRAY);
+                            break;
+                        default:
+                            gc.setFill(Color.WHITE);
+                            break;
                     }
 
                     gc.fillPolygon(
@@ -107,12 +136,37 @@ public class UI extends Application {
                 Hexagon hexagon = map.getHexagon(currentMapSpot);
 
                 if (hexagon != null) {
-                    if (hexagon.getOccupiedBy() == Team.FRIENDLY) {
-                        gc.setStroke(Color.GREEN);
-                    } else if (hexagon.getOccupiedBy() == Team.ENEMY) {
-                        gc.setStroke(Color.RED);
-                    } else {
-                        gc.setStroke(Color.BLACK);
+                    switch (hexagon.getOccupiedBy()) {
+                        case FRIENDLY:
+                            gc.setStroke(Color.GREEN);
+                            break;
+                        case ENEMY:
+                            gc.setStroke(Color.RED);
+                            break;
+                        default:
+                            gc.setStroke(Color.BLACK);
+                            break;
+                    }
+
+                    switch (hexagon.getTerrainType()) {
+                        case GRASSLAND:
+                            gc.setFill(Color.LAWNGREEN);
+                            break;
+                        case JUNGLE:
+                            gc.setFill(Color.FORESTGREEN);
+                            break;
+                        case LAKE:
+                            gc.setFill(Color.DODGERBLUE);
+                            break;
+                        case VOLCANO:
+                            gc.setFill(Color.DARKORANGE);
+                            break;
+                        case ROCKY:
+                            gc.setFill(Color.GRAY);
+                            break;
+                        default:
+                            gc.setFill(Color.WHITE);
+                            break;
                     }
 
                     gc.fillPolygon(
