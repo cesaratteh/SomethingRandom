@@ -15,7 +15,7 @@ public class MapTest {
     public void getMapSizeTest() {
         final Map map = new Map();
 
-        assertEquals(24 * 2 * 2 * 3 + 10, map.getMapSize());
+        assertEquals(24 * 2 * 2 * 3 + 10, map.size());
     }
 
     @Test
@@ -28,10 +28,10 @@ public class MapTest {
 
         final Hexagon[][] hexagonArray = map.getHexagonArray();
 
-        assertEquals(map.getMapSize(), hexagonArray.length);
-        assertEquals(map.getMapSize(), hexagonArray[0].length);
+        assertEquals(map.size(), hexagonArray.length);
+        assertEquals(map.size(), hexagonArray[0].length);
 
-        final Hexagon returnedHex = hexagonArray[map.getMapSize() / 2][map.getMapSize() / 2];
+        final Hexagon returnedHex = hexagonArray[map.size() / 2][map.size() / 2];
 
         assertEquals(hexagon.getLevel(), returnedHex.getLevel());
         assertEquals(hexagon.getNumberOfMeeples(), returnedHex.getNumberOfMeeples());
@@ -44,7 +44,7 @@ public class MapTest {
     public void addHexagonTest() {
         final Map map = new Map();
 
-        final int x = random.nextInt(map.getMapSize());
+        final int x = random.nextInt(map.size());
         final MapSpot mapSpot = new MapSpot(x, (x % 2 == 0) ? 0 : 1);
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 

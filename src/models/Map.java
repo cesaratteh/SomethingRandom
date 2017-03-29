@@ -37,7 +37,7 @@ public class Map {
     //-------------
     // Getters
 
-    public int getMapSize() {
+    public int size() {
         return mapSize;
     }
 

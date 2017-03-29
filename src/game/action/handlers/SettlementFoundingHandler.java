@@ -19,7 +19,7 @@ public class SettlementFoundingHandler {
         ArrayList<MapSpot> ValidMapSpotsForSettlementFounding = new ArrayList<>();
         LinkedList<MapSpot> NotVisitedHexagons = new LinkedList<>();
 
-        final boolean visited[][] = new boolean[map.getMapSize()][map.getMapSize()];
+        final boolean visited[][] = new boolean[map.size()][map.size()];
 
         visited[map.getMiddleHexagonMapSpot().getX()][map.getMiddleHexagonMapSpot().getY()] = true;
         NotVisitedHexagons.add(map.getMiddleHexagonMapSpot());

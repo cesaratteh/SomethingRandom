@@ -22,7 +22,7 @@ public class SettlementsFactory {
     public ArrayList<Settlement> generateSettlements(final Team team) {
         final ArrayList<Settlement> settlements = new ArrayList<>();
 
-        final boolean visited[][] = new boolean[map.getMapSize()][map.getMapSize()];
+        final boolean visited[][] = new boolean[map.size()][map.size()];
 
         visit(map.getMiddleHexagonMapSpot(), settlements, visited, true, team);
 
