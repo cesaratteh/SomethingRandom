@@ -56,16 +56,6 @@ public class Hexagon {
         hasTiger = true;
     }
 
-    public void nukeHexagon()
-    {
-        if(hasTotoro)
-        {
-            throw new RuntimeException("Can't nuke Totoro"); // TODO: 3/19/2017 Replace with LOGGING
-        }
-
-        this.numberOfMeeples = 0;
-    }
-
     public boolean isEmpty(){
         return (numberOfMeeples == 0) && !(hasTotoro);
     }

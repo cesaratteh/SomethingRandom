@@ -106,19 +106,6 @@ public class HexagonTest {
     }
 
     @Test
-    public void nukingHexagonTest() {
-        final int numberOfMeeplesToAdd = random.nextInt(100);
-
-        final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
-
-        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam());
-
-        assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
-        hexagon.nukeHexagon();
-        assertEquals(0, hexagon.getNumberOfMeeples());
-    }
-
-    @Test
     public void ConvertTerrainToCharTest(){
 
         final Hexagon hexagon = new Hexagon(Terrain.VOLCANO,
