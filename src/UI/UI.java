@@ -26,21 +26,23 @@ public class UI extends Application {
 
         Hexagon temp = new Hexagon(Terrain.GRASSLAND, 2, 4);
         temp.addMeeples(4, Team.FRIENDLY);
-
         map.addHexagon(mapSpot, temp);
 
         temp = new Hexagon(Terrain.JUNGLE, 2, 4);
-        temp.addMeeples(3, Team.ENEMY);
+        temp.addTotoro(Team.ENEMY);
+        map.addHexagon(mapSpot.left(), temp);
 
-        map.addHexagon(mapSpot.left(),temp);
-        map.addHexagon(mapSpot.topLeft(), new Hexagon(Terrain.LAKE, 4, 2));
+        temp = new Hexagon(Terrain.LAKE, 2, 2);
+        temp.addTiger(Team.FRIENDLY);
+        map.addHexagon(mapSpot.topLeft(), temp);
+
         map.addHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
         map.addHexagon(mapSpot.right(), new Hexagon(Terrain.VOLCANO, 4, 2));
         map.addHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
         map.addHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.ROCKY, 4, 2));
 
         gc.setFill(Color.WHITE);
-        gc.setLineWidth(4);
+
 
         final Hexagon[][] hexagonArray = map.getHexagonArray();
 
@@ -53,30 +55,31 @@ public class UI extends Application {
         for (int i = 0; i < map.size(); i++) {
             for (int j = 0; j < map.size(); j++) {
                 if (hexagonArray[i][j] != null && leftBound == -1) {
-                    leftBound = i + 1;
+                    leftBound = i;
                 }
 
                 if (hexagonArray[i][j] != null) {
-                    rightBound = i + 1;
+                    rightBound = i;
                 }
 
                 if (hexagonArray[j][i] != null && topBound == -1) {
-                    topBound = i + 1;
+                    topBound = i;
                 }
 
                 if (hexagonArray[j][i] != null)
-                    bottomBound = i + 1;
+                    bottomBound = i;
             }
         }
 
         if (leftBound % 2 != topBound % 2)
             leftBound--;
+
         MapSpot currentMapSpot = new MapSpot(leftBound, topBound);
         DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50);
 
 
-        while (currentMapSpot.getY() < bottomBound){
-            while (currentMapSpot.getX() < rightBound) {
+        while (currentMapSpot.getY() <= bottomBound){
+            while (currentMapSpot.getX() <= rightBound) {
 
                 Hexagon hexagon = map.getHexagon(currentMapSpot);
 
@@ -114,14 +117,34 @@ public class UI extends Application {
                             break;
                     }
 
+                    gc.setLineWidth(4);
                     gc.fillPolygon(
-                            currentDrawable.getPolylineXPoints(),
-                            currentDrawable.getPolylineYPoints(),
+                            currentDrawable.getPolylineXPoints(4),
+                            currentDrawable.getPolylineYPoints(4),
                             7);
                     gc.strokePolyline(
-                            currentDrawable.getPolylineXPoints(),
-                            currentDrawable.getPolylineYPoints(),
+                            currentDrawable.getPolylineXPoints(4),
+                            currentDrawable.getPolylineYPoints(4),
                             7);
+
+                    gc.setLineWidth(1);
+                    gc.setStroke(Color.BLACK);
+                    gc.strokeText("Lvl: " + hexagon.getLevel(),
+                            currentDrawable.getCenterX() - 22,
+                            currentDrawable.getCenterY());
+                    if (hexagon.isHasTotoro()) {
+                        gc.strokeText("Totoro",
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    } else if (hexagon.isHasTiger()) {
+                        gc.strokeText("Tiger",
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    } else if (hexagon.getNumberOfMeeples() > 0) {
+                        gc.strokeText("M: " + hexagon.getNumberOfMeeples(),
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    }
                 }
 
 
@@ -169,14 +192,35 @@ public class UI extends Application {
                             break;
                     }
 
+                    gc.setLineWidth(4);
                     gc.fillPolygon(
-                            currentDrawable.getPolylineXPoints(),
-                            currentDrawable.getPolylineYPoints(),
+                            currentDrawable.getPolylineXPoints(4),
+                            currentDrawable.getPolylineYPoints(4),
                             7);
                     gc.strokePolyline(
-                            currentDrawable.getPolylineXPoints(),
-                            currentDrawable.getPolylineYPoints(),
+                            currentDrawable.getPolylineXPoints(4),
+                            currentDrawable.getPolylineYPoints(4),
                             7);
+
+
+                    gc.setLineWidth(1);
+                    gc.setStroke(Color.BLACK);
+                    gc.strokeText("Lvl: " + hexagon.getLevel(),
+                            currentDrawable.getCenterX() - 22,
+                            currentDrawable.getCenterY());
+                    if (hexagon.isHasTotoro()) {
+                        gc.strokeText("Totoro",
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    } else if (hexagon.isHasTiger()) {
+                        gc.strokeText("Tiger",
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    } else if (hexagon.getNumberOfMeeples() > 0) {
+                        gc.strokeText("M: " + hexagon.getNumberOfMeeples(),
+                                currentDrawable.getCenterX() - 22,
+                                currentDrawable.getCenterY() + 20);
+                    }
                 }
 
 

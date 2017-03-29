@@ -9,7 +9,6 @@ public class DrawableHexagon {
     private double centerY;
     private double radius;
 
-
     //-------------
     // Constructors
 
@@ -22,55 +21,62 @@ public class DrawableHexagon {
     //--------
     // Methods
 
-    int strokeWidth = 4;
+    public double getCenterX() {
+        return centerX;
+    }
+
+    public double getCenterY() {
+        return centerY;
+    }
+
     public DrawableHexagon right() {
         return new DrawableHexagon(
-                centerX + (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE) * 2,
+                centerX + radius * Math.sin(2 * HEXAGON_ANGLE) * 2,
                 centerY,
                 radius);
     }
 
     public DrawableHexagon left() {
         return new DrawableHexagon(
-                centerX - (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE) * 2,
+                centerX - radius * Math.sin(2 * HEXAGON_ANGLE) * 2,
                 centerY,
                 radius);
     }
 
     public DrawableHexagon topLeft() {
         return new DrawableHexagon(
-                centerX - (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE),
-                centerY - (1.5) * (radius + strokeWidth),
+                centerX - radius * Math.sin(2 * HEXAGON_ANGLE),
+                centerY - (1.5) * radius,
                 radius);
     }
 
     public DrawableHexagon bottomLeft() {
         return new DrawableHexagon(
-                centerX - (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE),
-                centerY + (1.5) * (radius + strokeWidth),
+                centerX - radius * Math.sin(2 * HEXAGON_ANGLE),
+                centerY + (1.5) * radius,
                 radius);
     }
 
     public DrawableHexagon topRight() {
         return new DrawableHexagon(
-                centerX + (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE),
-                centerY - (1.5) * (radius + strokeWidth),
+                centerX + radius * Math.sin(2 * HEXAGON_ANGLE),
+                centerY - (1.5) * radius,
                 radius);
     }
 
     public DrawableHexagon bottomRight() {
         return new DrawableHexagon(
-                centerX + (radius + strokeWidth) * Math.sin(2 * HEXAGON_ANGLE),
-                centerY + (1.5) * (radius + strokeWidth),
+                centerX + radius * Math.sin(2 * HEXAGON_ANGLE),
+                centerY + (1.5) * radius,
                 radius);
     }
 
-    public double[] getPolylineXPoints() {
+    public double[] getPolylineXPoints(final double shrink) {
         final double[] xPoints = new double[7];
 
         for (int i = 0; i < 6; i++)
         {
-            xPoints[i] = centerX + radius * Math.sin(i * HEXAGON_ANGLE);
+            xPoints[i] = centerX + (radius - shrink) * Math.sin(i * HEXAGON_ANGLE);
         }
 
         xPoints[6] = xPoints[0];
@@ -78,12 +84,12 @@ public class DrawableHexagon {
         return xPoints;
     }
 
-    public double[] getPolylineYPoints() {
+    public double[] getPolylineYPoints(final double shrink) {
         final double[] yPoints = new double[7];
 
         for (int i = 0; i < 6; i++)
         {
-            yPoints[i] = centerY + radius * Math.cos(i * HEXAGON_ANGLE);
+            yPoints[i] = centerY + (radius - shrink) * Math.cos(i * HEXAGON_ANGLE);
         }
 
         yPoints[6] = yPoints[0];
