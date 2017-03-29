@@ -112,17 +112,9 @@ public class MapSpot {
         boolean inHexagonalPlace;
         boolean insideMapBoundary;
 
-        if ((x % 2) != (y % 2)) {
-            inHexagonalPlace = false;
-        } else {
-            inHexagonalPlace = true;
-        }
+        inHexagonalPlace = (x % 2) == (y % 2);
 
-        if ((x >= Map.mapSize) | (y >= Map.mapSize)) {
-            insideMapBoundary = false;
-        } else {
-            insideMapBoundary = true;
-        }
+        insideMapBoundary = !((x >= Map.mapSize) | (y >= Map.mapSize));
 
         return inHexagonalPlace && insideMapBoundary;
     }
