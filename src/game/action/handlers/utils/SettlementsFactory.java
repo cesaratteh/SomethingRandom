@@ -59,7 +59,6 @@ public class SettlementsFactory {
             }
         }
 
-
         for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
             visit(adjacentMapSpot, settlements, visited, true, team);
         }
