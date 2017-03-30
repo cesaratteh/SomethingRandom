@@ -18,7 +18,6 @@ public class SettlementsFactoryTest {
 
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 
-        assertEquals(1, settlementsFactory.generateSettlements(Team.UNKNOWN).size());
         assertEquals(2, settlementsFactory.generateSettlements(Team.UNKNOWN).size());
     }
 }

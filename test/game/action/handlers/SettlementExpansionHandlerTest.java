@@ -27,7 +27,4 @@ public class SettlementExpansionHandlerTest {
         map.addHexagon(curr.left().left().topLeft(), new Hexagon(Terrain.ROCKY, 1, 3));
 
     }
-
-    @Test
-    public void
 }
