@@ -10,11 +10,25 @@ import models.Terrain;
  */
 public class NukingAndStackingHandler {
 
+
+    //-----------
+    // attributes
+
     final Map map;
+
+
+    //-------------
+    // constructors
 
     NukingAndStackingHandler(final Map map){
         this.map = map;
     }
+
+
+    //--------
+    // methods
+
+    // FIXME: 3/30/2017 Needs one more validation test - "Can't completely wipe out a settlement".
 
     public void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
         if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3)){

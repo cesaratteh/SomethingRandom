@@ -7,32 +7,29 @@ import models.Terrain;
 
 import java.util.ArrayList;
 
-/**
- * Shows available expansion options
- * Expands while checking the game rules
- */
-public class SettlementExpansionHandler {
+public class firstLayerSettlementExpansionHandler {
 
-    private Settlement settlement;
     private Map map;
 
     /**
-     * Returns an ArrayList of the viable MapSpots the settlement can expand to
+     * Returns an ArrayList of the viable MapSpots the settlement can expand to.
+     * Only returns the first layer of expandable spots (expandable layer of hexagons immediately surrounding settlement)
+     * Can be used for tiger/totoro expansions but not meeples.
      */
 
-    ArrayList<MapSpot> generateExpandableSettlementArea(){
-        ArrayList<MapSpot> ValidSpotsForExpansion = new ArrayList<>();
-        ArrayList<MapSpot> SettlementMapSpots = settlement.getMapSpots();
+    ArrayList<MapSpot> generateExpandableSettlementArea(final Settlement settlement){
+        final ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
+        final ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
 
         final boolean visited[][] = new boolean[map.size()][map.size()];
 
-        for(int i = 0; i< SettlementMapSpots.size(); i++){
-            visited[SettlementMapSpots.get(i).getX()][SettlementMapSpots.get(i).getY()] = true;
+        for (final MapSpot settlementMapSpot : settlementMapSpots) {
+            visited[settlementMapSpot.getX()][settlementMapSpot.getY()] = true;
         }
 
-        for(int i = 0; i< SettlementMapSpots.size(); i++){
+        for(int i = 0; i< settlementMapSpots.size(); i++){
 
-            MapSpot curr = SettlementMapSpots.get(i);
+            MapSpot curr = settlementMapSpots.get(i);
 
             for(int j = 0; j < curr.getAdjacentMapSpots().size(); j++){
 
@@ -40,13 +37,12 @@ public class SettlementExpansionHandler {
 
                 if(CanBeExpandedTo(curr, currentAdjacentSpot, visited, i)){
                     visited[currentAdjacentSpot.getX()][currentAdjacentSpot.getY()] = true;
-                    ValidSpotsForExpansion.add(currentAdjacentSpot);
+                    validSpotsForExpansion.add(currentAdjacentSpot);
                 }
-
             }
         }
 
-        return ValidSpotsForExpansion;
+        return validSpotsForExpansion;
     }
 
     private boolean CanBeExpandedTo(MapSpot curr, MapSpot currentAdjacentSpot,boolean[][] visited, int i) {
@@ -57,8 +53,7 @@ public class SettlementExpansionHandler {
                 && !visited[currentAdjacentSpot.getX()][currentAdjacentSpot.getY()];
     }
 
-    SettlementExpansionHandler(Settlement settlement, Map map){
-        this.settlement = settlement;
+    public firstLayerSettlementExpansionHandler(final Map map){
         this.map = map;
     }
 }

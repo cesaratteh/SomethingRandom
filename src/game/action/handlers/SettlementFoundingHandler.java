@@ -16,17 +16,17 @@ public class SettlementFoundingHandler {
     private final Map map;
 
     public ArrayList<MapSpot> generateValidMapSpotsForSettlementFounding(){
-        ArrayList<MapSpot> ValidMapSpotsForSettlementFounding = new ArrayList<>();
-        LinkedList<MapSpot> NotVisitedHexagons = new LinkedList<>();
+        final ArrayList<MapSpot> validMapSpotsForSettlementFounding = new ArrayList<>();
+        final LinkedList<MapSpot> notVisitedHexagons = new LinkedList<>();
 
         final boolean visited[][] = new boolean[map.size()][map.size()];
 
         visited[map.getMiddleHexagonMapSpot().getX()][map.getMiddleHexagonMapSpot().getY()] = true;
-        NotVisitedHexagons.add(map.getMiddleHexagonMapSpot());
+        notVisitedHexagons.add(map.getMiddleHexagonMapSpot());
 
-        while(!NotVisitedHexagons.isEmpty()){
+        while(!notVisitedHexagons.isEmpty()){
 
-            MapSpot currentMapSpot = NotVisitedHexagons.getFirst();
+            MapSpot currentMapSpot = notVisitedHexagons.getFirst();
             Hexagon currentHex = map.getHexagon(currentMapSpot);
 
             if(currentHex != null){
@@ -34,7 +34,7 @@ public class SettlementFoundingHandler {
                 if(currentHex.isEmpty() &&
                         currentHex.getTerrainType() != Terrain.VOLCANO &&
                         currentHex.getLevel() == 1){
-                    ValidMapSpotsForSettlementFounding.add(currentMapSpot);
+                    validMapSpotsForSettlementFounding.add(currentMapSpot);
                 }
 
                 for(int i = 0; i<currentMapSpot.getAdjacentMapSpots().size(); i++){
@@ -42,17 +42,17 @@ public class SettlementFoundingHandler {
 
                     if(adjacentSpot != null){
                         if(!visited[adjacentSpot.getX()][adjacentSpot.getY()] && map.getHexagon(adjacentSpot) != null){
-                            NotVisitedHexagons.add(adjacentSpot);
+                            notVisitedHexagons.add(adjacentSpot);
                             visited[adjacentSpot.getX()][adjacentSpot.getY()] = true;
                         }
                     }
                 }
 
             }
-            NotVisitedHexagons.removeFirst();
+            notVisitedHexagons.removeFirst();
         }
 
-        return ValidMapSpotsForSettlementFounding;
+        return validMapSpotsForSettlementFounding;
     }
 
 
