@@ -25,6 +25,13 @@ public class PlayerTest {
     }
 
     @Test
+    public void initialNumberOfTigersTest() {
+        final Player player = new Player();
+
+        assertEquals(2, player.getNumberOfTigersLeft());
+    }
+
+    @Test
     public void isHasTotorosLeft() {
         final Player player = new Player();
 
@@ -35,6 +42,19 @@ public class PlayerTest {
         }
 
         assertEquals(false, player.isHasTotorosLeft());
+    }
+
+    @Test
+    public void isHasTigersLeft() {
+        final Player player = new Player();
+
+        assertEquals(true, player.isHasTigersLeft());
+
+        while(player.getNumberOfTigersLeft() > 0) {
+            player.takeATigerFromPlayer();
+        }
+
+        assertEquals(false, player.isHasTigersLeft());
     }
 
     @Test

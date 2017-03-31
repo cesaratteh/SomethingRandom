@@ -7,6 +7,7 @@ public class Player {
 
     private int numberOfTotorosLeft;
     private int numberOfMeeplesLeft;
+    private int numberOfTigersLeft;
 
 
     //------------
@@ -16,6 +17,7 @@ public class Player {
     {
         this.numberOfMeeplesLeft = NUMBER_OF_STARTING_MEEPLES;
         this.numberOfTotorosLeft = NUMBER_OF_STARTING_TOTOROS;
+        this.numberOfTigersLeft = NUMBER_OF_STARTING_TIGERS;
     }
 
     //--------
@@ -36,7 +38,13 @@ public class Player {
 
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
+    void takeATigerFromPlayer() {
+        if (!isHasTigersLeft()) {
+            throw new RuntimeException("Can't place tiger. models.Player doesnt have enough");
+        }
 
+        numberOfTigersLeft--;
+    }
 
 
     boolean isHasTotorosLeft() {
@@ -47,6 +55,7 @@ public class Player {
         return numberOfMeeplesLeft >= numberOfMeeples;
     }
 
+    boolean isHasTigersLeft() {return numberOfTigersLeft > 0; }
     //-----------
     // Getters
 
@@ -58,9 +67,12 @@ public class Player {
         return numberOfMeeplesLeft;
     }
 
+    public int getNumberOfTigersLeft() {return numberOfTigersLeft;}
+
     //----------
     // Constants
 
     private static final int NUMBER_OF_STARTING_MEEPLES = 20;
     private static final int NUMBER_OF_STARTING_TOTOROS = 3;
+    private static final int NUMBER_OF_STARTING_TIGERS = 2;
 }
