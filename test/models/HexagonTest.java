@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
@@ -9,6 +10,12 @@ import static org.junit.Assert.assertEquals;
 public class HexagonTest {
 
     final Random random = new Random();
+    Player player;
+
+    @Before
+    public void initializePlayer(){
+        player = new Player(RandomGenerator.generateRandomTeam());
+    }
 
     @Test
     public void getTeamTest() {
@@ -18,7 +25,7 @@ public class HexagonTest {
                 0,
                 1);
 
-        hexagon.addMeeples(1, team);
+        hexagon.addMeeples(1, team, player);
         assertEquals(team, hexagon.getOccupiedBy());
     }
 
@@ -74,7 +81,7 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam());
+        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam(), player);
         assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
     }
 
@@ -85,15 +92,15 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAddFirst, RandomGenerator.generateRandomTeam());
-        hexagon.addMeeples(numberOfMeeplesToAddSecond, RandomGenerator.generateRandomTeam());
+        hexagon.addMeeples(numberOfMeeplesToAddFirst, RandomGenerator.generateRandomTeam(), player);
+        hexagon.addMeeples(numberOfMeeplesToAddSecond, RandomGenerator.generateRandomTeam(), player);
     }
 
     @Test
     public void addingTotoroTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addTotoro(RandomGenerator.generateRandomTeam());
+        hexagon.addTotoro(RandomGenerator.generateRandomTeam(), player);
         assertEquals(true, hexagon.isHasTotoro());
     }
 
@@ -101,7 +108,7 @@ public class HexagonTest {
     public void addingTigerTest(){
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addTiger(RandomGenerator.generateRandomTeam());
+        hexagon.addTiger(RandomGenerator.generateRandomTeam(), player);
         assertEquals(true, hexagon.isHasTiger());
     }
 

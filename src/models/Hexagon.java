@@ -14,10 +14,10 @@ public class Hexagon {
     private int numberOfMeeples;
     private boolean hasTotoro;
     private boolean hasTiger;
+    private Player owner;
 
     //-------------
     // Constructors
-
     public Hexagon(final Terrain terrainType, final int level, final int tileId) {
         this.occupiedBy = Team.UNKNOWN;
         this.terrainType = terrainType;
@@ -28,30 +28,53 @@ public class Hexagon {
         hasTiger = false;
     }
 
+    public Hexagon(Player owner ,final Terrain terrainType, final int level, final int tileId) {
+        this.occupiedBy = Team.UNKNOWN;
+        this.terrainType = terrainType;
+        this.level = level;
+        this.tileId = tileId;
+        this.owner = owner;
+        numberOfMeeples = 0;
+        hasTotoro = false;
+        hasTiger = false;
+    }
+
     //--------
     // Methods
 
-    public void addMeeples(final int numberOfMeeples, final Team team)
+    public void addMeeples(final int numberOfMeeples, final Team team, final Player player)
     {
         if(!isEmpty())
             throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
-
+        this.owner = player;
+        if(owner.getNumberOfMeeplesLeft() < numberOfMeeples){
+            throw new RuntimeException("Not enough meeples");
+        }
+        owner.takeXMeeplesFromPlayer(numberOfMeeples);
         this.occupiedBy = team;
         this.numberOfMeeples = numberOfMeeples;
     }
 
-    public void addTotoro(final Team team) {
+    public void addTotoro(final Team team, final Player player) {
         if(!isEmpty())
             throw new RuntimeException("Adding totoro when models.Hexagon is not empty");
 
+        this.owner = player;
+        if(!owner.isHasTotorosLeft()) {
+            throw new RuntimeException("Not enough Totoros");
+        }
+        owner.takeATotoroFromPlayer();
         this.occupiedBy = team;
         hasTotoro = true;
     }
 
-    public void addTiger(final Team team){
+    public void addTiger(final Team team, final Player player){
         if(!isEmpty())
             throw new RuntimeException("Adding tiger when models.Hexagon is not empty");
-
+        this.owner = player;
+        if(!owner.isHasTigersLeft())
+            throw new RuntimeException("Not enough Tigers");
+        owner.takeATigerFromPlayer();
         this.occupiedBy = team;
         hasTiger = true;
     }
@@ -133,5 +156,9 @@ public class Hexagon {
                 && this.getNumberOfMeeples() == hexagon.getNumberOfMeeples()
                 && this.isHasTotoro() == hexagon.isHasTotoro()
                 && this.isHasTiger() == hexagon.isHasTiger();
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 }

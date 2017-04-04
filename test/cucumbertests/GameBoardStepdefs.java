@@ -35,8 +35,8 @@ public class GameBoardStepdefs {
     @Before
     public void beforeScenario(){
         GameBoard = new Map();
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player(RandomGenerator.generateRandomTeam());
+        player2 = new Player(RandomGenerator.generateRandomTeam());
     }
 
     @Given("^There are no Tiles$")

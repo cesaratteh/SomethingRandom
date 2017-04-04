@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
@@ -9,31 +10,35 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
 
     final Random random = new Random();
+    private Player player;
+    
+    @Before
+    public void initializePlayer(){
+        player = new Player(Team.FRIENDLY);
+    }
 
     @Test
     public void initialNumberOfMeeplesTest() {
-        final Player player = new Player();
-
         assertEquals(20, player.getNumberOfMeeplesLeft());
     }
 
     @Test
     public void initialNumberOfTotorosTest() {
-        final Player player = new Player();
+        
 
         assertEquals(3, player.getNumberOfTotorosLeft());
     }
 
     @Test
     public void initialNumberOfTigersTest() {
-        final Player player = new Player();
+
 
         assertEquals(2, player.getNumberOfTigersLeft());
     }
 
     @Test
     public void isHasTotorosLeft() {
-        final Player player = new Player();
+
 
         assertEquals(true, player.isHasTotorosLeft());
 
@@ -46,7 +51,7 @@ public class PlayerTest {
 
     @Test
     public void isHasTigersLeft() {
-        final Player player = new Player();
+
 
         assertEquals(true, player.isHasTigersLeft());
 
@@ -59,7 +64,7 @@ public class PlayerTest {
 
     @Test
     public void isHasEnoughMeeplesTest() {
-        final Player player = new Player();
+
 
         assertEquals(true,
                 player.isHasEnoughMeeples(player.getNumberOfMeeplesLeft()));
@@ -69,13 +74,12 @@ public class PlayerTest {
 
     @Test
     public void takeXMeeplesFromPlayerTest() {
-        final Player player = new Player();
+
 
         final int initialNumberOfMeeples = player.getNumberOfMeeplesLeft();
         final int numberOfMeeplesToTakeAway = random.nextInt(initialNumberOfMeeples);
 
         player.takeXMeeplesFromPlayer(numberOfMeeplesToTakeAway);
-        new Player();
         assertEquals(initialNumberOfMeeples - numberOfMeeplesToTakeAway, player.getNumberOfMeeplesLeft());
     }
 }

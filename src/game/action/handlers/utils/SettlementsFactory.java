@@ -10,6 +10,7 @@ public class SettlementsFactory {
     // Attributes
 
     private Map map;
+    private Player player;
 
     //--------
     // Methods
@@ -42,10 +43,10 @@ public class SettlementsFactory {
 
         if (map.getHexagon(mapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(mapSpot).getOccupiedBy() == team) {
             if (startANewSettlement) {
-                settlements.add(new Settlement(team));
+                settlements.add(new Settlement(team, map, player));
             }
 
-            settlements.get(settlements.size()-1).add(mapSpot, map.getHexagon(mapSpot));
+            settlements.get(settlements.size()-1).add(mapSpot);
         }
 
         for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
@@ -67,7 +68,8 @@ public class SettlementsFactory {
     //-------------
     // Constructors
 
-    public SettlementsFactory(final Map map) {
+    public SettlementsFactory(final Map map, final Player player) {
         this.map = map;
+        this.player = player;
     }
 }

@@ -107,6 +107,21 @@ public class MapSpot {
         }
     }
 
+    public boolean isEqual(MapSpot mapSpot) {
+        return this.getX() == mapSpot.getX() && this.getY() == mapSpot.getY();
+    }
+
+    public boolean isAdjacentTo(MapSpot mapSpot){
+        ArrayList<MapSpot> adj = this.getAdjacentMapSpots();
+        for(int i = 0; i<adj.size(); i++){
+            if(adj.get(i).isEqual(mapSpot)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     private boolean isMapSpotValid(final int x, final int y) {
         boolean inHexagonalPlace;
@@ -130,7 +145,4 @@ public class MapSpot {
         return y;
     }
 
-    public boolean isEqual(MapSpot mapSpot) {
-        return this.getX() == mapSpot.getX() && this.getY() == mapSpot.getY();
-    }
 }

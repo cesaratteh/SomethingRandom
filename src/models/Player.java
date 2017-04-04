@@ -8,16 +8,18 @@ public class Player {
     private int numberOfTotorosLeft;
     private int numberOfMeeplesLeft;
     private int numberOfTigersLeft;
+    private final Team team;
 
 
     //------------
     //Constructors
 
-    public Player()
+    public Player(Team team)
     {
         this.numberOfMeeplesLeft = NUMBER_OF_STARTING_MEEPLES;
         this.numberOfTotorosLeft = NUMBER_OF_STARTING_TOTOROS;
         this.numberOfTigersLeft = NUMBER_OF_STARTING_TIGERS;
+        this.team = team;
     }
 
     //--------
@@ -75,4 +77,8 @@ public class Player {
     private static final int NUMBER_OF_STARTING_MEEPLES = 20;
     private static final int NUMBER_OF_STARTING_TOTOROS = 3;
     private static final int NUMBER_OF_STARTING_TIGERS = 2;
+
+    public Team getTeam() {
+        return team;
+    }
 }

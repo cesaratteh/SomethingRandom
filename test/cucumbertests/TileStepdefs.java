@@ -32,8 +32,8 @@ public class TileStepdefs {
 
     @Before
     public void beforeScenario(){
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player(RandomGenerator.generateRandomTeam());
+        player2 = new Player(RandomGenerator.generateRandomTeam());
     }
 
     @Given("^A Player draws a Tile$")

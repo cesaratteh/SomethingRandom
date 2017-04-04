@@ -10,13 +10,14 @@ public class SettlementsFactoryTest {
     @Test
     public void generateSettlementsTest() {
         Map map = new Map();
+        Player player = new Player(RandomGenerator.generateRandomTeam());
         MapSpot curr = map.getMiddleHexagonMapSpot();
 
         map.addHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
         map.addHexagon(curr.topLeft(), new Hexagon(Terrain.GRASSLAND, 1, 1));
         map.addHexagon(curr.topRight(), new Hexagon(Terrain.LAKE, 1, 1));
 
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map, player);
 
         assertEquals(2, settlementsFactory.generateSettlements(Team.UNKNOWN).size());
     }
