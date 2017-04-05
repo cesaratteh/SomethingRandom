@@ -14,23 +14,6 @@ public class FirstLevelTileAdditionHandler {
 
     private Map map;
 
-    private class FirstTile{
-        private Hexagon h1;
-        private Hexagon h2;
-        private Hexagon h3;
-        private Hexagon h4;
-        private Hexagon h5;
-
-        public FirstTile(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5){
-            this.h1 = h1;
-            this.h2 = h2;
-            this.h3 = h3;
-            this.h4 = h4;
-            this.h5 = h5;
-        }
-
-    }
-
     /**
      * h1-5 are the hexes of the FirstTile
      * m1-5 are the corresponding MapSpots
