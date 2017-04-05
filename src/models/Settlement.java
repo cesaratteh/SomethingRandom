@@ -43,13 +43,13 @@ public class Settlement {
     public void expandWithMeeples(final MapSpot mapSpot){
        ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
 
-       if(validExpansionSpots.contains(mapSpot)){
-           this.add(mapSpot);
-           map.getHexagon(mapSpot).addMeeples(map.getHexagon(mapSpot).getLevel(),team, owner);
+       if(isIn(validExpansionSpots, mapSpot)){
+
            ArrayList<MapSpot> chainedSpots = expansionHandler.generateChainedSpots(mapSpot);
 
            for(MapSpot spot : chainedSpots){
                map.getHexagon(spot).addMeeples(map.getHexagon(spot).getLevel(), team, owner);
+               this.add(spot);
                numberOfMeeples += map.getHexagon(spot).getLevel();
            }
        }
@@ -61,7 +61,7 @@ public class Settlement {
     public void expandWithTotoro(final MapSpot mapSpot){
         ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
 
-        if(validExpansionSpots.contains(mapSpot) && mapSpots.size() >= 5){
+        if(isIn(validExpansionSpots, mapSpot) && mapSpots.size() >= 5){
             this.add(mapSpot);
             map.getHexagon(mapSpot).addTotoro(team, owner);
             numberOfTotoros++;
@@ -74,7 +74,7 @@ public class Settlement {
     public void expandWithTiger(final MapSpot mapSpot){
         ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
 
-        if(validExpansionSpots.contains(mapSpot)
+        if(isIn(validExpansionSpots, mapSpot)
                 && mapSpots.size() >= 5
                 && map.getHexagon(mapSpot).getLevel() >= 3){
             this.add(mapSpot);
@@ -92,6 +92,18 @@ public class Settlement {
 
     public ArrayList<MapSpot> getChainedSpots(MapSpot mapSpot){
         return expansionHandler.generateChainedSpots(mapSpot);
+    }
+
+    public ArrayList<MapSpot> getValidTigerSpots(){
+        return expansionHandler.generateAllTigerSpots();
+    }
+
+    public ArrayList<MapSpot> getValidTotoroSpots(){
+        return expansionHandler.generateAllTotoroSpots();
+    }
+
+    public ArrayList<ArrayList<MapSpot>> getAllChainedExpansionSpots(){
+        return expansionHandler.generateAllChainedSpots();
     }
 
     //--------
@@ -123,5 +135,12 @@ public class Settlement {
 
     public Player getOwner() {
         return owner;
+    }
+
+    private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
+        for(MapSpot s : List){
+            if(s.isEqual(spot)) return true;
+        }
+        return false;
     }
 }

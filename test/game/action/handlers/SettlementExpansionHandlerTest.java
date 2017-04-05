@@ -79,6 +79,78 @@ public class SettlementExpansionHandlerTest {
         Assert.assertTrue(listsAreEqual(actualSpots,validSpots));
     }
 
+    @Test
+    public void testGenerateAllChainedSpots(){
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+
+        ArrayList<ArrayList<MapSpot>> chains = settlement.getAllChainedExpansionSpots();
+
+        ArrayList<MapSpot> actualSpots = new ArrayList<>();
+        actualSpots.add(middle.left());
+        actualSpots.add(middle.left().topLeft());
+        actualSpots.add(middle.left().topLeft().left());
+
+        Assert.assertTrue(listsAreEqual(actualSpots,chains.get(0)));
+    }
+
+    @Test // might want to expand this test
+    public void testGetValidTigerSpots(){
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+
+        ArrayList<MapSpot> validTigerSpots = settlement.getValidTigerSpots();
+
+        Assert.assertTrue(validTigerSpots.isEmpty());
+    }
+
+    @Test // need to expand this one as well
+    public void testGetValidTotoroSpots(){
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+
+        ArrayList<MapSpot> validTotoroSpots = settlement.getValidTotoroSpots();
+
+        Assert.assertTrue(validTotoroSpots.isEmpty());
+    }
+
+    @Test
+    public void testExpandWithMeeples(){
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+        settlement.expandWithMeeples(middle.left());
+
+        Assert.assertTrue(settlement.getSize() == 4);
+    }
+
+    @Test
+    public void testExpandWithTotoros(){
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+
+        try{
+            settlement.expandWithTotoro(middle.left());
+        }
+        catch(RuntimeException e){
+            Assert.assertTrue(e.getMessage() == "Bad expansion with Totoro");
+        }
+    }
+
+    @Test
+    public void testExpandWithTigers() {
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle);
+
+        try{
+            settlement.expandWithTiger(middle.left());
+        }
+        catch(RuntimeException e){
+            Assert.assertTrue(e.getMessage() == "Bad expansion with Tiger");
+        }
+    }
+
+    //Helpers:
+    //--------
     private boolean listsAreEqual(ArrayList<MapSpot> a, ArrayList<MapSpot> b){
         boolean equal = true;
         for(int i = 0; i< a.size(); i++){
@@ -95,6 +167,7 @@ public class SettlementExpansionHandlerTest {
         }
         return equal && a.size() == b.size();
     }
+
 
 }
 
