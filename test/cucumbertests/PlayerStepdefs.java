@@ -21,7 +21,7 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
-    @Then("^The current players turn ends and the other player's turn begins$")
+    @Then("^The current player's turn ends and the other player's turn begins$")
     public void theCurrentPlayersTurnEndsAndTheOtherPlayerSTurnBegins() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
