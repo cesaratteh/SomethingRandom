@@ -77,7 +77,7 @@ public class HexagonTest {
 
     @Test
     public void addingMeeplesTest() {
-        final int numberOfMeeplesToAdd = random.nextInt(100);
+        final int numberOfMeeplesToAdd = random.nextInt(10);
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
