@@ -105,19 +105,19 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
-    @Given("^That player has no meeples or totoros left$")
+    @Given("^That player has no meeples nor totoros left$")
     public void thatPlayerHasNoMeeplesOrTotorosLeft() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
-    @Given("^That player has no meeples or tigers left$")
+    @Given("^That player has no meeples nor tigers left$")
     public void thatPlayerHasNoMeeplesOrTigersLeft() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
-    @Given("^That player has no totoros or tigers left$")
+    @Given("^That player has no totoros nor tigers left$")
     public void thatPlayerHasNoTotorosOrTigersLeft() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();

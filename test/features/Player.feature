@@ -29,17 +29,17 @@ Feature: Player
     When It is one Player's turn
     Then The current player automatically loses
 
-    Given That player has no meeples or totoros left
+    Given That player has no meeples nor totoros left
     When One player finishes their turn
     Then The game ends
     And That player wins
 
-    Given That player has no meeples or tigers left
+    Given That player has no meeples nor tigers left
     When One player finishes their turn
     Then The game ends
     And That player wins
 
-    Given That player has no totoros or tigers left
+    Given That player has no totoros nor tigers left
     When One player finishes their turn
     Then The game ends
     And That player wins
