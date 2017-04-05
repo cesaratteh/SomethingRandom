@@ -23,6 +23,6 @@ Feature: Tile
     When The Player wants to nuke some Hexagons with a new Tile
     And All of the Hexagons belong to the same Tile
     And All of the Hexagons are on the same level
-    Then The move is illegal
+    Then The placement is illegal
     And  The game is over
 

@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
@@ -10,6 +11,12 @@ import static org.junit.Assert.assertEquals;
 public class MapTest {
 
     final private Random random = new Random();
+    private Player player;
+
+    @Before
+    public void initTests(){
+        player = new Player(Team.FRIENDLY);
+    }
 
     @Test
     public void getMapSizeTest() {
@@ -66,17 +73,17 @@ public class MapTest {
 
     @Test
     public void PrintMapTest(){
-        /*final Map map = new Map();
+        final Map map = new Map();
 
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
         Hexagon hexagon = RandomGenerator.generateRandomHexagon();
         map.addHexagon(mapSpot, hexagon);
-        hexagon.addMeeples(hexagon.getLevel(),Team.FRIENDLY);
+        hexagon.addMeeples(hexagon.getLevel(),Team.FRIENDLY, player);
 
         MapSpot Spot2 = mapSpot.topLeft();
         hexagon = RandomGenerator.generateRandomHexagon();
         map.addHexagon(Spot2, hexagon);
-        hexagon.addTotoro(Team.ENEMY);
+        hexagon.addTotoro(Team.ENEMY, player);
 
 
         MapSpot Spot3 = mapSpot.topRight();
@@ -84,6 +91,6 @@ public class MapTest {
         map.addHexagon(Spot3, hexagon);
 
         map.PrintMap();
-        */
+
     }
 }

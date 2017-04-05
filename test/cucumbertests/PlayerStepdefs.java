@@ -117,12 +117,6 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
-    @Then("^The game ends$")
-    public void theGameEnds() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
     @Given("^The players tie$")
     public void thatPlayersTie() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
