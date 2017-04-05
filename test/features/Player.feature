@@ -32,6 +32,17 @@ Feature: Player
     Given That player has no meeples or totoros left
     When One player finishes their turn
     Then The game ends
+    And That player wins
+
+    Given That player has no meeples or tigers left
+    When One player finishes their turn
+    Then The game ends
+    And That player wins
+
+    Given That player has no totoros or tigers left
+    When One player finishes their turn
+    Then The game ends
+    And That player wins
 
     Given The players tie
     When One player who had played all their pieces

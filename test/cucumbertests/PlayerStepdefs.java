@@ -111,6 +111,24 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
+    @Given("^That player has no meeples or tigers left$")
+    public void thatPlayerHasNoMeeplesOrTigersLeft() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^That player has no totoros or tigers left$")
+    public void thatPlayerHasNoTotorosOrTigersLeft() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^That player wins$")
+    public void thatPlayerWins() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
     @When("^One player finishes their turn$")
     public void onePlayerFinishesTheirTurn() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
