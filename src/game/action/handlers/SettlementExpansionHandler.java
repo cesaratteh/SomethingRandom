@@ -17,12 +17,12 @@ public class SettlementExpansionHandler {
      */
 
     public ArrayList<MapSpot> generateExpandableSettlementArea(){
-        final ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
-        final ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
+        ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
+        ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
 
-        final boolean visited[][] = new boolean[map.size()][map.size()];
+        boolean visited[][] = new boolean[map.size()][map.size()];
 
-        for (final MapSpot settlementMapSpot : settlementMapSpots) {
+        for (MapSpot settlementMapSpot : settlementMapSpots) {
             visited[settlementMapSpot.getX()][settlementMapSpot.getY()] = true;
         }
 
@@ -86,12 +86,6 @@ public class SettlementExpansionHandler {
 
         consolidateAdjacentMapSpots(validSpotsForExpansion);
 
-        for (MapSpot mapspot : validSpotsForExpansion) {
-            ArrayList<MapSpot> temp = new ArrayList<>();
-            temp.add(mapspot);
-            allChainedSpots.add(temp);
-        }
-
         for (MapSpot spot : validSpotsForExpansion) {
             allChainedSpots.add(generateChainedSpots(spot));
         }
@@ -106,21 +100,15 @@ public class SettlementExpansionHandler {
      */
     public ArrayList<MapSpot> generateChainedSpots(MapSpot mapSpot){
 
-        boolean adjacent = false;
-        for(MapSpot adj : mapSpot.getAdjacentMapSpots()){
-            for(MapSpot spot : settlement.getMapSpots()){
-                if(spot.isEqual(adj))
-                    adjacent = true;
-            }
-        }
+        if(!isAdjacentToSettlement(mapSpot))
+            throw new RuntimeException("MapSpot not adjacent to settlement");
 
-        if(!adjacent) throw new RuntimeException("MapSpot not adjacent to settlement");
-
-        final ArrayList<MapSpot> validSpotsForExpansion = generateExpandableSettlementArea();
+        ArrayList<MapSpot> validSpotsForExpansion = generateExpandableSettlementArea();
         ArrayList<MapSpot> chainedSpots = new ArrayList<>();
-        chainedSpots.add(mapSpot);
 
         if(isIn(validSpotsForExpansion, mapSpot)){
+
+            chainedSpots.add(mapSpot);
 
             Stack<MapSpot> mapStack = new Stack<>();
             mapStack.add(mapSpot);
@@ -215,6 +203,17 @@ public class SettlementExpansionHandler {
             if(s.isEqual(spot)) return true;
         }
         return false;
+    }
+
+    private boolean isAdjacentToSettlement(MapSpot m){
+        boolean adjacent = false;
+        for(MapSpot adj : m.getAdjacentMapSpots()){
+            for(MapSpot spot : settlement.getMapSpots()){
+                if(spot.isEqual(adj))
+                    adjacent = true;
+            }
+        }
+        return adjacent;
     }
 
     public SettlementExpansionHandler(final Map map, final Settlement settlement){
