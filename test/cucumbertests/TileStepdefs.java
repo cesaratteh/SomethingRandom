@@ -36,6 +36,25 @@ public class TileStepdefs {
         player2 = new Player(RandomGenerator.generateRandomTeam());
     }
 
+    @Given("^The first Player draws a Tile$")
+    public void thefirstPlayerDrawsATile(int arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^The tile is the starting tile$")
+    public void theTileIsTheStartingTile(int arg0, int arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^The Tile is the only starting tile$")
+    public void theTileIsTheOnlyStartingTile() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        throw new PendingException();
+    }
+
     @Given("^A Player draws a Tile$")
     public void aPlayerDrawsATile() throws Throwable {
          //player1.drawTile();

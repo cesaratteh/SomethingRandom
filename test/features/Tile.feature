@@ -2,6 +2,12 @@ Feature: Tile
 
   Scenario: A game is currently in progress
 
+    Given The first Player draws a Tile
+    And The tile is the starting tile
+    When The Tile is the only starting tile
+    Then The Tile has all 5 appropriately attached Hexagons
+    And The Tile has 1 volcano and 4 other Terrain types
+
     Given A Player draws a Tile
     When The Tile is chosen from the set of remaining Tiles
     Then The Tile has all 3 appropriately attached Hexagons
