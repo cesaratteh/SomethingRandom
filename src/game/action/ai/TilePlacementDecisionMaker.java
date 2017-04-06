@@ -1,4 +1,4 @@
-package game.action.handlers.ai;
+package game.action.ai;
 
 
 public class TilePlacementDecisionMaker {
