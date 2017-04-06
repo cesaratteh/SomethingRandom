@@ -122,6 +122,7 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testExpandWithMeeples(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
+        settlement.add(middle,map.getHexagon(middle));
         handler.expandWithMeeples(middle.left());
 
         Assert.assertTrue(settlement.size() == 4);

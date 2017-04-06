@@ -37,7 +37,7 @@ public class TileStepdefs {
     }
 
     @Given("^The first Player draws a Tile$")
-    public void thefirstPlayerDrawsATile(int arg0) throws Throwable {
+    public void thefirstPlayerDrawsATile() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

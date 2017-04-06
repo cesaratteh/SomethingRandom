@@ -77,12 +77,10 @@ public class HexagonTest {
 
     @Test
     public void addingMeeplesTest() {
-        final int numberOfMeeplesToAdd = random.nextInt(10);
-
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
         hexagon.addMeeples(RandomGenerator.generateRandomTeam());
-        assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
+        assertEquals(hexagon.getLevel(), hexagon.getNumberOfMeeples());
     }
 
     @Test(expected = RuntimeException.class)
