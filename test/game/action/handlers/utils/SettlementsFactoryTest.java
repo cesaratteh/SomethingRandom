@@ -19,6 +19,6 @@ public class SettlementsFactoryTest {
 
         SettlementsFactory settlementsFactory = new SettlementsFactory(map, player);
 
-        assertEquals(2, settlementsFactory.generateSettlements(Team.UNKNOWN).size());
+        assertEquals(2, settlementsFactory.generateSettlements(Team.NONE).size());
     }
 }

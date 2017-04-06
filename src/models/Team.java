@@ -1,7 +1,7 @@
 package models;
 
 public enum Team {
-    UNKNOWN,
+    NONE,
     FRIENDLY,
     ENEMY;
 }
