@@ -24,7 +24,7 @@ public class Player {
     //--------
     // Methods
 
-    public void takeATotoroFromPlayer() {
+    void takeATotoroFromPlayer() {
         if (!isHasTotorosLeft()) {
             throw new RuntimeException("Can't place totoro. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -32,7 +32,7 @@ public class Player {
         numberOfTotorosLeft--;
     }
 
-    public void takeXMeeplesFromPlayer(final int numberOfMeeplesToPlace) {
+    void takeXMeeplesFromPlayer(final int numberOfMeeplesToPlace) {
         if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
             throw new RuntimeException("Can't place meeples. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -40,7 +40,7 @@ public class Player {
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
 
-    public void takeATigerFromPlayer() {
+    void takeATigerFromPlayer() {
         if (!isHasTigersLeft()) {
             throw new RuntimeException("Can't place tiger. models.Player doesnt have enough");
         }
@@ -48,30 +48,31 @@ public class Player {
         numberOfTigersLeft--;
     }
 
-    public boolean isHasTotorosLeft() {
+    boolean isHasTotorosLeft() {
         return numberOfTotorosLeft > 0;
     }
 
-    public boolean isHasEnoughMeeples(final int numberOfMeeples) {
+    boolean isHasEnoughMeeples(final int numberOfMeeples) {
         return numberOfMeeplesLeft >= numberOfMeeples;
     }
 
-    public boolean isHasTigersLeft() {
+    boolean isHasTigersLeft() {
         return numberOfTigersLeft > 0;
     }
 
     //-----------
     // Getters
 
-    public int getNumberOfTotorosLeft() {
+
+    int getNumberOfTotorosLeft() {
         return numberOfTotorosLeft;
     }
 
-    public int getNumberOfMeeplesLeft() {
+    int getNumberOfMeeplesLeft() {
         return numberOfMeeplesLeft;
     }
 
-    public int getNumberOfTigersLeft() {
+    int getNumberOfTigersLeft() {
         return numberOfTigersLeft;
     }
 

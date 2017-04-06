@@ -108,7 +108,7 @@ public class Hexagon {
     /**
      * For map display
      */
-    protected char ConvertTerrainToCharacter(){
+    char ConvertTerrainToCharacter(){
         char TerrainChar = ' ';
         switch (terrainType){
             case VOLCANO:    TerrainChar = 'V';

@@ -17,7 +17,7 @@ public class SettlementsFactoryTest {
         map.addHexagon(curr.topLeft(), new Hexagon(Terrain.GRASSLAND, 1, 1));
         map.addHexagon(curr.topRight(), new Hexagon(Terrain.LAKE, 1, 1));
 
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map, player);
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 
         assertEquals(2, settlementsFactory.generateSettlements(Team.NONE).size());
     }

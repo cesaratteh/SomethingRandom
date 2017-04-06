@@ -81,7 +81,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad First Tile to be Placed");
+            Assert.assertTrue(e.getMessage().equals("Bad First Tile to be Placed"));
         }
 
     }
@@ -95,12 +95,12 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad First Tile Placement");
+            Assert.assertTrue(e.getMessage().equals("Bad First Tile Placement"));
         }
 
     }
 
-    public void initTile(){
+    private void initTile(){
         placeFirstTile();
         MapSpot middle = map.getMiddleHexagonMapSpot();
         m1 = middle.left();
@@ -133,7 +133,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad Tile Placement");
+            Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));
         }
     }
 
@@ -147,7 +147,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad Tile to be placed");
+            Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
         }
     }
 
@@ -161,7 +161,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad Tile to be placed");
+            Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
         }
     }
 
@@ -176,7 +176,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad Tile to be placed");
+            Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
         }
     }
 
@@ -190,7 +190,7 @@ public class FirstLevelTileAdditionHandlerTest {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3);
         }
         catch(RuntimeException e){
-            Assert.assertTrue(e.getMessage() == "Bad Tile Placement");
+            Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));
         }
     }
 

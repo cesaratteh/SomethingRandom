@@ -5,7 +5,7 @@ import models.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class SettlementExpansionHandler {
+class SettlementExpansionHandler {
 
     private final Settlement settlement;
     private Map map;
@@ -16,7 +16,7 @@ public class SettlementExpansionHandler {
      * Can be used for tiger/totoro expansions but not meeples.
      */
 
-    public ArrayList<MapSpot> generateExpandableSettlementArea(){
+    ArrayList<MapSpot> generateExpandableSettlementArea(){
         ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
         ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
 
@@ -26,11 +26,9 @@ public class SettlementExpansionHandler {
             visited[settlementMapSpot.getX()][settlementMapSpot.getY()] = true;
         }
 
-        for(int i = 0; i< settlementMapSpots.size(); i++){
+        for (MapSpot curr : settlementMapSpots) {
 
-            MapSpot curr = settlementMapSpots.get(i);
-
-            for(int j = 0; j < curr.getAdjacentMapSpots().size(); j++) {
+            for (int j = 0; j < curr.getAdjacentMapSpots().size(); j++) {
 
                 MapSpot currentAdjacentSpot = curr.getAdjacentMapSpots().get(j);
 
@@ -45,7 +43,7 @@ public class SettlementExpansionHandler {
         return validSpotsForExpansion;
     }
 
-    public ArrayList<MapSpot> generateAllTigerSpots(){
+    ArrayList<MapSpot> generateAllTigerSpots(){
         ArrayList<MapSpot> validSpots = generateExpandableSettlementArea();
         ArrayList<MapSpot> tigerSpots = new ArrayList<>();
 
@@ -59,7 +57,7 @@ public class SettlementExpansionHandler {
         return tigerSpots;
     }
 
-    public ArrayList<MapSpot> generateAllTotoroSpots(){
+    ArrayList<MapSpot> generateAllTotoroSpots(){
         ArrayList<MapSpot> validSpots = generateExpandableSettlementArea();
         ArrayList<MapSpot> totoroSpots = new ArrayList<>();
 
@@ -80,7 +78,7 @@ public class SettlementExpansionHandler {
      * automatically expanded to spots surrounding the settlement.
      * Used when doing meeple expansion and allows for insight into expansion
      */
-    public ArrayList<ArrayList<MapSpot>> generateAllChainedSpots(){
+    ArrayList<ArrayList<MapSpot>> generateAllChainedSpots(){
         final ArrayList<ArrayList<MapSpot>> allChainedSpots = new ArrayList<>();
         final ArrayList<MapSpot> validSpotsForExpansion = generateExpandableSettlementArea();
 
@@ -98,7 +96,7 @@ public class SettlementExpansionHandler {
      * generates a list of all spots with the same terrain that can be chained from a
      * MapSpot that is adjacent to the settlement
      */
-    public ArrayList<MapSpot> generateChainedSpots(MapSpot mapSpot){
+    ArrayList<MapSpot> generateChainedSpots(MapSpot mapSpot){
 
         if(!isAdjacentToSettlement(mapSpot))
             throw new RuntimeException("MapSpot not adjacent to settlement");
@@ -143,7 +141,7 @@ public class SettlementExpansionHandler {
         return chainedSpots;
     }
 
-    public void expandWithMeeples(final MapSpot mapSpot) {
+    void expandWithMeeples(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if (isIn(validExpansionSpots, mapSpot)) {
@@ -160,7 +158,7 @@ public class SettlementExpansionHandler {
         }
     }
 
-    public void expandWithTotoro(final MapSpot mapSpot) {
+    void expandWithTotoro(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if (isIn(validExpansionSpots, mapSpot) && settlement.getMapSpots().size() >= 5) {
@@ -173,7 +171,7 @@ public class SettlementExpansionHandler {
         }
     }
 
-    public void expandWithTiger(final MapSpot mapSpot) {
+    void expandWithTiger(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if(isIn(validExpansionSpots, mapSpot)
@@ -224,42 +222,37 @@ public class SettlementExpansionHandler {
 
     private boolean isValidTigerSpot(MapSpot spot) {
         Hexagon hex = map.getHexagon(spot);
-        if(hex != null){
-            return (hex.getTerrainType() != Terrain.VOLCANO
-                    && hex.isEmpty()
-                    && hex.getLevel() >= 3);
-        }
-        else return false;
+        return hex != null && (hex.getTerrainType() != Terrain.VOLCANO && hex.isEmpty() && hex.getLevel() >= 3);
     }
 
     private boolean isValidTotoroSpot(MapSpot spot) {
         Hexagon hex = map.getHexagon(spot);
-        if(hex != null){
-            return (hex.getTerrainType() != Terrain.VOLCANO
-                    && hex.isEmpty());
-        }
-        else return false;
+        return hex != null && (hex.getTerrainType() != Terrain.VOLCANO && hex.isEmpty());
     }
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(s.isEqual(spot)) return true;
+            if(isEqual(s, spot)) return true;
         }
         return false;
+    }
+
+    private boolean isEqual(MapSpot m1, MapSpot m2) {
+        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
     private boolean isAdjacentToSettlement(MapSpot m){
         boolean adjacent = false;
         for(MapSpot adj : m.getAdjacentMapSpots()){
             for(MapSpot spot : settlement.getMapSpots()){
-                if(spot.isEqual(adj))
+                if(isEqual(spot, adj))
                     adjacent = true;
             }
         }
         return adjacent;
     }
 
-    public SettlementExpansionHandler(final Map map, final Settlement settlement){
+    SettlementExpansionHandler(final Map map, final Settlement settlement){
         this.map = map;
         this.settlement = settlement;
     }

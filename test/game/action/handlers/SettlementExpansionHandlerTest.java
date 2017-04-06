@@ -161,7 +161,7 @@ public class SettlementExpansionHandlerTest {
         for(int i = 0; i< a.size(); i++){
             boolean found = false;
             for(int j =0 ; j< b.size(); j++){
-                if(a.get(i).isEqual(b.get(j))){
+                if(isEqual(a.get(i), b.get(j))){
                     found = true;
                 }
             }
@@ -171,6 +171,10 @@ public class SettlementExpansionHandlerTest {
             }
         }
         return equal && a.size() == b.size();
+    }
+
+    private boolean isEqual(MapSpot m1, MapSpot m2) {
+        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
 

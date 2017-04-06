@@ -8,22 +8,20 @@ import java.util.ArrayList;
 /**
  * Nukes a tile and places another tile over it - while checking the game rules
  */
-public class NukingAndStackingHandler {
+class NukingAndStackingHandler {
 
 
     //-----------
     // attributes
 
-    final Map map;
-    final Player player;
+    private final Map map;
 
 
     //-------------
     // constructors
 
-    NukingAndStackingHandler(final Map map, Player player){
+    NukingAndStackingHandler(final Map map){
         this.map = map;
-        this.player = player;
     }
 
 
@@ -32,7 +30,7 @@ public class NukingAndStackingHandler {
 
     // FIXME: 3/30/2017 Needs one more validation test - "Can't completely wipe out a settlement".
 
-    public void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
+    void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
         if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3)){
             throw new RuntimeException("Cannot nuke those spots");
         }
@@ -52,14 +50,14 @@ public class NukingAndStackingHandler {
         h2.setLevel(newLevel);
         h3.setLevel(newLevel);
 
-        map.getHexagonArray()[nuked1.getX()][nuked1.getY()] = h1;
-        map.getHexagonArray()[nuked2.getX()][nuked2.getY()] = h2;
-        map.getHexagonArray()[nuked3.getX()][nuked3.getY()] = h3;
+        map.getHexagonArray()[nuked1.getX()][nuked1.getY()][nuked1.getZ()] = h1;
+        map.getHexagonArray()[nuked2.getX()][nuked2.getY()][nuked2.getZ()] = h2;
+        map.getHexagonArray()[nuked3.getX()][nuked3.getY()][nuked3.getZ()] = h3;
 
     }
 
     private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map, player);
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
         ArrayList<Settlement> friendlySettlements = settlementsFactory.generateSettlements(Team.FRIENDLY);
         ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
         for(Settlement s : friendlySettlements){
@@ -68,7 +66,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if(m.isEqual(nuked1) || m.isEqual(nuked2) || m.isEqual(nuked3))
+                    if(isEqual(m, nuked1) || isEqual(m, nuked2) || isEqual(m, nuked3))
                         nukedCount++;
                 }
 
@@ -85,7 +83,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if(m.isEqual(nuked1) || m.isEqual(nuked2) || m.isEqual(nuked3))
+                    if(isEqual(m, nuked1) || isEqual(m,nuked2) || isEqual(m, nuked3))
                         nukedCount++;
                 }
 
@@ -99,15 +97,20 @@ public class NukingAndStackingHandler {
         return false;
     }
 
+    private boolean isEqual(MapSpot m1, MapSpot m2) {
+        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
+    }
+
     private boolean volcanoesMatch(MapSpot n1, MapSpot n2, MapSpot n3, Hexagon h1, Hexagon h2, Hexagon h3) {
         //if the volcanoes do not match up, then the tile needs to be rotated
         if(map.getHexagon(n1).getTerrainType() == Terrain.VOLCANO && h1.getTerrainType()==Terrain.VOLCANO) return true;
         if(map.getHexagon(n2).getTerrainType() == Terrain.VOLCANO && h2.getTerrainType()==Terrain.VOLCANO) return true;
+        //noinspection RedundantIfStatement
         if(map.getHexagon(n3).getTerrainType() == Terrain.VOLCANO && h3.getTerrainType()==Terrain.VOLCANO) return true;
         return false;
     }
 
-    public boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3){
+    boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3){
         if(nuked1 != null && nuked2 != null && nuked3 != null){
             Hexagon hex1 = map.getHexagon(nuked1);
             Hexagon hex2 = map.getHexagon(nuked2);
@@ -130,30 +133,28 @@ public class NukingAndStackingHandler {
     private boolean areAdjacent(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
         int count = 0;
         for(int i = 0; i<nuked1.getAdjacentMapSpots().size(); i++){
-            if(nuked1.getAdjacentMapSpots().get(i).isEqual(nuked2)
-                    || nuked1.getAdjacentMapSpots().get(i).isEqual(nuked3)){
+            if(isEqual(nuked1.getAdjacentMapSpots().get(i), nuked2)
+                    || isEqual(nuked1.getAdjacentMapSpots().get(i), nuked3)){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked2.getAdjacentMapSpots().size(); i++){
-            if(nuked2.getAdjacentMapSpots().get(i).isEqual(nuked1)
-                    || nuked2.getAdjacentMapSpots().get(i).isEqual(nuked3)){
+            if(isEqual(nuked2.getAdjacentMapSpots().get(i), nuked1)
+                    || isEqual(nuked2.getAdjacentMapSpots().get(i), nuked3)){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked3.getAdjacentMapSpots().size(); i++){
-            if(nuked3.getAdjacentMapSpots().get(i).isEqual(nuked1)
-                    || nuked3.getAdjacentMapSpots().get(i).isEqual(nuked2)){
+            if(isEqual(nuked3.getAdjacentMapSpots().get(i), nuked1)
+                    || isEqual(nuked3.getAdjacentMapSpots().get(i), nuked2)){
                 count++;
             }
         }
-        if(count != 2) return false;
-
-        return true;
+        return count == 2;
     }
 
     private boolean hasOneVolcano(Hexagon hex1, Hexagon hex2, Hexagon hex3) {

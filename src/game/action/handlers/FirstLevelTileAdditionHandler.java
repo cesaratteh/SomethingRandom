@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Add a tile - while checking game rules
  */
-public class FirstLevelTileAdditionHandler {
+class FirstLevelTileAdditionHandler {
 
     private Map map;
 
@@ -19,8 +19,7 @@ public class FirstLevelTileAdditionHandler {
      * m1-5 are the corresponding MapSpots
      * can handle any orientation of FirstTile
      */
-    public void addFirstTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5){
-        MapSpot middle = map.getMiddleHexagonMapSpot();
+    void addFirstTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5){
 
         if(!uniqueTerrains(h1,h2,h3,h4,h5) || !matchingTileID(h1,h2,h3,h4,h5)){
             throw new RuntimeException("Bad First Tile to be Placed");
@@ -30,15 +29,15 @@ public class FirstLevelTileAdditionHandler {
             throw new RuntimeException("Bad First Tile Placement");
         }
 
-        map.getHexagonArray()[m1.getX()][m1.getY()] = h1;
-        map.getHexagonArray()[m2.getX()][m2.getY()] = h2;
-        map.getHexagonArray()[m3.getX()][m3.getY()] = h3;
-        map.getHexagonArray()[m4.getX()][m4.getY()] = h4;
-        map.getHexagonArray()[m5.getX()][m5.getY()] = h5;
+        map.getHexagonArray()[m1.getX()][m1.getY()][m1.getZ()] = h1;
+        map.getHexagonArray()[m2.getX()][m2.getY()][m1.getZ()] = h2;
+        map.getHexagonArray()[m3.getX()][m3.getY()][m1.getZ()] = h3;
+        map.getHexagonArray()[m4.getX()][m4.getY()][m1.getZ()] = h4;
+        map.getHexagonArray()[m5.getX()][m5.getY()][m1.getZ()] = h5;
 
     }
 
-    public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
+    void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
 
         if (!onlyOneVolcano(h1, h2, h3) || !matchingTileID(h1, h2, h3))
             throw new RuntimeException("Bad Tile to be placed");
@@ -51,17 +50,17 @@ public class FirstLevelTileAdditionHandler {
             throw new RuntimeException("Bad Tile Placement");
 
         if(map.getHexagon(m1) == null)
-            map.getHexagonArray()[m1.getX()][m1.getY()] = h1;
+            map.getHexagonArray()[m1.getX()][m1.getY()][m1.getZ()] = h1;
         else
             throw new RuntimeException("Bad Tile Placement");
 
         if(map.getHexagon(m2) == null)
-            map.getHexagonArray()[m2.getX()][m2.getY()] = h2;
+            map.getHexagonArray()[m2.getX()][m2.getY()][m2.getZ()] = h2;
         else
             throw new RuntimeException("Bad Tile Placement");
 
         if(map.getHexagon(m3) == null)
-            map.getHexagonArray()[m3.getX()][m3.getY()] = h3;
+            map.getHexagonArray()[m3.getX()][m3.getY()][m3.getZ()] = h3;
         else
             throw new RuntimeException("Bad Tile Placement");
 
@@ -179,12 +178,16 @@ public class FirstLevelTileAdditionHandler {
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(s.isEqual(spot)) return true;
+            if(isEqual(s, spot)) return true;
         }
         return false;
     }
 
-    public FirstLevelTileAdditionHandler(Map map){
+    private boolean isEqual(MapSpot m1, MapSpot m2) {
+        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
+    }
+
+    FirstLevelTileAdditionHandler(Map map){
         this.map = map;
     }
 

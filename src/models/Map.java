@@ -46,7 +46,7 @@ public class Map {
     /**
      * returns NULL if the spot is empty
      **/
-    public Hexagon getMiddleHexagon() {
+    Hexagon getMiddleHexagon() {
         final MapSpot middleHexagonPosition = getMiddleHexagonMapSpot();
         return map[middleHexagonPosition.getX()][middleHexagonPosition.getY()][middleHexagonPosition.getZ()];
     }

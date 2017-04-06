@@ -8,10 +8,12 @@ import org.junit.Test;
 public class NukingAndStackingHandlerTest {
 
     private Map map;
+    private Player player;
 
     @Before
     public void generateMapForTesting(){
         map = new Map();
+        player = new Player(Team.FRIENDLY);
         MapSpot curr = map.getMiddleHexagonMapSpot();
 
         map.addHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
@@ -30,7 +32,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestSameTileCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -41,7 +43,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNonAdjacentHexesCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -52,7 +54,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestMultipleVolcanoesCanBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.topLeft();
@@ -63,7 +65,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNonExistentHexagonCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.bottomRight();
@@ -74,7 +76,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestCanBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot().left();
         MapSpot m2 = m1.topLeft();
@@ -85,7 +87,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestValidNuking(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot().left();
         MapSpot m2 = m1.topLeft();
@@ -117,7 +119,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingOffTheBoard(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.right();
@@ -137,7 +139,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingAllThreeHexesSameTile(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -157,7 +159,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingUsingMoreThanOneVolcanoHexesToBePlaced(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -177,7 +179,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingMoreThanOneVolcanoHex(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map, player);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.topRight();
