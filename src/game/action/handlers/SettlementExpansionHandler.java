@@ -5,7 +5,7 @@ import models.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-class SettlementExpansionHandler {
+public class SettlementExpansionHandler {
 
     private final Settlement settlement;
     private Map map;
@@ -16,7 +16,7 @@ class SettlementExpansionHandler {
      * Can be used for tiger/totoro expansions but not meeples.
      */
 
-    ArrayList<MapSpot> generateExpandableSettlementArea(){
+    public ArrayList<MapSpot> generateExpandableSettlementArea(){
         ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
         ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
 
@@ -43,7 +43,7 @@ class SettlementExpansionHandler {
         return validSpotsForExpansion;
     }
 
-    ArrayList<MapSpot> generateAllTigerSpots(){
+    public ArrayList<MapSpot> generateAllTigerSpots(){
         ArrayList<MapSpot> validSpots = generateExpandableSettlementArea();
         ArrayList<MapSpot> tigerSpots = new ArrayList<>();
 
@@ -57,7 +57,7 @@ class SettlementExpansionHandler {
         return tigerSpots;
     }
 
-    ArrayList<MapSpot> generateAllTotoroSpots(){
+    public ArrayList<MapSpot> generateAllTotoroSpots(){
         ArrayList<MapSpot> validSpots = generateExpandableSettlementArea();
         ArrayList<MapSpot> totoroSpots = new ArrayList<>();
 
@@ -78,7 +78,7 @@ class SettlementExpansionHandler {
      * automatically expanded to spots surrounding the settlement.
      * Used when doing meeple expansion and allows for insight into expansion
      */
-    ArrayList<ArrayList<MapSpot>> generateAllChainedSpots(){
+    public ArrayList<ArrayList<MapSpot>> generateAllChainedSpots(){
         final ArrayList<ArrayList<MapSpot>> allChainedSpots = new ArrayList<>();
         final ArrayList<MapSpot> validSpotsForExpansion = generateExpandableSettlementArea();
 
@@ -96,7 +96,7 @@ class SettlementExpansionHandler {
      * generates a list of all spots with the same terrain that can be chained from a
      * MapSpot that is adjacent to the settlement
      */
-    ArrayList<MapSpot> generateChainedSpots(MapSpot mapSpot){
+    public ArrayList<MapSpot> generateChainedSpots(MapSpot mapSpot){
 
         if(!isAdjacentToSettlement(mapSpot))
             throw new RuntimeException("MapSpot not adjacent to settlement");
@@ -141,7 +141,7 @@ class SettlementExpansionHandler {
         return chainedSpots;
     }
 
-    void expandWithMeeples(final MapSpot mapSpot) {
+    public void expandWithMeeples(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if (isIn(validExpansionSpots, mapSpot)) {
@@ -158,7 +158,7 @@ class SettlementExpansionHandler {
         }
     }
 
-    void expandWithTotoro(final MapSpot mapSpot) {
+    public void expandWithTotoro(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if (isIn(validExpansionSpots, mapSpot) && settlement.getMapSpots().size() >= 5) {
@@ -171,7 +171,7 @@ class SettlementExpansionHandler {
         }
     }
 
-    void expandWithTiger(final MapSpot mapSpot) {
+    public void expandWithTiger(final MapSpot mapSpot) {
         ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
 
         if(isIn(validExpansionSpots, mapSpot)
@@ -252,7 +252,7 @@ class SettlementExpansionHandler {
         return adjacent;
     }
 
-    SettlementExpansionHandler(final Map map, final Settlement settlement){
+    public SettlementExpansionHandler(final Map map, final Settlement settlement){
         this.map = map;
         this.settlement = settlement;
     }
