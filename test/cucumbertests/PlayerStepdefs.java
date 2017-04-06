@@ -21,7 +21,7 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
-    @Then("^The current players turn ends and the other player's turn begins$")
+    @Then("^The current player's turn ends and the other player's turn begins$")
     public void theCurrentPlayersTurnEndsAndTheOtherPlayerSTurnBegins() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
@@ -105,20 +105,32 @@ public class PlayerStepdefs{
         throw new PendingException();
     }
 
-    @Given("^That player has no meeples or totoros left$")
+    @Given("^That player has no meeples nor totoros left$")
     public void thatPlayerHasNoMeeplesOrTotorosLeft() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^That player has no meeples nor tigers left$")
+    public void thatPlayerHasNoMeeplesOrTigersLeft() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Given("^That player has no totoros nor tigers left$")
+    public void thatPlayerHasNoTotorosOrTigersLeft() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^That player wins$")
+    public void thatPlayerWins() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
     @When("^One player finishes their turn$")
     public void onePlayerFinishesTheirTurn() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @Then("^The game ends$")
-    public void theGameEnds() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }

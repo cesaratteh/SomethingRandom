@@ -4,7 +4,7 @@ Feature: Player
 
     Given There are two players playing
     When 1 player finishes their turn
-    Then The current players turn ends and the other player's turn begins
+    Then The current player's turn ends and the other player's turn begins
 
     Given The Player chose the found settlement action
     When A Player's turn ends
@@ -29,9 +29,20 @@ Feature: Player
     When It is one Player's turn
     Then The current player automatically loses
 
-    Given That player has no meeples or totoros left
+    Given That player has no meeples nor totoros left
     When One player finishes their turn
     Then The game ends
+    And That player wins
+
+    Given That player has no meeples nor tigers left
+    When One player finishes their turn
+    Then The game ends
+    And That player wins
+
+    Given That player has no totoros nor tigers left
+    When One player finishes their turn
+    Then The game ends
+    And That player wins
 
     Given The players tie
     When One player who had played all their pieces
