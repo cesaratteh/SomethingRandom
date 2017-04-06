@@ -10,7 +10,6 @@ public class SettlementsFactory {
     // Attributes
 
     private Map map;
-    private Player player;
 
     //--------
     // Methods
@@ -68,8 +67,7 @@ public class SettlementsFactory {
     //-------------
     // Constructors
 
-    public SettlementsFactory(final Map map, final Player player) {
+    public SettlementsFactory(final Map map) {
         this.map = map;
-        this.player = player;
     }
 }
