@@ -13,35 +13,37 @@ public class SettlementExpansionHandlerTest {
     private Map map;
     private Player player;
     private Settlement settlement;
+    private SettlementExpansionHandler handler;
 
     @Before
     public void generateMapForTesting(){
         this.map = new Map();
         this.player = new Player(Team.FRIENDLY);
-        this.settlement = new Settlement(Team.FRIENDLY, map, player);
+        this.settlement = new Settlement(Team.FRIENDLY);
+        this.handler = new SettlementExpansionHandler(map,settlement);
 
         MapSpot curr = map.getMiddleHexagonMapSpot();
 
-        map.addHexagon(curr, new Hexagon( player, Terrain.GRASSLAND, 1, 1));
-        map.addHexagon(curr.left(), new Hexagon( player, Terrain.ROCKY, 1, 1));
-        map.addHexagon(curr.topLeft(), new Hexagon( player, Terrain.VOLCANO, 1, 1));
+        map.addHexagon(curr, new Hexagon( Terrain.GRASSLAND, 1, 1));
+        map.addHexagon(curr.left(), new Hexagon(Terrain.ROCKY, 1, 1));
+        map.addHexagon(curr.topLeft(), new Hexagon(Terrain.VOLCANO, 1, 1));
 
-        map.addHexagon(curr.topRight(), new Hexagon( player, Terrain.VOLCANO, 1, 2));
-        map.addHexagon(curr.topRight().topRight(), new Hexagon( player, Terrain.GRASSLAND, 1, 2));
-        map.addHexagon(curr.topRight().topLeft(), new Hexagon( player, Terrain.LAKE, 1, 2));
+        map.addHexagon(curr.topRight(), new Hexagon(Terrain.VOLCANO, 1, 2));
+        map.addHexagon(curr.topRight().topRight(), new Hexagon(Terrain.GRASSLAND, 1, 2));
+        map.addHexagon(curr.topRight().topLeft(), new Hexagon(Terrain.LAKE, 1, 2));
 
-        map.addHexagon(curr.left().left(), new Hexagon( player, Terrain.VOLCANO, 1, 3));
-        map.addHexagon(curr.topLeft().left(), new Hexagon( player, Terrain.ROCKY, 1, 3));
-        map.addHexagon(curr.left().left().topLeft(), new Hexagon( player, Terrain.ROCKY, 1, 3));
+        map.addHexagon(curr.left().left(), new Hexagon(Terrain.VOLCANO, 1, 3));
+        map.addHexagon(curr.topLeft().left(), new Hexagon(Terrain.ROCKY, 1, 3));
+        map.addHexagon(curr.left().left().topLeft(), new Hexagon(Terrain.ROCKY, 1, 3));
 
     }
 
     @Test
     public void testGenerateExpandableSettlementAreaFromStart(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
-        ArrayList<MapSpot> validSpots = settlement.getValidExpansionSpots();
+        ArrayList<MapSpot> validSpots = handler.generateExpandableSettlementArea();
 
         ArrayList<MapSpot> actualSpots = new ArrayList<>();
         actualSpots.add(middle.left());
@@ -53,9 +55,12 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testGenerateExpandableSettlementAreaFromDifferentSpot(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle.left().topLeft());
+        Hexagon hex = map.getHexagon(middle.left().topLeft());
+        
+        hex.addMeeples(settlement.getTeam());
+        settlement.add(middle.left().topLeft(), hex);
 
-        ArrayList<MapSpot> validSpots = settlement.getValidExpansionSpots();
+        ArrayList<MapSpot> validSpots = handler.generateExpandableSettlementArea();
 
         ArrayList<MapSpot> actualSpots = new ArrayList<>();
         actualSpots.add(middle.left());
@@ -67,9 +72,9 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testGenerateChainedSpots(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
-        ArrayList<MapSpot> validSpots = settlement.getChainedSpots(middle.left());
+        ArrayList<MapSpot> validSpots = handler.generateChainedSpots(middle.left());
 
         ArrayList<MapSpot> actualSpots = new ArrayList<>();
         actualSpots.add(middle.left());
@@ -82,9 +87,9 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testGenerateAllChainedSpots(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
-        ArrayList<ArrayList<MapSpot>> chains = settlement.getAllChainedExpansionSpots();
+        ArrayList<ArrayList<MapSpot>> chains = handler.generateAllChainedSpots();
 
         ArrayList<MapSpot> actualSpots = new ArrayList<>();
         actualSpots.add(middle.left());
@@ -97,9 +102,9 @@ public class SettlementExpansionHandlerTest {
     @Test // might want to expand this test
     public void testGetValidTigerSpots(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
-        ArrayList<MapSpot> validTigerSpots = settlement.getValidTigerSpots();
+        ArrayList<MapSpot> validTigerSpots = handler.generateAllTigerSpots();
 
         Assert.assertTrue(validTigerSpots.isEmpty());
     }
@@ -107,9 +112,9 @@ public class SettlementExpansionHandlerTest {
     @Test // need to expand this one as well
     public void testGetValidTotoroSpots(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
-        ArrayList<MapSpot> validTotoroSpots = settlement.getValidTotoroSpots();
+        ArrayList<MapSpot> validTotoroSpots = handler.generateAllTotoroSpots();
 
         Assert.assertTrue(validTotoroSpots.isEmpty());
     }
@@ -117,8 +122,7 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testExpandWithMeeples(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
-        settlement.expandWithMeeples(middle.left());
+        handler.expandWithMeeples(middle.left());
 
         Assert.assertTrue(settlement.size() == 4);
     }
@@ -126,10 +130,10 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testExpandWithTotoros(){
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
         try{
-            settlement.expandWithTotoro(middle.left());
+            handler.expandWithTotoro(middle.left());
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage() == "Bad expansion with Totoro");
@@ -139,10 +143,10 @@ public class SettlementExpansionHandlerTest {
     @Test
     public void testExpandWithTigers() {
         MapSpot middle = map.getMiddleHexagonMapSpot();
-        settlement.add(middle);
+        settlement.add(middle, map.getHexagon(middle));
 
         try{
-            settlement.expandWithTiger(middle.left());
+            handler.expandWithTiger(middle.left());
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage() == "Bad expansion with Tiger");

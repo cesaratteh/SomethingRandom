@@ -26,16 +26,25 @@ public class Hexagon {
         hasTiger = false;
     }
 
+    public Hexagon(final Terrain terrainType, final int tileId) {
+        this.occupiedBy = Team.NONE;
+        this.terrainType = terrainType;
+        this.tileId = tileId;
+        numberOfMeeples = 0;
+        hasTotoro = false;
+        hasTiger = false;
+    }
+
     //--------
     // Methods
 
-    public void addMeeples(final int numberOfMeeples, final Team team)
+    public void addMeeples(final Team team)
     {
         if(!isEmpty())
             throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
 
         this.occupiedBy = team;
-        this.numberOfMeeples = numberOfMeeples;
+        this.numberOfMeeples = this.level;
     }
 
     public void addTotoro(final Team team) {
@@ -89,6 +98,12 @@ public class Hexagon {
         return terrainType;
     }
 
+    //----------
+    // Setters
+
+    public void setLevel(int level){
+        this.level = level;
+    }
 
     /**
      * For map display
@@ -126,4 +141,5 @@ public class Hexagon {
         }
         return(TeamChar);
     }
+
 }

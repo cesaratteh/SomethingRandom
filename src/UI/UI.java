@@ -27,15 +27,15 @@ public class UI extends Application {
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 
         Hexagon temp = new Hexagon(Terrain.GRASSLAND, 2, 4);
-        temp.addMeeples(4, Team.FRIENDLY, player);
+        temp.addMeeples(Team.FRIENDLY);
         map.addHexagon(mapSpot, temp);
 
         temp = new Hexagon(Terrain.JUNGLE, 2, 4);
-        temp.addTotoro(Team.ENEMY, player);
+        temp.addTotoro(Team.ENEMY);
         map.addHexagon(mapSpot.left(), temp);
 
         temp = new Hexagon(Terrain.LAKE, 2, 2);
-        temp.addTiger(Team.FRIENDLY, player);
+        temp.addTiger(Team.FRIENDLY);
         map.addHexagon(mapSpot.topLeft(), temp);
 
         map.addHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));

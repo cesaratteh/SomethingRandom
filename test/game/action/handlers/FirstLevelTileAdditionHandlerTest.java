@@ -43,9 +43,20 @@ public class FirstLevelTileAdditionHandlerTest {
         handler = new FirstLevelTileAdditionHandler(map);
     }
 
-    public void placeFirstTile(){
+    private void placeFirstTile(){
         initializeBeforeFirstTileTests();
         handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5);
+    }
+
+    private boolean hexIsEqual(Hexagon hex1, Hexagon hex2) {
+        return (hex1.getLevel() == hex2.getLevel()
+                && hex1.getOccupiedBy() == hex2.getOccupiedBy()
+                && hex1.getTerrainType() == hex2.getTerrainType()
+                && hex1.getNumberOfMeeples() == hex2.getNumberOfMeeples()
+                && hex1.isHasTiger() == hex2.isHasTiger()
+                && hex1.isHasTotoro() == hex2.isHasTotoro()
+                && hex1.getTileId() == hex2.getTileId()
+                && hex1.isEmpty() == hex2.isEmpty());
     }
 
     @Test
@@ -53,11 +64,11 @@ public class FirstLevelTileAdditionHandlerTest {
 
         handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5);
 
-        Assert.assertTrue(map.getHexagon(map.getMiddleHexagonMapSpot().topLeft()).isEqual(h1)
-                && map.getHexagon(map.getMiddleHexagonMapSpot().topRight()).isEqual(h2)
-                && map.getHexagon(map.getMiddleHexagonMapSpot()).isEqual(h3)
-                && map.getHexagon(map.getMiddleHexagonMapSpot().bottomLeft()).isEqual(h4)
-                && map.getHexagon(map.getMiddleHexagonMapSpot().bottomRight()).isEqual(h5));
+        Assert.assertTrue(hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topLeft()),h1)
+                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topRight()), h2)
+                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot()), h3)
+                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().bottomLeft()), h4)
+                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().bottomRight()), h5));
 
     }
 
@@ -106,9 +117,9 @@ public class FirstLevelTileAdditionHandlerTest {
 
         handler.addTileToMap(h1,h2,h3,m1,m2,m3);
 
-        Assert.assertTrue(map.getHexagon(m1).isEqual(h1)
-                && map.getHexagon(m2).isEqual(h2)
-                && map.getHexagon(m3).isEqual(h3));
+        Assert.assertTrue(hexIsEqual(map.getHexagon(m1), h1)
+                && hexIsEqual(map.getHexagon(m2), h2)
+                && hexIsEqual(map.getHexagon(m3), h3));
 
     }
 

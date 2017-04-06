@@ -143,6 +143,51 @@ public class SettlementExpansionHandler {
         return chainedSpots;
     }
 
+    public void expandWithMeeples(final MapSpot mapSpot) {
+        ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
+
+        if (isIn(validExpansionSpots, mapSpot)) {
+
+            ArrayList<MapSpot> chainedSpots = generateChainedSpots(mapSpot);
+
+            for (MapSpot spot : chainedSpots) {
+                Hexagon hex = map.getHexagon(spot);
+                
+                hex.addMeeples(settlement.getTeam());
+                hex.addMeeples(settlement.getTeam());
+                settlement.add(spot,hex);
+            }
+        } else {
+            throw new RuntimeException("Bad expansion with Meeples");
+        }
+    }
+
+    public void expandWithTotoro(final MapSpot mapSpot) {
+        ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
+
+        if (isIn(validExpansionSpots, mapSpot) && settlement.getMapSpots().size() >= 5) {
+            map.getHexagon(mapSpot).addTotoro(settlement.getTeam());
+            settlement.add(mapSpot, map.getHexagon(mapSpot));
+
+        } else {
+            throw new RuntimeException("Bad expansion with Totoro");
+
+        }
+    }
+
+    public void expandWithTiger(final MapSpot mapSpot) {
+        ArrayList<MapSpot> validExpansionSpots = generateExpandableSettlementArea();
+
+        if(isIn(validExpansionSpots, mapSpot)
+                && settlement.getMapSpots().size() >= 5
+                && map.getHexagon(mapSpot).getLevel() >= 3) {
+            map.getHexagon(mapSpot).addTiger(settlement.getTeam());
+            settlement.add(mapSpot, map.getHexagon(mapSpot));
+        } else {
+            throw new RuntimeException("Bad expansion with Tiger");
+        }
+    }
+
     private boolean canChainExpand(MapSpot seedMapSpot, MapSpot currentMapSpot, boolean[][] visited) {
         return canBeExpandedTo(seedMapSpot, currentMapSpot, visited)
                  && map.getHexagon(seedMapSpot).getTerrainType()

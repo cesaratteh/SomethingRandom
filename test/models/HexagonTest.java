@@ -25,7 +25,7 @@ public class HexagonTest {
                 0,
                 1);
 
-        hexagon.addMeeples(1, team, player);
+        hexagon.addMeeples(team);
         assertEquals(team, hexagon.getOccupiedBy());
     }
 
@@ -81,7 +81,7 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAdd, RandomGenerator.generateRandomTeam(), player);
+        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
         assertEquals(numberOfMeeplesToAdd, hexagon.getNumberOfMeeples());
     }
 
@@ -92,15 +92,15 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(numberOfMeeplesToAddFirst, RandomGenerator.generateRandomTeam(), player);
-        hexagon.addMeeples(numberOfMeeplesToAddSecond, RandomGenerator.generateRandomTeam(), player);
+        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
     }
 
     @Test
     public void addingTotoroTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addTotoro(RandomGenerator.generateRandomTeam(), player);
+        hexagon.addTotoro(RandomGenerator.generateRandomTeam());
         assertEquals(true, hexagon.isHasTotoro());
     }
 
@@ -108,7 +108,7 @@ public class HexagonTest {
     public void addingTigerTest(){
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addTiger(RandomGenerator.generateRandomTeam(), player);
+        hexagon.addTiger(RandomGenerator.generateRandomTeam());
         assertEquals(true, hexagon.isHasTiger());
     }
 

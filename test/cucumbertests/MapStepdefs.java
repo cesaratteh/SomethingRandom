@@ -1,6 +1,5 @@
 package cucumbertests;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -138,10 +137,21 @@ public class MapStepdefs implements En {
         MapSpot middle = map.getMiddleHexagonMapSpot();
 
         if (map.getHexagon(middle).getLevel() != 1 ||
-                !map.getHexagon(m1).isEqual(th1) ||
-                !map.getHexagon(m2).isEqual(th2) ||
-                !map.getHexagon(m3).isEqual(th1)) {
+                !hexIsEqual(map.getHexagon(m1),th1) ||
+                !hexIsEqual(map.getHexagon(m2),th2) ||
+                !hexIsEqual(map.getHexagon(m3),th1)) {
             Assert.fail("Tile is not where it is expected");
         }
+    }
+
+    private boolean hexIsEqual(Hexagon hex1, Hexagon hex2) {
+        return (hex1.getLevel() == hex2.getLevel()
+                && hex1.getOccupiedBy() == hex2.getOccupiedBy()
+                && hex1.getTerrainType() == hex2.getTerrainType()
+                && hex1.getNumberOfMeeples() == hex2.getNumberOfMeeples()
+                && hex1.isHasTiger() == hex2.isHasTiger()
+                && hex1.isHasTotoro() == hex2.isHasTotoro()
+                && hex1.getTileId() == hex2.getTileId()
+                && hex1.isEmpty() == hex2.isEmpty());
     }
 }
