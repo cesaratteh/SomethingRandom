@@ -124,4 +124,6 @@ public class MapSpot {
     public int getZ() {
         return z;
     }
+
+
 }
