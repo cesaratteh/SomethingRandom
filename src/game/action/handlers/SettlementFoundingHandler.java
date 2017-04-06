@@ -15,7 +15,7 @@ public class SettlementFoundingHandler {
 
     private final Map map;
 
-    ArrayList<MapSpot> generateValidMapSpotsForSettlementFounding(){
+    public ArrayList<MapSpot> generateValidMapSpotsForSettlementFounding(){
         final ArrayList<MapSpot> validMapSpotsForSettlementFounding = new ArrayList<>();
         final LinkedList<MapSpot> notVisitedHexagons = new LinkedList<>();
 
@@ -57,7 +57,7 @@ public class SettlementFoundingHandler {
 
 
 
-    SettlementFoundingHandler(final Map map){
+    public SettlementFoundingHandler(final Map map){
         this.map = map;
     }
 

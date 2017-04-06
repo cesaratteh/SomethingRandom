@@ -20,7 +20,7 @@ public class NukingAndStackingHandler {
     //-------------
     // constructors
 
-    NukingAndStackingHandler(final Map map){
+    public NukingAndStackingHandler(final Map map){
         this.map = map;
     }
 
