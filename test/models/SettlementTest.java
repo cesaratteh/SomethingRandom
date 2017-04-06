@@ -55,7 +55,7 @@ public class SettlementTest {
         for(MapSpot m : randomList){
             s.add(m);
         }
-        assertEquals(10, s.getSize());
+        assertEquals(10, s.size());
     }
 
     @Test

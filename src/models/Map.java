@@ -1,8 +1,5 @@
 package models;
 
-import java.util.Stack;
-import java.util.Vector;
-
 public class Map {
 
     //-----------

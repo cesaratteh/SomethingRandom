@@ -1,7 +1,5 @@
 package models;
 
-import game.action.handlers.SettlementExpansionHandler;
-
 import java.util.ArrayList;
 
 public class Settlement {
@@ -14,103 +12,49 @@ public class Settlement {
     private int numberOfMeeples;
     private int numberOfTotoros;
     private int numberOfTigers;
-    private Map map;
-    private SettlementExpansionHandler expansionHandler;
-    private final Player owner;
 
     //-------------
     // Constructors
 
-    public Settlement(final Team team, Map map, final Player owner){
+    public Settlement(final Team team){
         mapSpots = new ArrayList<>();
-        this.map = map;
         this.team = team;
         this.numberOfMeeples = 0;
         this.numberOfTotoros = 0;
-        this.owner = owner;
-        this.expansionHandler = new SettlementExpansionHandler(map, this);
+        this.numberOfTigers = 0;
     }
 
     //--------
     // Methods
 
-    public void add(final MapSpot mapSpot) {
+    public void add(final MapSpot mapSpot, final Hexagon hexagon) {
         mapSpots.add(mapSpot);
-        numberOfMeeples += map.getHexagon(mapSpot).getNumberOfMeeples();
-        numberOfTotoros += (map.getHexagon(mapSpot).isHasTotoro()) ? 1 : 0;
+        numberOfMeeples += hexagon.getNumberOfMeeples();
+        numberOfTotoros += (hexagon.isHasTotoro()) ? 1 : 0;
+        numberOfTigers += (hexagon.isHasTiger()) ? 1 : 0;
     }
 
-    public void expandWithMeeples(final MapSpot mapSpot){
-       ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
-
-       if(isIn(validExpansionSpots, mapSpot)){
-
-           ArrayList<MapSpot> chainedSpots = expansionHandler.generateChainedSpots(mapSpot);
-
-           for(MapSpot spot : chainedSpots){
-               map.getHexagon(spot).addMeeples(map.getHexagon(spot).getLevel(), team, owner);
-               this.add(spot);
-               numberOfMeeples += map.getHexagon(spot).getLevel();
-           }
-       }
-       else{
-           throw new RuntimeException("Bad expansion with Meeples");
-       }
-    }
-
-    public void expandWithTotoro(final MapSpot mapSpot){
-        ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
-
-        if(isIn(validExpansionSpots, mapSpot) && mapSpots.size() >= 5){
-            this.add(mapSpot);
-            map.getHexagon(mapSpot).addTotoro(team, owner);
-            numberOfTotoros++;
+    public boolean isMapSpotInSettlement(final MapSpot mapSpot){
+        for(final MapSpot settlementMapSpot: mapSpots){
+            if(settlementMapSpot.isEqual(mapSpot)) return true;
         }
-        else{
-            throw new RuntimeException("Bad expansion with Totoro");
-        }
-    }
 
-    public void expandWithTiger(final MapSpot mapSpot){
-        ArrayList<MapSpot> validExpansionSpots = expansionHandler.generateExpandableSettlementArea();
-
-        if(isIn(validExpansionSpots, mapSpot)
-                && mapSpots.size() >= 5
-                && map.getHexagon(mapSpot).getLevel() >= 3){
-            this.add(mapSpot);
-            map.getHexagon(mapSpot).addTiger(team, owner);
-            numberOfTigers++;
-        }
-        else{
-            throw new RuntimeException("Bad expansion with Tiger");
-        }
-    }
-
-    public ArrayList<MapSpot> getValidExpansionSpots(){
-        return expansionHandler.generateExpandableSettlementArea();
-    }
-
-    public ArrayList<MapSpot> getChainedSpots(MapSpot mapSpot){
-        return expansionHandler.generateChainedSpots(mapSpot);
-    }
-
-    public ArrayList<MapSpot> getValidTigerSpots(){
-        return expansionHandler.generateAllTigerSpots();
-    }
-
-    public ArrayList<MapSpot> getValidTotoroSpots(){
-        return expansionHandler.generateAllTotoroSpots();
-    }
-
-    public ArrayList<ArrayList<MapSpot>> getAllChainedExpansionSpots(){
-        return expansionHandler.generateAllChainedSpots();
+        return false;
     }
 
     //--------
     // Getters
 
-    public int getSize(){
+    public int size(){
         return mapSpots.size();
+    }
+
+    public ArrayList<MapSpot> getMapSpots() {
+        return mapSpots;
+    }
+
+    public Team getTeam(){
+        return team;
     }
 
     public int getNumberOfMeeples() {
@@ -123,24 +67,5 @@ public class Settlement {
 
     public int getNumberOfTigers() {
         return numberOfTigers;
-    }
-
-    public ArrayList<MapSpot> getMapSpots() {
-        return mapSpots;
-    }
-
-    public Team getTeam(){
-        return team;
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
-    private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
-        for(MapSpot s : List){
-            if(s.isEqual(spot)) return true;
-        }
-        return false;
     }
 }

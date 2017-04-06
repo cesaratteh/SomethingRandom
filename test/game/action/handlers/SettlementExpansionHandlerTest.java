@@ -120,7 +120,7 @@ public class SettlementExpansionHandlerTest {
         settlement.add(middle);
         settlement.expandWithMeeples(middle.left());
 
-        Assert.assertTrue(settlement.getSize() == 4);
+        Assert.assertTrue(settlement.size() == 4);
     }
 
     @Test

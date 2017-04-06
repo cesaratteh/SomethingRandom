@@ -107,17 +107,17 @@ public class MapSpot {
         }
     }
 
-    public boolean isEqual(MapSpot mapSpot) {
+    public boolean isEqual(final MapSpot mapSpot) {
         return this.getX() == mapSpot.getX() && this.getY() == mapSpot.getY();
     }
 
-    public boolean isAdjacentTo(MapSpot mapSpot){
-        ArrayList<MapSpot> adj = this.getAdjacentMapSpots();
-        for(int i = 0; i<adj.size(); i++){
-            if(adj.get(i).isEqual(mapSpot)){
+    public boolean isAdjacentTo(final MapSpot mapSpot){
+        for (final MapSpot adjacentMapSpot : this.getAdjacentMapSpots()) {
+            if (adjacentMapSpot.isEqual(mapSpot)) {
                 return true;
             }
         }
+
         return false;
     }
 
