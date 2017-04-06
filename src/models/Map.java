@@ -1,7 +1,6 @@
 package models;
 
-import java.util.Stack;
-import java.util.Vector;
+import game.action.handlers.FirstLevelTileAdditionHandler;
 
 public class Map {
 
@@ -10,12 +9,15 @@ public class Map {
 
     public static final int mapSize = calculateMaximumMapWidthAndHeight();
     private Hexagon[][] map;
+    private FirstLevelTileAdditionHandler handler;
 
     //-------------
     // Constructors
 
     public Map() {
         map = new Hexagon[mapSize][mapSize];
+        handler = new FirstLevelTileAdditionHandler(this);
+        this.addFirstTileToMap();
     }
 
     //--------
@@ -62,6 +64,26 @@ public class Map {
     public Hexagon getMiddleHexagon() {
         final MapSpot middleHexagonPosition = getMiddleHexagonMapSpot();
         return map[middleHexagonPosition.getX()][middleHexagonPosition.getY()];
+    }
+
+    public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
+        handler.addTileToMap(h1,h2,h3, m1,m2,m3);
+    }
+
+    public void addFirstTileToMap(){
+        MapSpot m1 = this.getMiddleHexagonMapSpot();
+        MapSpot m2 = m1.topLeft();
+        MapSpot m3 = m1.topRight();
+        MapSpot m4 = m1.bottomLeft();
+        MapSpot m5 = m1.bottomRight();
+
+        Hexagon h1 = new Hexagon(Terrain.VOLCANO,1,0);
+        Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,0);
+        Hexagon h3 = new Hexagon(Terrain.LAKE,1,0);
+        Hexagon h4 = new Hexagon(Terrain.ROCKY,1,0);
+        Hexagon h5 = new Hexagon(Terrain.GRASSLAND,1,0);
+
+        handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5);
     }
 
     //----------
