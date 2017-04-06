@@ -14,9 +14,8 @@ public class SettlementDecisionMaker {
 
 
     private final Map map;
-    private final Player player;
 
-    public ArrayList<Settlement> settlementsThatCanExpandWithTotoro(){
+    public ArrayList<Settlement> settlementsThatCanExpandWithTotoro(Player player){
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
         ArrayList<Settlement> settlements = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -37,7 +36,7 @@ public class SettlementDecisionMaker {
 
     }
 
-    public ArrayList<Settlement> settlementsThatCanExpandWithTiger(){
+    public ArrayList<Settlement> settlementsThatCanExpandWithTiger(Player player){
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
         ArrayList<Settlement> settlements = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -58,7 +57,7 @@ public class SettlementDecisionMaker {
 
     }
 
-    public ArrayList<Settlement> settlementsThatCanExpandWithMeeples(){
+    public ArrayList<Settlement> settlementsThatCanExpandWithMeeples(Player player){
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
         ArrayList<Settlement> settlements = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -77,7 +76,7 @@ public class SettlementDecisionMaker {
 
     }
 
-    public ArrayList<MapSpot> mapSpotsForSettlementFounding(){
+    public ArrayList<MapSpot> mapSpotsForSettlementFounding(Player player){
         SettlementFoundingHandler handler = new SettlementFoundingHandler(map);
         return handler.generateValidMapSpotsForSettlementFounding();
     }

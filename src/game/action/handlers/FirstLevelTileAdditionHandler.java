@@ -10,16 +10,19 @@ import java.util.ArrayList;
 /**
  * Add a tile - while checking game rules
  */
-class FirstLevelTileAdditionHandler {
+public class FirstLevelTileAdditionHandler {
 
     private Map map;
+
+
+
 
     /**
      * h1-5 are the hexes of the FirstTile
      * m1-5 are the corresponding MapSpots
      * can handle any orientation of FirstTile
      */
-    void addFirstTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5){
+    public void addFirstTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5){
 
         if(!uniqueTerrains(h1,h2,h3,h4,h5) || !matchingTileID(h1,h2,h3,h4,h5)){
             throw new RuntimeException("Bad First Tile to be Placed");
@@ -37,7 +40,9 @@ class FirstLevelTileAdditionHandler {
 
     }
 
-    void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
+
+
+    public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
 
         if (!onlyOneVolcano(h1, h2, h3) || !matchingTileID(h1, h2, h3))
             throw new RuntimeException("Bad Tile to be placed");
@@ -187,7 +192,7 @@ class FirstLevelTileAdditionHandler {
         return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
-    FirstLevelTileAdditionHandler(Map map){
+    public FirstLevelTileAdditionHandler(Map map){
         this.map = map;
     }
 

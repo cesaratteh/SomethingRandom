@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Nukes a tile and places another tile over it - while checking the game rules
  */
-class NukingAndStackingHandler {
+public class NukingAndStackingHandler {
 
 
     //-----------
@@ -20,7 +20,7 @@ class NukingAndStackingHandler {
     //-------------
     // constructors
 
-    NukingAndStackingHandler(final Map map){
+    public NukingAndStackingHandler(final Map map){
         this.map = map;
     }
 
