@@ -2,10 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-/**
- * x,y have to be both odd or both even.
- * Assuming 0 is even
- */
 public class MapSpot {
 
     //-----------
@@ -13,17 +9,15 @@ public class MapSpot {
 
     private int x;
     private int y;
+    private int z;
 
     //-------------
     // Constructors
 
-    public MapSpot(final int x, final int y) {
-        if (!isMapSpotValid(x, y)) {
-            throw new RuntimeException("Creating an invalid map spot");
-        }
-
+    public MapSpot(final int x, final int y, final int z) {
         this.x = x;
         this.y = y;
+        this.z = z;
     }
 
     //-------
@@ -42,96 +36,78 @@ public class MapSpot {
     }
 
     public MapSpot left() {
-        final int tempX = this.x - 2;
-        final int tempY = this.y;
+        final int tempX = this.x - 1;
+        final int tempY = this.y + 1;
+        final int tempZ = this.z;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
     public MapSpot topLeft() {
-        final int tempX = this.x - 1;
-        final int tempY = this.y - 1;
+        final int tempX = this.x;
+        final int tempY = this.y + 1;
+        final int tempZ = this.z - 1;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
     public MapSpot topRight() {
         final int tempX = this.x + 1;
-        final int tempY = this.y - 1;
+        final int tempY = this.y;
+        final int tempZ = this.z - 1;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
     public MapSpot right() {
-        final int tempX = this.x + 2;
-        final int tempY = this.y;
+        final int tempX = this.x + 1;
+        final int tempY = this.y - 1;
+        final int tempZ = this.z;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
     public MapSpot bottomRight() {
-        final int tempX = this.x + 1;
-        final int tempY = this.y + 1;
+        final int tempX = this.x;
+        final int tempY = this.y - 1;
+        final int tempZ = this.z + 1;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
     public MapSpot bottomLeft() {
         final int tempX = this.x - 1;
-        final int tempY = this.y + 1;
+        final int tempY = this.y;
+        final int tempZ = this.z + 1;
 
-        if (isMapSpotValid(tempX, tempY)) {
-            return new MapSpot(tempX, tempY);
-        } else {
-            return null;
-        }
+        return new MapSpot(tempX, tempY, tempZ);
     }
 
-    public boolean isEqual(final MapSpot mapSpot) {
-        return this.getX() == mapSpot.getX() && this.getY() == mapSpot.getY();
+    /**
+     * You don't need to call this method.
+     * You can do mapSpot1 == mapSpot2 to use it
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MapSpot) {
+            MapSpot mapSpot = (MapSpot) obj;
+
+            return (mapSpot.getX() == this.getX() &&
+                    mapSpot.getY() == this.getY() &&
+                    mapSpot.getZ() == this.getZ());
+        } else {
+            return false;
+        }
     }
 
     public boolean isAdjacentTo(final MapSpot mapSpot){
         for (final MapSpot adjacentMapSpot : this.getAdjacentMapSpots()) {
-            if (adjacentMapSpot.isEqual(mapSpot)) {
+            if (adjacentMapSpot == mapSpot) {
                 return true;
             }
         }
 
         return false;
-    }
-
-
-
-    private boolean isMapSpotValid(final int x, final int y) {
-        boolean inHexagonalPlace;
-        boolean insideMapBoundary;
-
-        inHexagonalPlace = (x % 2) == (y % 2);
-
-        insideMapBoundary = !((x >= Map.mapSize) | (y >= Map.mapSize));
-
-        return inHexagonalPlace && insideMapBoundary;
     }
 
     //---------
@@ -145,4 +121,7 @@ public class MapSpot {
         return y;
     }
 
+    public int getZ() {
+        return z;
+    }
 }
