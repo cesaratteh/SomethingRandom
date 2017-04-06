@@ -1,9 +1,9 @@
 package game.action.handlers;
 
-import models.Hexagon;
-import models.Map;
-import models.MapSpot;
-import models.Terrain;
+import game.action.handlers.utils.SettlementsFactory;
+import models.*;
+
+import java.util.ArrayList;
 
 /**
  * Nukes a tile and places another tile over it - while checking the game rules
@@ -15,13 +15,15 @@ public class NukingAndStackingHandler {
     // attributes
 
     final Map map;
+    final Player player;
 
 
     //-------------
     // constructors
 
-    NukingAndStackingHandler(final Map map){
+    NukingAndStackingHandler(final Map map, Player player){
         this.map = map;
+        this.player = player;
     }
 
 
@@ -40,6 +42,9 @@ public class NukingAndStackingHandler {
         if(!volcanoesMatch(nuked1,nuked2,nuked3,h1,h2,h3)){
             throw new RuntimeException("Volcanoes do not match up");
         }
+        if(MapSpotsContainWholeSettlement(nuked1,nuked2,nuked3)){
+            throw new RuntimeException("Cannot nuke a single hex settlement");
+        }
 
         int newLevel = map.getHexagon(nuked1).getLevel()+1;
 
@@ -51,6 +56,47 @@ public class NukingAndStackingHandler {
         map.getHexagonArray()[nuked2.getX()][nuked2.getY()] = h2;
         map.getHexagonArray()[nuked3.getX()][nuked3.getY()] = h3;
 
+    }
+
+    private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map, player);
+        ArrayList<Settlement> friendlySettlements = settlementsFactory.generateSettlements(Team.FRIENDLY);
+        ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
+        for(Settlement s : friendlySettlements){
+            int nukedCount = 0;
+
+            if(s.size() <= 3){
+
+                for(MapSpot m : s.getMapSpots()){
+                    if(m.isEqual(nuked1) || m.isEqual(nuked2) || m.isEqual(nuked3))
+                        nukedCount++;
+                }
+
+            }
+
+            if(nukedCount == s.size())
+                return true;
+
+        }
+
+        for(Settlement s : enemySettlements){
+            int nukedCount = 0;
+
+            if(s.size() <= 3){
+
+                for(MapSpot m : s.getMapSpots()){
+                    if(m.isEqual(nuked1) || m.isEqual(nuked2) || m.isEqual(nuked3))
+                        nukedCount++;
+                }
+
+            }
+
+            if(nukedCount == s.size())
+                return true;
+
+        }
+
+        return false;
     }
 
     private boolean volcanoesMatch(MapSpot n1, MapSpot n2, MapSpot n3, Hexagon h1, Hexagon h2, Hexagon h3) {
