@@ -5,7 +5,7 @@ import models.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
-class SettlementExpansionHandler {
+public class SettlementExpansionHandler {
 
     private final Settlement settlement;
     private Map map;

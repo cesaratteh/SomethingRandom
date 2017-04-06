@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Add a tile - while checking game rules
  */
-class FirstLevelTileAdditionHandler {
+public class FirstLevelTileAdditionHandler {
 
     private Map map;
 

@@ -30,15 +30,16 @@ public class HexagonTest {
     }
 
     @Test
-    public void terrainTypeTest() {
-        final Terrain terrain = RandomGenerator.generateRandomTerrainType();
+    public void tiledIdTest()
+    {
+        final int tiledId = random.nextInt(Integer.MAX_VALUE);
 
         final Hexagon hexagon =
-                new Hexagon(terrain,
+                new Hexagon(RandomGenerator.generateRandomTerrainType(),
                         RandomGenerator.generateRandomLevel(),
-                        RandomGenerator.generateRandomTileId());
+                        tiledId);
 
-        assertEquals(terrain, hexagon.getTerrainType());
+        assertEquals(tiledId, hexagon.getTileId());
     }
 
     @Test
@@ -54,16 +55,15 @@ public class HexagonTest {
     }
 
     @Test
-    public void tiledIdTest()
-    {
-        final int tiledId = random.nextInt(Integer.MAX_VALUE);
+    public void terrainTypeTest() {
+        final Terrain terrain = RandomGenerator.generateRandomTerrainType();
 
         final Hexagon hexagon =
-                new Hexagon(RandomGenerator.generateRandomTerrainType(),
+                new Hexagon(terrain,
                         RandomGenerator.generateRandomLevel(),
-                        tiledId);
+                        RandomGenerator.generateRandomTileId());
 
-        assertEquals(tiledId, hexagon.getTileId());
+        assertEquals(terrain, hexagon.getTerrainType());
     }
 
     @Test

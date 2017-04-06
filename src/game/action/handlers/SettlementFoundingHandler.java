@@ -11,7 +11,7 @@ import java.util.*;
  * Shows available options for settlement expansion
  * Expands while checking the game rules
  */
-class SettlementFoundingHandler {
+public class SettlementFoundingHandler {
 
     private final Map map;
 
