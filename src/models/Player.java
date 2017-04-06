@@ -8,8 +8,8 @@ public class Player {
     private int numberOfTotorosLeft;
     private int numberOfMeeplesLeft;
     private int numberOfTigersLeft;
+    private int score;
     private final Team team;
-
 
     //------------
     //Constructors
@@ -19,6 +19,7 @@ public class Player {
         this.numberOfMeeplesLeft = NUMBER_OF_STARTING_MEEPLES;
         this.numberOfTotorosLeft = NUMBER_OF_STARTING_TOTOROS;
         this.numberOfTigersLeft = NUMBER_OF_STARTING_TIGERS;
+        this.score = 0;
         this.team = team;
     }
 
@@ -37,7 +38,6 @@ public class Player {
         if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
             throw new RuntimeException("Can't place meeples. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
-
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
     void takeATigerFromPlayer() {
@@ -80,5 +80,9 @@ public class Player {
 
     public Team getTeam() {
         return team;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
