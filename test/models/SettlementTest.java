@@ -28,14 +28,14 @@ public class SettlementTest {
 
     private ArrayList<MapSpot> getRandomListOfMapSpots(int size, int totoro, int meeple) {
 
-        ArrayList<MapSpot> list = new ArrayList<>();
+        final ArrayList<MapSpot> list = new ArrayList<>();
         for(int i = 0; i<size;i++)
         {
-            MapSpot place = new MapSpot(i,i);
-            map.addHexagon(place,getRandomHexagon( totoro, meeple));
+            final MapSpot mapSpot = new MapSpot(i, i, i);
+            map.addHexagon(mapSpot,getRandomHexagon( totoro, meeple));
             totoro--;
             meeple--;
-            list.add(place);
+            list.add(mapSpot);
         }
 
         return list;
@@ -78,24 +78,22 @@ public class SettlementTest {
         assertEquals(s.getMapSpots(), randomList);
     }
 
-    //broken test
-
-//    @Test
-//    public void getNumberOfContainedMeepleTest(){
-//        ArrayList<MapSpot> randomList = getRandomListOfMapSpots(11,0,11);
-//        final Settlement s = new Settlement(Team.FRIENDLY);
-//        for(MapSpot m : randomList) {
-//            if (map.getHexagon(m).isEmpty()){
-//                map.getHexagon(m).addMeeples(s.getTeam());
-//                s.add(m, map.getHexagon(m));
-//            }
-//        }
-//        assertEquals(s.getNumberOfMeeples(), 11);
-//    }
+    @Test
+    public void getNumberOfContainedMeepleTest(){
+        final ArrayList<MapSpot> randomList = getRandomListOfMapSpots(11,0,11);
+        final Settlement s = new Settlement(Team.FRIENDLY);
+        for(MapSpot m : randomList) {
+            if (map.getHexagon(m).isEmpty()){
+                map.getHexagon(m).addMeeples(s.getTeam());
+                s.add(m, map.getHexagon(m));
+            }
+        }
+        assertEquals(s.getNumberOfMeeples(), 11);
+    }
 
     @Test
     public void getNumberOfContainedTotoroTest(){
-        ArrayList<MapSpot> randomList = getRandomListOfMapSpots(10,2,0);
+        final ArrayList<MapSpot> randomList = getRandomListOfMapSpots(10,2,0);
         final Settlement s = new Settlement(Team.FRIENDLY);
         for(MapSpot m : randomList){
             s.add(m, map.getHexagon(m));
@@ -103,4 +101,18 @@ public class SettlementTest {
         assertEquals(s.getNumberOfTotoros(), 2);
     }
 
+    @Test
+    public void isMapSpotInSettlementTest() {
+        final ArrayList<MapSpot> randomList = getRandomListOfMapSpots(10,2,0);
+        final Settlement s = new Settlement(Team.FRIENDLY);
+        for(MapSpot m : randomList){
+            s.add(m, map.getHexagon(m));
+        }
+
+        for (MapSpot m : randomList) {
+            assertEquals(true, s.isMapSpotInSettlement(m)); // This is the worst way to write a test, but I don't feel like thinking
+        }
+
+        assertEquals(false, s.isMapSpotInSettlement(new MapSpot(20, 53, -82)));
+    }
 }
