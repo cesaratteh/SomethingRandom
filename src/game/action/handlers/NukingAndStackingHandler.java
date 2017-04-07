@@ -28,8 +28,6 @@ public class NukingAndStackingHandler {
     //--------
     // methods
 
-    // FIXME: 3/30/2017 Needs one more validation test - "Can't completely wipe out a settlement".
-
     void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
         if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3)){
             throw new RuntimeException("Cannot nuke those spots");
