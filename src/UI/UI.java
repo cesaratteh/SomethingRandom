@@ -40,19 +40,6 @@ public class UI extends Application {
         temp.addMeeplesAccordingToLevel(Team.ENEMY);
         map.setHexagon(new MapSpot(4, -4, 0), temp);
 
-        Hexagon[][][] hexagonArray = map.getHexagonArray();
-
-        for(int i = 0; i < Map.size(); i++) {
-            for(int j = 0; j < Map.size(); j++) {
-                for(int k = 0; k < Map.size(); k++) {
-                    if (hexagonArray[i][j][k] != null) {
-                        System.out.println(i + " " + j + " " + k);
-                    }
-                }
-            }
-        }
-
-        System.out.println(new MapSpot(0, 0, 0).right().getX());
 
         gc.setFill(Color.WHITE);
 
