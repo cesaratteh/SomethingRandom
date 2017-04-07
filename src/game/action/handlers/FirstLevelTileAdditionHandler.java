@@ -6,6 +6,7 @@ import models.MapSpot;
 import models.Terrain;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Add a tile - while checking game rules
@@ -15,7 +16,55 @@ public class FirstLevelTileAdditionHandler {
     private Map map;
 
 
+    /**
+     *
+     * @return an arraylist of sets of 3 mapspots for valid tile placement
+     * i dunno if this works right now
+     */
+    public ArrayList<ArrayList<MapSpot>> generateAllSpotsForTilePlacement(){
+        ArrayList<MapSpot> edgeSpots = generateAllEdgeSpots();
 
+        ArrayList<ArrayList<MapSpot>> allSpotsForTilePlacement = new ArrayList<>();
+
+        for(MapSpot spot : edgeSpots){
+
+            for(MapSpot adj : spot.getAdjacentMapSpots()){
+
+                if(map.getHexagon(adj) == null){
+
+                    ArrayList<MapSpot> possibleEmptySpots = new ArrayList<>();
+
+                    for(MapSpot adjadj : adj.getAdjacentMapSpots()){
+                        if(map.getHexagon(adjadj) == null)
+                            possibleEmptySpots.add(adjadj);
+                    }
+
+                    ArrayList<ArrayList<MapSpot>> allCombinationsOfMapSpots = combinations(possibleEmptySpots);
+
+                    for(int i = 0; i < allCombinationsOfMapSpots.size(); i++){
+                        ArrayList<MapSpot> PossibleTile = allCombinationsOfMapSpots.get(i);
+
+                        if(areAllEmptyAndAdjacent(PossibleTile.get(0), PossibleTile.get(1), PossibleTile.get(2))){
+                            allSpotsForTilePlacement.add(PossibleTile);
+                        }
+                        else{
+                            allCombinationsOfMapSpots.remove(i);
+                            i--;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return allSpotsForTilePlacement;
+
+    }
+
+    private ArrayList<ArrayList<MapSpot>> combinations(ArrayList<MapSpot> possibleEmptySpots) {
+        //TODO
+        return new ArrayList<>();
+    }
 
     /**
      * h1-5 are the hexes of the FirstTile
@@ -39,8 +88,6 @@ public class FirstLevelTileAdditionHandler {
         map.getHexagonArray()[m5.getX()][m5.getY()][m1.getZ()] = h5;
 
     }
-
-
 
     public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3){
 
@@ -73,6 +120,38 @@ public class FirstLevelTileAdditionHandler {
         h2.setLevel(1);
         h3.setLevel(1);
 
+    }
+
+    private ArrayList<MapSpot> generateAllEdgeSpots(){
+        Stack<MapSpot> mapSpotStack = new Stack<>();
+        ArrayList<MapSpot> edgeSpots = new ArrayList<>();
+
+
+        mapSpotStack.push(map.getMiddleHexagonMapSpot());
+
+        while(!mapSpotStack.isEmpty()){
+            MapSpot spot = mapSpotStack.pop();
+            for(MapSpot adj : spot.getAdjacentMapSpots()) {
+                if (map.getHexagon(adj) == null){
+                    edgeSpots.add(spot);
+                    break;
+                }
+                else{
+                    mapSpotStack.push(adj);
+                }
+            }
+
+        }
+
+        return edgeSpots;
+
+    }
+
+    private boolean areAllEmptyAndAdjacent(MapSpot m1, MapSpot m2, MapSpot m3){
+        return isValidConfigurationForTile(m1,m2,m3)
+                && map.getHexagon(m1) == null
+                && map.getHexagon(m2) == null
+                && map.getHexagon(m3) == null;
     }
 
     private boolean goodMapSpots(MapSpot m1, MapSpot m2, MapSpot m3) {
