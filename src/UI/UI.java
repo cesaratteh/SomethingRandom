@@ -39,10 +39,11 @@ public class UI extends Application {
         gc.setFill(Color.WHITE);
 
 
-        int widthAndHeight = 10;
+        // ADJUST THIS TO GET THE HEXAGONS INSIDE THE WINDOW
+        int widthAndHeight = 8;
 
-        MapSpot currentMapSpot = new MapSpot(5, 0, -5);
-        DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50);
+        MapSpot currentMapSpot = new MapSpot(-1, 3, -2); // ADJUST THIS TO GET THE HEXAGONS INSIDE THE WINDOW
+        DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50); // DON't CHANGE THIS
 
 
         for (int i = 0; i < widthAndHeight; i++){
