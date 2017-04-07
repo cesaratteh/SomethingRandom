@@ -118,7 +118,7 @@ public class NukingAndStackingHandler {
             if( hex1 != null
                     && hex2 != null
                     && hex3 != null
-                    && haveSameTileID(hex1, hex2, hex3)
+                    && !haveSameTileID(hex1, hex2, hex3)
                     && areOnSameLevel(hex1, hex2, hex3)
                     && hasNoTotorosOrTigers(hex1, hex2, hex3)
                     && hasOneVolcano(hex1, hex2, hex3)
@@ -175,7 +175,7 @@ public class NukingAndStackingHandler {
     }
 
     private boolean haveSameTileID(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
-        return ( hex1.getTileId() != hex2.getTileId() ) ||
-                hex1.getTileId() != hex3.getTileId();
+        return ( hex1.getTileId() == hex2.getTileId() ) ||
+                hex1.getTileId() == hex3.getTileId();
     }
 }
