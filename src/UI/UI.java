@@ -11,18 +11,11 @@ import models.*;
 
 public class UI extends Application {
 
-    //-----------
-    // attributes
-
-    private Map map;
-    private Player player;
-
     //--------
     // Methods
 
     private void drawMap(GraphicsContext gc) {
 
-        player = new Player(Team.FRIENDLY);
         Map map = new Map();
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 
@@ -46,42 +39,14 @@ public class UI extends Application {
         gc.setFill(Color.WHITE);
 
 
-        final Hexagon[][] hexagonArray = map.getHexagonArray();
+        int widthAndHeight = 10;
 
-        int leftBound = -1;
-        int rightBound = -1;
-        int topBound = -1;
-        int bottomBound = -1;
-
-
-        for (int i = 0; i < map.size(); i++) {
-            for (int j = 0; j < map.size(); j++) {
-                if (hexagonArray[i][j] != null && leftBound == -1) {
-                    leftBound = i;
-                }
-
-                if (hexagonArray[i][j] != null) {
-                    rightBound = i;
-                }
-
-                if (hexagonArray[j][i] != null && topBound == -1) {
-                    topBound = i;
-                }
-
-                if (hexagonArray[j][i] != null)
-                    bottomBound = i;
-            }
-        }
-
-        if (leftBound % 2 != topBound % 2)
-            leftBound--;
-
-        MapSpot currentMapSpot = new MapSpot(leftBound, topBound);
+        MapSpot currentMapSpot = new MapSpot(5, 0, -5);
         DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50);
 
 
-        while (currentMapSpot.getY() <= bottomBound){
-            while (currentMapSpot.getX() <= rightBound) {
+        for (int i = 0; i < widthAndHeight; i++){
+            for(int j = 0; j < widthAndHeight; j++){
 
                 Hexagon hexagon = map.getHexagon(currentMapSpot);
 
@@ -157,7 +122,7 @@ public class UI extends Application {
             currentMapSpot = currentMapSpot.bottomRight();
             currentDrawable = currentDrawable.bottomRight();
 
-            while (currentMapSpot.getX() > leftBound) {
+            for(int j = 0; j < widthAndHeight; j++) {
                 Hexagon hexagon = map.getHexagon(currentMapSpot);
 
                 if (hexagon != null) {
