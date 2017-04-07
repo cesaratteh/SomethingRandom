@@ -150,7 +150,7 @@ public class SettlementExpansionHandler {
 
             for (MapSpot spot : chainedSpots) {
                 Hexagon hex = map.getHexagon(spot);
-                hex.addMeeples(settlement.getTeam());
+                hex.addMeeplesAccordingToLevel(settlement.getTeam());
                 settlement.add(spot,hex);
             }
         } else {

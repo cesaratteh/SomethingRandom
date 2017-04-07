@@ -57,7 +57,7 @@ public class SettlementExpansionHandlerTest {
         MapSpot middle = map.getMiddleHexagonMapSpot();
         Hexagon hex = map.getHexagon(middle.left().topLeft());
         
-        hex.addMeeples(settlement.getTeam());
+        hex.addMeeplesAccordingToLevel(settlement.getTeam());
         settlement.add(middle.left().topLeft(), hex);
 
         ArrayList<MapSpot> validSpots = handler.generateExpandableSettlementArea();

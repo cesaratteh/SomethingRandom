@@ -25,7 +25,7 @@ public class HexagonTest {
                 0,
                 1);
 
-        hexagon.addMeeples(team);
+        hexagon.addMeeplesAccordingToLevel(team);
         assertEquals(team, hexagon.getOccupiedBy());
     }
 
@@ -79,7 +79,7 @@ public class HexagonTest {
     public void addingMeeplesTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
         assertEquals(hexagon.getLevel(), hexagon.getNumberOfMeeples());
     }
 
@@ -90,8 +90,8 @@ public class HexagonTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
     }
 
     @Test

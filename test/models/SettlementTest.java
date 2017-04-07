@@ -16,7 +16,7 @@ public class SettlementTest {
         Hexagon hex = RandomGenerator.generateRandomHexagon();
 
         if (meeple <= 0 && totoro > 0) hex.addTotoro(player.getTeam());
-        else if (meeple > 0) hex.addMeeples(player.getTeam());
+        else if (meeple > 0) hex.addMeeplesAccordingToLevel(player.getTeam());
 
         return hex;
     }
@@ -75,13 +75,17 @@ public class SettlementTest {
     public void getNumberOfContainedMeepleTest() {
         final ArrayList<MapSpot> randomList = getRandomListOfMapSpots(11, 0, 11);
         final Settlement s = new Settlement(Team.FRIENDLY);
+
+        int sumOfMeeples = 0;
+
         for (MapSpot m : randomList) {
             if (map.getHexagon(m).isEmpty()) {
-                map.getHexagon(m).addMeeples(s.getTeam());
+                map.getHexagon(m).addMeeplesAccordingToLevel(s.getTeam());
+                sumOfMeeples += map.getHexagon(m).getNumberOfMeeples();
                 s.add(m, map.getHexagon(m));
             }
         }
-        assertEquals(s.getNumberOfMeeples(), 11);
+        assertEquals(sumOfMeeples, s.getNumberOfMeeples());
     }
 
     @Test

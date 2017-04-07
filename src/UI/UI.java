@@ -20,7 +20,7 @@ public class UI extends Application {
         MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 
         Hexagon temp = new Hexagon(Terrain.GRASSLAND, 2, 4);
-        temp.addMeeples(Team.FRIENDLY);
+        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
         map.setHexagon(mapSpot, temp);
 
         temp = new Hexagon(Terrain.JUNGLE, 2, 4);

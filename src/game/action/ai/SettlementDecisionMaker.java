@@ -83,7 +83,6 @@ public class SettlementDecisionMaker {
 
     public SettlementDecisionMaker(Map map, Player player){
         this.map = map;
-        this.player = player;
     }
 
 }

@@ -16,7 +16,7 @@ public class RandomGenerator {
     }
 
     public static int generateRandomMapSpotIndex() {
-        return random.nextInt(Map.size()) - 100;
+        return random.nextInt(Map.size() - Map.size()/2);
     }
 
     public static Terrain generateRandomTerrainType() {

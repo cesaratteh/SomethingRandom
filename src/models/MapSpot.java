@@ -14,11 +14,17 @@ public class MapSpot {
     //-------------
     // Constructors
 
+    /**
+     * This accepts a range from -100 to 100 for x, y, z.
+     * It follows the exact representation in the network protocol from the website
+     */
     public MapSpot(final int x, final int y, final int z) {
+
         this.x = x + OFFSET;
         this.y = y + OFFSET;
         this.z = z + OFFSET;
     }
+
 
     //-------
     //Methods
@@ -35,12 +41,16 @@ public class MapSpot {
         return adjacentMapSpots;
     }
 
+    private MapSpot constructMapSpotWithoutOffset(final int x, final int y, final int z) {
+        return new MapSpot(x - OFFSET, y - OFFSET, z - OFFSET);
+    }
+
     public MapSpot left() {
         final int tempX = this.x - 1;
         final int tempY = this.y + 1;
         final int tempZ = this.z;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     public MapSpot topLeft() {
@@ -48,7 +58,7 @@ public class MapSpot {
         final int tempY = this.y + 1;
         final int tempZ = this.z - 1;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     public MapSpot topRight() {
@@ -56,7 +66,7 @@ public class MapSpot {
         final int tempY = this.y;
         final int tempZ = this.z - 1;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     public MapSpot right() {
@@ -64,7 +74,7 @@ public class MapSpot {
         final int tempY = this.y - 1;
         final int tempZ = this.z;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     public MapSpot bottomRight() {
@@ -72,7 +82,7 @@ public class MapSpot {
         final int tempY = this.y - 1;
         final int tempZ = this.z + 1;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     public MapSpot bottomLeft() {
@@ -80,7 +90,7 @@ public class MapSpot {
         final int tempY = this.y;
         final int tempZ = this.z + 1;
 
-        return new MapSpot(tempX, tempY, tempZ);
+        return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
     /**
@@ -128,5 +138,5 @@ public class MapSpot {
     //----------
     // Constants
 
-    private final static int OFFSET = Map.size();
+    private final static int OFFSET = Map.size() / 2;
 }

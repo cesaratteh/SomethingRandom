@@ -45,12 +45,21 @@ public class MapTest {
 
         final Hexagon expectedCenterHex = hexagonArray[Map.size() / 2][Map.size() / 2][Map.size() / 2];
         final Hexagon expectedLeftHex = hexagonArray[Map.size() / 2 - 1][Map.size() / 2 + 1][Map.size() / 2];
-        final Hexagon expectedTopLeftHex = hexagonArray[Map.size() / 2][Map.size() / 2 - 1][Map.size() / 2 + 1];
+        final Hexagon expectedTopLeftHex = hexagonArray[Map.size() / 2][Map.size() / 2 + 1][Map.size() / 2 - 1];
         final Hexagon expectedTopRightHex = hexagonArray[Map.size() / 2 + 1][Map.size() / 2][Map.size() / 2 - 1];
         final Hexagon expectedRightHex = hexagonArray[Map.size() / 2 + 1][Map.size() / 2 - 1][Map.size() / 2];
         final Hexagon expectedBottomRightHex = hexagonArray[Map.size() / 2][Map.size() / 2 - 1][Map.size() / 2 + 1];
-        final Hexagon expectedBottomLeftHex = hexagonArray[Map.size() / 2 - 1][Map.size() / 2][Map.size() / 2 - 1];
+        final Hexagon expectedBottomLeftHex = hexagonArray[Map.size() / 2 - 1][Map.size() / 2][Map.size() / 2 + 1];
 
+        assertEquals(expectedCenterHex, centerHexagon);
+        assertEquals(expectedLeftHex, leftHexagon);
+        assertEquals(expectedTopLeftHex, topLeftHexagon);
+        assertEquals(expectedTopRightHex, topRightHexagon);
+        assertEquals(expectedRightHex, righHexagon);
+        assertEquals(expectedBottomRightHex, bottomRightHexagon);
+        assertEquals(expectedBottomLeftHex, bottomLeftHexagon);
+
+        // The below code is redundant and unnecessary, but I wrote it already so might as well keep it
         assertEquals(centerHexagon.getLevel(), expectedCenterHex.getLevel());
         assertEquals(centerHexagon.getNumberOfMeeples(), expectedCenterHex.getNumberOfMeeples());
         assertEquals(centerHexagon.getTerrainType(), expectedCenterHex.getTerrainType());
@@ -95,7 +104,7 @@ public class MapTest {
     }
 
     @Test
-    public void addHexagonTest() {
+    public void setHexagonTest() {
         final Map map = new Map();
 
         final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
@@ -125,7 +134,7 @@ public class MapTest {
 //        MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 //        Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 //        map.setHexagon(mapSpot, hexagon);
-//        hexagon.addMeeples(Team.FRIENDLY);
+//        hexagon.addMeeplesAccordingToLevel(Team.FRIENDLY);
 //
 //        MapSpot Spot2 = mapSpot.topLeft();
 //        hexagon = RandomGenerator.generateRandomHexagon();

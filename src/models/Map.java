@@ -46,7 +46,7 @@ public class Map {
     }
 
     public MapSpot getMiddleHexagonMapSpot() {
-        return new MapSpot(MAP_SIZE / 2, MAP_SIZE / 2, MAP_SIZE / 2);
+        return new MapSpot(0, 0, 0);
     }
 
     /**

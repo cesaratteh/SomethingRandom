@@ -38,7 +38,7 @@ public class Hexagon {
     //--------
     // Methods
 
-    public void addMeeples(final Team team)
+    public void addMeeplesAccordingToLevel(final Team team)
     {
         if(!isEmpty())
             throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
@@ -64,7 +64,7 @@ public class Hexagon {
     }
 
     public boolean isEmpty(){
-        return (numberOfMeeples == 0) && !(hasTotoro);
+        return (numberOfMeeples == 0) && !(hasTotoro) && !(hasTiger);
     }
 
     public boolean isHasTotoro() {
