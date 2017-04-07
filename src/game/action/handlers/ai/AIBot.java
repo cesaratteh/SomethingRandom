@@ -50,8 +50,6 @@ public class AIBot {
      * Give map spot AND rotation to server
      */
     public void doATilePlacementMove(Map map) {
-        final SettlementsFactory settlementsFactory = new SettlementsFactory();
-
     }
 
     /**

@@ -32,10 +32,11 @@ public class Map {
      * Try not to use this. It's not centered. It's really confusing.
      * MapSpot handles centering now.
      * If you need this: 0,0,0 in dave's logic is 100, 100, 100 in this array
+     * I am mainly using it right now for tests
      */
-//    public Hexagon[][][] getHexagonArray() {
-//        return map;
-//    }
+    protected Hexagon[][][] getHexagonArray() {
+        return map;
+    }
 
     /**
      * returns NULL if the spot is empty
@@ -51,7 +52,7 @@ public class Map {
     /**
      * returns NULL if the spot is empty
      **/
-    Hexagon getMiddleHexagon() {
+    public Hexagon getMiddleHexagon() {
         final MapSpot middleHexagonPosition = getMiddleHexagonMapSpot();
         return map[middleHexagonPosition.getX()][middleHexagonPosition.getY()][middleHexagonPosition.getZ()];
     }
