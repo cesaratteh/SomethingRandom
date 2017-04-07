@@ -21,7 +21,7 @@ public class TigerIslandProtocol {
             }
             return output;
     }
-    public String parseInput(String input) {
+    public String parseMoveInput(String input) {
         String[] tokens = input.split(" ");
         gameID = tokens[5];
         moveNumber = Integer.parseInt(tokens[10]);

@@ -31,11 +31,13 @@ public class Client {
                 if(fromServer.equals("END OF CHALLENGES"))
                     break;
 
-                if(fromServer.contains("WITHIN"))           //Wait for server prompt for move
-                {
-                    fromPlayer = tip.parseInput(input.readLine());
-                    System.out.println("Player: " + fromPlayer);
-                    output.println(fromPlayer);
+                while(!(fromServer.contains("OVER PLAYER"))) {
+                    if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
+                    {
+                        fromPlayer = tip.parseMoveInput(input.readLine());
+                        System.out.println("Player: " + fromPlayer);
+                        output.println(fromPlayer);
+                    }
                 }
             }
         }catch (UnknownHostException e) {
