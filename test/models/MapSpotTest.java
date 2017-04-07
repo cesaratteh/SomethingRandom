@@ -3,7 +3,6 @@ package models;
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,129 +11,56 @@ public class MapSpotTest {
     final Random random = new Random();
 
     @Test
-    public void getXTest() {
-        final int x = random.nextInt(Map.mapSize);
-        final MapSpot mapSpot = new MapSpot(x, (x % 2 == 0) ? 0 : 1);
-
-        assertEquals(x, mapSpot.getX());
-    }
-
-    @Test
-    public void getYTest() {
-        final int y = random.nextInt(Map.mapSize);
-        final MapSpot mapSpot = new MapSpot((y % 2 == 0) ? 0 : 1, y);
-
-        assertEquals(y, mapSpot.getY());
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void illegalSpotTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 == x % 2) ;
-
-        final MapSpot mapSpot = new MapSpot(x, y);
-    }
-
-    @Test
     public void leftTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot left = mapSpot.left();
-
-        if (x < 0) {
-            assertEquals(left, null);
-        } else {
-            assertEquals(x - 2, left.getX());
-            assertEquals(y, left.getY());
-        }
+        assertEquals(mapSpot.getX() - 1, mapSpot.left().getX());
+        assertEquals(mapSpot.getY() + 1, mapSpot.left().getY());
+        assertEquals(mapSpot.getZ(), mapSpot.left().getZ());
     }
 
     @Test
     public void topLeftTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot topLeft = mapSpot.topLeft();
-
-        if (x < 0 | y < 0) {
-            assertEquals(topLeft, null);
-        } else {
-            assertEquals(x - 1, topLeft.getX());
-            assertEquals(y - 1, topLeft.getY());
-        }
+        assertEquals(mapSpot.getX(), mapSpot.topLeft().getX());
+        assertEquals(mapSpot.getY() + 1, mapSpot.topLeft().getY());
+        assertEquals(mapSpot.getZ() - 1, mapSpot.topLeft().getZ());
     }
 
     @Test
     public void topRightTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot topRight = mapSpot.topRight();
-
-        if (x >= Map.mapSize | y <0) {
-            assertEquals(topRight, null);
-        } else {
-            assertEquals(x + 1, topRight.getX());
-            assertEquals(y - 1, topRight.getY());
-        }
+        assertEquals(mapSpot.getX() + 1, mapSpot.topRight().getX());
+        assertEquals(mapSpot.getY(), mapSpot.topRight().getY());
+        assertEquals(mapSpot.getZ() - 1, mapSpot.topRight().getZ());
     }
 
     @Test
     public void rightTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot right = mapSpot.right();
-
-        if (x >= Map.mapSize) {
-            assertEquals(right, null);
-        } else {
-            assertEquals(x + 2, right.getX());
-            assertEquals(y, right.getY());
-        }
+        assertEquals(mapSpot.getX() + 1, mapSpot.right().getX());
+        assertEquals(mapSpot.getY() - 1, mapSpot.right().getY());
+        assertEquals(mapSpot.getZ(), mapSpot.right().getZ());
     }
 
     @Test
     public void bottomRightTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot bottomRight = mapSpot.bottomRight();
-
-        if (x >= Map.mapSize | y >= Map.mapSize) {
-            assertEquals(bottomRight, null);
-        } else {
-            assertEquals(x + 1, bottomRight.getX());
-            assertEquals(y + 1, bottomRight.getY());
-        }
+        assertEquals(mapSpot.getX(), mapSpot.bottomRight().getX());
+        assertEquals(mapSpot.getY() - 1, mapSpot.bottomRight().getY());
+        assertEquals(mapSpot.getZ() + 1, mapSpot.bottomRight().getZ());
     }
 
     @Test
     public void bottomLeftTest() {
-        final int x = random.nextInt(Map.mapSize);
-        int y;
-        while ((y = random.nextInt(Map.mapSize)) % 2 != x % 2) ;
+        final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
 
-        final MapSpot mapSpot = new MapSpot(x, y);
-        final MapSpot bottomLeft = mapSpot.bottomLeft();
-
-        if (x < 0 | y >= Map.mapSize) {
-            assertEquals(bottomLeft, null);
-        } else {
-            assertEquals(x - 1, bottomLeft.getX());
-            assertEquals(y + 1, bottomLeft.getY());
-        }
+        assertEquals(mapSpot.getX() - 1, mapSpot.bottomLeft().getX());
+        assertEquals(mapSpot.getY(), mapSpot.bottomLeft().getY());
+        assertEquals(mapSpot.getZ() + 1, mapSpot.bottomLeft().getZ());
     }
 }

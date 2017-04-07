@@ -15,9 +15,9 @@ public class MapSpot {
     // Constructors
 
     public MapSpot(final int x, final int y, final int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.x = x + OFFSET;
+        this.y = y + OFFSET;
+        this.z = z + OFFSET;
     }
 
     //-------
@@ -124,4 +124,9 @@ public class MapSpot {
     public int getZ() {
         return z;
     }
+
+    //----------
+    // Constants
+
+    private final static int OFFSET = Map.size();
 }

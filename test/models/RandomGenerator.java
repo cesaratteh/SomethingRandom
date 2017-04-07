@@ -9,6 +9,16 @@ public class RandomGenerator {
     //---------------
     // Static Methods
 
+    public static MapSpot generateRandomMapSpot() {
+        return new MapSpot(generateRandomMapSpotIndex(),
+                generateRandomMapSpotIndex(),
+                generateRandomMapSpotIndex());
+    }
+
+    public static int generateRandomMapSpotIndex() {
+        return random.nextInt(Map.size()) - 100;
+    }
+
     public static Terrain generateRandomTerrainType() {
         final int randomIndex = random.nextInt(Terrain.values().length);
         final Terrain[] values = Terrain.values();

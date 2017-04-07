@@ -24,13 +24,18 @@ public class Map {
     //-------------
     // Getters
 
-    public int size() {
+    public static int size() {
         return MAP_SIZE;
     }
 
-    public Hexagon[][][] getHexagonArray() {
-        return map;
-    }
+    /**
+     * Try not to use this. It's not centered. It's really confusing.
+     * MapSpot handles centering now.
+     * If you need this: 0,0,0 in dave's logic is 100, 100, 100 in this array
+     */
+//    public Hexagon[][][] getHexagonArray() {
+//        return map;
+//    }
 
     /**
      * returns NULL if the spot is empty
