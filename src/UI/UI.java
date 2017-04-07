@@ -21,20 +21,20 @@ public class UI extends Application {
 
         Hexagon temp = new Hexagon(Terrain.GRASSLAND, 2, 4);
         temp.addMeeples(Team.FRIENDLY);
-        map.addHexagon(mapSpot, temp);
+        map.setHexagon(mapSpot, temp);
 
         temp = new Hexagon(Terrain.JUNGLE, 2, 4);
         temp.addTotoro(Team.ENEMY);
-        map.addHexagon(mapSpot.left(), temp);
+        map.setHexagon(mapSpot.left(), temp);
 
         temp = new Hexagon(Terrain.LAKE, 2, 2);
         temp.addTiger(Team.FRIENDLY);
-        map.addHexagon(mapSpot.topLeft(), temp);
+        map.setHexagon(mapSpot.topLeft(), temp);
 
-        map.addHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
-        map.addHexagon(mapSpot.right(), new Hexagon(Terrain.VOLCANO, 4, 2));
-        map.addHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
-        map.addHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.ROCKY, 4, 2));
+        map.setHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
+        map.setHexagon(mapSpot.right(), new Hexagon(Terrain.VOLCANO, 4, 2));
+        map.setHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
+        map.setHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.ROCKY, 4, 2));
 
         gc.setFill(Color.WHITE);
 

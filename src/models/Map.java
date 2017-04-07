@@ -17,7 +17,7 @@ public class Map {
     //--------
     // Methods
 
-    public void addHexagon(final MapSpot hexagonMapSpot, final Hexagon hexagon) {
+    public void setHexagon(final MapSpot hexagonMapSpot, final Hexagon hexagon) {
         map[hexagonMapSpot.getX()][hexagonMapSpot.getY()][hexagonMapSpot.getZ()] = hexagon;
     }
 

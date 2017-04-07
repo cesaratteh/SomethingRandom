@@ -29,13 +29,13 @@ public class MapTest {
         final Hexagon bottomRightHexagon = RandomGenerator.generateRandomHexagon();
         final Hexagon bottomLeftHexagon = RandomGenerator.generateRandomHexagon();
 
-        map.addHexagon(map.getMiddleHexagonMapSpot(), centerHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().left(), leftHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().topLeft(), topLeftHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().topRight(), topRightHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().right(), righHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().bottomRight(), bottomRightHexagon);
-        map.addHexagon(map.getMiddleHexagonMapSpot().bottomLeft(), bottomLeftHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot(), centerHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().left(), leftHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().topLeft(), topLeftHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().topRight(), topRightHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().right(), righHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().bottomRight(), bottomRightHexagon);
+        map.setHexagon(map.getMiddleHexagonMapSpot().bottomLeft(), bottomLeftHexagon);
 
         final Hexagon[][][] hexagonArray = map.getHexagonArray();
 
@@ -101,7 +101,7 @@ public class MapTest {
         final MapSpot mapSpot = RandomGenerator.generateRandomMapSpot();
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        map.addHexagon(mapSpot, hexagon);
+        map.setHexagon(mapSpot, hexagon);
         assertEquals(map.getHexagon(mapSpot), hexagon);
     }
 
@@ -112,7 +112,7 @@ public class MapTest {
 
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        map.addHexagon(mapSpot, hexagon);
+        map.setHexagon(mapSpot, hexagon);
         assertEquals(map.getMiddleHexagon(), hexagon);
     }
 }
@@ -124,18 +124,18 @@ public class MapTest {
 //
 //        MapSpot mapSpot = map.getMiddleHexagonMapSpot();
 //        Hexagon hexagon = RandomGenerator.generateRandomHexagon();
-//        map.addHexagon(mapSpot, hexagon);
+//        map.setHexagon(mapSpot, hexagon);
 //        hexagon.addMeeples(Team.FRIENDLY);
 //
 //        MapSpot Spot2 = mapSpot.topLeft();
 //        hexagon = RandomGenerator.generateRandomHexagon();
-//        map.addHexagon(Spot2, hexagon);
+//        map.setHexagon(Spot2, hexagon);
 //        hexagon.addTotoro(Team.ENEMY);
 //
 //
 //        MapSpot Spot3 = mapSpot.topRight();
 //        hexagon = RandomGenerator.generateRandomHexagon();
-//        map.addHexagon(Spot3, hexagon);
+//        map.setHexagon(Spot3, hexagon);
 //
 //        map.PrintMap();
 //

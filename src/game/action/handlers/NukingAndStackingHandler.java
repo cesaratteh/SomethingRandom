@@ -50,9 +50,12 @@ public class NukingAndStackingHandler {
         h2.setLevel(newLevel);
         h3.setLevel(newLevel);
 
-        map.getHexagonArray()[nuked1.getX()][nuked1.getY()][nuked1.getZ()] = h1;
-        map.getHexagonArray()[nuked2.getX()][nuked2.getY()][nuked2.getZ()] = h2;
-        map.getHexagonArray()[nuked3.getX()][nuked3.getY()][nuked3.getZ()] = h3;
+        map.setHexagon(nuked1, h1);
+        map.setHexagon(nuked2, h2);
+        map.setHexagon(nuked3, h3);
+//        map.getHexagonArray()[nuked1.getX()][nuked1.getY()][nuked1.getZ()] = h1;
+//        map.getHexagonArray()[nuked2.getX()][nuked2.getY()][nuked2.getZ()] = h2;
+//        map.getHexagonArray()[nuked3.getX()][nuked3.getY()][nuked3.getZ()] = h3;
 
     }
 
