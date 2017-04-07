@@ -30,13 +30,13 @@ public class TigerIslandProtocol {
         MapSpot place[] = makeMove(gameID, moveNumber, tile);
         int buildType = place.length;
         String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + place[0].getX() + " " + place[0].getY()
-                + " " + place[0].getZ() + " " + place[0].getOrientation() + " ";      //FIXME: Need to get z coord and orientation
+                + " " + place[0].getZ() + " " /*+ place[0].getOrientation()*/ + " ";      //FIXME: Need to get z coord and orientation  // FIXME: 4/7/2017 COMMENTED OUT  getOrientation to compile
         switch (buildType) {
             case (1):
                 move.concat("FOUND SETTLEMENT AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());
                 break;
             case (2):
-                move.concat("EXPAND SETTLEMENT AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ() + " " + place[buildType].getTerrain()) ;
+                move.concat("EXPAND SETTLEMENT AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ() + " " /*+ place[buildType].getTerrain()*/) ; // FIXME: 4/7/2017 Commented out getTerrain to compile
                 break; //FIXME: Get terrain that we're expanding to?
             case (3):
                 move.concat("BUILD TOTORO SANCTUARY AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());

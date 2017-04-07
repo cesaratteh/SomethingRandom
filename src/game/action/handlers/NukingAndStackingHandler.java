@@ -50,10 +50,9 @@ public class NukingAndStackingHandler {
         h2.setLevel(newLevel);
         h3.setLevel(newLevel);
 
-        map.getHexagonArray()[nuked1.getX()][nuked1.getY()][nuked1.getZ()] = h1;
-        map.getHexagonArray()[nuked2.getX()][nuked2.getY()][nuked2.getZ()] = h2;
-        map.getHexagonArray()[nuked3.getX()][nuked3.getY()][nuked3.getZ()] = h3;
-
+        map.setHexagon(nuked1, h1);
+        map.setHexagon(nuked2, h2);
+        map.setHexagon(nuked3, h3);
     }
 
     private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
@@ -119,7 +118,7 @@ public class NukingAndStackingHandler {
             if( hex1 != null
                     && hex2 != null
                     && hex3 != null
-                    && haveSameTileID(hex1, hex2, hex3)
+                    && !haveSameTileID(hex1, hex2, hex3)
                     && areOnSameLevel(hex1, hex2, hex3)
                     && hasNoTotorosOrTigers(hex1, hex2, hex3)
                     && hasOneVolcano(hex1, hex2, hex3)
@@ -176,7 +175,7 @@ public class NukingAndStackingHandler {
     }
 
     private boolean haveSameTileID(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
-        return ( hex1.getTileId() != hex2.getTileId() ) ||
-                hex1.getTileId() != hex3.getTileId();
+        return ( hex1.getTileId() == hex2.getTileId() ) ||
+                hex1.getTileId() == hex3.getTileId();
     }
 }

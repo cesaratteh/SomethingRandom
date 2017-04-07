@@ -17,18 +17,24 @@ public class Map {
     //--------
     // Methods
 
-    public void addHexagon(final MapSpot hexagonMapSpot, final Hexagon hexagon) {
+    public void setHexagon(final MapSpot hexagonMapSpot, final Hexagon hexagon) {
         map[hexagonMapSpot.getX()][hexagonMapSpot.getY()][hexagonMapSpot.getZ()] = hexagon;
     }
 
     //-------------
     // Getters
 
-    public int size() {
+    public static int size() {
         return MAP_SIZE;
     }
 
-    public Hexagon[][][] getHexagonArray() {
+    /**
+     * Try not to use this. It's not centered. It's really confusing.
+     * MapSpot handles centering now.
+     * If you need this: 0,0,0 in dave's logic is 100, 100, 100 in this array
+     * I am mainly using it right now for tests
+     */
+    protected Hexagon[][][] getHexagonArray() {
         return map;
     }
 
@@ -40,13 +46,13 @@ public class Map {
     }
 
     public MapSpot getMiddleHexagonMapSpot() {
-        return new MapSpot(MAP_SIZE / 2, MAP_SIZE / 2, MAP_SIZE / 2);
+        return new MapSpot(0, 0, 0);
     }
 
     /**
      * returns NULL if the spot is empty
      **/
-    Hexagon getMiddleHexagon() {
+    public Hexagon getMiddleHexagon() {
         final MapSpot middleHexagonPosition = getMiddleHexagonMapSpot();
         return map[middleHexagonPosition.getX()][middleHexagonPosition.getY()][middleHexagonPosition.getZ()];
     }

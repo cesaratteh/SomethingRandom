@@ -13,9 +13,9 @@ public class SettlementsFactoryTest {
         Player player = new Player(RandomGenerator.generateRandomTeam());
         MapSpot curr = map.getMiddleHexagonMapSpot();
 
-        map.addHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
-        map.addHexagon(curr.topLeft(), new Hexagon(Terrain.GRASSLAND, 1, 1));
-        map.addHexagon(curr.topRight(), new Hexagon(Terrain.LAKE, 1, 1));
+        map.setHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
+        map.setHexagon(curr.topLeft(), new Hexagon(Terrain.GRASSLAND, 1, 1));
+        map.setHexagon(curr.topRight(), new Hexagon(Terrain.LAKE, 1, 1));
 
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 

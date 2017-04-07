@@ -25,32 +25,8 @@ public class HexagonTest {
                 0,
                 1);
 
-        hexagon.addMeeples(team);
+        hexagon.addMeeplesAccordingToLevel(team);
         assertEquals(team, hexagon.getOccupiedBy());
-    }
-
-    @Test
-    public void terrainTypeTest() {
-        final Terrain terrain = RandomGenerator.generateRandomTerrainType();
-
-        final Hexagon hexagon =
-                new Hexagon(terrain,
-                        RandomGenerator.generateRandomLevel(),
-                        RandomGenerator.generateRandomTileId());
-
-        assertEquals(terrain, hexagon.getTerrainType());
-    }
-
-    @Test
-    public void levelTest() {
-        final int level = random.nextInt(Integer.MAX_VALUE);
-
-        final Hexagon hexagon =
-                new Hexagon(RandomGenerator.generateRandomTerrainType(),
-                        level,
-                        RandomGenerator.generateRandomTileId());
-
-        assertEquals(level, hexagon.getLevel());
     }
 
     @Test
@@ -67,6 +43,30 @@ public class HexagonTest {
     }
 
     @Test
+    public void levelTest() {
+        final int level = random.nextInt(Integer.MAX_VALUE);
+
+        final Hexagon hexagon =
+                new Hexagon(RandomGenerator.generateRandomTerrainType(),
+                        level,
+                        RandomGenerator.generateRandomTileId());
+
+        assertEquals(level, hexagon.getLevel());
+    }
+
+    @Test
+    public void terrainTypeTest() {
+        final Terrain terrain = RandomGenerator.generateRandomTerrainType();
+
+        final Hexagon hexagon =
+                new Hexagon(terrain,
+                        RandomGenerator.generateRandomLevel(),
+                        RandomGenerator.generateRandomTileId());
+
+        assertEquals(terrain, hexagon.getTerrainType());
+    }
+
+    @Test
     public void hexagonStartsEmptyTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
@@ -79,19 +79,16 @@ public class HexagonTest {
     public void addingMeeplesTest() {
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
         assertEquals(hexagon.getLevel(), hexagon.getNumberOfMeeples());
     }
 
     @Test(expected = RuntimeException.class)
     public void addingMeeplesTwiceException() {
-        final int numberOfMeeplesToAddFirst = random.nextInt(100);
-        final int numberOfMeeplesToAddSecond = random.nextInt(100);
-
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
-        hexagon.addMeeples(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
+        hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
     }
 
     @Test
