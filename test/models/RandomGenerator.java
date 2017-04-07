@@ -31,7 +31,7 @@ public class RandomGenerator {
     }
 
     public static int generateRandomLevel() {
-        return random.nextInt(20);
+        return random.nextInt(20) + 1;
     }
 
     public static int generateRandomTileId() {

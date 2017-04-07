@@ -85,9 +85,6 @@ public class HexagonTest {
 
     @Test(expected = RuntimeException.class)
     public void addingMeeplesTwiceException() {
-        final int numberOfMeeplesToAddFirst = random.nextInt(100);
-        final int numberOfMeeplesToAddSecond = random.nextInt(100);
-
         final Hexagon hexagon = RandomGenerator.generateRandomHexagon();
 
         hexagon.addMeeplesAccordingToLevel(RandomGenerator.generateRandomTeam());
