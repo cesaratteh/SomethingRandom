@@ -18,11 +18,11 @@ public class MapSpot {
      * This accepts a range from -100 to 100 for x, y, z.
      * It follows the exact representation in the network protocol from the website
      */
-    public MapSpot(final int x, final int y, final int z) {
+    public MapSpot(final int xCentered, final int yCentered, final int zCentered) {
 
-        this.x = x + OFFSET;
-        this.y = y + OFFSET;
-        this.z = z + OFFSET;
+        this.x = xCentered + OFFSET;
+        this.y = yCentered + OFFSET;
+        this.z = zCentered + OFFSET;
     }
 
 

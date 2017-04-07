@@ -9,16 +9,34 @@ public class SettlementsFactoryTest {
 
     @Test
     public void generateSettlementsTest() {
-        Map map = new Map();
-        Player player = new Player(RandomGenerator.generateRandomTeam());
-        MapSpot curr = map.getMiddleHexagonMapSpot();
+        final Map map = new Map();
 
-        map.setHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
-        map.setHexagon(curr.topLeft(), new Hexagon(Terrain.GRASSLAND, 1, 1));
-        map.setHexagon(curr.topRight(), new Hexagon(Terrain.LAKE, 1, 1));
+        Hexagon temp;
+
+        temp = new Hexagon(Terrain.GRASSLAND, RandomGenerator.generateRandomLevel(), RandomGenerator.generateRandomTileId());
+        temp.addTotoro(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(0, 0, 0), temp);
+
+        temp = new Hexagon(Terrain.GRASSLAND, RandomGenerator.generateRandomLevel(), RandomGenerator.generateRandomTileId());
+        temp.addTiger(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(1, -1, 0), temp);
+
+        temp = new Hexagon(Terrain.GRASSLAND, RandomGenerator.generateRandomLevel(), RandomGenerator.generateRandomTileId());
+        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(2, -2, 0), temp);
+
+        temp = new Hexagon(Terrain.JUNGLE, RandomGenerator.generateRandomLevel(), RandomGenerator.generateRandomTileId());
+        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(3, -3, 0), temp);
+
+        temp = new Hexagon(Terrain.GRASSLAND, RandomGenerator.generateRandomLevel(), RandomGenerator.generateRandomTileId());
+        temp.addMeeplesAccordingToLevel(Team.ENEMY);
+        map.setHexagon(new MapSpot(4, -4, 0), temp);
+
 
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 
-        assertEquals(2, settlementsFactory.generateSettlements(Team.NONE).size());
+        assertEquals(2, settlementsFactory.generateSettlements(Team.FRIENDLY).size());
+        assertEquals(1, settlementsFactory.generateSettlements(Team.ENEMY).size());
     }
 }
