@@ -20,7 +20,7 @@ public class SettlementExpansionHandler {
         ArrayList<MapSpot> validSpotsForExpansion = new ArrayList<>();
         ArrayList<MapSpot> settlementMapSpots = settlement.getMapSpots();
 
-        boolean visited[][] = new boolean[map.size()][map.size()];
+        boolean visited[][] = new boolean[Map.size()][Map.size()];
 
         for (MapSpot settlementMapSpot : settlementMapSpots) {
             visited[settlementMapSpot.getX()][settlementMapSpot.getY()] = true;
@@ -111,7 +111,7 @@ public class SettlementExpansionHandler {
             Stack<MapSpot> mapStack = new Stack<>();
             mapStack.add(mapSpot);
 
-            boolean[][] visited = new boolean[map.size()][map.size()];
+            boolean[][] visited = new boolean[Map.size()][Map.size()];
             visited[mapSpot.getX()][mapSpot.getY()] = true;
 
             while (!mapStack.isEmpty()) {
@@ -232,20 +232,16 @@ public class SettlementExpansionHandler {
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(isEqual(s, spot)) return true;
+            if(s == spot) return true;
         }
         return false;
-    }
-
-    private boolean isEqual(MapSpot m1, MapSpot m2) {
-        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
     private boolean isAdjacentToSettlement(MapSpot m){
         boolean adjacent = false;
         for(MapSpot adj : m.getAdjacentMapSpots()){
             for(MapSpot spot : settlement.getMapSpots()){
-                if(isEqual(spot, adj))
+                if(spot == adj)
                     adjacent = true;
             }
         }
