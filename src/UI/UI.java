@@ -16,33 +16,39 @@ public class UI extends Application {
 
     private void drawMap(GraphicsContext gc) {
 
-        Map map = new Map();
-        MapSpot mapSpot = map.getMiddleHexagonMapSpot();
+        final Map map = new Map();
 
-        Hexagon temp = new Hexagon(Terrain.GRASSLAND, 2, 4);
-        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
-        map.setHexagon(mapSpot, temp);
+        Hexagon temp;
 
-        temp = new Hexagon(Terrain.JUNGLE, 2, 4);
-        temp.addTotoro(Team.ENEMY);
-        map.setHexagon(mapSpot.left(), temp);
+        temp = new Hexagon(Terrain.GRASSLAND, 5, 1);
+        temp.addTotoro(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(0, 0, 0), temp);
 
-        temp = new Hexagon(Terrain.LAKE, 2, 2);
+        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
         temp.addTiger(Team.FRIENDLY);
-        map.setHexagon(mapSpot.topLeft(), temp);
+        map.setHexagon(new MapSpot(1, -1, 0), temp);
 
-        map.setHexagon(mapSpot.topRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
-        map.setHexagon(mapSpot.right(), new Hexagon(Terrain.VOLCANO, 4, 2));
-        map.setHexagon(mapSpot.bottomRight(), new Hexagon(Terrain.JUNGLE, 4, 2));
-        map.setHexagon(mapSpot.bottomLeft(), new Hexagon(Terrain.ROCKY, 4, 2));
+        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(2, -2, 0), temp);
+
+        temp = new Hexagon(Terrain.JUNGLE, 1, 1);
+        temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
+        map.setHexagon(new MapSpot(3, -3, 0), temp);
+
+        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        temp.addMeeplesAccordingToLevel(Team.ENEMY);
+        map.setHexagon(new MapSpot(4, -4, 0), temp);
+
 
         gc.setFill(Color.WHITE);
 
 
-        int widthAndHeight = 10;
+        // ADJUST THIS TO GET THE HEXAGONS INSIDE THE WINDOW
+        int widthAndHeight = 8;
 
-        MapSpot currentMapSpot = new MapSpot(5, 0, -5);
-        DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50);
+        MapSpot currentMapSpot = new MapSpot(0, 0, 0); // ADJUST THIS TO GET THE HEXAGONS INSIDE THE WINDOW
+        DrawableHexagon currentDrawable = new DrawableHexagon(50, 50, 50); // DON't CHANGE THIS
 
 
         for (int i = 0; i < widthAndHeight; i++){

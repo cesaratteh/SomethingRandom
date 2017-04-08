@@ -22,7 +22,7 @@ public class SettlementsFactory {
     public ArrayList<Settlement> generateSettlements(final Team team) {
         final ArrayList<Settlement> settlements = new ArrayList<>();
 
-        final boolean visited[][] = new boolean[map.size()][map.size()];
+        final boolean visited[][][] = new boolean[Map.size()][Map.size()][Map.size()];
 
         visit(map.getMiddleHexagonMapSpot(), settlements, visited, true, team);
 
@@ -31,14 +31,14 @@ public class SettlementsFactory {
 
     private void visit(final MapSpot mapSpot,
                        final ArrayList<Settlement> settlements,
-                       final boolean visited[][],
+                       final boolean visited[][][],
                        final boolean startANewSettlement,
                        final Team team) {
 
-        if(visited[mapSpot.getX()][mapSpot.getY()] || map.getHexagon(mapSpot) == null)
+        if(visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] || map.getHexagon(mapSpot) == null)
             return;
         else
-            visited[mapSpot.getX()][mapSpot.getY()] = true;
+            visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] = true;
 
         if (map.getHexagon(mapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(mapSpot).getOccupiedBy() == team) {
             if (startANewSettlement) {

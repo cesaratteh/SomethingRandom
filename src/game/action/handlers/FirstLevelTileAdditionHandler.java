@@ -261,13 +261,9 @@ public class FirstLevelTileAdditionHandler {
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(isEqual(s, spot)) return true;
+            if(s == spot) return true;
         }
         return false;
-    }
-
-    private boolean isEqual(MapSpot m1, MapSpot m2) {
-        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
     public FirstLevelTileAdditionHandler(Map map){

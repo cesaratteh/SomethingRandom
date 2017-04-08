@@ -28,8 +28,6 @@ public class NukingAndStackingHandler {
     //--------
     // methods
 
-    // FIXME: 3/30/2017 Needs one more validation test - "Can't completely wipe out a settlement".
-
     void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
         if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3)){
             throw new RuntimeException("Cannot nuke those spots");
@@ -65,7 +63,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if(isEqual(m, nuked1) || isEqual(m, nuked2) || isEqual(m, nuked3))
+                    if((m == nuked1) || (m == nuked2) || (m == nuked3))
                         nukedCount++;
                 }
 
@@ -82,7 +80,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if(isEqual(m, nuked1) || isEqual(m,nuked2) || isEqual(m, nuked3))
+                    if( (m == nuked1) || (m == nuked2) || (m == nuked3))
                         nukedCount++;
                 }
 
@@ -94,10 +92,6 @@ public class NukingAndStackingHandler {
         }
 
         return false;
-    }
-
-    private boolean isEqual(MapSpot m1, MapSpot m2) {
-        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
     }
 
     private boolean volcanoesMatch(MapSpot n1, MapSpot n2, MapSpot n3, Hexagon h1, Hexagon h2, Hexagon h3) {
@@ -118,7 +112,7 @@ public class NukingAndStackingHandler {
             if( hex1 != null
                     && hex2 != null
                     && hex3 != null
-                    && !haveSameTileID(hex1, hex2, hex3)
+                    && haveSameTileID(hex1, hex2, hex3)
                     && areOnSameLevel(hex1, hex2, hex3)
                     && hasNoTotorosOrTigers(hex1, hex2, hex3)
                     && hasOneVolcano(hex1, hex2, hex3)
@@ -132,24 +126,24 @@ public class NukingAndStackingHandler {
     private boolean areAdjacent(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
         int count = 0;
         for(int i = 0; i<nuked1.getAdjacentMapSpots().size(); i++){
-            if(isEqual(nuked1.getAdjacentMapSpots().get(i), nuked2)
-                    || isEqual(nuked1.getAdjacentMapSpots().get(i), nuked3)){
+            if( (nuked1.getAdjacentMapSpots().get(i) == nuked2)
+                    || (nuked1.getAdjacentMapSpots().get(i) == nuked3)){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked2.getAdjacentMapSpots().size(); i++){
-            if(isEqual(nuked2.getAdjacentMapSpots().get(i), nuked1)
-                    || isEqual(nuked2.getAdjacentMapSpots().get(i), nuked3)){
+            if((nuked2.getAdjacentMapSpots().get(i) == nuked1)
+                    || (nuked2.getAdjacentMapSpots().get(i) == nuked3)){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked3.getAdjacentMapSpots().size(); i++){
-            if(isEqual(nuked3.getAdjacentMapSpots().get(i), nuked1)
-                    || isEqual(nuked3.getAdjacentMapSpots().get(i), nuked2)){
+            if((nuked3.getAdjacentMapSpots().get(i) == nuked1)
+                    || (nuked3.getAdjacentMapSpots().get(i) == nuked2)){
                 count++;
             }
         }
@@ -175,7 +169,7 @@ public class NukingAndStackingHandler {
     }
 
     private boolean haveSameTileID(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
-        return ( hex1.getTileId() == hex2.getTileId() ) ||
-                hex1.getTileId() == hex3.getTileId();
+        return ( hex1.getTileId() != hex2.getTileId() ) ||
+                hex1.getTileId() != hex3.getTileId();
     }
 }
