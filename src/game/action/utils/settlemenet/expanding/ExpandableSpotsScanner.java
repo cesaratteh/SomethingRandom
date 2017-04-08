@@ -1,6 +1,6 @@
-package game.action.handlers.utils.settlemenet.expanding;
+package game.action.utils.settlemenet.expanding;
 
-import game.action.handlers.utils.NoValidActionException;
+import game.action.utils.NoValidActionException;
 import models.Map;
 import models.MapSpot;
 import models.Settlement;

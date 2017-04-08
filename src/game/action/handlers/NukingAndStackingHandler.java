@@ -1,6 +1,6 @@
 package game.action.handlers;
 
-import game.action.handlers.utils.SettlementsFactory;
+import game.action.utils.SettlementsFactory;
 import models.*;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ public class NukingAndStackingHandler {
     public NukingAndStackingHandler(final Map map){
         this.map = map;
     }
-
 
     //--------
     // methods

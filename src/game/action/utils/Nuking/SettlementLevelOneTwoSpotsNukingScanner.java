@@ -1,6 +1,6 @@
-package game.action.handlers.utils.Nuking;
+package game.action.utils.Nuking;
 
-import game.action.handlers.utils.NoValidActionException;
+import game.action.utils.NoValidActionException;
 import models.Map;
 import models.MapSpot;
 import models.Settlement;
@@ -30,7 +30,7 @@ public class SettlementLevelOneTwoSpotsNukingScanner {
     //---------------
     // Public Methods
 
-    public TileMapSpot findTileMapSpotToNukeOnSettlment(final Settlement settlement, final Map map) throws NoValidActionException{
+    public TileMapSpot findTileMapSpotToNukeOnSettlment(final Settlement settlement, final Map map) throws NoValidActionException {
 
         if(settlement.size() < 3)
             throw new NoValidActionException("Cannot cover entire settlement");

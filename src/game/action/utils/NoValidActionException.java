@@ -1,4 +1,4 @@
-package game.action.handlers.utils;
+package game.action.utils;
 
 public class NoValidActionException extends Exception {
     public NoValidActionException(String message) {

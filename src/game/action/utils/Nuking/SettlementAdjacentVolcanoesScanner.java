@@ -1,4 +1,4 @@
-package game.action.handlers.utils.Nuking;
+package game.action.utils.Nuking;
 
 import models.Map;
 import models.MapSpot;

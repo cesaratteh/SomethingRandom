@@ -1,6 +1,6 @@
-package game.action.handlers.utils.PlacingOnLevelOne;
+package game.action.utils.PlacingOnLevelOne;
 
-import game.action.handlers.utils.NoValidActionException;
+import game.action.utils.NoValidActionException;
 import models.Map;
 import models.MapSpot;
 import models.Settlement;

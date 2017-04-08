@@ -1,10 +1,8 @@
 package game.action.MapUpdater;
 
 
-import game.action.handlers.utils.settlemenet.expanding.ExpandableSpotsScanner;
+import game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
 import models.*;
-
-import java.util.ArrayList;
 
 /**
  * Created by Nathan on 4/7/2017.
