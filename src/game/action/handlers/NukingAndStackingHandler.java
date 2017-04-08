@@ -164,6 +164,8 @@ public class NukingAndStackingHandler {
         return !hex1.isHasTiger() && !hex2.isHasTiger() && !hex3.isHasTiger() && !hex1.isHasTotoro() && !hex2.isHasTotoro() && !hex3.isHasTotoro();
     }
 
+
+
     private boolean areOnSameLevel(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
         return hex1.getLevel() == hex2.getLevel() && hex1.getLevel() == hex3.getLevel();
     }

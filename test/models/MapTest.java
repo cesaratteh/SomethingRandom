@@ -124,6 +124,7 @@ public class MapTest {
         map.setHexagon(mapSpot, hexagon);
         assertEquals(map.getMiddleHexagon(), hexagon);
     }
+
 }
 
 
