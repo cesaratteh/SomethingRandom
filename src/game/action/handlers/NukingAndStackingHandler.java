@@ -63,7 +63,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if((m == nuked1) || (m == nuked2) || (m == nuked3))
+                    if((m.isEqual(nuked1)) || (m.isEqual(nuked2)) || (m.isEqual(nuked3)))
                         nukedCount++;
                 }
 
@@ -80,7 +80,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if( (m == nuked1) || (m == nuked2) || (m == nuked3))
+                    if((m.isEqual(nuked1)) || (m.isEqual(nuked2)) || (m.isEqual(nuked3)))
                         nukedCount++;
                 }
 
@@ -126,24 +126,24 @@ public class NukingAndStackingHandler {
     private boolean areAdjacent(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
         int count = 0;
         for(int i = 0; i<nuked1.getAdjacentMapSpots().size(); i++){
-            if( (nuked1.getAdjacentMapSpots().get(i) == nuked2)
-                    || (nuked1.getAdjacentMapSpots().get(i) == nuked3)){
+            if( (nuked1.getAdjacentMapSpots().get(i).isEqual(nuked2))
+                    || (nuked1.getAdjacentMapSpots().get(i).isEqual(nuked3))){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked2.getAdjacentMapSpots().size(); i++){
-            if((nuked2.getAdjacentMapSpots().get(i) == nuked1)
-                    || (nuked2.getAdjacentMapSpots().get(i) == nuked3)){
+            if((nuked2.getAdjacentMapSpots().get(i).isEqual(nuked1))
+                    || (nuked2.getAdjacentMapSpots().get(i).isEqual(nuked3))){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked3.getAdjacentMapSpots().size(); i++){
-            if((nuked3.getAdjacentMapSpots().get(i) == nuked1)
-                    || (nuked3.getAdjacentMapSpots().get(i) == nuked2)){
+            if((nuked3.getAdjacentMapSpots().get(i).isEqual(nuked1))
+                    || (nuked3.getAdjacentMapSpots().get(i).isEqual(nuked2))){
                 count++;
             }
         }

@@ -63,4 +63,14 @@ public class MapSpotTest {
         assertEquals(mapSpot.getY(), mapSpot.bottomLeft().getY());
         assertEquals(mapSpot.getZ() + 1, mapSpot.bottomLeft().getZ());
     }
+
+    @Test
+    public void equalsTest() {
+        MapSpot m1 = new MapSpot(0, 0, 0);
+        MapSpot m2 = new MapSpot(0, 0, 0);
+        MapSpot m3 = new MapSpot(0, 1, 0);
+
+        assertEquals(true, m1.isEqual(m2));
+        assertEquals(false, m1.isEqual(m3));
+    }
 }

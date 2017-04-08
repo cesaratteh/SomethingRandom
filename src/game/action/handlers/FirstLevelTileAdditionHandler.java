@@ -118,7 +118,6 @@ public class FirstLevelTileAdditionHandler {
         h1.setLevel(1);
         h2.setLevel(1);
         h3.setLevel(1);
-
     }
 
     private ArrayList<MapSpot> generateAllEdgeSpots(){
@@ -183,48 +182,16 @@ public class FirstLevelTileAdditionHandler {
 
     private boolean onlyOneVolcano(Hexagon h1, Hexagon h2, Hexagon h3){
         return h1.getTerrainType() == Terrain.VOLCANO
-                && h2.getTerrainType() != Terrain.VOLCANO
-                && h3.getTerrainType() != Terrain.VOLCANO
-
-                || h2.getTerrainType() == Terrain.VOLCANO
-                && h1.getTerrainType() != Terrain.VOLCANO
-                && h3.getTerrainType() != Terrain.VOLCANO
-
-                || h3.getTerrainType() == Terrain.VOLCANO
-                && h1.getTerrainType() != Terrain.VOLCANO
-                && h2.getTerrainType() != Terrain.VOLCANO;
+                ^ h2.getTerrainType() == Terrain.VOLCANO
+                ^ h3.getTerrainType() == Terrain.VOLCANO;
     }
 
     private boolean onlyOneTerrain(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, Terrain t){
-        return ((h1.getTerrainType() == t
-                && h2.getTerrainType() != t
-                && h3.getTerrainType() != t
-                && h4.getTerrainType() != t
-                && h5.getTerrainType() != t)
-
-                || (h2.getTerrainType() == t
-                && h1.getTerrainType() != t
-                && h3.getTerrainType() != t
-                && h4.getTerrainType() != t
-                && h5.getTerrainType() != t)
-
-                || (h3.getTerrainType() == t
-                && h1.getTerrainType() != t
-                && h2.getTerrainType() != t
-                && h4.getTerrainType() != t
-                && h5.getTerrainType() != t)
-
-                || (h4.getTerrainType() == t
-                && h1.getTerrainType() != t
-                && h2.getTerrainType() != t
-                && h3.getTerrainType() != t
-                && h5.getTerrainType() != t)
-
-                || (h5.getTerrainType() == t
-                && h1.getTerrainType() != t
-                && h2.getTerrainType() != t
-                && h3.getTerrainType() != t
-                && h4.getTerrainType() != t));
+        return (h1.getTerrainType() == t
+                ^ h2.getTerrainType() == t
+                ^ h3.getTerrainType() == t
+                ^ h4.getTerrainType() == t
+                ^ h5.getTerrainType() == t);
     }
 
     private boolean matchingTileID(Hexagon h1, Hexagon h2, Hexagon h3) {
@@ -246,22 +213,25 @@ public class FirstLevelTileAdditionHandler {
     }
 
     private boolean isValidConfigurationForFirstTile(MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5) {
-        return(
-                isIn(m1.getAdjacentMapSpots(), m2)
-                &&isIn(m1.getAdjacentMapSpots(), m3)
+        final ArrayList<MapSpot> validMapSpotsForFirstTile = new ArrayList<>();
+        validMapSpotsForFirstTile.add(new MapSpot(0, 0, 0));
+        validMapSpotsForFirstTile.add(new MapSpot(1, 0, -1));
+        validMapSpotsForFirstTile.add(new MapSpot(0, 1, -1));
+        validMapSpotsForFirstTile.add(new MapSpot(0, -1, 1));
+        validMapSpotsForFirstTile.add(new MapSpot(-1, 0, 1));
 
-                &&isIn(m2.getAdjacentMapSpots(), m3)
+        boolean allSpotsAreValid = true;
+        for (MapSpot validSpot : validMapSpotsForFirstTile) {
+            if (! (m1.isEqual(validSpot) ^ m2.isEqual(validSpot) ^ m3.isEqual(validSpot) ^ m4.isEqual(validSpot) ^ m5.isEqual(validSpot)))
+                allSpotsAreValid = false;
+        }
 
-                &&isIn(m3.getAdjacentMapSpots(), m4)
-                &&isIn(m3.getAdjacentMapSpots(), m5)
-
-                &&isIn(m4.getAdjacentMapSpots(), m5)
-        );
+        return allSpotsAreValid;
     }
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(s == spot) return true;
+            if(s.isEqual(spot)) return true;
         }
         return false;
     }

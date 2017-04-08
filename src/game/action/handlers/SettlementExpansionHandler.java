@@ -232,7 +232,7 @@ public class SettlementExpansionHandler {
 
     private boolean isIn(ArrayList<MapSpot> List, MapSpot spot){
         for(MapSpot s : List){
-            if(s == spot) return true;
+            if(s.isEqual(spot)) return true;
         }
         return false;
     }
@@ -241,7 +241,7 @@ public class SettlementExpansionHandler {
         boolean adjacent = false;
         for(MapSpot adj : m.getAdjacentMapSpots()){
             for(MapSpot spot : settlement.getMapSpots()){
-                if(spot == adj)
+                if(spot.isEqual(adj))
                     adjacent = true;
             }
         }

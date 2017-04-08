@@ -93,21 +93,11 @@ public class MapSpot {
         return constructMapSpotWithoutOffset(tempX, tempY, tempZ);
     }
 
-    /**
-     * You don't need to call this method.
-     * You can do mapSpot1 == mapSpot2 to use it
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof MapSpot) {
-            MapSpot mapSpot = (MapSpot) obj;
+    public boolean isEqual(final MapSpot mapSpot) {
 
-            return (mapSpot.getX() == this.getX() &&
-                    mapSpot.getY() == this.getY() &&
-                    mapSpot.getZ() == this.getZ());
-        } else {
-            return false;
-        }
+        return (mapSpot.getX() == this.getX() &&
+                mapSpot.getY() == this.getY() &&
+                mapSpot.getZ() == this.getZ());
     }
 
     public boolean isAdjacentTo(final MapSpot mapSpot){
