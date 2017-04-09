@@ -1,4 +1,4 @@
-package game.action.handlers.utils;
+package game.action.utils;
 
 import models.*;
 
@@ -29,37 +29,36 @@ public class SettlementsFactory {
         return settlements;
     }
 
-    private void visit(final MapSpot mapSpot,
+    private void visit(final MapSpot currentMapSpot,
                        final ArrayList<Settlement> settlements,
                        final boolean visited[][][],
                        final boolean startANewSettlement,
                        final Team team) {
 
-        if(visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] || map.getHexagon(mapSpot) == null)
+        if(visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] || map.getHexagon(currentMapSpot) == null)
             return;
         else
-            visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] = true;
+            visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
 
-        if (map.getHexagon(mapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(mapSpot).getOccupiedBy() == team) {
+        if (map.getHexagon(currentMapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(currentMapSpot).getOccupiedBy() == team) {
             if (startANewSettlement) {
                 settlements.add(new Settlement(team));
             }
 
-            settlements.get(settlements.size()-1).add(mapSpot, map.getHexagon(mapSpot));
+            settlements.get(settlements.size()-1).add(currentMapSpot, map.getHexagon(currentMapSpot));
         }
 
-        for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
+        for (final MapSpot adjacentMapSpot : currentMapSpot.getAdjacentMapSpots()) {
 
-            if (adjacentMapSpot != null &&
-                    map.getHexagon(adjacentMapSpot) != null &&
-                    map.getHexagon(mapSpot).getTerrainType() == map.getHexagon(adjacentMapSpot).getTerrainType() &&
-                    map.getHexagon(mapSpot).getOccupiedBy() == team) {
+            if (map.getHexagon(adjacentMapSpot) != null &&
+                    map.getHexagon(adjacentMapSpot).getTerrainType() == map.getHexagon(currentMapSpot).getTerrainType() &&
+                    map.getHexagon(adjacentMapSpot).getOccupiedBy() == map.getHexagon(currentMapSpot).getOccupiedBy()) {
 
                 visit(adjacentMapSpot, settlements, visited, false, team);
             }
         }
 
-        for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
+        for (final MapSpot adjacentMapSpot : currentMapSpot.getAdjacentMapSpots()) {
             visit(adjacentMapSpot, settlements, visited, true, team);
         }
     }

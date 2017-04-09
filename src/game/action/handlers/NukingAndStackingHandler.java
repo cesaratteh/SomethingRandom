@@ -1,6 +1,6 @@
 package game.action.handlers;
 
-import game.action.handlers.utils.SettlementsFactory;
+import game.action.utils.SettlementsFactory;
 import models.*;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ public class NukingAndStackingHandler {
     public NukingAndStackingHandler(final Map map){
         this.map = map;
     }
-
 
     //--------
     // methods
@@ -63,7 +62,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if((m == nuked1) || (m == nuked2) || (m == nuked3))
+                    if((m.isEqual(nuked1)) || (m.isEqual(nuked2)) || (m.isEqual(nuked3)))
                         nukedCount++;
                 }
 
@@ -80,7 +79,7 @@ public class NukingAndStackingHandler {
             if(s.size() <= 3){
 
                 for(MapSpot m : s.getMapSpots()){
-                    if( (m == nuked1) || (m == nuked2) || (m == nuked3))
+                    if((m.isEqual(nuked1)) || (m.isEqual(nuked2)) || (m.isEqual(nuked3)))
                         nukedCount++;
                 }
 
@@ -126,24 +125,24 @@ public class NukingAndStackingHandler {
     private boolean areAdjacent(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
         int count = 0;
         for(int i = 0; i<nuked1.getAdjacentMapSpots().size(); i++){
-            if( (nuked1.getAdjacentMapSpots().get(i) == nuked2)
-                    || (nuked1.getAdjacentMapSpots().get(i) == nuked3)){
+            if( (nuked1.getAdjacentMapSpots().get(i).isEqual(nuked2))
+                    || (nuked1.getAdjacentMapSpots().get(i).isEqual(nuked3))){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked2.getAdjacentMapSpots().size(); i++){
-            if((nuked2.getAdjacentMapSpots().get(i) == nuked1)
-                    || (nuked2.getAdjacentMapSpots().get(i) == nuked3)){
+            if((nuked2.getAdjacentMapSpots().get(i).isEqual(nuked1))
+                    || (nuked2.getAdjacentMapSpots().get(i).isEqual(nuked3))){
                 count++;
             }
         }
         if(count != 2) return false;
         count = 0;
         for(int i = 0; i<nuked3.getAdjacentMapSpots().size(); i++){
-            if((nuked3.getAdjacentMapSpots().get(i) == nuked1)
-                    || (nuked3.getAdjacentMapSpots().get(i) == nuked2)){
+            if((nuked3.getAdjacentMapSpots().get(i).isEqual(nuked1))
+                    || (nuked3.getAdjacentMapSpots().get(i).isEqual(nuked2))){
                 count++;
             }
         }
@@ -163,6 +162,8 @@ public class NukingAndStackingHandler {
     private boolean hasNoTotorosOrTigers(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
         return !hex1.isHasTiger() && !hex2.isHasTiger() && !hex3.isHasTiger() && !hex1.isHasTotoro() && !hex2.isHasTotoro() && !hex3.isHasTotoro();
     }
+
+
 
     private boolean areOnSameLevel(Hexagon hex1, Hexagon hex2, Hexagon hex3) {
         return hex1.getLevel() == hex2.getLevel() && hex1.getLevel() == hex3.getLevel();

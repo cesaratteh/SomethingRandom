@@ -2,7 +2,7 @@ package game.action.ai;
 
 import game.action.handlers.SettlementExpansionHandler;
 import game.action.handlers.SettlementFoundingHandler;
-import game.action.handlers.utils.SettlementsFactory;
+import game.action.utils.SettlementsFactory;
 import models.Map;
 import models.MapSpot;
 import models.Player;
