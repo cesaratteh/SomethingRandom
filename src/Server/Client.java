@@ -42,7 +42,7 @@ public class Client {
                     }
                     if(fromServer.contains("PLACED") && !(fromServer.contains(PlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
                     {
-                       DataObject theirMove = tip.parseOpponentMove(fromServer);
+                       EnemyMove theirMove = tip.parseOpponentMove(fromServer);
                        tip.writeToBuffer(theirMove);
                     }
 

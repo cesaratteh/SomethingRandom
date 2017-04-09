@@ -37,7 +37,7 @@ public class TigerIslandProtocol {
         moveNumber = Integer.parseInt(tokens[10]);
         tile = tokens[12];
         timeLimit = Integer.parseInt(tokens[7]);
-        MoveObject ourmove = readFromBuffer();
+        FriendlyMove ourmove = readFromBuffer();
         int tileX = ourmove.getTileSpot().getXForServer();
         int tileY = ourmove.getTileSpot().getyForServer();
         int tileZ = ourmove.getTileSpot().getZForServer();
@@ -68,7 +68,7 @@ public class TigerIslandProtocol {
         return move;
     }
 
-    public DataObject parseOpponentMove(String input){
+    public EnemyMove parseOpponentMove(String input){
         String[] tokens = input.split(" ");
         String gameid = tokens[1];
         int movenumber = Integer.parseInt(tokens[3]);
@@ -101,19 +101,19 @@ public class TigerIslandProtocol {
             buildZ = Integer.parseInt(tokens[19]);
         }
 
-        DataObject theirMove = new DataObject(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, terrain);
+        EnemyMove theirMove = new EnemyMove(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, terrain);
         return theirMove;
 
     }
 
 
-    public void writeToBuffer(DataObject move){
+    public void writeToBuffer(EnemyMove move){
         //FIXME: Write to buffer queue when buffer is set up
     }
 
-    public MoveObject readFromBuffer(){
+    public FriendlyMove readFromBuffer(){
         //FIXME: Read from buffer queue when buffer is set up
-        MoveObject ourmove;
+        FriendlyMove ourmove;
         return ourmove;
     }
 

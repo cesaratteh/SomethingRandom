@@ -2,7 +2,7 @@ package Server;
 
 import models.Terrain;
 
-public class DataObject {
+public class EnemyMove {
 
     //-----------
     // Attributes
@@ -22,9 +22,9 @@ public class DataObject {
     //-----------
     // Constructors
 
-    public DataObject (final String gameid, final int movenumber, final String playerID, final int tileX,
-                      final int tileY, final int tileZ, final int orientation, final int buildX, final int buildY,
-                      final int buildZ, final Terrain terrain){
+    public EnemyMove(final String gameid, final int movenumber, final String playerID, final int tileX,
+                     final int tileY, final int tileZ, final int orientation, final int buildX, final int buildY,
+                     final int buildZ, final Terrain terrain){
         this.gameid = gameid;
         this.movenumber = movenumber;
         this.playerID = playerID;

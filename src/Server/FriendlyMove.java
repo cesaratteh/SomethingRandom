@@ -4,7 +4,7 @@ package Server;
 import models.MapSpot;
 import models.Terrain;
 
-public class MoveObject {
+public class FriendlyMove {
 
     //-----------
     // Attributes
@@ -18,7 +18,7 @@ public class MoveObject {
     //-----------
     // Constructors
 
-    public MoveObject(MapSpot tileSpot, MapSpot buildSpot, int orientation, Terrain terrain, int buildType){
+    public FriendlyMove(MapSpot tileSpot, MapSpot buildSpot, int orientation, Terrain terrain, int buildType){
         this.tileSpot = tileSpot;
         this.buildSpot = buildSpot;
         this.orientation = orientation;
