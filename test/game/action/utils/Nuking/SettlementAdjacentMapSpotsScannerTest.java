@@ -1,6 +1,5 @@
 package game.action.utils.Nuking;
 
-import game.action.utils.MapGenerator;
 import game.action.utils.SettlementsFactory;
 import models.*;
 import org.junit.Test;

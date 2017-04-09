@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 public class ExpandableSpotsScannerTest {
     @Test
     public void testTest() throws NoValidActionException {
