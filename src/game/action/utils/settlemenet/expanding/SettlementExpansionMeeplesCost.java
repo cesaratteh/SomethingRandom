@@ -7,7 +7,7 @@ import models.Settlement;
 
 import java.util.ArrayList;
 
-public class SettlmentExpansionMeeplesCost {
+public class SettlementExpansionMeeplesCost {
 
     //-----------
     // Attributes
@@ -17,7 +17,7 @@ public class SettlmentExpansionMeeplesCost {
     //------------
     // Constructor
 
-    public SettlmentExpansionMeeplesCost(final ExpandableSpotsScanner expandableSpotsScanner) {
+    public SettlementExpansionMeeplesCost(final ExpandableSpotsScanner expandableSpotsScanner) {
         this.expandableSpotsScanner = expandableSpotsScanner;
     }
 

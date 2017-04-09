@@ -13,6 +13,7 @@ import game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
 import game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
 import game.action.utils.SettlementsFactory;
 import game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
+import game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import game.action.utils.settlemenet.expanding.TigerSpotScanner;
 import game.action.utils.settlemenet.expanding.TotoroSpotScanner;
 import models.*;
@@ -42,6 +43,7 @@ public class AIBot {
     private SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner;
 
     //Settlement Expansion
+    private SettlementExpansionMeeplesCost settlementExpansionMeeplesCost;
     private TotoroSpotScanner totoroSpotScanner;
     private TigerSpotScanner tigerSpotScanner;
     private ExpandableSpotsScanner meeplesExpandableSpotsScanner;
@@ -64,6 +66,7 @@ public class AIBot {
                  final SettlementAdjacentVolcanoesScanner settlementAdjacentVolcanoesScanner,
                  final SettlementLevelOneTwoSpotsNukingScanner settlementLevelOneTwoSpotsNukingScanner,
                  final SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner,
+                 final SettlementExpansionMeeplesCost settlementExpansionMeeplesCost,
                  final TotoroSpotScanner totoroSpotScanner,
                  final TigerSpotScanner tigerSpotScanner,
                  final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
@@ -79,6 +82,7 @@ public class AIBot {
         this.settlementAdjacentVolcanoesScanner = settlementAdjacentVolcanoesScanner;
         this.settlementLevelOneTwoSpotsNukingScanner = settlementLevelOneTwoSpotsNukingScanner;
         this.settlementLevelOneTilePlacementScanner = settlementLevelOneTilePlacementScanner;
+        this.settlementExpansionMeeplesCost = settlementExpansionMeeplesCost;
         this.totoroSpotScanner = totoroSpotScanner;
         this.tigerSpotScanner = tigerSpotScanner;
         this.meeplesExpandableSpotsScanner = meeplesExpandableSpotsScanner;
