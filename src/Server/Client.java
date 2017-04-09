@@ -1,7 +1,5 @@
 package Server;
 
-import models.Player;
-
 import java.net.*;
 import java.io.*;
 
@@ -26,6 +24,7 @@ public class Client {
             String PlayerID;
 
             TigerIslandProtocol tip = new TigerIslandProtocol();            //Only authenticate once, so outside while loop
+            OpponentMoveProtocol opponent = new OponentMoveProtocol();
             fromPlayer = tip.authenticateTournament(input.readLine());
             output.println(fromPlayer);
             fromPlayer = tip.authenticateTournament(input.readLine());
@@ -42,9 +41,9 @@ public class Client {
                         System.out.println("Player: " + fromPlayer);
                         output.println(fromPlayer);
                     }
-                    if(fromServer.contains("PLACED") && !(fromServer.contains(PlayerID)))
+                    if(fromServer.contains("PLACED") && !(fromServer.contains(PlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
                     {
-                        tip.parseOpponentMove(fromServer);
+                        opponent.parseOpponentInput(fromServer);
                     }
 
                 }

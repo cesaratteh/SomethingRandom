@@ -61,10 +61,7 @@ public class TigerIslandProtocol {
         return move;
     }
 
-    public void parseOpponentMove(String input){
-        String[] movedetails = input.split(" ");
 
-    }
 
     public MapSpot[] makeMove(String gameid, int movenumber, String tile){
         //FIXME: Pass to something that figures out the two moves, MapSpot[0] is tile placement location, MapSpot[1] is build location
