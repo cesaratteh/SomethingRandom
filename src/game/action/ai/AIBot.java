@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 // TODO: 4/9/2017 1. Place tile in random spot 2. Found villager in random spot 3. Optimal expansion logic
 
-public class AIRivalBot {
+public class AIBot {
 
     //-----------
     // attributes
@@ -59,7 +59,7 @@ public class AIRivalBot {
     // Constructors
 
 
-    public AIRivalBot(final Player player,
+    public AIBot(final Player player,
                  final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
@@ -95,8 +95,6 @@ public class AIRivalBot {
 
     //--------
     // Methods
-
-    public FriendlyMove
 
     /**
      * Logic:
@@ -348,7 +346,7 @@ public class AIRivalBot {
             //  d. if all costs for expansion are greater than meeple count, then found villager in any random spot
 
             ArrayList<MapSpot> maxMapSpot = new ArrayList<MapSpot>();
-            Settlement maxSettlement;
+            Settlement maxSettlement = new Settlement(player.getTeam());
 
             for (Settlement friendlySettlement : friendlySettlements) {
                 try {

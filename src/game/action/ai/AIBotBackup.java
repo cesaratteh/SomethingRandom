@@ -20,7 +20,7 @@ import models.*;
 
 import java.util.ArrayList;
 
-public class AIBot {
+public class AIBotBackup {
 
     //-----------
     // attributes
@@ -56,7 +56,7 @@ public class AIBot {
     // Constructors
 
 
-    public AIBot(final Player player,
+    public AIBotBackup(final Player player,
                  final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
