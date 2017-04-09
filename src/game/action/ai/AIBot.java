@@ -1,6 +1,5 @@
 package game.action.ai;
 
-import Server.FriendlyMove;
 import game.action.handlers.FirstLevelTileAdditionHandler;
 import game.action.handlers.NukingAndStackingHandler;
 import game.action.handlers.SettlementExpansionHandler;
@@ -28,7 +27,6 @@ public class AIBot {
     //-----------
     // attributes
 
-    private Player player;
     private SettlementsFactory settlementsFactory;
 
     // Handlers
@@ -58,9 +56,7 @@ public class AIBot {
     //-------------
     // Constructors
 
-
-    public AIBot(final Player player,
-                 final SettlementsFactory settlementsFactory,
+    public AIBot(final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
                  final SettlementExpansionHandler settlementExpansionHandler,
@@ -75,7 +71,6 @@ public class AIBot {
                  final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
                  final FoundingNextToSettlementScanner foundingNextToSettlementScanner,
                  final RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
-        this.player = player;
         this.settlementsFactory = settlementsFactory;
         this.firstLevelTileAdditionHandler = firstLevelTileAdditionHandler;
         this.nukingAndStackingHandler = nukingAndStackingHandler;
@@ -106,7 +101,7 @@ public class AIBot {
      * <p>
      * Give map spot AND rotation to server
      */
-    public void doATilePlacementMove(final Map map, final Tile tile) {
+    public void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -209,7 +204,7 @@ public class AIBot {
      * <p>
      * Give result to server
      */
-    public void doABuildMove(final Map map) {
+    public void doABuildMove(final Map map, final Player player) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
