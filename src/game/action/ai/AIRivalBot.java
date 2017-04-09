@@ -13,6 +13,7 @@ import game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
 import game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
 import game.action.utils.SettlementsFactory;
 import game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
+import game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import game.action.utils.settlemenet.expanding.TigerSpotScanner;
 import game.action.utils.settlemenet.expanding.TotoroSpotScanner;
 import models.*;
@@ -42,6 +43,7 @@ public class AIRivalBot {
     private SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner;
 
     //Settlement Expansion
+    private SettlementExpansionMeeplesCost settlementExpansionMeeplesCost;
     private TotoroSpotScanner totoroSpotScanner;
     private TigerSpotScanner tigerSpotScanner;
     private ExpandableSpotsScanner meeplesExpandableSpotsScanner;
@@ -64,6 +66,7 @@ public class AIRivalBot {
                  final SettlementAdjacentVolcanoesScanner settlementAdjacentVolcanoesScanner,
                  final SettlementLevelOneTwoSpotsNukingScanner settlementLevelOneTwoSpotsNukingScanner,
                  final SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner,
+                 final SettlementExpansionMeeplesCost settlementExpansionMeeplesCost,
                  final TotoroSpotScanner totoroSpotScanner,
                  final TigerSpotScanner tigerSpotScanner,
                  final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
@@ -79,6 +82,7 @@ public class AIRivalBot {
         this.settlementAdjacentVolcanoesScanner = settlementAdjacentVolcanoesScanner;
         this.settlementLevelOneTwoSpotsNukingScanner = settlementLevelOneTwoSpotsNukingScanner;
         this.settlementLevelOneTilePlacementScanner = settlementLevelOneTilePlacementScanner;
+        this.settlementExpansionMeeplesCost = settlementExpansionMeeplesCost;
         this.totoroSpotScanner = totoroSpotScanner;
         this.tigerSpotScanner = tigerSpotScanner;
         this.meeplesExpandableSpotsScanner = meeplesExpandableSpotsScanner;
@@ -107,7 +111,7 @@ public class AIRivalBot {
                 settlementsFactory.generateSettlements((player.getTeam() == Team.FRIENDLY) ? Team.ENEMY : Team.FRIENDLY);
 
         if (player.getNumberOfTotorosLeft() > 0) {
-            if (Settlement.size() = 0) {
+            if (friendlySettlements.size() == 0) {
                 // Place tile in any random spot (first turn only)
                 return;
             }
@@ -125,7 +129,7 @@ public class AIRivalBot {
                             return;
                         } catch (NoValidActionException e) {}
                     }
-                    else if (friendlySettlement.size() = 4 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
                             TileMapSpot tileMapSpot
@@ -137,7 +141,7 @@ public class AIRivalBot {
                             return;
                         } catch (NoValidActionException e) {}
                     }
-                    else if (friendlySettlement.size() = 3 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
                             TileMapSpot tileMapSpot
@@ -149,7 +153,7 @@ public class AIRivalBot {
                             return;
                         } catch (NoValidActionException e) {}
                     }
-                    else if (friendlySettlement.size() = 2 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
                             TileMapSpot tileMapSpot
@@ -161,7 +165,7 @@ public class AIRivalBot {
                             return;
                         } catch (NoValidActionException e) {}
                     }
-                    else if (friendlySettlement.size() = 1 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
                             TileMapSpot tileMapSpot
@@ -181,7 +185,7 @@ public class AIRivalBot {
             }
 
         }
-        else if (player.getNumberOfMeeplesLeft > 0) {
+        else if (player.getNumberOfMeeplesLeft() > 0) {
             // Place tile in any random spot
             return;
         }
@@ -207,7 +211,7 @@ public class AIRivalBot {
                 = settlementsFactory.generateSettlements(player.getTeam());
 
         if (player.getNumberOfTotorosLeft() > 0) {
-            if (Settlement.size() = 0) {
+            if (friendlySettlements.size() == 0) {
                 // Place villager on any hex of tile being placed (first turn only)
                 return;
             }
@@ -231,7 +235,7 @@ public class AIRivalBot {
                         } catch (NoValidActionException e) {}
                     }
 
-                    else if (friendlySettlement.size() = 4 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             final ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
                             map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
@@ -239,12 +243,12 @@ public class AIRivalBot {
                         } catch (NoValidActionException e) {}
                     }
 
-                    else if (friendlySettlement.size() = 3 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             final ArrayList<MapSpot> expandableMapSpots
                                     = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
 
-                            if (expandableMapSpots.size() + friendlySettlement.size() = 5) {
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
@@ -257,17 +261,17 @@ public class AIRivalBot {
                         } catch (NoValidActionException e) {}
                     }
 
-                    else if (friendlySettlement.size() = 2 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             final ArrayList<MapSpot> expandableMapSpots
                                     = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
 
-                            if (expandableMapSpots.size() + friendlySettlement.size() = 5) {
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
 
-                            else if (expandableMapSpots.size() + friendlySettlement.size() = 4) {
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
@@ -280,22 +284,22 @@ public class AIRivalBot {
                         } catch (NoValidActionException e) {}
                     }
 
-                    else if (friendlySettlement.size() = 1 && friendlySettlement.getNumberOfTotoros() < 1) {
+                    else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             final ArrayList<MapSpot> expandableMapSpots
                                     = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
 
-                            if (expandableMapSpots.size() + friendlySettlement.size() = 5) {
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
 
-                            else if (expandableMapSpots.size() + friendlySettlement.size() = 4) {
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
 
-                            else if (expandableMapSpots.size() + friendlySettlement.size() = 3) {
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 3) {
                                 settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                                 return;
                             }
@@ -314,42 +318,10 @@ public class AIRivalBot {
                     }
                 }
 
-
-
-                for (Settlement friendlySettlement : friendlySettlements) {
-                    try {
-                        if (friendlySettlement.getNumberOfTotoros() < 1) {
-                            final ArrayList<MapSpot> expandableMapSpots
-                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
-
-                            if (expandableMapSpots.size() + friendlySettlement.size() < 7) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            }
-                        }
-
-                    } catch (NoValidActionException e) {}
-                }
-
-                for (Settlement friendlySettlement : friendlySettlements) {
-                    try {
-                        if (friendlySettlement.getNumberOfTotoros() < 1) {
-                            final ArrayList<MapSpot> expandableMapSpots
-                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
-
-                            if (expandableMapSpots.size() + friendlySettlement.size() > 7) {
-                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                                return;
-                            }
-                        }
-
-                    } catch (NoValidActionException e) {}
-                }
             }
         }
 
-        else if (player.getNumberOfMeeplesLeft > 0) {
+        else if (player.getNumberOfMeeplesLeft() > 0) {
             // Iterate through expansion options
             //  a. int difference = meeple count minus expansion cost
             //  b. if difference >= 0, save option if it has higher cost than previous option
