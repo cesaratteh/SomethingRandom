@@ -29,36 +29,35 @@ public class SettlementsFactory {
         return settlements;
     }
 
-    private void visit(final MapSpot currentMapSpot,
+    private void visit(final MapSpot mapSpot,
                        final ArrayList<Settlement> settlements,
                        final boolean visited[][][],
                        final boolean startANewSettlement,
                        final Team team) {
 
-        if(visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] || map.getHexagon(currentMapSpot) == null)
+        if(visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] || map.getHexagon(mapSpot) == null)
             return;
         else
-            visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
+            visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] = true;
 
-        if (map.getHexagon(currentMapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(currentMapSpot).getOccupiedBy() == team) {
+        if (map.getHexagon(mapSpot).getTerrainType() != Terrain.VOLCANO && map.getHexagon(mapSpot).getOccupiedBy() == team) {
             if (startANewSettlement) {
                 settlements.add(new Settlement(team));
             }
 
-            settlements.get(settlements.size()-1).add(currentMapSpot, map.getHexagon(currentMapSpot));
+            settlements.get(settlements.size()-1).add(mapSpot, map.getHexagon(mapSpot));
         }
 
-        for (final MapSpot adjacentMapSpot : currentMapSpot.getAdjacentMapSpots()) {
+        for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
 
             if (map.getHexagon(adjacentMapSpot) != null &&
-                    map.getHexagon(adjacentMapSpot).getTerrainType() == map.getHexagon(currentMapSpot).getTerrainType() &&
-                    map.getHexagon(adjacentMapSpot).getOccupiedBy() == map.getHexagon(currentMapSpot).getOccupiedBy()) {
+                    map.getHexagon(mapSpot).getOccupiedBy() == team) {
 
                 visit(adjacentMapSpot, settlements, visited, false, team);
             }
         }
 
-        for (final MapSpot adjacentMapSpot : currentMapSpot.getAdjacentMapSpots()) {
+        for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
             visit(adjacentMapSpot, settlements, visited, true, team);
         }
     }
