@@ -1,6 +1,5 @@
 package game.action.utils;
 
-import game.action.utils.Nuking.SettlementAdjacentMapSpotsScanner;
 import models.*;
 import org.junit.Test;
 
@@ -12,7 +11,23 @@ public class SettlementsFactoryTest {
 
 
     @Test
-    public void scanCircleTest() {
+    public void scanCircleTest1() {
+        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASSLAND, Terrain.GRASSLAND, Terrain.GRASSLAND,
+                Team.FRIENDLY, Team.ENEMY, Team.ENEMY);
+
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
+
+        ArrayList<Settlement> friendlySettlements  = settlementsFactory.generateSettlements(Team.FRIENDLY);
+        ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
+
+
+        assertEquals(6, friendlySettlements.get(0).size());
+        assertEquals(1, enemySettlements.get(0).size());
+        assertEquals(2, enemySettlements.get(1).size());
+    }
+
+    @Test
+    public void scanCircleTest2() {
         final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASSLAND, Terrain.GRASSLAND, Terrain.GRASSLAND,
                 Team.FRIENDLY, Team.ENEMY, Team.FRIENDLY);
 
@@ -25,6 +40,20 @@ public class SettlementsFactoryTest {
 
         assertEquals(7, friendlySettlements.get(0).size());
         assertEquals(2, enemySettlements.get(0).size());
+    }
+
+    @Test
+    public void scanCircleTest3() {
+        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASSLAND, Terrain.ROCKY, Terrain.GRASSLAND,
+                Team.FRIENDLY, Team.FRIENDLY, Team.FRIENDLY);
+
+        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
+
+
+        ArrayList<Settlement> friendlySettlements  = settlementsFactory.generateSettlements(Team.FRIENDLY);
+
+        assertEquals(7, friendlySettlements.get(0).size());
+        assertEquals(2, friendlySettlements.get(1).size());
     }
 
     @Test
