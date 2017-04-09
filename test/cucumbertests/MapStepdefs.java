@@ -6,8 +6,8 @@
 //import cucumber.api.java.en.Then;
 //import cucumber.api.java.en.When;
 //import cucumber.api.java8.En;
-//import game.action.handlers.FirstLevelTileAdditionHandler;
-//import models.*;
+//import FirstLevelTileAdditionHandler;
+//import Everything.models.*;
 //import org.junit.Assert;
 //
 //public class MapStepdefs implements En {
