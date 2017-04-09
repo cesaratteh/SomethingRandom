@@ -1,5 +1,6 @@
 package game.action.ai;
 
+import Server.FriendlyMove;
 import game.action.handlers.FirstLevelTileAdditionHandler;
 import game.action.handlers.NukingAndStackingHandler;
 import game.action.handlers.SettlementExpansionHandler;
@@ -20,7 +21,9 @@ import models.*;
 
 import java.util.ArrayList;
 
-public class AIBot {
+// TODO: 4/9/2017 1. Place tile in random spot 2. Found villager in random spot 3. Optimal expansion logic
+
+public class AIRivalBot {
 
     //-----------
     // attributes
@@ -56,7 +59,7 @@ public class AIBot {
     // Constructors
 
 
-    public AIBot(final Player player,
+    public AIRivalBot(final Player player,
                  final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
@@ -93,6 +96,8 @@ public class AIBot {
     //--------
     // Methods
 
+    public FriendlyMove
+
     /**
      * Logic:
      * <p>
@@ -110,35 +115,89 @@ public class AIBot {
         final ArrayList<Settlement> enemySettlements =
                 settlementsFactory.generateSettlements((player.getTeam() == Team.FRIENDLY) ? Team.ENEMY : Team.FRIENDLY);
 
-        for (Settlement settlement : enemySettlements) {
-            if (settlement.size() >= 4 && settlement.getNumberOfTotoros() < 1) {
-                try {
-                    final TileMapSpot tileMapSpotToNukeOnSettlment =
-                            settlementLevelOneTwoSpotsNukingScanner.findTileMapSpotToNukeOnSettlment(settlement, map);
+        if (player.getNumberOfTotorosLeft() > 0) {
+            if (friendlySettlements.size() == 0) {
+                // Place tile in any random spot (first turn only)
+                return;
+            }
+            else {
+                for (Settlement friendlySettlement : friendlySettlements) {
+                    if (friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
 
-                    map.setHexagon(tileMapSpotToNukeOnSettlment.getM1(), tile.getH1());
-                    map.setHexagon(tileMapSpotToNukeOnSettlment.getM2(), tile.getH2());
-                    map.setHexagon(tileMapSpotToNukeOnSettlment.getM3(), tile.getH3());
-                    return;
-                } catch (NoValidActionException e) {
+                            TileMapSpot tileMapSpot
+                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+
+                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
+                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
+                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
+                            return;
+                        } catch (NoValidActionException e) {}
+                    }
+                    else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+
+                            TileMapSpot tileMapSpot
+                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+
+                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
+                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
+                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
+                            return;
+                        } catch (NoValidActionException e) {}
+                    }
+                    else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+
+                            TileMapSpot tileMapSpot
+                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+
+                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
+                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
+                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
+                            return;
+                        } catch (NoValidActionException e) {}
+                    }
+                    else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+
+                            TileMapSpot tileMapSpot
+                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+
+                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
+                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
+                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
+                            return;
+                        } catch (NoValidActionException e) {}
+                    }
+                    else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+
+                            TileMapSpot tileMapSpot
+                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+
+                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
+                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
+                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
+                            return;
+                        } catch (NoValidActionException e) {}
+                    }
+                    else {
+                        // Place tile in any random spot
+                        return;
+                    }
                 }
             }
+
+        }
+        else if (player.getNumberOfMeeplesLeft() > 0) {
+            // Place tile in any random spot
+            return;
+        }
+        else {
+            return; // Game Over
         }
 
-        for (Settlement friendlySettlement : friendlySettlements) {
-            if (friendlySettlement.size() >= 4 && friendlySettlement.getNumberOfTotoros() < 1) {
-                try {
-
-                    TileMapSpot tileMapSpot
-                            = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
-
-                    map.setHexagon(tileMapSpot.getM1(), tile.getH1());
-                    map.setHexagon(tileMapSpot.getM2(), tile.getH2());
-                    map.setHexagon(tileMapSpot.getM3(), tile.getH3());
-                    return;
-                } catch (NoValidActionException e) {}
-            }
-        }
     }
 
     /**
@@ -156,64 +215,183 @@ public class AIBot {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
-        for (Settlement friendlySettlement : friendlySettlements) {
-            if (friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1) {
-                try {
-
-                    ArrayList<MapSpot> totoroSpots = totoroSpotScanner.scan(friendlySettlement, map);
-
-                    for (MapSpot totoroSpot : totoroSpots) {
-                        if (map.getHexagon(totoroSpot).getLevel() < 3) {
-                            map.getHexagon(totoroSpot).addTotoro(Team.FRIENDLY);
-                            return;
-                        }
-                    }
-
-                    map.getHexagon(totoroSpots.get(0)).addTotoro(Team.FRIENDLY);
+        if (player.getNumberOfTotorosLeft() > 0) {
+            if (friendlySettlements.size() == 0) {
+                try{
+                    // Place villager on any hex
+                    final MapSpot foundingSpots;
+                        foundingSpots = randomSettlementFoundingScanner.scan(map);
+                    map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
                     return;
                 } catch (NoValidActionException e) {}
+                    return;
+            }
+
+            else {
+                for (Settlement friendlySettlement : friendlySettlements) {
+                    if (friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+
+                            ArrayList<MapSpot> totoroSpots = totoroSpotScanner.scan(friendlySettlement, map);
+
+                            for (MapSpot totoroSpot : totoroSpots) {
+                                if (map.getHexagon(totoroSpot).getLevel() < 3) {
+                                    map.getHexagon(totoroSpot).addTotoro(Team.FRIENDLY);
+                                    return;
+                                }
+                            }
+
+                            map.getHexagon(totoroSpots.get(0)).addTotoro(Team.FRIENDLY);
+                            return;
+
+                        } catch (NoValidActionException e) {}
+                    }
+
+                    else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+                            final ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
+                            map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                            return;
+                        } catch (NoValidActionException e) {}
+
+                    }
+
+                    else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+                            final ArrayList<MapSpot> expandableMapSpots
+                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else {
+                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
+                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                                return;
+                            }
+                        } catch (NoValidActionException e) {}
+                    }
+
+                    else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+                            final ArrayList<MapSpot> expandableMapSpots
+                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else {
+                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
+                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                                return;
+                            }
+                        } catch (NoValidActionException e) {}
+                    }
+
+                    else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
+                        try {
+                            final ArrayList<MapSpot> expandableMapSpots
+                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+
+                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else if ((expandableMapSpots.size() + friendlySettlement.size()) == 3) {
+                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
+                                return;
+                            }
+
+                            else {
+                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
+                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                                return;
+                            }
+                        } catch (NoValidActionException e) {}
+                    }
+
+                    else {
+                        try{
+                            // Place villager on any hex
+                            final MapSpot foundingSpots;
+                                foundingSpots = randomSettlementFoundingScanner.scan(map);
+                            map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                            return;
+                        } catch (NoValidActionException e) {}
+                        return;
+                    }
+                }
+
             }
         }
 
-        for (Settlement friendlySettlement : friendlySettlements) {
-            try {
+        else if (player.getNumberOfMeeplesLeft() > 0) {
+            // Iterate through expansion options to exhaust meeple count ....
+            //  a. check meeple count minus expansion cost
+            //  b. if difference == 0, then immediately expand
+            //  c. if difference > 0, then check if new max is found
+            //  d. if all costs for expansion are greater than meeple count, then found villager in any random spot
 
-                final ArrayList<MapSpot> tigerSpots = tigerSpotScanner.scan(friendlySettlement, map);
+            ArrayList<MapSpot> maxMapSpot = new ArrayList<MapSpot>();
+            Settlement maxSettlement;
 
-                map.getHexagon(tigerSpots.get(0)).addTiger(Team.FRIENDLY);
-                return;
-            } catch (NoValidActionException e) {}
-        }
-
-        for (Settlement friendlySettlement : friendlySettlements) {
-            try {
-                if (friendlySettlement.getNumberOfTotoros() < 1) {
+            for (Settlement friendlySettlement : friendlySettlements) {
+                try {
                     final ArrayList<MapSpot> expandableMapSpots
                             = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
 
-                    if (expandableMapSpots.size() + friendlySettlement.size() < 7) {
+                    if ((player.getNumberOfMeeplesLeft() - expandableMapSpots.size()) == 0) {
                         settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
                         return;
                     }
-                }
 
-            } catch (NoValidActionException e) {}
-        }
-
-        for (Settlement friendlySettlement : friendlySettlements) {
-            try {
-                if (friendlySettlement.getNumberOfTotoros() < 1) {
-                    final ArrayList<MapSpot> expandableMapSpots
-                            = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
-
-                    if (expandableMapSpots.size() + friendlySettlement.size() > 7) {
-                        ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                        map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                        return;
+                    if ((player.getNumberOfMeeplesLeft() - expandableMapSpots.size()) > 0) {
+                        if (expandableMapSpots.size() > maxMapSpot.size()) {
+                            maxMapSpot = expandableMapSpots;
+                            maxSettlement = friendlySettlement;
+                        }
                     }
+
+                } catch (NoValidActionException e) {}
+
+            }
+
+            try {
+                if (maxMapSpot.size() > 1) {
+                    settlementExpansionHandler.expandWithMeeples(maxSettlement.getMapSpots().get(0));
+                    return;
+                }
+                else {
+                    // Place villager on any hex
+                    final MapSpot foundingSpots;
+                    foundingSpots = randomSettlementFoundingScanner.scan(map);
+                    map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
+                    return;
                 }
 
             } catch (NoValidActionException e) {}
         }
+
+        else {
+            return;
+            // Game Over
+            // FIXME: 4/9/2017 No More Build Options
+        }
+
     }
 }
