@@ -1,5 +1,7 @@
 package Everything;
 
+import Everything.Server.EnemyMove;
+import Everything.Server.Move;
 import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.ai.AIBot;
 import Everything.models.Map;
@@ -40,6 +42,11 @@ public class TigerIsland {
 
     //--------
     // Methods
+    public boolean checkIfEnemyMove(Move move){
+        boolean isEnemy;
+        isEnemy = move instanceof EnemyMove;
+        return isEnemy;
+    }
 
     public void doFriendlyMoveAndUpdateMap() {
         // Call OUR AI
