@@ -1,22 +1,22 @@
-package Everything.game.action.ai;
+package game.action.ai;
 
-import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
-import Everything.game.action.handlers.NukingAndStackingHandler;
-import Everything.game.action.handlers.SettlementExpansionHandler;
-import Everything.game.action.handlers.SettlementFoundingHandler;
-import Everything.game.action.utils.NoValidActionException;
-import Everything.game.action.utils.Nuking.SettlementAdjacentMapSpotsScanner;
-import Everything.game.action.utils.Nuking.SettlementAdjacentVolcanoesScanner;
-import Everything.game.action.utils.Nuking.SettlementLevelOneTwoSpotsNukingScanner;
-import Everything.game.action.utils.PlacingOnLevelOne.SettlementLevelOneTilePlacementScanner;
-import Everything.game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
-import Everything.game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
-import Everything.game.action.utils.SettlementsFactory;
-import Everything.game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
-import Everything.game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
-import Everything.game.action.utils.settlemenet.expanding.TigerSpotScanner;
-import Everything.game.action.utils.settlemenet.expanding.TotoroSpotScanner;
-import Everything.models.*;
+import game.action.handlers.FirstLevelTileAdditionHandler;
+import game.action.handlers.NukingAndStackingHandler;
+import game.action.handlers.SettlementExpansionHandler;
+import game.action.handlers.SettlementFoundingHandler;
+import game.action.utils.NoValidActionException;
+import game.action.utils.Nuking.SettlementAdjacentMapSpotsScanner;
+import game.action.utils.Nuking.SettlementAdjacentVolcanoesScanner;
+import game.action.utils.Nuking.SettlementLevelOneTwoSpotsNukingScanner;
+import game.action.utils.PlacingOnLevelOne.SettlementLevelOneTilePlacementScanner;
+import game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
+import game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
+import game.action.utils.SettlementsFactory;
+import game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
+import game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
+import game.action.utils.settlemenet.expanding.TigerSpotScanner;
+import game.action.utils.settlemenet.expanding.TotoroSpotScanner;
+import models.*;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,6 @@ public class AIBot {
     //-----------
     // attributes
 
-    private Player player;
     private SettlementsFactory settlementsFactory;
 
     // Handlers
@@ -57,9 +56,7 @@ public class AIBot {
     //-------------
     // Constructors
 
-
-    public AIBot(final Player player,
-                 final SettlementsFactory settlementsFactory,
+    public AIBot(final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
                  final SettlementExpansionHandler settlementExpansionHandler,
@@ -74,7 +71,6 @@ public class AIBot {
                  final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
                  final FoundingNextToSettlementScanner foundingNextToSettlementScanner,
                  final RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
-        this.player = player;
         this.settlementsFactory = settlementsFactory;
         this.firstLevelTileAdditionHandler = firstLevelTileAdditionHandler;
         this.nukingAndStackingHandler = nukingAndStackingHandler;
@@ -105,7 +101,7 @@ public class AIBot {
      * <p>
      * Give map spot AND rotation to server
      */
-    public void doATilePlacementMove(final Map map, final Tile tile) {
+    public void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -208,7 +204,7 @@ public class AIBot {
      * <p>
      * Give result to server
      */
-    public void doABuildMove(final Map map) {
+    public void doABuildMove(final Map map, final Player player) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 

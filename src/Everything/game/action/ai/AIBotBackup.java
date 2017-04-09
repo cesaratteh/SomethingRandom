@@ -25,7 +25,6 @@ public class AIBotBackup {
     //-----------
     // attributes
 
-    private Player player;
     private SettlementsFactory settlementsFactory;
 
     // Handlers
@@ -56,8 +55,7 @@ public class AIBotBackup {
     // Constructors
 
 
-    public AIBotBackup(final Player player,
-                 final SettlementsFactory settlementsFactory,
+    public AIBotBackup(final SettlementsFactory settlementsFactory,
                  final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
                  final NukingAndStackingHandler nukingAndStackingHandler,
                  final SettlementExpansionHandler settlementExpansionHandler,
@@ -72,7 +70,6 @@ public class AIBotBackup {
                  final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
                  final FoundingNextToSettlementScanner foundingNextToSettlementScanner,
                  final RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
-        this.player = player;
         this.settlementsFactory = settlementsFactory;
         this.firstLevelTileAdditionHandler = firstLevelTileAdditionHandler;
         this.nukingAndStackingHandler = nukingAndStackingHandler;
@@ -103,7 +100,7 @@ public class AIBotBackup {
      * <p>
      * Give map spot AND rotation to server
      */
-    public void doATilePlacementMove(final Map map, final Tile tile) {
+    public void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -152,7 +149,7 @@ public class AIBotBackup {
      * <p>
      * Give result to server
      */
-    public void doABuildMove(final Map map) {
+    public void doABuildMove(final Map map, final Player player) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 

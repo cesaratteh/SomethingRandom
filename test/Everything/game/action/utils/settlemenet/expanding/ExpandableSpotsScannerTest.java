@@ -1,8 +1,8 @@
-package Everything.game.action.utils.settlemenet.expanding;
+/*package game.action.utils.settlemenet.expanding;
 
-import Everything.game.action.utils.NoValidActionException;
-import Everything.game.action.utils.SettlementsFactory;
-import Everything.models.*;
+import game.action.utils.NoValidActionException;
+import game.action.utils.SettlementsFactory;
+import models.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -55,3 +55,4 @@ public class ExpandableSpotsScannerTest {
         }
     }
 }
+*/
