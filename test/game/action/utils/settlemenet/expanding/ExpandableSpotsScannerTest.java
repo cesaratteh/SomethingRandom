@@ -1,4 +1,4 @@
-package game.action.utils.settlemenet.expanding;
+/*package game.action.utils.settlemenet.expanding;
 
 import game.action.utils.NoValidActionException;
 import game.action.utils.SettlementsFactory;
@@ -55,3 +55,4 @@ public class ExpandableSpotsScannerTest {
         }
     }
 }
+*/
