@@ -37,6 +37,8 @@ public class TigerIslandProtocol {
         moveNumber = Integer.parseInt(tokens[10]);
         tile = tokens[12];
         timeLimit = Integer.parseInt(tokens[7]);
+        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
+        writeToBuffer(instruction);
         FriendlyMove ourmove = readFromBuffer();
         int tileX = ourmove.getTileSpot().getXForServer();
         int tileY = ourmove.getTileSpot().getyForServer();
@@ -107,7 +109,7 @@ public class TigerIslandProtocol {
     }
 
 
-    public void writeToBuffer(EnemyMove move){
+    public void writeToBuffer(Move move){
         //FIXME: Write to buffer queue when buffer is set up
     }
 
