@@ -2,7 +2,7 @@ package Everything.Server;
 
 import Everything.models.Terrain;
 
-public class EnemyMove {
+public class EnemyMove implements Move{
 
     //-----------
     // Attributes

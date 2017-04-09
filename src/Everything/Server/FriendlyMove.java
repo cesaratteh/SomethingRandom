@@ -4,7 +4,7 @@ package Everything.Server;
 import Everything.models.MapSpot;
 import Everything.models.Terrain;
 
-public class FriendlyMove {
+public class FriendlyMove implements Move {
 
     //-----------
     // Attributes
