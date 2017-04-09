@@ -7,3 +7,4 @@ public enum Terrain {
     GRASSLAND, //dark green
     ROCKY // grey
 }
+

@@ -37,36 +37,84 @@ public class TigerIslandProtocol {
         moveNumber = Integer.parseInt(tokens[10]);
         tile = tokens[12];
         timeLimit = Integer.parseInt(tokens[7]);
-        MapSpot place[] = makeMove(gameID, moveNumber, tile);
-        int buildType = place.length;
-        String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + place[0].getX() + " " + place[0].getY()
-                + " " + place[0].getZ() + " " + place[0].getOrientation() + " ";      //FIXME: Need to get orientation
-        switch (buildType) {
+        MoveObject ourmove = readFromBuffer();
+        int tileX = ourmove.getTileSpot().getXForServer();
+        int tileY = ourmove.getTileSpot().getyForServer();
+        int tileZ = ourmove.getTileSpot().getZForServer();
+        int buildX = ourmove.getBuildSpot().getXForServer();
+        int buildY = ourmove.getBuildSpot().getyForServer();
+        int buildZ = ourmove.getBuildSpot().getZForServer();
+        int orientation = ourmove.getOrientation();
+        Terrain terrain = ourmove.getTerrain();
+
+        String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
+        switch (ourmove.getBuildType()) {
             case (1):
-                move.concat("FOUND SETTLEMENT AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());
+                move.concat("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (2):
-                move.concat("EXPAND SETTLEMENT AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ() + " " + place[buildType].getTerrain()) ;
-                break; //FIXME: Get terrain that we're expanding to?
+                move.concat("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
+                break;
             case (3):
-                move.concat("BUILD TOTORO SANCTUARY AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());
+                move.concat("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case(4):
-                move.concat("BUILD TIGER PLAYGROUND AT " + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());
+                move.concat("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case(5):
-                move.concat("UNABLE TO BUILD" + place[buildType].getX() + " " + place[buildType].getY() + " " + place[buildType].getZ());
+                move.concat("UNABLE TO BUILD" + buildX + " " + buildY + " " + buildZ);
                 break;
         }
         return move;
     }
 
+    public DataObject parseOpponentMove(String input){
+        String[] tokens = input.split(" ");
+        String gameid = tokens[1];
+        int movenumber = Integer.parseInt(tokens[3]);
+        String playerID = tokens[5];
+        int tileX = Integer.parseInt(tokens[9]);
+        int tileY = Integer.parseInt(tokens[10]);
+        int tileZ = Integer.parseInt(tokens[11]);
+        int orientation = Integer.parseInt(tokens[12]);
+        int buildX;
+        int buildY;
+        int buildZ;
+        Terrain terrain = null;
+        if(tokens[13] == "FOUNDED")
+        {
+            buildX = Integer.parseInt(tokens[16]);
+            buildY = Integer.parseInt(tokens[17]);
+            buildZ = Integer.parseInt(tokens[18]);
+        }
+        else if(tokens[13] == "EXPANDED")
+        {
+            buildX = Integer.parseInt(tokens[16]);
+            buildY = Integer.parseInt(tokens[17]);
+            buildZ = Integer.parseInt(tokens[18]);
+            terrain = Terrain.valueOf(tokens[19]);
+        }
+        else
+        {
+            buildX = Integer.parseInt(tokens[17]);
+            buildY = Integer.parseInt(tokens[18]);
+            buildZ = Integer.parseInt(tokens[19]);
+        }
 
+        DataObject theirMove = new DataObject(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, terrain);
+        return theirMove;
 
-    public MapSpot[] makeMove(String gameid, int movenumber, String tile){
-        //FIXME: Pass to something that figures out the two moves, MapSpot[0] is tile placement location, MapSpot[1] is build location
-        //size of returned move indicates build type, found settlement = 1, expand 2, totoro 3, tiger 4, unable to build 5
-        MapSpot [] newmove = null;
-        return newmove;
     }
+
+
+    public void writeToBuffer(DataObject move){
+        //FIXME: Write to buffer queue when buffer is set up
+    }
+
+    public MoveObject readFromBuffer(){
+        //FIXME: Read from buffer queue when buffer is set up
+        MoveObject ourmove;
+        return ourmove;
+    }
+
 }

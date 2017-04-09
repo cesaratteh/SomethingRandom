@@ -24,7 +24,6 @@ public class Client {
             String PlayerID;
 
             TigerIslandProtocol tip = new TigerIslandProtocol();            //Only authenticate once, so outside while loop
-            OpponentMoveProtocol opponent = new OponentMoveProtocol();
             fromPlayer = tip.authenticateTournament(input.readLine());
             output.println(fromPlayer);
             fromPlayer = tip.authenticateTournament(input.readLine());
@@ -43,7 +42,8 @@ public class Client {
                     }
                     if(fromServer.contains("PLACED") && !(fromServer.contains(PlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
                     {
-                        opponent.parseOpponentInput(fromServer);
+                       DataObject theirMove = tip.parseOpponentMove(fromServer);
+                       tip.writeToBuffer(theirMove);
                     }
 
                 }
