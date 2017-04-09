@@ -105,7 +105,8 @@ public class AIBot {
      * [3] Put a tile somewhere random on level 1
      * <p>
      * Give map spot AND rotation to server
-     */
+     * */
+
     public void doATilePlacementMove(final Map map, final Tile tile) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
@@ -208,7 +209,8 @@ public class AIBot {
      * [4] Found with 1 meeple
      * <p>
      * Give result to server
-     */
+     * **/
+
     public void doABuildMove(final Map map) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
