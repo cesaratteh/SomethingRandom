@@ -24,7 +24,7 @@ public class Player {
     //--------
     // Methods
 
-    void takeATotoroFromPlayer() {
+    public void takeATotoroFromPlayer() {
         if (!isHasTotorosLeft()) {
             throw new RuntimeException("Can't place totoro. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -32,7 +32,7 @@ public class Player {
         numberOfTotorosLeft--;
     }
 
-    void takeXMeeplesFromPlayer(final int numberOfMeeplesToPlace) {
+    public void takeXMeeplesFromPlayer(final int numberOfMeeplesToPlace) {
         if ( !isHasEnoughMeeples(numberOfMeeplesToPlace) ) {
             throw new RuntimeException("Can't place meeples. models.Player doesn't have enough"); // TODO: 3/19/2017 Replace with logging
         }
@@ -40,7 +40,7 @@ public class Player {
         numberOfMeeplesLeft -= numberOfMeeplesToPlace;
     }
 
-    void takeATigerFromPlayer() {
+    public void takeATigerFromPlayer() {
         if (!isHasTigersLeft()) {
             throw new RuntimeException("Can't place tiger. models.Player doesnt have enough");
         }
@@ -48,15 +48,15 @@ public class Player {
         numberOfTigersLeft--;
     }
 
-    boolean isHasTotorosLeft() {
+    public boolean isHasTotorosLeft() {
         return numberOfTotorosLeft > 0;
     }
 
-    boolean isHasEnoughMeeples(final int numberOfMeeples) {
+    public boolean isHasEnoughMeeples(final int numberOfMeeples) {
         return numberOfMeeplesLeft >= numberOfMeeples;
     }
 
-    boolean isHasTigersLeft() {
+    public boolean isHasTigersLeft() {
         return numberOfTigersLeft > 0;
     }
 
@@ -64,15 +64,15 @@ public class Player {
     // Getters
 
 
-    int getNumberOfTotorosLeft() {
+    public int getNumberOfTotorosLeft() {
         return numberOfTotorosLeft;
     }
 
-    int getNumberOfMeeplesLeft() {
+    public int getNumberOfMeeplesLeft() {
         return numberOfMeeplesLeft;
     }
 
-    int getNumberOfTigersLeft() {
+    public int getNumberOfTigersLeft() {
         return numberOfTigersLeft;
     }
 
