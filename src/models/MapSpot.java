@@ -125,6 +125,18 @@ public class MapSpot {
         return z;
     }
 
+    public int getXForServer() {
+        return x - OFFSET;
+    }
+
+    public int getyForServer() {
+        return y - OFFSET;
+    }
+
+    public int getZForServer() {
+        return z - OFFSET;
+    }
+
     //----------
     // Constants
 
