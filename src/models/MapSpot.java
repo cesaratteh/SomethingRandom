@@ -129,4 +129,13 @@ public class MapSpot {
     // Constants
 
     private final static int OFFSET = Map.size() / 2;
+
+    @Override
+    public String toString() {
+        return "MapSpot{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                '}';
+    }
 }

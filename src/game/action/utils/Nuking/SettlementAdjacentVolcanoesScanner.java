@@ -41,6 +41,4 @@ public class SettlementAdjacentVolcanoesScanner {
     public SettlementAdjacentVolcanoesScanner(final SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner) {
         this.settlementAdjacentMapSpotsScanner = settlementAdjacentMapSpotsScanner;
     }
-
-
 }

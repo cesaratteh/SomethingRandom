@@ -61,7 +61,7 @@ public class Settlement {
         return numberOfMeeples;
     }
 
-    int getNumberOfTotoros() {
+    public int getNumberOfTotoros() {
         return numberOfTotoros;
     }
 

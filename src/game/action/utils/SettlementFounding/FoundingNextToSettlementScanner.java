@@ -25,7 +25,7 @@ public class FoundingNextToSettlementScanner {
     //--------
     // Methods
 
-    private ArrayList<MapSpot> scan(final Settlement settlement, final Map map) throws NoValidActionException {
+    public ArrayList<MapSpot> scan(final Settlement settlement, final Map map) throws NoValidActionException {
         return settlementTouchingExpansionScanner.scan(settlement, map);
     }
 }

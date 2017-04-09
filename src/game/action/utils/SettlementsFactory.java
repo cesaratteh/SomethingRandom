@@ -50,8 +50,7 @@ public class SettlementsFactory {
 
         for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
 
-            if (adjacentMapSpot != null &&
-                    map.getHexagon(adjacentMapSpot) != null &&
+            if (map.getHexagon(adjacentMapSpot) != null &&
                     map.getHexagon(mapSpot).getTerrainType() == map.getHexagon(adjacentMapSpot).getTerrainType() &&
                     map.getHexagon(mapSpot).getOccupiedBy() == team) {
 

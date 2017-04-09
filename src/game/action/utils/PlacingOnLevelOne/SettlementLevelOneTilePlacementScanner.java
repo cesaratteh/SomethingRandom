@@ -16,7 +16,6 @@ public class SettlementLevelOneTilePlacementScanner {
     //---------------
     // Public Methods
 
-
     public TileMapSpot findTileMapSpotToPlaceTileAroundSettlment(final Map map, final Settlement settlement) throws NoValidActionException {
 
         for (final MapSpot mapSpot : settlement.getMapSpots()) {

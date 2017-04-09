@@ -7,7 +7,8 @@ import models.Settlement;
 import java.util.ArrayList;
 
 /**
- * Scans for all map spots that are "touching" the settlement
+ * Scans for all map spots that are "touching" the settlement.
+ * It scans for MapSpots NOT Hexagons (the MapSpot could be empty)
  */
 public class SettlementAdjacentMapSpotsScanner {
 
