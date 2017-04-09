@@ -12,34 +12,6 @@ import static org.junit.Assert.*;
 public class SettlementAdjacentMapSpotsScannerTest {
 
     @Test
-    public void scanCircleTest() {
-        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.ROCKY, Terrain.ROCKY, Terrain.ROCKY,
-                Team.FRIENDLY, Team.ENEMY, Team.FRIENDLY);
-
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
-
-
-        ArrayList<Settlement> friendlySettlements  = settlementsFactory.generateSettlements(Team.FRIENDLY);
-        ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
-
-
-        for (MapSpot s : friendlySettlements.get(0).getMapSpots()) {
-            System.out.println(s);
-            System.out.println(map.getHexagon(s));
-        }
-
-        assertEquals(2, friendlySettlements.get(0).size());
-        assertEquals(1, enemySettlements.size());
-
-        SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner
-                = new SettlementAdjacentMapSpotsScanner();
-
-
-//        assertEquals(6, settlementAdjacentMapSpotsScanner.generate(friendlySettlements.get(0), map).size());
-        assertEquals(10, settlementAdjacentMapSpotsScanner.generate(friendlySettlements.get(1), map).size());
-    }
-
-    @Test
     public void scanBlobShapeTest(){
         final Map map = new Map();
 
