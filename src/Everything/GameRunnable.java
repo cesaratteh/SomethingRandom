@@ -1,9 +1,6 @@
 package Everything;
 
-import Everything.Server.MoveObjects.EnemyMove;
-import Everything.Server.MoveObjects.MakeMoveInstruction;
-import Everything.Server.MoveObjects.Move;
-import Everything.Server.MoveObjects.WeJustDidThisMove;
+import Everything.Server.MoveObjects.*;
 import Everything.TigerIsland;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -13,7 +10,7 @@ public class GameRunnable implements Runnable {
     //-----------
     // Attributes
 
-    private ConcurrentLinkedQueue<WeJustDidThisMove> threadToClientQueue;
+    private ConcurrentLinkedQueue<Move> threadToClientQueue;
     private ConcurrentLinkedQueue<Move> clientToThreadQueue;
     private String gameID;
     private String playerID;
@@ -21,7 +18,7 @@ public class GameRunnable implements Runnable {
     //-------------
     // Constructors
 
-    public GameRunnable(final ConcurrentLinkedQueue<WeJustDidThisMove> threadToClientQueue,
+    public GameRunnable(final ConcurrentLinkedQueue<Move> threadToClientQueue,
                       final ConcurrentLinkedQueue<Move> clientToThreadQueue,
                       final String gameID,
                       final String playerID) {
@@ -44,7 +41,7 @@ public class GameRunnable implements Runnable {
 
             if (!clientToThreadQueue.isEmpty()) {
                 final Move move = clientToThreadQueue.poll();
-
+                if(move instanceof GameOverMove){break;}
                 if (move instanceof EnemyMove) {
                     tigerIsland.updateMapWithEnemyMove( (EnemyMove) move);
                     // TODO: 4/10/2017 if move ends the game, end it

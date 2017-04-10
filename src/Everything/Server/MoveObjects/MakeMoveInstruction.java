@@ -21,7 +21,7 @@ public class MakeMoveInstruction implements Move{
     //-----------
     // Getters
 
-    public String getGameId(){
+    public String getGameID(){
         return gameId;
     }
 

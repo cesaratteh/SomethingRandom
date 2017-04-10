@@ -6,6 +6,7 @@ import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.Move;
 import Everything.models.*;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class TigerIslandProtocol {
@@ -18,7 +19,7 @@ public class TigerIslandProtocol {
     public String authenticateTournament(String input){
         String output = null;
         if(input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")){
-            output = "ENTER THUNDERDOME " + "tournament password";             //FIXME: replace with actual tournament password
+            output = "ENTER THUNDERDOME " + "<tournament password>";             //FIXME: replace with actual tournament password
             }
             else if(input.equals("TWO SHALL ENTER, ONE SHALL LEAVE")) {
             output = "I AM " + "<username> " + "<password>";                  //FIXME: replace with actual user/pass
@@ -34,8 +35,13 @@ public class TigerIslandProtocol {
         }
         return PlayerID;
     }
-
-    public String parseMoveInput(String input) {
+    public String getGameID(String input){
+        String GameID = null;
+        String tokens[] = input.split(" ");
+        GameID = tokens[5];
+        return GameID;
+    }
+    public String parseMoveInput(String input, ConcurrentLinkedQueue<Move> queue) {
         String[] tokens = input.split(" ");
         gameID = tokens[5];
         moveNumber = Integer.parseInt(tokens[10]);
@@ -68,7 +74,7 @@ public class TigerIslandProtocol {
                 move.concat("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case(5):
-                move.concat("UNABLE TO BUILD" + buildX + " " + buildY + " " + buildZ);
+                move.concat("UNABLE TO BUILD");
                 break;
         }
         return move;
@@ -112,6 +118,10 @@ public class TigerIslandProtocol {
 
     }
 
+    public String parseGameID(String input) {
+        String tokens[] = input.split(" ");
+        return tokens[1];
+    }
 
     public void writeToBuffer(Move move){
         //FIXME: Write to buffer queue when buffer is set up
@@ -119,7 +129,7 @@ public class TigerIslandProtocol {
 
     public WeJustDidThisMove readFromBuffer(){
         //FIXME: Read from buffer queue when buffer is set up
-        WeJustDidThisMove ourmove;
+        WeJustDidThisMove ourmove = null;
         return ourmove;
     }
 
