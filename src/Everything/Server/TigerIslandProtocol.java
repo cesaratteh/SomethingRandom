@@ -1,5 +1,9 @@
 package Everything.Server;
 
+import Everything.Server.MoveObjects.EnemyMove;
+import Everything.Server.MoveObjects.WeJustDidThisMove;
+import Everything.Server.MoveObjects.MakeMoveInstruction;
+import Everything.Server.MoveObjects.Move;
 import Everything.models.*;
 
 
@@ -39,7 +43,7 @@ public class TigerIslandProtocol {
         timeLimit = Integer.parseInt(tokens[7]);
         MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
         writeToBuffer(instruction);
-        FriendlyMove ourmove = readFromBuffer();
+        WeJustDidThisMove ourmove = readFromBuffer();
         int tileX = ourmove.getTileSpot().getXForServer();
         int tileY = ourmove.getTileSpot().getyForServer();
         int tileZ = ourmove.getTileSpot().getZForServer();
@@ -113,9 +117,9 @@ public class TigerIslandProtocol {
         //FIXME: Write to buffer queue when buffer is set up
     }
 
-    public FriendlyMove readFromBuffer(){
+    public WeJustDidThisMove readFromBuffer(){
         //FIXME: Read from buffer queue when buffer is set up
-        FriendlyMove ourmove;
+        WeJustDidThisMove ourmove;
         return ourmove;
     }
 

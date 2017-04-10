@@ -1,4 +1,4 @@
-package Everything.Server;
+package Everything.Server.MoveObjects;
 
 import Everything.models.Terrain;
 
@@ -53,6 +53,4 @@ public class EnemyMove implements Move{
     public int getBuildY(){return buildY;}
     public int getBuildZ(){return buildZ;}
     public Terrain getTerrain(){return terrain;}
-
-
 }

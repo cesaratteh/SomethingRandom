@@ -1,4 +1,4 @@
-package Everything.Server;
+package Everything.Server.MoveObjects;
 
 public class MakeMoveInstruction implements Move{
 

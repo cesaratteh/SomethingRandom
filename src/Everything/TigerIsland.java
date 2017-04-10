@@ -1,7 +1,9 @@
 package Everything;
 
-import Everything.Server.EnemyMove;
-import Everything.Server.Move;
+import Everything.Server.MoveObjects.EnemyMove;
+import Everything.Server.MoveObjects.MakeMoveInstruction;
+import Everything.Server.MoveObjects.Move;
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.ai.AIBot;
 import Everything.models.Map;
@@ -42,19 +44,14 @@ public class TigerIsland {
 
     //--------
     // Methods
-    public boolean checkIfEnemyMove(Move move){
-        boolean isEnemy;
-        isEnemy = move instanceof EnemyMove;
-        return isEnemy;
-    }
 
-    public void doFriendlyMoveAndUpdateMap() {
+    public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         // Call OUR AI
         // Get the MapObject from our AI
         // Push it to the ConnectionClient Queue
     }
 
-    public void getEnemyMoveAndUpdateMap() {
+    public void updateMapWithEnemyMove(final EnemyMove enemyMove) {
         // Pop an Enemy move from the buffer
         // Call Updater with enemy Move
     }

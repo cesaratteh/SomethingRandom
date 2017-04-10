@@ -1,22 +1,22 @@
-package game.action.ai;
+package Everything.game.action.ai;
 
-import game.action.handlers.FirstLevelTileAdditionHandler;
-import game.action.handlers.NukingAndStackingHandler;
-import game.action.handlers.SettlementExpansionHandler;
-import game.action.handlers.SettlementFoundingHandler;
-import game.action.utils.NoValidActionException;
-import game.action.utils.Nuking.SettlementAdjacentMapSpotsScanner;
-import game.action.utils.Nuking.SettlementAdjacentVolcanoesScanner;
-import game.action.utils.Nuking.SettlementLevelOneTwoSpotsNukingScanner;
-import game.action.utils.PlacingOnLevelOne.SettlementLevelOneTilePlacementScanner;
-import game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
-import game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
-import game.action.utils.SettlementsFactory;
-import game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
-import game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
-import game.action.utils.settlemenet.expanding.TigerSpotScanner;
-import game.action.utils.settlemenet.expanding.TotoroSpotScanner;
-import models.*;
+import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
+import Everything.game.action.handlers.NukingAndStackingHandler;
+import Everything.game.action.handlers.SettlementExpansionHandler;
+import Everything.game.action.handlers.SettlementFoundingHandler;
+import Everything.game.action.utils.NoValidActionException;
+import Everything.game.action.utils.Nuking.SettlementAdjacentMapSpotsScanner;
+import Everything.game.action.utils.Nuking.SettlementAdjacentVolcanoesScanner;
+import Everything.game.action.utils.Nuking.SettlementLevelOneTwoSpotsNukingScanner;
+import Everything.game.action.utils.PlacingOnLevelOne.SettlementLevelOneTilePlacementScanner;
+import Everything.game.action.utils.SettlementFounding.FoundingNextToSettlementScanner;
+import Everything.game.action.utils.SettlementFounding.RandomSettlementFoundingScanner;
+import Everything.game.action.utils.SettlementsFactory;
+import Everything.game.action.utils.settlemenet.expanding.ExpandableSpotsScanner;
+import Everything.game.action.utils.settlemenet.expanding.SettlementExpansionMeeplesCost;
+import Everything.game.action.utils.settlemenet.expanding.TigerSpotScanner;
+import Everything.game.action.utils.settlemenet.expanding.TotoroSpotScanner;
+import Everything.models.*;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package Everything.Server;
+package Everything.Server.MoveObjects;
 
 
 import Everything.models.MapSpot;
 import Everything.models.Terrain;
 
-public class FriendlyMove implements Move {
+public class WeJustDidThisMove implements Move {
 
     //-----------
     // Attributes
@@ -18,14 +18,13 @@ public class FriendlyMove implements Move {
     //-----------
     // Constructors
 
-    public FriendlyMove(MapSpot tileSpot, MapSpot buildSpot, int orientation, Terrain terrain, int buildType){
+    public WeJustDidThisMove(MapSpot tileSpot, MapSpot buildSpot, int orientation, Terrain terrain, int buildType){
         this.tileSpot = tileSpot;
         this.buildSpot = buildSpot;
         this.orientation = orientation;
         this.terrain = terrain;
         this.buildType = buildType;
     }
-
 
     //-----------
     // Getters
