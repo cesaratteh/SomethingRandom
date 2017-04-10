@@ -34,4 +34,27 @@ public class WeJustDidThisMove implements Move {
     public int getOrientation(){return this.orientation;}
     public Terrain getTerrain(){return this.terrain;}
     public int getBuildType(){return this.buildType;}
+
+    // Setter
+
+
+    public void setTileSpot(MapSpot tileSpot) {
+        this.tileSpot = tileSpot;
+    }
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
+
+    public void setBuildSpot(MapSpot buildSpot) {
+        this.buildSpot = buildSpot;
+    }
+
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
+
+    public void setBuildType(int buildType) {
+        this.buildType = buildType;
+    }
 }
