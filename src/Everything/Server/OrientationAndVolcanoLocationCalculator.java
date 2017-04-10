@@ -5,7 +5,7 @@ import Everything.models.MapSpot;
 import Everything.models.Terrain;
 import Everything.models.TileMapSpot;
 
-public class OrientationParser {
+public class OrientationAndVolcanoLocationCalculator {
 
     public int getOrientation(final Map map, final MapSpot volcanoSpot) {
         final MapSpot orderedListOfAdjacentSpots[] = new MapSpot[7];
@@ -42,6 +42,26 @@ public class OrientationParser {
         }
     }
 
+    public MapSpot getVolcanoMapSpot(final Map map, final MapSpot mapSpotInTile) {
+
+        if (map.getHexagon(mapSpotInTile).getTerrainType() == Terrain.VOLCANO) {
+            return mapSpotInTile;
+        } else {
+            for (final MapSpot adjMapSpot : mapSpotInTile.getAdjacentMapSpots()) {
+                if (map.getHexagon(adjMapSpot) != null) {
+                    if (map.getHexagon(adjMapSpot).getTileId() == map.getHexagon(mapSpotInTile).getTileId()) {
+                        if (map.getHexagon(adjMapSpot).getTerrainType() == Terrain.VOLCANO) {
+                            return adjMapSpot;
+                        }
+                    }
+                }
+            }
+        }
+
+        throw new RuntimeException("Get volcano mapSpot failed");
+
+    }
+
     private boolean mapSpotsFormTile(final MapSpot m1,
                                      final MapSpot m2,
                                      final MapSpot m3,
@@ -50,4 +70,6 @@ public class OrientationParser {
         return (map.getHexagon(m1) != null && map.getHexagon(m2) != null && map.getHexagon(m3) != null) &&
                 (map.getHexagon(m1).getTileId() == map.getHexagon(m2).getTileId() && map.getHexagon(m1).getTileId() == map.getHexagon(m3).getTileId());
     }
+
+
 }

@@ -10,9 +10,8 @@ public class WeJustDidThisMove implements Move {
     // Attributes
 
     private MapSpot tileSpot;
-    private int orientation;
-
     private MapSpot buildSpot;
+    private int orientation;
     private Terrain terrain;
     private int buildType;
 

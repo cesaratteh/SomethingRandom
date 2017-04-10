@@ -1,11 +1,8 @@
 package Everything.game.action.handlers;
 
-import Everything.models.Hexagon;
 import Everything.models.Map;
 import Everything.models.MapSpot;
-import Everything.models.Terrain;
-
-import java.util.*;
+import Everything.models.Team;
 
 /**
  * Shows available options for settlement expansion
@@ -13,52 +10,31 @@ import java.util.*;
  */
 public class SettlementFoundingHandler {
 
-    private final Map map;
+    public void foundSettlement(final MapSpot mapSpotToFoundOn,
+                                final Map map,
+                                final Team team) throws CannotPerformActionException {
 
-    public ArrayList<MapSpot> generateValidMapSpotsForSettlementFounding(){
-        final ArrayList<MapSpot> validMapSpotsForSettlementFounding = new ArrayList<>();
-        final LinkedList<MapSpot> notVisitedHexagons = new LinkedList<>();
-
-        final boolean visited[][] = new boolean[map.size()][map.size()];
-
-        visited[map.getMiddleHexagonMapSpot().getX()][map.getMiddleHexagonMapSpot().getY()] = true;
-        notVisitedHexagons.add(map.getMiddleHexagonMapSpot());
-
-        while(!notVisitedHexagons.isEmpty()){
-
-            MapSpot currentMapSpot = notVisitedHexagons.getFirst();
-            Hexagon currentHex = map.getHexagon(currentMapSpot);
-
-            if(currentHex != null){
-                //adding the MapSpot to the ArrayList
-                if(currentHex.isEmpty() &&
-                        currentHex.getTerrainType() != Terrain.VOLCANO &&
-                        currentHex.getLevel() == 1){
-                    validMapSpotsForSettlementFounding.add(currentMapSpot);
-                }
-
-                for(int i = 0; i<currentMapSpot.getAdjacentMapSpots().size(); i++){
-                    MapSpot adjacentSpot = currentMapSpot.getAdjacentMapSpots().get(i);
-
-                    if(adjacentSpot != null){
-                        if(!visited[adjacentSpot.getX()][adjacentSpot.getY()] && map.getHexagon(adjacentSpot) != null){
-                            notVisitedHexagons.add(adjacentSpot);
-                            visited[adjacentSpot.getX()][adjacentSpot.getY()] = true;
-                        }
-                    }
-                }
-
-            }
-            notVisitedHexagons.removeFirst();
-        }
-
-        return validMapSpotsForSettlementFounding;
+        if(mapSpotSatisfiesFoundingRequirements(map, mapSpotToFoundOn))
+            map.getHexagon(mapSpotToFoundOn).addMeeplesAccordingToLevel(team);
+        else
+            throw new CannotPerformActionException("Cannot found settlement here");
     }
 
-
-
-    public SettlementFoundingHandler(final Map map){
-        this.map = map;
+    private boolean mapSpotSatisfiesFoundingRequirements(final Map map, final MapSpot mapSpot) {
+        return isThereAHexagonCoveringMapSpot(map, mapSpot) &&
+                isOnLevelOne(map, mapSpot) &&
+                isHexagonUnoccupied(map, mapSpot);
     }
 
+    private boolean isThereAHexagonCoveringMapSpot(final Map map, final MapSpot mapSpot) {
+        return map.getHexagon(mapSpot) != null;
+    }
+
+    private boolean isOnLevelOne(final Map map, final MapSpot mapSpot) {
+        return map.getHexagon(mapSpot).getLevel() == 1;
+    }
+
+    private boolean isHexagonUnoccupied(final Map map, final MapSpot mapSpot) {
+        return map.getHexagon(mapSpot).isEmpty();
+    }
 }

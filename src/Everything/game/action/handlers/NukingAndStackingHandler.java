@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public class NukingAndStackingHandler {
 
-
     //--------
     // methods
 
