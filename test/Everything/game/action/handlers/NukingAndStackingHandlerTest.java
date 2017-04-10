@@ -32,62 +32,62 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestSameTileCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
         MapSpot m3 = m1.topLeft();
 
-        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3),false);
+        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),false);
     }
 
     @Test
     public void TestNonAdjacentHexesCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
         MapSpot m3 = m1.topRight();
 
-        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3),false);
+        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),false);
     }
 
     @Test
     public void TestMultipleVolcanoesCanBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.topLeft();
         MapSpot m3 = m1.topRight();
 
-        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3),false);
+        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),false);
     }
 
     @Test
     public void TestNonExistentHexagonCantBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.bottomRight();
         MapSpot m3 = m1.topRight();
 
-        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3),false);
+        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),false);
     }
 
     @Test
     public void TestCanBeNuked(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot().left();
         MapSpot m2 = m1.topLeft();
         MapSpot m3 = m1.topRight();
 
-        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3),true);
+        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),true);
     }
 
     @Test
     public void TestValidNuking(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot().left();
         MapSpot m2 = m1.topLeft();
@@ -97,7 +97,7 @@ public class NukingAndStackingHandlerTest {
         Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,4);
         Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 
-        handler.NukeSpots(m1,m2,m3,h1,h2,h3);
+        handler.NukeSpots(m1,m2,m3,h1,h2,h3,map);
 
         m1 = map.getMiddleHexagonMapSpot().left();
         m2 = m1.topLeft();
@@ -119,7 +119,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingOffTheBoard(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.right();
@@ -130,7 +130,7 @@ public class NukingAndStackingHandlerTest {
         Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 
         try {
-            handler.NukeSpots(m1, m2, m3, h1, h2, h3);
+            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
         }
         catch(RuntimeException e){
             if(e.getMessage().equals("Cannot nuke those spots")) Assert.assertTrue(true);
@@ -139,7 +139,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingAllThreeHexesSameTile(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -150,7 +150,7 @@ public class NukingAndStackingHandlerTest {
         Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 
         try {
-            handler.NukeSpots(m1, m2, m3, h1, h2, h3);
+            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
         }
         catch(RuntimeException e){
             if(e.getMessage().equals("Cannot nuke those spots")) Assert.assertTrue(true);
@@ -159,7 +159,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingUsingMoreThanOneVolcanoHexesToBePlaced(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.left();
@@ -170,7 +170,7 @@ public class NukingAndStackingHandlerTest {
         Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 
         try {
-            handler.NukeSpots(m1, m2, m3, h1, h2, h3);
+            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
         }
         catch(RuntimeException e){
             if(e.getMessage().equals("Not 1 volcano")) Assert.assertTrue(true);
@@ -179,7 +179,7 @@ public class NukingAndStackingHandlerTest {
 
     @Test
     public void TestNukingMoreThanOneVolcanoHex(){
-        NukingAndStackingHandler handler = new NukingAndStackingHandler(map);
+        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 
         MapSpot m1 = map.getMiddleHexagonMapSpot();
         MapSpot m2 = m1.topRight();
@@ -190,7 +190,7 @@ public class NukingAndStackingHandlerTest {
         Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 
         try {
-            handler.NukeSpots(m1, m2, m3, h1, h2, h3);
+            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
         }
         catch(RuntimeException e){
             if(e.getMessage().equals("Volcanoes do not match up")) Assert.assertTrue(true);

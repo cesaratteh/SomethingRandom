@@ -40,12 +40,12 @@ public class FirstLevelTileAdditionHandlerTest {
         m4 = m3.bottomLeft();
         m5 = m3.bottomRight();
 
-        handler = new FirstLevelTileAdditionHandler(map);
+        handler = new FirstLevelTileAdditionHandler();
     }
 
     private void placeFirstTile(){
         initializeBeforeFirstTileTests();
-        handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5);
+        handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5, map);
     }
 
     private boolean hexIsEqual(Hexagon hex1, Hexagon hex2) {
@@ -62,7 +62,7 @@ public class FirstLevelTileAdditionHandlerTest {
     @Test
     public void testAddValidFirstTileToMap(){
 
-        handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5);
+        handler.addFirstTileToMap(h1,h2,h3,h4,h5,m1,m2,m3,m4,m5, map);
 
         Assert.assertTrue(hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topLeft()),h1)
                 && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topRight()), h2)
@@ -78,7 +78,7 @@ public class FirstLevelTileAdditionHandlerTest {
         h2 = new Hexagon(Terrain.LAKE,1,0);
 
         try {
-            handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5);
+            handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad First Tile to be Placed"));
@@ -92,7 +92,7 @@ public class FirstLevelTileAdditionHandlerTest {
         m1 = m3.left();
 
         try {
-            handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5);
+            handler.addFirstTileToMap(h1, h2, h3, h4, h5, m1, m2, m3, m4, m5, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad First Tile Placement"));
@@ -115,7 +115,7 @@ public class FirstLevelTileAdditionHandlerTest {
     public void testValidTilePlacement(){
         initTile();
 
-        handler.addTileToMap(h1,h2,h3,m1,m2,m3);
+        handler.addTileToMap(h1,h2,h3,m1,m2,m3, map);
 
         Assert.assertTrue(hexIsEqual(map.getHexagon(m1), h1)
                 && hexIsEqual(map.getHexagon(m2), h2)
@@ -130,7 +130,7 @@ public class FirstLevelTileAdditionHandlerTest {
         m3 = m1.bottomLeft();
 
         try {
-            handler.addTileToMap(h1, h2, h3, m1, m2, m3);
+            handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));
@@ -144,7 +144,7 @@ public class FirstLevelTileAdditionHandlerTest {
         h1 = new Hexagon(Terrain.VOLCANO, 1, 1);
 
         try {
-            handler.addTileToMap(h1, h2, h3, m1, m2, m3);
+            handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
@@ -158,7 +158,7 @@ public class FirstLevelTileAdditionHandlerTest {
         h2 = new Hexagon(Terrain.ROCKY, 1, 1);
 
         try {
-            handler.addTileToMap(h1, h2, h3, m1, m2, m3);
+            handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
@@ -173,7 +173,7 @@ public class FirstLevelTileAdditionHandlerTest {
         h3 = new Hexagon(Terrain.LAKE, 1, 3);
 
         try {
-            handler.addTileToMap(h1, h2, h3, m1, m2, m3);
+            handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
@@ -187,7 +187,7 @@ public class FirstLevelTileAdditionHandlerTest {
         m3 = m1.topRight();
 
         try {
-            handler.addTileToMap(h1, h2, h3, m1, m2, m3);
+            handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));

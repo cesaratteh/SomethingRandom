@@ -53,8 +53,7 @@ public class SettlementsFactoryTest {
 
         ArrayList<Settlement> friendlySettlements  = settlementsFactory.generateSettlements(Team.FRIENDLY);
 
-        assertEquals(7, friendlySettlements.get(0).size());
-        assertEquals(2, friendlySettlements.get(1).size());
+        assertEquals(9, friendlySettlements.get(0).size());
     }
 
     @Test
@@ -86,13 +85,15 @@ public class SettlementsFactoryTest {
 
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 
-        assertEquals(2, settlementsFactory.generateSettlements(Team.FRIENDLY).size());
+        assertEquals(1, settlementsFactory.generateSettlements(Team.FRIENDLY).size());
+        assertEquals(4, settlementsFactory.generateSettlements(Team.FRIENDLY).get(0).size());
+
         assertEquals(1, settlementsFactory.generateSettlements(Team.ENEMY).size());
+        assertEquals(1, settlementsFactory.generateSettlements(Team.ENEMY).get(0).size());
     }
 
     @Test
     public void SettlementTest1(){
-
 
         final Map map = new Map();
         Updater EnemyTeamUpdater = new Updater(map);
@@ -101,7 +102,6 @@ public class SettlementsFactoryTest {
         MapSpot mapspot = new MapSpot(3,0,-3);
         MapSpot mapspotExpand = new MapSpot(1,0,-1);
 
-
         EnemyTeamUpdater.EnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,mapspotExpand );
 
         MapSpot Test = new MapSpot(2,0,-2);
@@ -109,25 +109,11 @@ public class SettlementsFactoryTest {
 
         EnemyTeamUpdater.EnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,Test);
 
-
         MapSpot Test2 = new MapSpot(3,-1,-2);
-
-
-
 
         //mapSpot scanner should have mapspots test 1,2 as expansion locations when expanding grasslands
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
 
-
-
         assertEquals(1, settlementsFactory.generateSettlements(Team.ENEMY).size());
-
     }
-
-
-
-
-
-
-
 }

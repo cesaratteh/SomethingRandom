@@ -51,7 +51,7 @@ public class SettlementsFactory {
         for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
 
             if (map.getHexagon(adjacentMapSpot) != null &&
-                    map.getHexagon(mapSpot).getOccupiedBy() == team) {
+                    map.getHexagon(mapSpot).getOccupiedBy() == map.getHexagon(adjacentMapSpot).getOccupiedBy()) {
 
                 visit(adjacentMapSpot, settlements, visited, false, team);
             }

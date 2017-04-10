@@ -11,33 +11,20 @@ import java.util.ArrayList;
 public class NukingAndStackingHandler {
 
 
-    //-----------
-    // attributes
-
-    private final Map map;
-
-
-    //-------------
-    // constructors
-
-    public NukingAndStackingHandler(final Map map){
-        this.map = map;
-    }
-
     //--------
     // methods
 
-    void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3){
-        if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3)){
+    void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3, Map map){
+        if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3, map)){
             throw new RuntimeException("Cannot nuke those spots");
         }
         if(!hasOneVolcano(h1,h2,h3)){
             throw new RuntimeException("Not 1 volcano");
         }
-        if(!volcanoesMatch(nuked1,nuked2,nuked3,h1,h2,h3)){
+        if(!volcanoesMatch(nuked1,nuked2,nuked3,h1,h2,h3, map)){
             throw new RuntimeException("Volcanoes do not match up");
         }
-        if(MapSpotsContainWholeSettlement(nuked1,nuked2,nuked3)){
+        if(MapSpotsContainWholeSettlement(nuked1,nuked2,nuked3, map)){
             throw new RuntimeException("Cannot nuke a single hex settlement");
         }
 
@@ -52,7 +39,7 @@ public class NukingAndStackingHandler {
         map.setHexagon(nuked3, h3);
     }
 
-    private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3) {
+    private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map) {
         SettlementsFactory settlementsFactory = new SettlementsFactory(map);
         ArrayList<Settlement> friendlySettlements = settlementsFactory.generateSettlements(Team.FRIENDLY);
         ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
@@ -93,7 +80,7 @@ public class NukingAndStackingHandler {
         return false;
     }
 
-    private boolean volcanoesMatch(MapSpot n1, MapSpot n2, MapSpot n3, Hexagon h1, Hexagon h2, Hexagon h3) {
+    private boolean volcanoesMatch(MapSpot n1, MapSpot n2, MapSpot n3, Hexagon h1, Hexagon h2, Hexagon h3, Map map) {
         //if the volcanoes do not match up, then the tile needs to be rotated
         if(map.getHexagon(n1).getTerrainType() == Terrain.VOLCANO && h1.getTerrainType()==Terrain.VOLCANO) return true;
         if(map.getHexagon(n2).getTerrainType() == Terrain.VOLCANO && h2.getTerrainType()==Terrain.VOLCANO) return true;
@@ -102,7 +89,7 @@ public class NukingAndStackingHandler {
         return false;
     }
 
-    boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3){
+    boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map){
         if(nuked1 != null && nuked2 != null && nuked3 != null){
             Hexagon hex1 = map.getHexagon(nuked1);
             Hexagon hex2 = map.getHexagon(nuked2);
