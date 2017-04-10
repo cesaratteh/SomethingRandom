@@ -46,4 +46,15 @@ public class WeJustDidThisMove implements Move {
     public void setBuildType(int buildType) {
         this.buildType = buildType;
     }
+
+    @Override
+    public String toString() {
+        return "WeJustDidThisMove{" +
+                "tileSpot=" + tileSpot +
+                ", buildSpot=" + buildSpot +
+                ", orientation=" + orientation +
+                ", terrain=" + terrain +
+                ", buildType=" + buildType +
+                '}';
+    }
 }

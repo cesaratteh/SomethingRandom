@@ -1,6 +1,7 @@
 package Everything;
 
 import Everything.Server.MoveObjects.MakeMoveInstruction;
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.Server.OrientationAndVolcanoLocationCalculator;
 import Everything.game.action.ai.StupiedBot;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
@@ -39,9 +40,16 @@ public class StupiedBotIntegrationTest {
                 new RandomLevelOneTileScanner(),
                 new RandomSettlementFoundingScanner());
 
-        for(int i = 0; i < 48; i++) {
-            friendlyBot.playTurn(generateRandomInstruction(), map, friendly);
-            enemyBot.playTurn(generateRandomInstruction(), map, friendly);
+        for(int i = 0; i < 4; i++) {
+            WeJustDidThisMove friendlyMove = friendlyBot.playTurn(generateRandomInstruction(), map, friendly);
+            WeJustDidThisMove enemyMove = enemyBot.playTurn(generateRandomInstruction(), map, enemy);
+
+            System.out.println("FRIENDLY:");
+            System.out.println(friendlyMove);
+            System.out.println("ENEMY:");
+            System.out.println(enemyMove);
+            System.out.println("---------------------------------------");
+            System.out.println("");
         }
     }
 
@@ -57,6 +65,6 @@ public class StupiedBotIntegrationTest {
         int firstTerrainIndex = random.nextInt(4);
         int secondTerrainIndex = random.nextInt(4);
 
-        return firstTerrainIndex + "+" + secondTerrainIndex;
+        return terrainTypes[firstTerrainIndex] + "+" + terrainTypes[secondTerrainIndex];
     }
 }

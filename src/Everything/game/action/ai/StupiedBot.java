@@ -55,23 +55,29 @@ public class StupiedBot {
         try{
             final TileMapSpot tileMapSpot = randomLevelOneTileScanner.scan(map);
 
-            final MapSpot volcanoMapSpot = orientationAndVolcanoLocationCalculator.getVolcanoMapSpot(map, tileMapSpot.getM1());
-
             firstLevelTileAdditionHandler.addTileToMap(tile.getH1(), tile.getH2(), tile.getH3(), tileMapSpot.getM1(), tileMapSpot.getM2(), tileMapSpot.getM3(), map);
+
+            final MapSpot volcanoMapSpot = orientationAndVolcanoLocationCalculator.getVolcanoMapSpot(map, tileMapSpot.getM1());
 
             weJustDidThisMove.setTileSpot(volcanoMapSpot);
             weJustDidThisMove.setOrientation(orientationAndVolcanoLocationCalculator.getOrientation(map, volcanoMapSpot));
 
             // build move
-            final MapSpot buildSpot = randomSettlementFoundingScanner.scan(map);
+            if (tileMapSpot.getM1().isEqual(volcanoMapSpot)) {
+                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player.getTeam());
 
-            settlementFoundingHandler.foundSettlement(buildSpot, map, player.getTeam());
+                weJustDidThisMove.setBuildType(0);
+                weJustDidThisMove.setBuildSpot(tileMapSpot.getM2());
+            } else {
+                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player.getTeam());
 
-            weJustDidThisMove.setBuildType(0);
-            weJustDidThisMove.setBuildSpot(buildSpot);
+                weJustDidThisMove.setBuildType(0);
+                weJustDidThisMove.setBuildSpot(tileMapSpot.getM1());
+            }
+
             return weJustDidThisMove;
-
         }catch (NoValidActionException | CannotPerformActionException e){
+            System.out.println(e);
             return weJustDidThisMove;
         }
     }

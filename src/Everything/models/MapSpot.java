@@ -145,9 +145,9 @@ public class MapSpot {
     @Override
     public String toString() {
         return "MapSpot{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
+                "x=" + getXForServer() +
+                ", y=" + getyForServer() +
+                ", z=" + getZForServer() +
                 '}';
     }
 }

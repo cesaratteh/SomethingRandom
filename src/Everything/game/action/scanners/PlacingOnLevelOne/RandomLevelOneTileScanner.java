@@ -12,32 +12,60 @@ public class RandomLevelOneTileScanner {
 
     public TileMapSpot scan(final Map map) throws NoValidActionException{
 
-        final boolean[][][] visited = new boolean[Map.size()][Map.size()][Map.size()];
+        MapSpot currSpot = map.getMiddleHexagonMapSpot();
 
-        return visit(map.getMiddleHexagonMapSpot(), visited, map);
+        while(true) {
+            if (map.getHexagon(currSpot.right()) == null && map.getHexagon(currSpot.bottomRight()) == null) {
+                break;
+            }
+
+            if (map.getHexagon(currSpot.right()) != null) {
+                currSpot = currSpot.right();
+            } else {
+                currSpot = currSpot.bottomRight();
+            }
+        }
+
+        return getTileIfValid(currSpot.right(), map);
     }
 
-
-    private TileMapSpot visit(final MapSpot currentMapSpot,
-                              final boolean visited[][][],
+    private void visit(final MapSpot currentMapSpot,
+                              TileMapSpot result,
+                              final boolean isVisited[][][],
                               final Map map)  throws NoValidActionException{
 
-        visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
 
-        try{
-            return getEmptyTilePlace(currentMapSpot, map);
-        }catch (NoValidActionException e){}
+        if (result != null || isVisited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()]) {
+            return;
+        }
 
-        for (final MapSpot adjMapSpots : currentMapSpot.getAdjacentMapSpots()) {
-            if (!visited[adjMapSpots.getX()][adjMapSpots.getY()][adjMapSpots.getZ()]) {
-                visit(adjMapSpots, visited, map);
+        isVisited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
+
+        for (MapSpot adjMapSpots : currentMapSpot.getAdjacentMapSpots()) {
+
+            try
+            {
+                result = getTileIfValid(adjMapSpots, map);
+                return;
+            }catch (NoValidActionException e){}
+
+            if (satisfiesVisitingRequirements(map, adjMapSpots, isVisited)) {
+                visit(adjMapSpots, result, isVisited, map);
             }
         }
 
         throw new NoValidActionException("Cannot place tile anywhere in RandomLevelOneTileScanner");
     }
 
-    private TileMapSpot getEmptyTilePlace(final MapSpot mapSpot, final Map map) throws NoValidActionException {
+    private boolean satisfiesVisitingRequirements(final Map map, final MapSpot mapSpot, final boolean isVisited[][][]) {
+        return map.getHexagon(mapSpot) != null &&
+                !isVisited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()];
+    }
+
+    private TileMapSpot getTileIfValid(final MapSpot mapSpot, final Map map) throws NoValidActionException {
+        if(map.getHexagon(mapSpot) != null)
+            throw new NoValidActionException("No valid spot found");
+
         MapSpot[] orderedAdjacentMapSpots = new MapSpot[7];
 
         orderedAdjacentMapSpots[0] = mapSpot.left();
