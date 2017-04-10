@@ -1,31 +1,30 @@
 package Everything.game.action.MapUpdater;
 
 import Everything.game.action.scanners.SettlementsFactory;
+import Everything.game.action.scanners.settlemenet.expanding.ExpansionToSpecificTerrainScanner;
 import Everything.models.*;
 
 import java.util.ArrayList;
 
 public class Updater {
 
+
     //-----------
     // Attributes
 
-    private Player player;
-    private Map map;
-
+    private ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner;
 
     //-------------
     // Constructors
 
-    public Updater(Map map){
-
-        this.map = map;
+    public Updater(final ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner) {
+        this.expansionToSpecificTerrainScanner = expansionToSpecificTerrainScanner;
     }
 
     //--------
     // Methods
 
-    public void SetFirstTile(){
+    public void SetFirstTile(final Map map){
 
         MapSpot mapspot = new MapSpot(0,0,0);
         Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);

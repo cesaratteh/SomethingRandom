@@ -5,24 +5,31 @@ public class MakeMoveInstruction implements Move{
     //-----------
     // Attributes
 
-    private String gameid;
-    private int movenumber;
+    private String gameId;
+    private int moveNumber;
     private String tile;
 
     //-----------
     // Constructors
 
-    public MakeMoveInstruction(String gameid, int movenumber, String tile){
-        this.gameid = gameid;
-        this.movenumber = movenumber;
+    public MakeMoveInstruction(String gameId, int moveNumber, String tile){
+        this.gameId = gameId;
+        this.moveNumber = moveNumber;
         this.tile = tile;
-
     }
 
     //-----------
     // Getters
 
-    public String getGameid(){return gameid;}
-    public int getMovenumber(){return movenumber;}
-    public String getTile(){return tile;}
+    public String getGameId(){
+        return gameId;
+    }
+
+    public int getMoveNumber(){
+        return moveNumber;
+    }
+
+    public String getTile(){
+        return tile;
+    }
 }

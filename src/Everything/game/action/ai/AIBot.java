@@ -1,5 +1,7 @@
 package Everything.game.action.ai;
 
+import Everything.Server.MoveObjects.MakeMoveInstruction;
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
 import Everything.game.action.handlers.NukingAndStackingHandler;
 import Everything.game.action.handlers.SettlementExpansionHandler;
@@ -12,6 +14,7 @@ import Everything.game.action.scanners.PlacingOnLevelOne.SettlementLevelOneTileP
 import Everything.game.action.scanners.SettlementFounding.FoundingNextToSettlementScanner;
 import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
 import Everything.game.action.scanners.SettlementsFactory;
+import Everything.game.action.scanners.settlemenet.expanding.ExpansionToSpecificTerrainScanner;
 import Everything.game.action.scanners.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import Everything.game.action.scanners.settlemenet.expanding.TigerSpotScanner;
 import Everything.game.action.scanners.settlemenet.expanding.TotoroSpotScanner;
@@ -43,10 +46,10 @@ public class AIBot {
     private SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner;
 
     //Settlement Expansion
+    private ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner;
     private SettlementExpansionMeeplesCost settlementExpansionMeeplesCost;
     private TotoroSpotScanner totoroSpotScanner;
     private TigerSpotScanner tigerSpotScanner;
-    private ExpandableSpotsScanner meeplesExpandableSpotsScanner;
 
     //Settlement Founding
     private FoundingNextToSettlementScanner foundingNextToSettlementScanner;
@@ -64,10 +67,10 @@ public class AIBot {
                  final SettlementAdjacentVolcanoesScanner settlementAdjacentVolcanoesScanner,
                  final SettlementLevelOneTwoSpotsNukingScanner settlementLevelOneTwoSpotsNukingScanner,
                  final SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner,
+                 final ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner,
                  final SettlementExpansionMeeplesCost settlementExpansionMeeplesCost,
                  final TotoroSpotScanner totoroSpotScanner,
                  final TigerSpotScanner tigerSpotScanner,
-                 final ExpandableSpotsScanner meeplesExpandableSpotsScanner,
                  final FoundingNextToSettlementScanner foundingNextToSettlementScanner,
                  final RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
         this.settlementsFactory = settlementsFactory;
@@ -79,10 +82,10 @@ public class AIBot {
         this.settlementAdjacentVolcanoesScanner = settlementAdjacentVolcanoesScanner;
         this.settlementLevelOneTwoSpotsNukingScanner = settlementLevelOneTwoSpotsNukingScanner;
         this.settlementLevelOneTilePlacementScanner = settlementLevelOneTilePlacementScanner;
+        this.expansionToSpecificTerrainScanner = expansionToSpecificTerrainScanner;
         this.settlementExpansionMeeplesCost = settlementExpansionMeeplesCost;
         this.totoroSpotScanner = totoroSpotScanner;
         this.tigerSpotScanner = tigerSpotScanner;
-        this.meeplesExpandableSpotsScanner = meeplesExpandableSpotsScanner;
         this.foundingNextToSettlementScanner = foundingNextToSettlementScanner;
         this.randomSettlementFoundingScanner = randomSettlementFoundingScanner;
     }
@@ -90,17 +93,20 @@ public class AIBot {
     //--------
     // Methods
 
-    /**
-     * Logic:
-     * <p>
-     * ordered by priority:
-     * [1] Try to make a 5 hut settlement with empty spots next to it
-     * [2] Try to make lvl 3 stack OR stack on level 2 to allow level 3 hut
-     * [3] Put a tile somewhere random on level 1
-     * <p>
-     * Give map spot AND rotation to server
-     */
-    public void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
+    public WeJustDidThisMove playTurn(final MakeMoveInstruction makeMoveInstruction, final Map map, final Player player) {
+        String[] tiles = makeMoveInstruction.getTile().split("\\+");
+
+        final Tile tile = new Tile(new Hexagon(Terrain.valueOf(tiles[0]), makeMoveInstruction.getMoveNumber()),
+                new Hexagon(Terrain.valueOf(tiles[1]), makeMoveInstruction.getMoveNumber()),
+                new Hexagon(Terrain.VOLCANO, makeMoveInstruction.getMoveNumber()));
+
+        doATilePlacementMove(map, player, tile);
+        doABuildMove(map, player);
+
+        final WeJustDidThisMove weJustDidThisMove = new WeJustDidThisMove();
+    }
+
+    private void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
@@ -192,18 +198,7 @@ public class AIBot {
 
     }
 
-    /**
-     * Logic:
-     * <p>
-     * ordered by priority:
-     * [1] Place totoro
-     * [2] Place tiger
-     * [3] Expand using meeples and following a greedy aproach (maximize score) IF YOU HAVE ENOUGH MEEPLES
-     * [4] Found with 1 meeple
-     * <p>
-     * Give result to server
-     */
-    public void doABuildMove(final Map map, final Player player) {
+    private void doABuildMove(final Map map, final Player player) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(player.getTeam());
 
