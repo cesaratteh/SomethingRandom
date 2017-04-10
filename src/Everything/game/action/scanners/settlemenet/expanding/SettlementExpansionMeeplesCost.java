@@ -9,28 +9,14 @@ import java.util.ArrayList;
 
 public class SettlementExpansionMeeplesCost {
 
-    //-----------
-    // Attributes
-
-    private ExpandableSpotsScanner expandableSpotsScanner;
-
-    //------------
-    // Constructor
-
-    public SettlementExpansionMeeplesCost(final ExpandableSpotsScanner expandableSpotsScanner) {
-        this.expandableSpotsScanner = expandableSpotsScanner;
-    }
-
     //--------
     // Methods
 
-    public int calculate(final Settlement settlement, final Map map) throws NoValidActionException {
-
-        final ArrayList<MapSpot> expandableSpots = expandableSpotsScanner.scan(settlement, map);
+    public int calculate(final ArrayList<MapSpot> expandableSpots, final Map map) throws NoValidActionException {
 
         int costSum = 0;
 
-        for (MapSpot expandableSpot : expandableSpots) {
+        for (final MapSpot expandableSpot : expandableSpots) {
             costSum += map.getHexagon(expandableSpot).getLevel();
         }
 

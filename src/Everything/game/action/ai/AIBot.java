@@ -12,7 +12,6 @@ import Everything.game.action.scanners.PlacingOnLevelOne.SettlementLevelOneTileP
 import Everything.game.action.scanners.SettlementFounding.FoundingNextToSettlementScanner;
 import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
 import Everything.game.action.scanners.SettlementsFactory;
-import Everything.game.action.scanners.settlemenet.expanding.ExpandableSpotsScanner;
 import Everything.game.action.scanners.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import Everything.game.action.scanners.settlemenet.expanding.TigerSpotScanner;
 import Everything.game.action.scanners.settlemenet.expanding.TotoroSpotScanner;

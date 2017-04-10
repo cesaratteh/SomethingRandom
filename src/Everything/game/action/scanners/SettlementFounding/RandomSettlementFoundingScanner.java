@@ -19,14 +19,14 @@ public class RandomSettlementFoundingScanner {
 
     private MapSpot visit(final MapSpot currentMapSpot, boolean visited[][][], final Map map) throws NoValidActionException {
 
+        visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
+
         if (satisfiesFoundingRequirements(currentMapSpot, map)) {
             return currentMapSpot;
         }
 
-        visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
-
         for (final MapSpot adjMapSpot : currentMapSpot.getAdjacentMapSpots()) {
-            if(map.getHexagon(adjMapSpot) != null)
+            if(map.getHexagon(adjMapSpot) != null && !visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()])
                 visit(adjMapSpot, visited, map);
         }
 

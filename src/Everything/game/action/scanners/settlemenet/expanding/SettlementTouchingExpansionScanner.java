@@ -5,6 +5,7 @@ import Everything.game.action.scanners.Nuking.SettlementAdjacentMapSpotsScanner;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Settlement;
+import Everything.models.Terrain;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,12 @@ public class SettlementTouchingExpansionScanner {
     // Attributes
 
     private SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner;
-    private ExpandableSpotsScanner expandableSpotsScanner;
 
     //-------------
     // Constructors
 
-    public SettlementTouchingExpansionScanner(final SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner ,
-                                              final ExpandableSpotsScanner expandableSpotsScanner) {
+    public SettlementTouchingExpansionScanner(final SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner) {
         this.settlementAdjacentMapSpotsScanner = settlementAdjacentMapSpotsScanner;
-        this.expandableSpotsScanner = expandableSpotsScanner;
     }
 
     //---------------
@@ -34,18 +32,11 @@ public class SettlementTouchingExpansionScanner {
     public ArrayList<MapSpot> scan(final Settlement settlement, final Map map) throws NoValidActionException {
 
         final ArrayList<MapSpot> settlementAdjacentMapSpots = settlementAdjacentMapSpotsScanner.generate(settlement, map);
-        final ArrayList<MapSpot> settlementExpandableMapSpots = expandableSpotsScanner.scan(settlement, map);
 
         final ArrayList<MapSpot> expansionSpots = new ArrayList<>();
 
-        boolean intersection[][][] = new boolean[Map.size()][Map.size()][Map.size()];
-
         for (final MapSpot mapSpot : settlementAdjacentMapSpots) {
-            intersection[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] = true;
-        }
-
-        for (final MapSpot mapSpot : settlementExpandableMapSpots) {
-            if (intersection[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()]) {
+            if (satisfiesTotoroOrTigerExpansionOrMeepleFoundingRequirements(mapSpot, map)) {
                 expansionSpots.add(mapSpot);
             }
         }
@@ -54,5 +45,15 @@ public class SettlementTouchingExpansionScanner {
             throw new NoValidActionException("No valid expansion spots");
 
         return expansionSpots;
+    }
+
+    //----------------
+    // Private Methods
+
+    private boolean satisfiesTotoroOrTigerExpansionOrMeepleFoundingRequirements(final MapSpot mapSpot,
+                                                                                final Map map) {
+        return map.getHexagon(mapSpot) != null &&
+                map.getHexagon(mapSpot).getTerrainType() != Terrain.VOLCANO &&
+                map.getHexagon(mapSpot).isEmpty();
     }
 }

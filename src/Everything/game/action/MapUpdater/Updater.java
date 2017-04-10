@@ -2,7 +2,6 @@ package Everything.game.action.MapUpdater;
 
 
 import Everything.game.action.scanners.SettlementsFactory;
-import Everything.game.action.scanners.settlemenet.expanding.ExpandableSpotsScanner;
 import Everything.models.*;
 
 import java.util.ArrayList;
