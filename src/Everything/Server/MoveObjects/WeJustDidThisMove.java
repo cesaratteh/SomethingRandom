@@ -16,17 +16,6 @@ public class WeJustDidThisMove implements Move {
     private int buildType;
 
     //-----------
-    // Constructors
-
-    public WeJustDidThisMove(MapSpot tileSpot, MapSpot buildSpot, int orientation, Terrain terrain, int buildType){
-        this.tileSpot = tileSpot;
-        this.buildSpot = buildSpot;
-        this.orientation = orientation;
-        this.terrain = terrain;
-        this.buildType = buildType;
-    }
-
-    //-----------
     // Getters
 
     public MapSpot getTileSpot(){return this.tileSpot;}

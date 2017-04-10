@@ -18,21 +18,22 @@ public class FirstLevelTileAdditionHandler {
      * m1-5 are the corresponding MapSpots
      * can handle any orientation of FirstTile
      */
-    public void addFirstTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, Hexagon h4, Hexagon h5, MapSpot m1, MapSpot m2, MapSpot m3, MapSpot m4, MapSpot m5, final Map map){
+    public void addFirstTileToMap(final Map map){
+        MapSpot mapspot = new MapSpot(0,0,0);
+        Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);
+        map.setHexagon(mapspot, hex1);
 
-        if(!uniqueTerrains(h1,h2,h3,h4,h5) || !matchingTileID(h1,h2,h3,h4,h5)){
-            throw new RuntimeException("Bad First Tile to be Placed");
-        }
+        hex1 = new Hexagon(Terrain.JUNGLE,1,0);
+        map.setHexagon(mapspot.topLeft(),hex1);
 
-        if(!isValidConfigurationForFirstTile(m1,m2,m3,m4,m5)){
-            throw new RuntimeException("Bad First Tile Placement");
-        }
+        hex1 = new Hexagon(Terrain.LAKE,1,0);
+        map.setHexagon(mapspot.topRight(),hex1);
 
-        map.setHexagon(m1, h1);
-        map.setHexagon(m2, h2);
-        map.setHexagon(m3, h3);
-        map.setHexagon(m4, h4);
-        map.setHexagon(m5, h5);
+        hex1 = new Hexagon(Terrain.ROCKY,1,0);
+        map.setHexagon(mapspot.bottomLeft(),hex1);
+
+        hex1 = new Hexagon(Terrain.GRASSLAND,1,0);
+        map.setHexagon(mapspot.bottomRight(),hex1);
     }
 
     public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3, final Map map){

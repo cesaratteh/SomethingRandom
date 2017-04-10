@@ -30,9 +30,4 @@ public class SettlementFoundingHandlerTest {
         map.setHexagon(curr.left().left().topLeft(), new Hexagon(Terrain.ROCKY, 1, 3));
 
     }
-
-    @Test
-    public void testGenerateValidMapSpotsForSettlementFounding() {
-        Assert.assertEquals(new SettlementFoundingHandler(map).generateValidMapSpotsForSettlementFounding().size(),6);
-    }
 }
