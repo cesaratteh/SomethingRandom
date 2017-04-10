@@ -5,7 +5,7 @@ import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.Move;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.game.action.MapUpdater.Updater;
-import Everything.game.action.ai.AIBot;
+import Everything.game.action.ai.StupiedBot;
 import Everything.models.Map;
 import Everything.models.Player;
 import Everything.models.Team;
@@ -23,7 +23,7 @@ public class TigerIsland {
     private Player friendly;
     private Player enemy;
 
-    private AIBot friendlyAI;
+    private StupiedBot friendlyAI;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -49,6 +49,8 @@ public class TigerIsland {
         // Call OUR AI
         // Get the MapObject from our AI
         // Push it to the ConnectionClient Queue
+        WeJustDidThisMove weJustDidThisMove = null;
+        return weJustDidThisMove;
     }
 
     public void updateMapWithEnemyMove(final EnemyMove enemyMove) {
