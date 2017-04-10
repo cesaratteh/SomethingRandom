@@ -1,6 +1,6 @@
-package Everything.game.action.utils.SettlementFounding;
+package Everything.game.action.scanners.SettlementFounding;
 
-import Everything.game.action.utils.NoValidActionException;
+import Everything.game.action.scanners.NoValidActionException;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Terrain;

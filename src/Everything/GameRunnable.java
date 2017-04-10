@@ -1,4 +1,4 @@
-package Everything.Server;
+package Everything;
 
 import Everything.Server.MoveObjects.EnemyMove;
 import Everything.Server.MoveObjects.MakeMoveInstruction;

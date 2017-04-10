@@ -1,4 +1,4 @@
-package Everything.game.action.utils;
+package Everything.game.action.scanners;
 
 import Everything.models.*;
 

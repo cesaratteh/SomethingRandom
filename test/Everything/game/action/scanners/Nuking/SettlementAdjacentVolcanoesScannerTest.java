@@ -1,4 +1,4 @@
-package Everything.game.action.utils.Nuking;
+package Everything.game.action.scanners.Nuking;
 
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
-package Everything.game.action.utils.Nuking;
+package Everything.game.action.scanners.Nuking;
 
-import Everything.game.action.utils.NoValidActionException;
+import Everything.game.action.scanners.NoValidActionException;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Settlement;

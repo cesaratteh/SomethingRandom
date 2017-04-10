@@ -1,6 +1,6 @@
 package Everything.game.action.handlers;
 
-import Everything.game.action.utils.SettlementsFactory;
+import Everything.game.action.scanners.SettlementsFactory;
 import Everything.models.*;
 
 import java.util.ArrayList;

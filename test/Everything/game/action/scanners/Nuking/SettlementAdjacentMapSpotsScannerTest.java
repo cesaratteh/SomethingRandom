@@ -1,6 +1,6 @@
-package Everything.game.action.utils.Nuking;
+package Everything.game.action.scanners.Nuking;
 
-import Everything.game.action.utils.SettlementsFactory;
+import Everything.game.action.scanners.SettlementsFactory;
 import Everything.models.*;
 import org.junit.Test;
 
