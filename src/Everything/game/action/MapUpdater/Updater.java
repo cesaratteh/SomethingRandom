@@ -1,28 +1,31 @@
 package Everything.game.action.MapUpdater;
 
-
 import Everything.game.action.scanners.SettlementsFactory;
 import Everything.models.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nathan on 4/7/2017.
- */
 public class Updater {
+
+    //-----------
+    // Attributes
 
     private Player player;
     private Map map;
+
+
+    //-------------
+    // Constructors
+
     public Updater(Map map){
 
         this.map = map;
     }
 
-
-
+    //--------
+    // Methods
 
     public void SetFirstTile(){
-
 
         MapSpot mapspot = new MapSpot(0,0,0);
         Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);
@@ -39,18 +42,12 @@ public class Updater {
 
         hex1 = new Hexagon(Terrain.GRASSLAND,1,0);
         map.setHexagon(mapspot.bottomRight(),hex1);
-
-
-
     }
-
-
 
     //Does Not cover expand will be a different method
     //Move Number 1=Found Settlement 2=Expand 3=build Totoro 4=build tiger
     //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation
     //Order above, if doing Expand action use other method below
-
 
     public void EnemyMove(int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
         Team Team = Everything.models.Team.ENEMY;
@@ -59,7 +56,6 @@ public class Updater {
 
         MapSpot hexSpot2 = new MapSpot(0,0,0);
         MapSpot hexSpot3 = new MapSpot(0,0,0);
-
 
         switch(Orientation) {
             case 1: hexSpot2 = TileSpot.topLeft(); hexSpot3 = TileSpot.topRight();
@@ -105,9 +101,6 @@ public class Updater {
             case 4: this.map.getHexagon(ExpandLocation).addTiger(Team);
             break;
         }
-
-
-
     }
 
 
@@ -157,14 +150,11 @@ public class Updater {
         //
 */
 
-
         Settlement EnemySettlemenst = new Settlement(Team);
 
         SettlementsFactory Settlementfinder = new SettlementsFactory(this.map);
 
         ArrayList<Settlement> ListOfSettlements = Settlementfinder.generateSettlements(Team);
-
-
 
         ExpandableSpotsScanner LocationFinder = new ExpandableSpotsScanner();
 
@@ -176,19 +166,9 @@ public class Updater {
             }
         }
 
-
-
        // ArrayList<MapSpot> ExpansionSpots = new LocationFinder.scan(EnemySettlemenst, this.map);
         System.out.println(EnemySettlemenst.getMapSpots());
 
         //ArrayList<MapSpot> ExpansionLocation = LocationFinder.scan()
-
-
     }
-
-
-
-
-
-
 }
