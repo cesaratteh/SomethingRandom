@@ -32,7 +32,7 @@ public class SettlementExpansionHandlerTest {
         try {
             tileHandler.addTileToMap(
                     new Hexagon(Terrain.VOLCANO, 1, 2),
-                    new Hexagon(Terrain.GRASSLAND, 1, 2),
+                    new Hexagon(Terrain.GRASS, 1, 2),
                     new Hexagon(Terrain.LAKE, 1, 2),
                     curr.topRight(),
                     curr.topRight().topRight(),
@@ -44,7 +44,7 @@ public class SettlementExpansionHandlerTest {
 
         try {
             tileHandler.addTileToMap(
-                    new Hexagon(Terrain.GRASSLAND, 1, 1),
+                    new Hexagon(Terrain.GRASS, 1, 1),
                     new Hexagon(Terrain.ROCKY, 1, 1),
                     new Hexagon(Terrain.VOLCANO, 1, 1),
                     curr,

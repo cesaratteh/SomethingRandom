@@ -113,7 +113,7 @@ public class Hexagon {
         switch (terrainType){
             case VOLCANO:    TerrainChar = 'V';
             break;
-            case GRASSLAND:  TerrainChar = 'G';
+            case GRASS:  TerrainChar = 'G';
             break;
             case JUNGLE:     TerrainChar = 'J';
             break;

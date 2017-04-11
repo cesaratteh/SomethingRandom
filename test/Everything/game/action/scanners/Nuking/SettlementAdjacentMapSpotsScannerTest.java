@@ -14,9 +14,9 @@ public class SettlementAdjacentMapSpotsScannerTest {
     public void scanBlobShapeTest(){
         final Map map = new Map();
 
-        Hexagon h1 = new Hexagon(Terrain.GRASSLAND, 1, 1);
-        Hexagon h2 = new Hexagon(Terrain.GRASSLAND, 1, 1);
-        Hexagon h3 = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        Hexagon h1 = new Hexagon(Terrain.GRASS, 1, 1);
+        Hexagon h2 = new Hexagon(Terrain.GRASS, 1, 1);
+        Hexagon h3 = new Hexagon(Terrain.GRASS, 1, 1);
 
         h1.addMeeplesAccordingToLevel(Team.FRIENDLY);
         h2.addMeeplesAccordingToLevel(Team.FRIENDLY);
@@ -26,11 +26,11 @@ public class SettlementAdjacentMapSpotsScannerTest {
         map.setHexagon(map.getMiddleHexagonMapSpot().topRight(), h2);
         map.setHexagon(map.getMiddleHexagonMapSpot().topLeft(), h3);
 
-        Hexagon temp = new Hexagon(Terrain.GRASSLAND, 1, 2);
+        Hexagon temp = new Hexagon(Terrain.GRASS, 1, 2);
         temp.addMeeplesAccordingToLevel(Team.ENEMY);
         map.setHexagon(map.getMiddleHexagonMapSpot().right(), temp);
 
-        temp = new Hexagon(Terrain.GRASSLAND, 1, 2);
+        temp = new Hexagon(Terrain.GRASS, 1, 2);
         temp.addMeeplesAccordingToLevel(Team.ENEMY);
         map.setHexagon(map.getMiddleHexagonMapSpot().right().right(), temp);
 

@@ -30,7 +30,7 @@
 //        EnemyTeamUpdater.SetFirstTile(map);
 //        MapSpot mapspot = new MapSpot(0, -1, 1);
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(hex1.getTerrainType(), map.getHexagon(mapspot).getTerrainType());
 //    }
 //
@@ -44,7 +44,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 0, -2);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.VOLCANO, 1, 0);
@@ -61,10 +61,10 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(hex1.getTerrainType(), map.getHexagon(mapspotExpand).getTerrainType());
 //    }
 //
@@ -78,11 +78,11 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
-//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(2, map.getHexagon(mapspotExpand).getLevel());
 //    }
 //
@@ -96,10 +96,10 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(1, map.getHexagon(mapspotExpand).getNumberOfMeeples());
 //    }
 //
@@ -113,10 +113,10 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 3, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 3, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(true, map.getHexagon(mapspotExpand).isHasTotoro());
 //    }
 //
@@ -130,10 +130,10 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 4, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 4, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //        assertEquals(true, map.getHexagon(mapspotExpand).isHasTiger());
 //    }
 //
@@ -147,18 +147,18 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASS, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //        mapspot = new MapSpot(-2, 0, 2);
 //        mapspotExpand = new MapSpot(-3, 0, 3);
 //
 //
-//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASS, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand);
 //
 //
-//        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        Hexagon hex1 = new Hexagon(Terrain.GRASS, 1, 0);
 //
-//        EnemyTeamUpdater.EnemyMoveExpand(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand, Terrain.GRASSLAND);
+//        EnemyTeamUpdater.EnemyMoveExpand(2, Terrain.GRASS, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand, Terrain.GRASS);
 //        assertEquals(1, map.getHexagon(mapspotExpand).getNumberOfMeeples());
 //    }
 //}

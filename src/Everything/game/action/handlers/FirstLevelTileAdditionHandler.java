@@ -7,7 +7,6 @@ import Everything.models.MapSpot;
 import Everything.models.Terrain;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 /**
  * Add a tile - while checking game rules
@@ -30,7 +29,7 @@ public class FirstLevelTileAdditionHandler {
         hex1 = new Hexagon(Terrain.ROCKY,1,0);
         map.setHexagon(mapspot.bottomLeft(),hex1);
 
-        hex1 = new Hexagon(Terrain.GRASSLAND,1,0);
+        hex1 = new Hexagon(Terrain.GRASS,1,0);
         map.setHexagon(mapspot.bottomRight(),hex1);
     }
 

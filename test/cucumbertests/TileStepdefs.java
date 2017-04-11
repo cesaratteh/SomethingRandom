@@ -18,7 +18,7 @@ public class TileStepdefs {
             case 1:
                 return Terrain.LAKE;
             case 2:
-                return Terrain.GRASSLAND;
+                return Terrain.GRASS;
             case 3:
                 return Terrain.ROCKY;
             case 4:

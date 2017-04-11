@@ -10,9 +10,9 @@ public class RandomLevelOneTileScannerTest {
     @Test
     public void circleTest() throws NoValidActionException{
 
-        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASSLAND,
-                Terrain.GRASSLAND,
-                Terrain.GRASSLAND,
+        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASS,
+                Terrain.GRASS,
+                Terrain.GRASS,
                 Team.FRIENDLY,
                 Team.FRIENDLY,
                 Team.FRIENDLY);

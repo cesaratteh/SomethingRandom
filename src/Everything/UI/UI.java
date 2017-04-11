@@ -20,15 +20,15 @@ public class UI extends Application {
 
         Hexagon temp;
 
-        temp = new Hexagon(Terrain.GRASSLAND, 5, 1);
+        temp = new Hexagon(Terrain.GRASS, 5, 1);
         temp.addTotoro(Team.FRIENDLY);
         map.setHexagon(new MapSpot(0, 0, 0), temp);
 
-        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        temp = new Hexagon(Terrain.GRASS, 1, 1);
         temp.addTiger(Team.FRIENDLY);
         map.setHexagon(new MapSpot(1, -1, 0), temp);
 
-        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        temp = new Hexagon(Terrain.GRASS, 1, 1);
         temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
         map.setHexagon(new MapSpot(2, -2, 0), temp);
 
@@ -36,7 +36,7 @@ public class UI extends Application {
         temp.addMeeplesAccordingToLevel(Team.FRIENDLY);
         map.setHexagon(new MapSpot(3, -3, 0), temp);
 
-        temp = new Hexagon(Terrain.GRASSLAND, 1, 1);
+        temp = new Hexagon(Terrain.GRASS, 1, 1);
         temp.addMeeplesAccordingToLevel(Team.ENEMY);
         map.setHexagon(new MapSpot(4, -4, 0), temp);
 
@@ -70,7 +70,7 @@ public class UI extends Application {
                     }
 
                     switch (hexagon.getTerrainType()) {
-                        case GRASSLAND:
+                        case GRASS:
                             gc.setFill(Color.LAWNGREEN);
                             break;
                         case JUNGLE:
@@ -145,7 +145,7 @@ public class UI extends Application {
                     }
 
                     switch (hexagon.getTerrainType()) {
-                        case GRASSLAND:
+                        case GRASS:
                             gc.setFill(Color.LAWNGREEN);
                             break;
                         case JUNGLE:

@@ -43,7 +43,7 @@
 //            case 1:
 //                return Terrain.LAKE;
 //            case 2:
-//                return Terrain.GRASSLAND;
+//                return Terrain.GRASS;
 //            case 3:
 //                return Terrain.ROCKY;
 //        }
@@ -72,7 +72,7 @@
 //        fh1 = new Hexagon(Terrain.LAKE, 1, 0);
 //        fh2 = new Hexagon(Terrain.ROCKY, 1, 0);
 //        fh3 = new Hexagon(Terrain.VOLCANO, 1, 0);
-//        fh4 = new Hexagon(Terrain.GRASSLAND, 1, 0);
+//        fh4 = new Hexagon(Terrain.GRASS, 1, 0);
 //        fh5 = new Hexagon(Terrain.JUNGLE, 1, 0);
 //
 //        m3 = map.getMiddleHexagonMapSpot();
@@ -122,7 +122,7 @@
 //
 //    @When("^placing a Tile adjacent to another Tile$")
 //    public void placingATileAdjacentToAnotherTile() throws Throwable {
-//        th1 = new Hexagon(Terrain.GRASSLAND, 1, 1);
+//        th1 = new Hexagon(Terrain.GRASS, 1, 1);
 //        th2 = new Hexagon(Terrain.LAKE, 1, 1);
 //        th3 = new Hexagon(Terrain.VOLCANO, 1, 1);
 //

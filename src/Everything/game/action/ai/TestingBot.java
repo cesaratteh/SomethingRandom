@@ -4,13 +4,9 @@ import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.Server.OrientationAndVolcanoLocationCalculator;
 import Everything.game.action.handlers.*;
-import Everything.game.action.scanners.NoValidActionException;
 import Everything.game.action.scanners.PlacingOnLevelOne.RandomLevelOneTileScanner;
 import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
-import Everything.game.action.scanners.SettlementsFactory;
 import Everything.models.*;
-
-import java.util.ArrayList;
 
 public class TestingBot {
 
@@ -50,7 +46,7 @@ public class TestingBot {
         weJustDidThisMove.setOrientation(0);
         weJustDidThisMove.setTileSpot(new MapSpot(1, 3, 0));
         weJustDidThisMove.setMoveNumber(4);
-        weJustDidThisMove.setTerrain(Terrain.GRASSLAND);
+        weJustDidThisMove.setTerrain(Terrain.GRASS);
         weJustDidThisMove.setBuildType(1);
         return new WeJustDidThisMove();
     }

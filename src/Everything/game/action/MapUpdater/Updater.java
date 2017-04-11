@@ -57,7 +57,7 @@ public class Updater {
         hex1 = new Hexagon(Terrain.ROCKY,1,0);
         map.setHexagon(mapspot.bottomLeft(),hex1);
 
-        hex1 = new Hexagon(Terrain.GRASSLAND,1,0);
+        hex1 = new Hexagon(Terrain.GRASS,1,0);
         map.setHexagon(mapspot.bottomRight(),hex1);
     }
 

@@ -4,7 +4,7 @@ public enum Terrain {
     VOLCANO, //orange
     JUNGLE, // yellowish
     LAKE, // laky
-    GRASSLAND, //dark green
+    GRASS, //dark green
     ROCKY // grey
 }
 

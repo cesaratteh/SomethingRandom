@@ -16,12 +16,12 @@
 //        player = new Player(Team.FRIENDLY);
 //        MapSpot curr = map.getMiddleHexagonMapSpot();
 //
-//        map.setHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
+//        map.setHexagon(curr, new Hexagon(Terrain.GRASS, 1, 1));
 //        map.setHexagon(curr.left(), new Hexagon(Terrain.ROCKY, 1, 1));
 //        map.setHexagon(curr.topLeft(), new Hexagon(Terrain.VOLCANO, 1, 1));
 //
 //        map.setHexagon(curr.topRight(), new Hexagon(Terrain.VOLCANO, 1, 2));
-//        map.setHexagon(curr.topRight().topRight(), new Hexagon(Terrain.GRASSLAND, 1, 2));
+//        map.setHexagon(curr.topRight().topRight(), new Hexagon(Terrain.GRASS, 1, 2));
 //        map.setHexagon(curr.topRight().topLeft(), new Hexagon(Terrain.LAKE, 1, 2));
 //
 //        map.setHexagon(curr.left().left(), new Hexagon(Terrain.VOLCANO, 1, 3));
@@ -93,7 +93,7 @@
 //        MapSpot m2 = m1.topLeft();
 //        MapSpot m3 = m1.topRight();
 //
-//        Hexagon h1 = new Hexagon(Terrain.GRASSLAND,1,4);
+//        Hexagon h1 = new Hexagon(Terrain.GRASS,1,4);
 //        Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,4);
 //        Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 //
@@ -125,7 +125,7 @@
 //        MapSpot m2 = m1.right();
 //        MapSpot m3 = m1.topRight();
 //
-//        Hexagon h1 = new Hexagon(Terrain.GRASSLAND,1,4);
+//        Hexagon h1 = new Hexagon(Terrain.GRASS,1,4);
 //        Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,4);
 //        Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 //
@@ -145,7 +145,7 @@
 //        MapSpot m2 = m1.left();
 //        MapSpot m3 = m1.topLeft();
 //
-//        Hexagon h1 = new Hexagon(Terrain.GRASSLAND,1,4);
+//        Hexagon h1 = new Hexagon(Terrain.GRASS,1,4);
 //        Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,4);
 //        Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 //
@@ -165,7 +165,7 @@
 //        MapSpot m2 = m1.left();
 //        MapSpot m3 = m1.topLeft();
 //
-//        Hexagon h1 = new Hexagon(Terrain.GRASSLAND,1,4);
+//        Hexagon h1 = new Hexagon(Terrain.GRASS,1,4);
 //        Hexagon h2 = new Hexagon(Terrain.VOLCANO,1,4);
 //        Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 //
@@ -185,7 +185,7 @@
 //        MapSpot m2 = m1.topRight();
 //        MapSpot m3 = m1.topLeft();
 //
-//        Hexagon h1 = new Hexagon(Terrain.GRASSLAND,1,4);
+//        Hexagon h1 = new Hexagon(Terrain.GRASS,1,4);
 //        Hexagon h2 = new Hexagon(Terrain.JUNGLE,1,4);
 //        Hexagon h3 = new Hexagon(Terrain.VOLCANO,1,4);
 //

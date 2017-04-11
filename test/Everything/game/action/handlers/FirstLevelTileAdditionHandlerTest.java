@@ -51,7 +51,7 @@ public class FirstLevelTileAdditionHandlerTest {
                 && map.getHexagon(middle.topRight()).getTerrainType() == Terrain.LAKE
                 && map.getHexagon(middle).getTerrainType() == Terrain.VOLCANO
                 && map.getHexagon(middle.bottomLeft()).getTerrainType() == Terrain.ROCKY
-                && map.getHexagon(middle.bottomRight()).getTerrainType() == Terrain.GRASSLAND);
+                && map.getHexagon(middle.bottomRight()).getTerrainType() == Terrain.GRASS);
 
     }
 
@@ -158,7 +158,7 @@ public class FirstLevelTileAdditionHandlerTest {
     public void testDifferentTileID(){
         initTile();
 
-        h1 = new Hexagon(Terrain.GRASSLAND, 1, 2);
+        h1 = new Hexagon(Terrain.GRASS, 1, 2);
         h3 = new Hexagon(Terrain.LAKE, 1, 3);
 
         try {
