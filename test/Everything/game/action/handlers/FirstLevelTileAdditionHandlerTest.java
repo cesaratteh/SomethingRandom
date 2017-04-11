@@ -14,14 +14,10 @@ public class FirstLevelTileAdditionHandlerTest {
     private Hexagon h1;
     private Hexagon h2;
     private Hexagon h3;
-    private Hexagon h4;
-    private Hexagon h5;
 
     private MapSpot m1;
     private MapSpot m2;
     private MapSpot m3;
-    private MapSpot m4;
-    private MapSpot m5;
 
     private FirstLevelTileAdditionHandler handler;
 
@@ -76,7 +72,7 @@ public class FirstLevelTileAdditionHandlerTest {
     @Test
     public void testAddBadPlacementFirstTileToMap(){
 
-        m1 = m3.left();
+        handler.addFirstTileToMap(map);
 
         try {
             handler.addFirstTileToMap(map);
@@ -88,8 +84,9 @@ public class FirstLevelTileAdditionHandlerTest {
     }
 
     private void initTile(){
-        MapSpot middle = map.getMiddleHexagonMapSpot();
-        m1 = middle.left();
+        MapSpot middle = map.getMiddleHexagonMapSpot().topLeft().left();
+        handler.addFirstTileToMap(map);
+        m1 = middle;
         m2 = m1.topLeft();
         m3 = m1.left();
         h1 = new Hexagon(Terrain.JUNGLE, 1, 1);
