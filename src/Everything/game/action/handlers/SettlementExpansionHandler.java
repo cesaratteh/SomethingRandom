@@ -1,12 +1,13 @@
 package Everything.game.action.handlers;
 
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.models.*;
 
 import java.util.ArrayList;
 
 public class SettlementExpansionHandler {
 
-    public void expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Team team) throws CannotPerformActionException {
+    public WeJustDidThisMove expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Team team) throws CannotPerformActionException {
 
         for (final MapSpot mapSpot : expandableMapSpots) {
             if (satisfiesMeeplesRequirements(mapSpot, map)) {
@@ -16,6 +17,10 @@ public class SettlementExpansionHandler {
                 throw new CannotPerformActionException("Cannot expand with meeples");
             }
         }
+
+        We
+
+
     }
 
     public void expandWithTotoro(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
