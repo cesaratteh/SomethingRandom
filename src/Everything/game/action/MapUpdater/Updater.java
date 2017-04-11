@@ -1,4 +1,4 @@
-package game.action.MapUpdater;
+package Everything.game.action.MapUpdater;
 
 
 import Everything.game.action.scanners.settlemenet.expanding.ExpansionToSpecificTerrainScanner;
@@ -162,9 +162,9 @@ public class Updater {
 
         Settlement EnemySettlements = new Settlement(Team.getTeam());
 
-        SettlementsFactory Settlementfinder = new SettlementsFactory(this.map);
+        SettlementsFactory Settlementfinder = new SettlementsFactory();
 
-        ArrayList<Settlement> ListOfSettlements = Settlementfinder.generateSettlements(Team.getTeam());
+        ArrayList<Settlement> ListOfSettlements = Settlementfinder.generateSettlements(map, Team.getTeam());
 
 
         ExpansionToSpecificTerrainScanner Scanner = new ExpansionToSpecificTerrainScanner();

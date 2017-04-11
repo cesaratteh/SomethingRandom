@@ -39,9 +39,9 @@ public class NukingAndStackingHandler {
     }
 
     private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map) {
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
-        ArrayList<Settlement> friendlySettlements = settlementsFactory.generateSettlements(Team.FRIENDLY);
-        ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(Team.ENEMY);
+        SettlementsFactory settlementsFactory = new SettlementsFactory();
+        ArrayList<Settlement> friendlySettlements = settlementsFactory.generateSettlements(map, Team.FRIENDLY);
+        ArrayList<Settlement> enemySettlements = settlementsFactory.generateSettlements(map, Team.ENEMY);
         for(Settlement s : friendlySettlements){
             int nukedCount = 0;
 

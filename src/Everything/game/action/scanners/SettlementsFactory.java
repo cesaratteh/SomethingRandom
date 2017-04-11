@@ -6,11 +6,6 @@ import java.util.ArrayList;
 
 public class SettlementsFactory {
 
-    //-----------
-    // Attributes
-
-    private Map map;
-
     //--------
     // Methods
 
@@ -19,12 +14,12 @@ public class SettlementsFactory {
      * @param team
      * @return an ArrayList of Settlements that belong to the specified team
      */
-    public ArrayList<Settlement> generateSettlements(final Team team) {
+    public ArrayList<Settlement> generateSettlements(final Map map, final Team team) {
         final ArrayList<Settlement> settlements = new ArrayList<>();
 
         final boolean visited[][][] = new boolean[Map.size()][Map.size()][Map.size()];
 
-        visit(map.getMiddleHexagonMapSpot(), settlements, visited, true, team);
+        visit(map.getMiddleHexagonMapSpot(), settlements, visited, true, team, map);
 
         return settlements;
     }
@@ -33,7 +28,8 @@ public class SettlementsFactory {
                        final ArrayList<Settlement> settlements,
                        final boolean visited[][][],
                        final boolean startANewSettlement,
-                       final Team team) {
+                       final Team team,
+                       final Map map) {
 
         if(visited[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()] || map.getHexagon(mapSpot) == null)
             return;
@@ -53,19 +49,12 @@ public class SettlementsFactory {
             if (map.getHexagon(adjacentMapSpot) != null &&
                     map.getHexagon(mapSpot).getOccupiedBy() == map.getHexagon(adjacentMapSpot).getOccupiedBy()) {
 
-                visit(adjacentMapSpot, settlements, visited, false, team);
+                visit(adjacentMapSpot, settlements, visited, false, team, map);
             }
         }
 
         for (final MapSpot adjacentMapSpot : mapSpot.getAdjacentMapSpots()) {
-            visit(adjacentMapSpot, settlements, visited, true, team);
+            visit(adjacentMapSpot, settlements, visited, true, team, map);
         }
-    }
-
-    //-------------
-    // Constructors
-
-    public SettlementsFactory(final Map map) {
-        this.map = map;
     }
 }

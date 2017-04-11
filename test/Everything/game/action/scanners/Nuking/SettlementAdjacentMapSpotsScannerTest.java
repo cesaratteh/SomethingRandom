@@ -37,15 +37,15 @@ public class SettlementAdjacentMapSpotsScannerTest {
         SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner
                 = new SettlementAdjacentMapSpotsScanner();
 
-        SettlementsFactory settlementsFactory = new SettlementsFactory(map);
+        SettlementsFactory settlementsFactory = new SettlementsFactory();
 
         ArrayList<Settlement> friendlySettlements
-                = settlementsFactory.generateSettlements(Team.FRIENDLY);
+                = settlementsFactory.generateSettlements(map, Team.FRIENDLY);
 
         ArrayList<Settlement> enemySettlements
-                = settlementsFactory.generateSettlements(Team.ENEMY);
+                = settlementsFactory.generateSettlements(map, Team.ENEMY);
 
-        assertEquals(12, settlementAdjacentMapSpotsScanner.generate(friendlySettlements.get(0), map).size());
-        assertEquals(10, settlementAdjacentMapSpotsScanner.generate(enemySettlements.get(0), map).size());
+        assertEquals(9, settlementAdjacentMapSpotsScanner.generate(friendlySettlements.get(0), map).size());
+        assertEquals(8, settlementAdjacentMapSpotsScanner.generate(enemySettlements.get(0), map).size());
     }
 }
