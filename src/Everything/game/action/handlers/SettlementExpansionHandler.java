@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SettlementExpansionHandler {
 
-    public WeJustDidThisMove expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Team team) throws CannotPerformActionException {
+    public void expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Team team) throws CannotPerformActionException {
 
         for (final MapSpot mapSpot : expandableMapSpots) {
             if (satisfiesMeeplesRequirements(mapSpot, map)) {
@@ -17,9 +17,6 @@ public class SettlementExpansionHandler {
                 throw new CannotPerformActionException("Cannot expand with meeples");
             }
         }
-
-        We
-
 
     }
 

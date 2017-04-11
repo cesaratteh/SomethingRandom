@@ -1,5 +1,6 @@
 package Everything.game.action.handlers;
 
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Team;
@@ -11,14 +12,21 @@ import Everything.models.Terrain;
  */
 public class SettlementFoundingHandler {
 
-    public void foundSettlement(final MapSpot mapSpotToFoundOn,
-                                final Map map,
-                                final Team team) throws CannotPerformActionException {
+    public WeJustDidThisMove foundSettlement(final MapSpot mapSpotToFoundOn,
+                                             final Map map,
+                                             final Team team) throws CannotPerformActionException {
 
         if(mapSpotSatisfiesFoundingRequirements(map, mapSpotToFoundOn))
             map.getHexagon(mapSpotToFoundOn).addMeeplesAccordingToLevel(team);
         else
             throw new CannotPerformActionException("Cannot found settlement here");
+
+        WeJustDidThisMove move = new WeJustDidThisMove();
+
+        move.setBuildType(1);
+        move.setBuildSpot(mapSpotToFoundOn);
+
+        return move;
     }
 
     private boolean mapSpotSatisfiesFoundingRequirements(final Map map, final MapSpot mapSpot) {
