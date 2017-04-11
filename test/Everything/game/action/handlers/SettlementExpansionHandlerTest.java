@@ -20,7 +20,7 @@ public class SettlementExpansionHandlerTest {
     private SettlementExpansionHandler handler;
 
     @Before
-    public void generateMapForTesting(){
+    public void generateMapForTesting() throws Exception{
         map = new Map();
         FirstLevelTileAdditionHandler tileHandler = new FirstLevelTileAdditionHandler();
         handler = new SettlementExpansionHandler();

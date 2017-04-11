@@ -137,6 +137,7 @@ public class TigerIslandProtocol {
         String gameid = tokens[1];
         int movenumber = Integer.parseInt(tokens[3]);
         String playerID = tokens[5];
+        String buildTileTerrain = tokens[7];
         int tileX = Integer.parseInt(tokens[9]);
         int tileY = Integer.parseInt(tokens[10]);
         int tileZ = Integer.parseInt(tokens[11]);
@@ -144,35 +145,36 @@ public class TigerIslandProtocol {
         int buildX;
         int buildY;
         int buildZ;
-        EnemyMove.BuildType buildType;
-        Terrain terrain = null;
+        int buildType;
+        Terrain expansionTerrain = null;
 
         if (tokens[13].equals("FOUNDED")) {
 
             buildX = Integer.parseInt(tokens[16]);
             buildY = Integer.parseInt(tokens[17]);
             buildZ = Integer.parseInt(tokens[18]);
-            buildType = EnemyMove.BuildType.MEEPLES_FOUNDING;
+            buildType = 1;
         } else if (tokens[13].equals("EXPANDED")) {
             buildX = Integer.parseInt(tokens[16]);
             buildY = Integer.parseInt(tokens[17]);
             buildZ = Integer.parseInt(tokens[18]);
-            terrain = Terrain.valueOf(tokens[19]);
-            buildType = EnemyMove.BuildType.MEEPLES_EXPANDING;
+            expansionTerrain = Terrain.valueOf(tokens[19]);
+            buildType = 2;
         } else if (tokens[14].equals("TOTORO")) {
             buildX = Integer.parseInt(tokens[17]);
             buildY = Integer.parseInt(tokens[18]);
             buildZ = Integer.parseInt(tokens[19]);
-            buildType = EnemyMove.BuildType.TOTORO;
+            buildType = 3;
 
         } else {
             buildX = Integer.parseInt(tokens[17]);
             buildY = Integer.parseInt(tokens[18]);
             buildZ = Integer.parseInt(tokens[19]);
-            buildType = EnemyMove.BuildType.TIGER;
+            buildType = 4;
         }
 
-        EnemyMove enemyMove = new EnemyMove(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, buildType, terrain);
+        ArrayList<Terrain> tileTerrain = parseTileTerrain(buildTileTerrain);
+        EnemyMove enemyMove = new EnemyMove(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, buildType, tileTerrain.get(0), tileTerrain.get(1), expansionTerrain);
         return enemyMove;
     }
 

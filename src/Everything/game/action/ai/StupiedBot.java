@@ -43,10 +43,9 @@ public class StupiedBot {
 
 
     public WeJustDidThisMove playTurn(final MakeMoveInstruction makeMoveInstruction, final Map map, final Player player) {
-        String[] tiles = makeMoveInstruction.getTile().split("\\+");
 
-        final Tile tile = new Tile(new Hexagon(Terrain.valueOf(tiles[0]), makeMoveInstruction.getMoveNumber()),
-                new Hexagon(Terrain.valueOf(tiles[1]), makeMoveInstruction.getMoveNumber()),
+        final Tile tile = new Tile(new Hexagon(makeMoveInstruction.getTerrainA(), makeMoveInstruction.getMoveNumber()),
+                new Hexagon(makeMoveInstruction.getTerrainB(), makeMoveInstruction.getMoveNumber()),
                 new Hexagon(Terrain.VOLCANO, makeMoveInstruction.getMoveNumber()));
 
         final WeJustDidThisMove weJustDidThisMove = new WeJustDidThisMove();
