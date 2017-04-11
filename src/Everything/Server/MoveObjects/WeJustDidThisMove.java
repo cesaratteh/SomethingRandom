@@ -47,6 +47,11 @@ public class WeJustDidThisMove implements Move {
         this.terrain = terrain;
     }
 
+    //1 FOUND SETTLEMENT AT
+    //2 EXPAND SETTLEMENT AT
+    //3 BUILD TOTORO SANCTUARY AT
+    //4 BUILD TIGER PLAYGROUND AT
+    //5 UNABLE TO BUILD
     public void setBuildType(int buildType) {
         this.buildType = buildType;
     }
