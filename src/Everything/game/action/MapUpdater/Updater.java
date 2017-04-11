@@ -22,7 +22,7 @@ Updater {
         this.map = map;
     }
 
-    public void Updatemap(EnemyMove enemymove) throws NoValidActionException {
+    public void updateMap(EnemyMove enemymove) throws NoValidActionException {
         if(enemymove.getBuildType() == 2){
 
 

@@ -11,7 +11,7 @@ public class SettlementFoundingHandlerTest {
     private SettlementFoundingHandler foundingHandler;
 
     @Before
-    public void generateMapForTesting(){
+    public void generateMapForTesting() throws Exception{
         map = new Map();
         FirstLevelTileAdditionHandler tileHandler = new FirstLevelTileAdditionHandler();
         foundingHandler = new SettlementFoundingHandler();
