@@ -3,6 +3,7 @@ package Everything.game.action.handlers;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Team;
+import Everything.models.Terrain;
 
 /**
  * Shows available options for settlement expansion
@@ -23,7 +24,12 @@ public class SettlementFoundingHandler {
     private boolean mapSpotSatisfiesFoundingRequirements(final Map map, final MapSpot mapSpot) {
         return isThereAHexagonCoveringMapSpot(map, mapSpot) &&
                 isOnLevelOne(map, mapSpot) &&
-                isHexagonUnoccupied(map, mapSpot);
+                isHexagonUnoccupied(map, mapSpot) &&
+                !hexIsVolcano(map, mapSpot);
+    }
+
+    private boolean hexIsVolcano(Map map, MapSpot mapSpot) {
+        return map.getHexagon(mapSpot).getTerrainType() == Terrain.VOLCANO;
     }
 
     private boolean isThereAHexagonCoveringMapSpot(final Map map, final MapSpot mapSpot) {
