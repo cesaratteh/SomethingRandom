@@ -95,7 +95,7 @@ public class FirstLevelTileAdditionHandlerTest {
     }
 
     @Test
-    public void testValidTilePlacement(){
+    public void testValidTilePlacement() throws CannotPerformActionException {
         initTile();
 
         handler.addTileToMap(h1,h2,h3,m1,m2,m3, map);
@@ -117,6 +117,8 @@ public class FirstLevelTileAdditionHandlerTest {
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
         }
     }
 
@@ -131,6 +133,8 @@ public class FirstLevelTileAdditionHandlerTest {
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
         }
     }
 
@@ -145,6 +149,8 @@ public class FirstLevelTileAdditionHandlerTest {
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
         }
     }
 
@@ -160,6 +166,8 @@ public class FirstLevelTileAdditionHandlerTest {
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile to be placed"));
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
         }
     }
 
@@ -174,6 +182,8 @@ public class FirstLevelTileAdditionHandlerTest {
         }
         catch(RuntimeException e){
             Assert.assertTrue(e.getMessage().equals("Bad Tile Placement"));
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
         }
     }
 

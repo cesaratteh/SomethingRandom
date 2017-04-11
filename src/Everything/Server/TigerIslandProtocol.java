@@ -3,8 +3,6 @@ package Everything.Server;
 import Everything.Server.MoveObjects.*;
 import Everything.models.*;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 
 public class TigerIslandProtocol {
 
@@ -49,10 +47,10 @@ public class TigerIslandProtocol {
 
     public String createFriendlyMoveMessageToBeSent(WeJustDidThisMove ourMove, String gameID) {
         int tileX = ourMove.getTileSpot().getXForServer();
-        int tileY = ourMove.getTileSpot().getyForServer();
+        int tileY = ourMove.getTileSpot().getYForServer();
         int tileZ = ourMove.getTileSpot().getZForServer();
         int buildX = ourMove.getBuildSpot().getXForServer();
-        int buildY = ourMove.getBuildSpot().getyForServer();
+        int buildY = ourMove.getBuildSpot().getYForServer();
         int buildZ = ourMove.getBuildSpot().getZForServer();
         int orientation = ourMove.getOrientation();
         Terrain terrain = ourMove.getTerrain();
@@ -89,10 +87,10 @@ public class TigerIslandProtocol {
 //        writeToBuffer(instruction);
 //        WeJustDidThisMove ourmove = readFromBuffer();
 //        int tileX = ourmove.getTileSpot().getXForServer();
-//        int tileY = ourmove.getTileSpot().getyForServer();
+//        int tileY = ourmove.getTileSpot().getYForServer();
 //        int tileZ = ourmove.getTileSpot().getZForServer();
 //        int buildX = ourmove.getBuildSpot().getXForServer();
-//        int buildY = ourmove.getBuildSpot().getyForServer();
+//        int buildY = ourmove.getBuildSpot().getYForServer();
 //        int buildZ = ourmove.getBuildSpot().getZForServer();
 //        int orientation = ourmove.getOrientation();
 //        Terrain terrain = ourmove.getTerrain();

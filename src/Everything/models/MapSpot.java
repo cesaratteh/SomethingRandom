@@ -129,7 +129,7 @@ public class MapSpot {
         return x - OFFSET;
     }
 
-    public int getyForServer() {
+    public int getYForServer() {
         return y - OFFSET;
     }
 
@@ -146,7 +146,7 @@ public class MapSpot {
     public String toString() {
         return "MapSpot{" +
                 "x=" + getXForServer() +
-                ", y=" + getyForServer() +
+                ", y=" + getYForServer() +
                 ", z=" + getZForServer() +
                 '}';
     }
