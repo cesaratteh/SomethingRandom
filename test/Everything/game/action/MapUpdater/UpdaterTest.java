@@ -44,7 +44,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 0, -2);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.VOLCANO, 1, 0);
@@ -61,7 +61,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
@@ -78,8 +78,8 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
-//        EnemyTeamUpdater.EnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
@@ -96,7 +96,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
@@ -113,7 +113,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 3, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 3, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
@@ -130,7 +130,7 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 4, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 4, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);
@@ -147,13 +147,13 @@
 //        MapSpot mapspotExpand = new MapSpot(2, 1, -3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(1, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 1, 1, mapspotExpand);
 //
 //        mapspot = new MapSpot(-2, 0, 2);
 //        mapspotExpand = new MapSpot(-3, 0, 3);
 //
 //
-//        EnemyTeamUpdater.EnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand);
+//        EnemyTeamUpdater.executeEnemyMove(2, Terrain.GRASSLAND, Terrain.JUNGLE, mapspot, 4, 1, mapspotExpand);
 //
 //
 //        Hexagon hex1 = new Hexagon(Terrain.GRASSLAND, 1, 0);

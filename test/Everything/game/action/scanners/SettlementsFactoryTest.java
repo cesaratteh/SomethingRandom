@@ -102,12 +102,12 @@ public class SettlementsFactoryTest {
         MapSpot mapspot = new MapSpot(3,0,-3);
         MapSpot mapspotExpand = new MapSpot(1,0,-1);
 
-        EnemyTeamUpdater.EnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,mapspotExpand );
+        EnemyTeamUpdater.executeEnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,mapspotExpand );
 
         MapSpot Test = new MapSpot(2,0,-2);
         mapspot = new MapSpot(0,-2,2);
 
-        EnemyTeamUpdater.EnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,Test);
+        EnemyTeamUpdater.executeEnemyMove(1,Terrain.GRASSLAND,Terrain.GRASSLAND, mapspot,4,1,Test);
 
         MapSpot Test2 = new MapSpot(3,-1,-2);
 
