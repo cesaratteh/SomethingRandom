@@ -2,7 +2,6 @@ package Everything;
 
 import Everything.Server.MoveObjects.EnemyMove;
 import Everything.Server.MoveObjects.MakeMoveInstruction;
-import Everything.Server.MoveObjects.Move;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.ai.StupiedBot;
@@ -34,12 +33,15 @@ public class TigerIsland {
         this.friendlyPID = friendlyPID;
 
         this.map = new Map();
+        enemyMoveUpdater.setFirstTile();
 
         friendly = new Player(Team.FRIENDLY);
         enemy = new Player(Team.ENEMY);
 
-//        AIBot ai = new AIBot();
-//        this.enemyMoveUpdater = new Updater();
+        StupiedBot stupiedBot = new StupiedBot();
+        this.enemyMoveUpdater = new Updater();
+
+        this.friendlyAI = stupiedBot;
     }
 
     //--------
@@ -49,12 +51,11 @@ public class TigerIsland {
         // Call OUR AI
         // Get the MapObject from our AI
         // Push it to the ConnectionClient Queue
-        WeJustDidThisMove weJustDidThisMove = null;
+        WeJustDidThisMove weJustDidThisMove = friendlyAI.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
 
     public void updateMapWithEnemyMove(final EnemyMove enemyMove) {
-        // Pop an Enemy move from the buffer
-        // Call Updater with enemy Move
+        enemyMoveUpdater.updateMap(enemyMove);
     }
 }

@@ -108,10 +108,10 @@
 //
 //    private void doATilePlacementMove(final Map map, final Player player, final Tile tile) {
 //        final ArrayList<Settlement> friendlySettlements
-//                = settlementsFactory.generateSettlements(player.getTeam());
+//                = settlementsFactory.generateSettlements(map, player.getTeam());
 //
 //        final ArrayList<Settlement> enemySettlements =
-//                settlementsFactory.generateSettlements((player.getTeam() == Team.FRIENDLY) ? Team.ENEMY : Team.FRIENDLY);
+//                settlementsFactory.generateSettlements(map, (player.getTeam() == Team.FRIENDLY) ? Team.ENEMY : Team.FRIENDLY);
 //
 //        if (player.getNumberOfTotorosLeft() > 0) {
 //            if (friendlySettlements.size() == 0) {
@@ -200,7 +200,7 @@
 //
 //    private void doABuildMove(final Map map, final Player player) {
 //        final ArrayList<Settlement> friendlySettlements
-//                = settlementsFactory.generateSettlements(player.getTeam());
+//                = settlementsFactory.generateSettlements(map, player.getTeam());
 //
 //        if (player.getNumberOfTotorosLeft() > 0) {
 //            if (friendlySettlements.size() == 0) {
@@ -245,6 +245,7 @@
 //
 //                    else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
 //                        try {
+//
 //                            final ArrayList<MapSpot> expandableMapSpots
 //                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
 //

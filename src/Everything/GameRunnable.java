@@ -10,21 +10,18 @@ public class GameRunnable implements Runnable {
     //-----------
     // Attributes
 
-    private ConcurrentLinkedQueue<Move> threadToClientQueue;
-    private ConcurrentLinkedQueue<Move> clientToThreadQueue;
+    private ConcurrentLinkedQueue<MoveData> threadQueue;
     private String gameID;
     private String playerID;
 
     //-------------
     // Constructors
 
-    public GameRunnable(final ConcurrentLinkedQueue<Move> threadToClientQueue,
-                      final ConcurrentLinkedQueue<Move> clientToThreadQueue,
+    public GameRunnable(final ConcurrentLinkedQueue<MoveData> threadQueue,
                       final String gameID,
                       final String playerID) {
 
-        this.threadToClientQueue = threadToClientQueue;
-        this.clientToThreadQueue = clientToThreadQueue;
+        this.threadQueue = threadQueue;
         this.gameID = gameID;
         this.playerID = playerID;
     }
@@ -39,19 +36,21 @@ public class GameRunnable implements Runnable {
 
         while (true) {
 
-            if (!clientToThreadQueue.isEmpty()) {
-                final Move move = clientToThreadQueue.poll();
-                if(move instanceof GameOverMove){break;}
-                if (move instanceof EnemyMove) {
-                    tigerIsland.updateMapWithEnemyMove( (EnemyMove) move);
-                    // TODO: 4/10/2017 if move ends the game, end it
+            if (!threadQueue.isEmpty() && threadQueue.peek().consumer == MoveData.Consumer.THREAD) {
+
+                final MoveData moveData = threadQueue.poll();
+
+                if (moveData.gameOver) {
+                    break;
+                }
+
+                if (moveData.move instanceof EnemyMove) {
+                    tigerIsland.updateMapWithEnemyMove( (EnemyMove) moveData.move);
                 } else {
                     final WeJustDidThisMove weJustDidThisMove
-                            = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) move);
+                            = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) moveData.move);
 
-                    threadToClientQueue.add(weJustDidThisMove);
-
-                    // TODO: 4/10/2017 if Move ends game, end the game
+                    threadQueue.add(new MoveData(false, weJustDidThisMove, MoveData.Consumer.CLIENT));
                 }
             }
         }

@@ -19,13 +19,14 @@ public class SettlementAdjacentMapSpotsScanner {
 
         final ArrayList<MapSpot> boarderLine = new ArrayList<>();
 
-        boolean[][][] settlementHeatMap = initializeHeatMap(settlement);
+        boolean[][][] heatMap = initializeHeatMap(settlement);
 
         for (MapSpot settlementMapSpot : settlement.getMapSpots()) {
             for (MapSpot adjacentMapSpot : settlementMapSpot.getAdjacentMapSpots()) {
 
-                if (!isMapSpotInSettlement(adjacentMapSpot, settlementHeatMap)) {
+                if (!isMapSpotInHeatMap(adjacentMapSpot, heatMap)) {
                     boarderLine.add(adjacentMapSpot);
+                    heatMap[adjacentMapSpot.getX()][adjacentMapSpot.getY()][adjacentMapSpot.getZ()] = true;
                 }
             }
         }
@@ -47,7 +48,7 @@ public class SettlementAdjacentMapSpotsScanner {
         return settlementHeatMap;
     }
 
-    private boolean isMapSpotInSettlement(final MapSpot mapSpot, final boolean[][][] settlementHeatMap) {
+    private boolean isMapSpotInHeatMap(final MapSpot mapSpot, final boolean[][][] settlementHeatMap) {
         return settlementHeatMap[mapSpot.getX()][mapSpot.getY()][mapSpot.getZ()];
     }
 }

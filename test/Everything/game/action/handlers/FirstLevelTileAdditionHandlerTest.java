@@ -14,39 +14,20 @@ public class FirstLevelTileAdditionHandlerTest {
     private Hexagon h1;
     private Hexagon h2;
     private Hexagon h3;
-    private Hexagon h4;
-    private Hexagon h5;
 
     private MapSpot m1;
     private MapSpot m2;
     private MapSpot m3;
-    private MapSpot m4;
-    private MapSpot m5;
 
     private FirstLevelTileAdditionHandler handler;
 
     @Before
     public void initializeBeforeFirstTileTests(){
         map = new Map();
-        h1 = new Hexagon(Terrain.LAKE, 1, 0);
-        h2 = new Hexagon(Terrain.ROCKY, 1, 0);
-        h3 = new Hexagon(Terrain.VOLCANO, 1, 0);
-        h4 = new Hexagon(Terrain.GRASSLAND, 1, 0);
-        h5 = new Hexagon(Terrain.JUNGLE, 1, 0);
-
-        m3 = map.getMiddleHexagonMapSpot();
-        m1 = m3.topLeft();
-        m2 = m3.topRight();
-        m4 = m3.bottomLeft();
-        m5 = m3.bottomRight();
-
         handler = new FirstLevelTileAdditionHandler();
     }
 
-    private void placeFirstTile(){
-        initializeBeforeFirstTileTests();
-        handler.addFirstTileToMap(map);
-    }
+
 
     private boolean hexIsEqual(Hexagon hex1, Hexagon hex2) {
         return (hex1.getLevel() == hex2.getLevel()
@@ -64,11 +45,13 @@ public class FirstLevelTileAdditionHandlerTest {
 
         handler.addFirstTileToMap(map);
 
-        Assert.assertTrue(hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topLeft()),h1)
-                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().topRight()), h2)
-                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot()), h3)
-                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().bottomLeft()), h4)
-                && hexIsEqual(map.getHexagon(map.getMiddleHexagonMapSpot().bottomRight()), h5));
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+
+        Assert.assertTrue(map.getHexagon(middle.topLeft()).getTerrainType() == Terrain.JUNGLE
+                && map.getHexagon(middle.topRight()).getTerrainType() == Terrain.LAKE
+                && map.getHexagon(middle).getTerrainType() == Terrain.VOLCANO
+                && map.getHexagon(middle.bottomLeft()).getTerrainType() == Terrain.ROCKY
+                && map.getHexagon(middle.bottomRight()).getTerrainType() == Terrain.GRASSLAND);
 
     }
 
@@ -89,7 +72,7 @@ public class FirstLevelTileAdditionHandlerTest {
     @Test
     public void testAddBadPlacementFirstTileToMap(){
 
-        m1 = m3.left();
+        handler.addFirstTileToMap(map);
 
         try {
             handler.addFirstTileToMap(map);
@@ -101,9 +84,9 @@ public class FirstLevelTileAdditionHandlerTest {
     }
 
     private void initTile(){
-        placeFirstTile();
-        MapSpot middle = map.getMiddleHexagonMapSpot();
-        m1 = middle.left();
+        MapSpot middle = map.getMiddleHexagonMapSpot().topLeft().left();
+        handler.addFirstTileToMap(map);
+        m1 = middle;
         m2 = m1.topLeft();
         m3 = m1.left();
         h1 = new Hexagon(Terrain.JUNGLE, 1, 1);

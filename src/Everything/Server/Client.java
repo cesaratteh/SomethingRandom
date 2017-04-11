@@ -1,31 +1,31 @@
 package Everything.Server;
 
 import Everything.GameRunnable;
-import Everything.Server.MoveObjects.EnemyMove;
-import Everything.Server.MoveObjects.GameOverMove;
-import Everything.Server.MoveObjects.Move;
-import com.sun.security.ntlm.Server;
+import Everything.Server.MoveObjects.*;
 
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+
 public class Client {
+
+    private static final String TOURNAMENT_PASSWORD = "";
+    private static final String USER_NAME = "";
+    private static final String USER_PASS = "";
+
     public static void main(String[] args) {
-//        if (args.length != 2) {
-//            System.err.println(
-//                    "Usage: <host name> <port number>");
-//            System.exit(1);
-//        }
-//
-//        String hostName = args[0];
-//        int portNumber = Integer.parseInt(args[1]);
+        if (args.length != 2) {
+            System.err.println("Usage: <host name> <port number>");
+            System.exit(1);
+        }
+
+        String hostName = args[0];
+        int portNumber = Integer.parseInt(args[1]);
 
         try (
-               //   Socket MyClient = new Socket("localhost", 6539);  //FIXME: Change to actual server info
+//              Socket MyClient = new Socket(hostName, portNumber);
 
                 //  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
                 BufferedReader input = new BufferedReader(new FileReader("input.txt"));
@@ -34,67 +34,86 @@ public class Client {
         ){
             String fromServer;
             String fromPlayer;
-            String PlayerID;
-            HashMap<String, ConcurrentLinkedQueue<Move>> ThreadtoClient = new HashMap<>();
-            ArrayList<ConcurrentLinkedQueue<Move>> ClienttoThread = new ArrayList<>();
+
+
+            final HashMap<String, ConcurrentLinkedQueue<MoveData>> runningThreadsMap = new HashMap<>();
 
 
             TigerIslandProtocol tip = new TigerIslandProtocol();            //Only authenticate once, so outside while loop
-            fromPlayer = tip.authenticateTournament(input.readLine());
-
+            fromPlayer = tip.authenticateTournament(input.readLine(), TOURNAMENT_PASSWORD, USER_NAME, USER_PASS);
             output.println(fromPlayer);
 
             System.out.println(fromPlayer);
 
-            fromPlayer = tip.authenticateTournament(input.readLine());
-
+            fromPlayer = tip.authenticateTournament(input.readLine(), TOURNAMENT_PASSWORD, USER_NAME, USER_PASS);
             output.println(fromPlayer);
 
             System.out.println(fromPlayer);
 
-            PlayerID = tip.getPlayerID(input.readLine());                   //Grab our PlayerID for later comparisons
+            final String ourPlayerID = tip.getPlayerID(input.readLine());                   //Grab our PlayerID for later comparisons
 
-
-            while (!((fromServer = input.readLine()).equals("END OF CHALLENGES"))){         //Keep going as long as we're in tournament
+            while (!((fromServer = input.readLine()).contains("THANK YOU FOR PLAYING!"))){         //Keep going as long as we're in tournament
                 System.out.println("Server: " + fromServer);
-
 
                 if(fromServer.contains("GAME")) {
                     String gameID = tip.parseGameID(fromServer);
 
-                    if(!ThreadtoClient.containsKey(gameID))
+                    if(!runningThreadsMap.containsKey(gameID))
                     {
-                        ThreadtoClient.put(gameID, new ConcurrentLinkedQueue<Move>());
-                        ClienttoThread.add(new ConcurrentLinkedQueue<Move>());
-                        GameRunnable game = new GameRunnable(ThreadtoClient.get(gameID),
-                                ClienttoThread.get(ClienttoThread.size()-1),
+                        runningThreadsMap.put(gameID, new ConcurrentLinkedQueue<MoveData>());
+                        GameRunnable gameRunnable = new GameRunnable(runningThreadsMap.get(gameID),
                                 gameID,
-                                "laskdjfldsakj");
-                        game.run();
+                                ourPlayerID);
+                        gameRunnable.run();
                     }
 
-                    while (!(fromServer.contains("OVER PLAYER"))) {          //While game isn't over
-                        System.out.println("Server: " + fromServer);
-                            if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
-                            {
-                                fromPlayer = tip.parseMoveInput(fromServer);
-                                System.out.println("Player: " + fromPlayer);
-                                output.println(fromPlayer);
-                            }
-                            if(fromServer.contains("PLACED") && !(fromServer.contains(PlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
-                            {
-                               EnemyMove theirMove = tip.parseOpponentMove(fromServer);
-                               tip.writeToBuffer(theirMove);
-                            }
-                        fromServer = input.readLine();
+                    if (fromServer.contains("OVER PLAYER") ||
+                            fromServer.contains("FORFEITED:") ||
+                            fromServer.contains("LOST")) {
+
+
+                        ConcurrentLinkedQueue<MoveData> threadBuffer = runningThreadsMap.get(gameID);
+                        threadBuffer.add(new MoveData(true, null, MoveData.Consumer.THREAD));
                     }
-                    String gameID1 = tip.parseGameID(fromServer);
-                    GameOverMove gameover = new GameOverMove(gameID1);
-                    tip.writeToBuffer(gameover);
+
+
+                    if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
+                    {
+                        MakeMoveInstruction ourMoveInstruction = tip.getMoveInstruction(fromServer);
+
+                        ConcurrentLinkedQueue<MoveData> threadQueue = runningThreadsMap.get(gameID);
+
+                        threadQueue.add(new MoveData(false, ourMoveInstruction, MoveData.Consumer.THREAD));
+                    }
+
+                    if (fromServer.contains("PLACED") && !(fromServer.contains(ourPlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
+                    {
+                        EnemyMove enemyMove = tip.parseOpponentMove(fromServer);
+
+                        ConcurrentLinkedQueue<MoveData> threadDataQueue = runningThreadsMap.get(enemyMove.getGameid());
+
+                        threadDataQueue.add(new MoveData(false, enemyMove, MoveData.Consumer.THREAD));
+                    }
+
+                    for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
+                        if (!threadsQueue.isEmpty()) {
+
+                            if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
+
+                                Move friendlyMove = threadsQueue.poll().move;
+
+                                if (friendlyMove instanceof WeJustDidThisMove) {
+
+                                    String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) friendlyMove, gameID);
+                                    output.println(friendlyMoveMessageToBeSent);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }catch (ConnectException e){
-            System.out.println("ahhhhhhhhhhhhhhhhhhhhhh");
+            System.out.println("ERROR");
         }catch (UnknownHostException e) {
             System.out.println(e);
             System.exit(1);
@@ -102,11 +121,5 @@ public class Client {
             System.out.println(e);
             System.exit(1);
         }
-
-
-
-
-
-
     }
 }

@@ -38,7 +38,7 @@ public class SettlementLevelOneTwoSpotsNukingScanner {
         ArrayList<MapSpot> nukableMapSpots = new ArrayList<>();
 
         for (MapSpot settlementMapSpot : settlement.getMapSpots()) {
-            if(!map.getHexagon(settlementMapSpot).isHasTotoro())
+            if(!map.getHexagon(settlementMapSpot).isHasTotoro() && !map.getHexagon(settlementMapSpot).isHasTiger())
                 nukableMapSpots.add(settlementMapSpot);
         }
 

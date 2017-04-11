@@ -2,7 +2,7 @@ package Everything.Server.MoveObjects;
 
 import Everything.models.Terrain;
 
-public class EnemyMove implements Move{
+public class EnemyMove implements Move {
 
     //-----------
     // Attributes
@@ -17,6 +17,7 @@ public class EnemyMove implements Move{
     private int buildX;
     private int buildY;
     private int buildZ;
+    private BuildType buildType;
     private Terrain terrain;
 
     //-----------
@@ -24,7 +25,7 @@ public class EnemyMove implements Move{
 
     public EnemyMove(final String gameid, final int movenumber, final String playerID, final int tileX,
                      final int tileY, final int tileZ, final int orientation, final int buildX, final int buildY,
-                     final int buildZ, final Terrain terrain){
+                     final int buildZ, final BuildType buildType, final Terrain terrain) {
         this.gameid = gameid;
         this.movenumber = movenumber;
         this.playerID = playerID;
@@ -35,6 +36,7 @@ public class EnemyMove implements Move{
         this.buildX = buildX;
         this.buildY = buildY;
         this.buildZ = buildZ;
+        this.buildType = buildType;
         this.terrain = terrain;
 
     }
@@ -42,15 +44,60 @@ public class EnemyMove implements Move{
     //-----------
     // Getters
 
-    public String getGameid(){return gameid;}
-    public int getMovenumber(){return movenumber;}
-    public String getPlayerID(){return playerID;}
-    public int getTileX(){return tileX;}
-    public int getTileY(){return tileY;}
-    public int getTileZ(){return tileZ;}
-    public int getOrientation(){return orientation;}
-    public int getBuildX(){return buildX;}
-    public int getBuildY(){return buildY;}
-    public int getBuildZ(){return buildZ;}
-    public Terrain getTerrain(){return terrain;}
+    public String getGameid() {
+        return gameid;
+    }
+
+    public int getMovenumber() {
+        return movenumber;
+    }
+
+    public String getPlayerID() {
+        return playerID;
+    }
+
+    public int getTileX() {
+        return tileX;
+    }
+
+    public int getTileY() {
+        return tileY;
+    }
+
+    public int getTileZ() {
+        return tileZ;
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+
+    public int getBuildX() {
+        return buildX;
+    }
+
+    public int getBuildY() {
+        return buildY;
+    }
+
+    public int getBuildZ() {
+        return buildZ;
+    }
+
+    public BuildType getBuildType() {
+        return buildType;
+    }
+
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
+
+    public enum BuildType {
+        MEEPLES_FOUNDING,
+        MEEPLES_EXPANDING,
+        TOTORO,
+        TIGER;
+    }
 }
+
