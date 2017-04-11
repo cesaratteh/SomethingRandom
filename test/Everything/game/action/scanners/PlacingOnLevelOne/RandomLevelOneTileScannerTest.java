@@ -2,13 +2,8 @@ package Everything.game.action.scanners.PlacingOnLevelOne;
 
 import Everything.game.action.scanners.MapGenerator;
 import Everything.game.action.scanners.NoValidActionException;
-import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
-import Everything.models.Map;
-import Everything.models.Team;
-import Everything.models.Terrain;
+import Everything.models.*;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class RandomLevelOneTileScannerTest {
 
@@ -24,11 +19,23 @@ public class RandomLevelOneTileScannerTest {
 
         RandomLevelOneTileScanner randomLevelOneTileScanner = new RandomLevelOneTileScanner();
 
-        randomLevelOneTileScanner.scan(map);
+//        System.out.println(randomLevelOneTileScanner.scan(map).getM1());
+//        System.out.println(randomLevelOneTileScanner.scan(map).getM2());
+//        System.out.println(randomLevelOneTileScanner.scan(map).getM3());
+    }
 
+    @Test
+    public void dotTest() throws NoValidActionException {
+        final Map map = new Map();
 
-        RandomSettlementFoundingScanner randomSettlementFoundingScanner = new RandomSettlementFoundingScanner();
+        map.setHexagon(map.getMiddleHexagonMapSpot(), new Hexagon(Terrain.VOLCANO, 1, 1));
 
-//        System.out.println(randomLevelOneTileScanner.scan(map));
+        RandomLevelOneTileScanner randomLevelOneTileScanner = new RandomLevelOneTileScanner();
+
+        final TileMapSpot tileMapSpot = randomLevelOneTileScanner.scan(map);
+
+//        System.out.println(tileMapSpot.getM1());
+//        System.out.println(tileMapSpot.getM2());
+//        System.out.println(tileMapSpot.getM3());
     }
 }

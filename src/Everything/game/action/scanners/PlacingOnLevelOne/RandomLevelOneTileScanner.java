@@ -12,27 +12,25 @@ public class RandomLevelOneTileScanner {
 
     public TileMapSpot scan(final Map map) throws NoValidActionException{
 
-        MapSpot currSpot = map.getMiddleHexagonMapSpot();
+        boolean isVisited[][][] = new boolean[Map.size()][Map.size()][Map.size()];
+        result = null;
 
-        while(true) {
-            if (map.getHexagon(currSpot.right()) == null && map.getHexagon(currSpot.bottomRight()) == null) {
-                break;
-            }
+        visit(map.getMiddleHexagonMapSpot(), isVisited, map);
 
-            if (map.getHexagon(currSpot.right()) != null) {
-                currSpot = currSpot.right();
-            } else {
-                currSpot = currSpot.bottomRight();
-            }
+        if (result == null) {
+            throw new NoValidActionException("No valid spots found");
         }
 
-        return getTileIfValid(currSpot.right(), map);
+        return result;
     }
 
+    //----------------
+    // Private Methods
+
+    private TileMapSpot result;
     private void visit(final MapSpot currentMapSpot,
-                              TileMapSpot result,
                               final boolean isVisited[][][],
-                              final Map map)  throws NoValidActionException{
+                              final Map map){
 
 
         if (result != null || isVisited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()]) {
@@ -46,15 +44,12 @@ public class RandomLevelOneTileScanner {
             try
             {
                 result = getTileIfValid(adjMapSpots, map);
-                return;
             }catch (NoValidActionException e){}
 
             if (satisfiesVisitingRequirements(map, adjMapSpots, isVisited)) {
-                visit(adjMapSpots, result, isVisited, map);
+                visit(adjMapSpots, isVisited, map);
             }
         }
-
-        throw new NoValidActionException("Cannot place tile anywhere in RandomLevelOneTileScanner");
     }
 
     private boolean satisfiesVisitingRequirements(final Map map, final MapSpot mapSpot, final boolean isVisited[][][]) {
