@@ -29,32 +29,44 @@ public class SettlementExpansionHandlerTest {
 
         MapSpot curr = map.getMiddleHexagonMapSpot().topLeft().left().bottomLeft();
 
-        tileHandler.addTileToMap(
-                new Hexagon(Terrain.VOLCANO, 1, 2),
-                new Hexagon(Terrain.GRASSLAND, 1, 2),
-                new Hexagon(Terrain.LAKE, 1, 2),
-                curr.topRight(),
-                curr.topRight().topRight(),
-                curr.topRight().topLeft(),
-                map);
+        try {
+            tileHandler.addTileToMap(
+                    new Hexagon(Terrain.VOLCANO, 1, 2),
+                    new Hexagon(Terrain.GRASSLAND, 1, 2),
+                    new Hexagon(Terrain.LAKE, 1, 2),
+                    curr.topRight(),
+                    curr.topRight().topRight(),
+                    curr.topRight().topLeft(),
+                    map);
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
+        }
 
-        tileHandler.addTileToMap(
-                new Hexagon(Terrain.GRASSLAND, 1, 1),
-                new Hexagon(Terrain.ROCKY, 1, 1),
-                new Hexagon(Terrain.VOLCANO, 1, 1),
-                curr,
-                curr.left(),
-                curr.topLeft(),
-                map);
+        try {
+            tileHandler.addTileToMap(
+                    new Hexagon(Terrain.GRASSLAND, 1, 1),
+                    new Hexagon(Terrain.ROCKY, 1, 1),
+                    new Hexagon(Terrain.VOLCANO, 1, 1),
+                    curr,
+                    curr.left(),
+                    curr.topLeft(),
+                    map);
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
+        }
 
-        tileHandler.addTileToMap(
-                new Hexagon(Terrain.VOLCANO, 1, 3),
-                new Hexagon(Terrain.LAKE, 1, 3),
-                new Hexagon(Terrain.ROCKY, 1, 3),
-                curr.left().left(),
-                curr.topLeft().left(),
-                curr.left().left().topLeft(),
-                map);
+        try {
+            tileHandler.addTileToMap(
+                    new Hexagon(Terrain.VOLCANO, 1, 3),
+                    new Hexagon(Terrain.LAKE, 1, 3),
+                    new Hexagon(Terrain.ROCKY, 1, 3),
+                    curr.left().left(),
+                    curr.topLeft().left(),
+                    curr.left().left().topLeft(),
+                    map);
+        } catch (CannotPerformActionException e) {
+            e.printStackTrace();
+        }
     }
 
 //
