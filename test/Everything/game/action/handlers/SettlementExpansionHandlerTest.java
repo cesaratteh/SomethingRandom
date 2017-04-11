@@ -1,49 +1,71 @@
-//package Everything.game.action.handlers;
-//
-//import org.junit.Before;
-//import Everything.models.*;
-//import org.junit.Assert;
-//import org.junit.Test;
-//
-//import java.util.ArrayList;
-//
-//
-//public class SettlementExpansionHandlerTest {
-//
-//    private Map map;
-//    private Player player;
-//    private Settlement settlement;
-//    private SettlementExpansionHandler handler;
-//
-//    @Before
-//    public void generateMapForTesting(){
-//        this.map = new Map();
-//        this.player = new Player(Team.FRIENDLY);
-//        this.settlement = new Settlement(Team.FRIENDLY);
-//        this.handler = new SettlementExpansionHandler(map,settlement);
-//
-//        MapSpot curr = map.getMiddleHexagonMapSpot();
-//
-//        map.setHexagon(curr, new Hexagon( Terrain.GRASSLAND, 1, 1));
-//        map.setHexagon(curr.left(), new Hexagon(Terrain.ROCKY, 1, 1));
-//        map.setHexagon(curr.topLeft(), new Hexagon(Terrain.VOLCANO, 1, 1));
-//
-//        map.setHexagon(curr.topRight(), new Hexagon(Terrain.VOLCANO, 1, 2));
-//        map.setHexagon(curr.topRight().topRight(), new Hexagon(Terrain.GRASSLAND, 1, 2));
-//        map.setHexagon(curr.topRight().topLeft(), new Hexagon(Terrain.LAKE, 1, 2));
-//
-//        map.setHexagon(curr.left().left(), new Hexagon(Terrain.VOLCANO, 1, 3));
-//        map.setHexagon(curr.topLeft().left(), new Hexagon(Terrain.ROCKY, 1, 3));
-//        map.setHexagon(curr.left().left().topLeft(), new Hexagon(Terrain.ROCKY, 1, 3));
-//
-//    }
+package Everything.game.action.handlers;
+
+import Everything.game.action.scanners.NoValidActionException;
+import Everything.game.action.scanners.Nuking.SettlementAdjacentMapSpotsScanner;
+import Everything.game.action.scanners.SettlementsFactory;
+import Everything.game.action.scanners.settlemenet.expanding.SettlementTouchingExpansionScanner;
+import Everything.game.action.scanners.settlemenet.expanding.TigerSpotScanner;
+import Everything.game.action.scanners.settlemenet.expanding.TotoroSpotScanner;
+import org.junit.Before;
+import Everything.models.*;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+
+public class SettlementExpansionHandlerTest {
+
+    private Map map;
+    private SettlementExpansionHandler handler;
+
+    @Before
+    public void generateMapForTesting(){
+        map = new Map();
+        FirstLevelTileAdditionHandler tileHandler = new FirstLevelTileAdditionHandler();
+        handler = new SettlementExpansionHandler();
+
+        tileHandler.addFirstTileToMap(map);
+
+        MapSpot curr = map.getMiddleHexagonMapSpot().topLeft().left().bottomLeft();
+
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.VOLCANO, 1, 2),
+                new Hexagon(Terrain.GRASSLAND, 1, 2),
+                new Hexagon(Terrain.LAKE, 1, 2),
+                curr.topRight(),
+                curr.topRight().topRight(),
+                curr.topRight().topLeft(),
+                map);
+
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.GRASSLAND, 1, 1),
+                new Hexagon(Terrain.ROCKY, 1, 1),
+                new Hexagon(Terrain.VOLCANO, 1, 1),
+                curr,
+                curr.left(),
+                curr.topLeft(),
+                map);
+
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.VOLCANO, 1, 3),
+                new Hexagon(Terrain.LAKE, 1, 3),
+                new Hexagon(Terrain.ROCKY, 1, 3),
+                curr.left().left(),
+                curr.topLeft().left(),
+                curr.left().left().topLeft(),
+                map);
+    }
+
 //
 //    @Test
 //    public void testGenerateExpandableSettlementAreaFromStart(){
 //        MapSpot middle = map.getMiddleHexagonMapSpot();
 //        settlement.add(middle, map.getHexagon(middle));
 //
-//        ArrayList<MapSpot> validSpots = handler.generateExpandableSettlementArea();
+//        handler.
+//
+//        ArrayList<MapSpot> validSpots =
 //
 //        ArrayList<MapSpot> actualSpots = new ArrayList<>();
 //        actualSpots.add(middle.left());
@@ -118,65 +140,109 @@
 //
 //        Assert.assertTrue(validTotoroSpots.isEmpty());
 //    }
-//
-//    @Test
-//    public void testExpandWithMeeples(){
-//        MapSpot middle = map.getMiddleHexagonMapSpot();
-//        settlement.add(middle,map.getHexagon(middle));
-//        handler.expandWithMeeples(middle.left());
-//
-//        Assert.assertTrue(settlement.size() == 4);
-//    }
-//
-//    @Test
-//    public void testExpandWithTotoros(){
-//        MapSpot middle = map.getMiddleHexagonMapSpot();
-//        settlement.add(middle, map.getHexagon(middle));
-//
-//        try{
-//            handler.expandWithTotoro(middle.left());
-//        }
-//        catch(RuntimeException e){
-//            Assert.assertTrue(e.getMessage() == "Bad expansion with Totoro");
-//        }
-//    }
-//
-//    @Test
-//    public void testExpandWithTigers() {
-//        MapSpot middle = map.getMiddleHexagonMapSpot();
-//        settlement.add(middle, map.getHexagon(middle));
-//
-//        try{
-//            handler.expandWithTiger(middle.left());
-//        }
-//        catch(RuntimeException e){
-//            Assert.assertTrue(e.getMessage() == "Bad expansion with Tiger");
-//        }
-//    }
-//
-//    //Helpers:
-//    //--------
-//    private boolean listsAreEqual(ArrayList<MapSpot> a, ArrayList<MapSpot> b){
-//        boolean equal = true;
-//        for(int i = 0; i< a.size(); i++){
-//            boolean found = false;
-//            for(int j =0 ; j< b.size(); j++){
-//                if(isEqual(a.get(i), b.get(j))){
-//                    found = true;
-//                }
-//            }
-//            if(!found){
-//                equal = false;
-//                break;
-//            }
-//        }
-//        return equal && a.size() == b.size();
-//    }
-//
-//    private boolean isEqual(MapSpot m1, MapSpot m2) {
-//        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
-//    }
-//
-//
-//}
-//
+
+    @Test
+    public void testExpandWithMeeples(){
+        Team team = RandomGenerator.generateRandomTeam();
+
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
+        try {
+            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+        } catch (CannotPerformActionException e) {
+            Assert.fail();
+        }
+
+        SettlementAdjacentMapSpotsScanner scanner = new SettlementAdjacentMapSpotsScanner();
+        SettlementsFactory settlementsFactory = new SettlementsFactory();
+        Settlement currentSettlement = settlementsFactory.generateSettlements(map,team).get(0);
+        ArrayList<MapSpot> adjSpots = scanner.generate(currentSettlement, map);
+
+
+        try {
+            handler.expandWithMeeples(adjSpots, map, team);
+        } catch (CannotPerformActionException e) {
+            System.out.println(e.getMessage());
+            Assert.fail();
+        }
+
+        Assert.assertTrue(currentSettlement.size() == 2);
+    }
+
+    @Test
+    public void testInvalidExpandWithTotoros(){
+        Team team = RandomGenerator.generateRandomTeam();
+
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
+        try {
+            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+        } catch (CannotPerformActionException e) {
+            Assert.fail();
+        }
+
+        TotoroSpotScanner scanner = new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner()));
+        SettlementsFactory settlementsFactory = new SettlementsFactory();
+        Settlement currentSettlement = settlementsFactory.generateSettlements(map,team).get(0);
+
+
+        try {
+            handler.expandWithTotoro(scanner.scan(currentSettlement, map).get(0), map, team);
+        } catch (CannotPerformActionException | NoValidActionException e) {
+
+            Assert.assertTrue(currentSettlement.size() == 2);
+        }
+
+    }
+
+    @Test
+    public void testInvalidExpandWithTigers() {
+        Team team = RandomGenerator.generateRandomTeam();
+
+        MapSpot middle = map.getMiddleHexagonMapSpot();
+        SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
+        try {
+            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+        } catch (CannotPerformActionException e) {
+            Assert.fail();
+        }
+
+        TigerSpotScanner tigerSpotScanner = new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner()));
+        SettlementsFactory settlementsFactory = new SettlementsFactory();
+        Settlement currentSettlement = settlementsFactory.generateSettlements(map,team).get(0);
+
+
+        try {
+            handler.expandWithTiger(tigerSpotScanner.scan(currentSettlement, map).get(0), map, team);
+        } catch (CannotPerformActionException | NoValidActionException e) {
+            Assert.assertTrue(currentSettlement.size() == 1);
+        }
+
+    }
+
+    //Helpers:
+    //--------
+    private boolean listsAreEqual(ArrayList<MapSpot> a, ArrayList<MapSpot> b){
+        boolean equal = true;
+        for(int i = 0; i< a.size(); i++){
+            boolean found = false;
+            for(int j =0 ; j< b.size(); j++){
+                if(isEqual(a.get(i), b.get(j))){
+                    found = true;
+                }
+            }
+            if(!found){
+                equal = false;
+                break;
+            }
+        }
+        return equal && a.size() == b.size();
+    }
+
+    private boolean isEqual(MapSpot m1, MapSpot m2) {
+        return m1.getX() == m2.getX() && m1.getY() == m2.getY();
+    }
+
+
+}
+

@@ -1,5 +1,6 @@
 package Everything.game.action.handlers;
 
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.models.Hexagon;
 import Everything.models.Map;
 import Everything.models.MapSpot;
@@ -13,11 +14,8 @@ import java.util.Stack;
  */
 public class FirstLevelTileAdditionHandler {
 
-    /**
-     * h1-5 are the hexes of the FirstTile
-     * m1-5 are the corresponding MapSpots
-     * can handle any orientation of FirstTile
-     */
+
+    //Doesnt actually count as a move, the map should have the first tile placed at the start of the game.
     public void addFirstTileToMap(final Map map){
         MapSpot mapspot = new MapSpot(0,0,0);
         Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);
@@ -36,29 +34,29 @@ public class FirstLevelTileAdditionHandler {
         map.setHexagon(mapspot.bottomRight(),hex1);
     }
 
-    public void addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3, final Map map){
+    public WeJustDidThisMove addTileToMap(Hexagon h1, Hexagon h2, Hexagon h3, MapSpot m1, MapSpot m2, MapSpot m3, final Map map) throws CannotPerformActionException {
 
         if (!onlyOneVolcano(h1, h2, h3) || !matchingTileID(h1, h2, h3))
             throw new RuntimeException("Bad Tile to be placed");
 
-        if(!goodMapSpots(m1,m2,m3, map)){
+        if (!goodMapSpots(m1, m2, m3, map)) {
             throw new RuntimeException("Bad Map Spots for placement");
         }
 
-        if(!isValidConfigurationForTile(m1,m2,m3))
+        if (!isValidConfigurationForTile(m1, m2, m3))
             throw new RuntimeException("Bad Tile Placement");
 
-        if(map.getHexagon(m1) == null)
+        if (map.getHexagon(m1) == null)
             map.setHexagon(m1, h1);
         else
             throw new RuntimeException("Bad Tile Placement");
 
-        if(map.getHexagon(m2) == null)
+        if (map.getHexagon(m2) == null)
             map.setHexagon(m2, h2);
         else
             throw new RuntimeException("Bad Tile Placement");
 
-        if(map.getHexagon(m3) == null)
+        if (map.getHexagon(m3) == null)
             map.setHexagon(m3, h3);
         else
             throw new RuntimeException("Bad Tile Placement");
@@ -66,6 +64,45 @@ public class FirstLevelTileAdditionHandler {
         h1.setLevel(1);
         h2.setLevel(1);
         h3.setLevel(1);
+
+        WeJustDidThisMove move = new WeJustDidThisMove();
+
+        if (h1.getTerrainType() == Terrain.VOLCANO){
+            move.setBuildSpot(m1);
+            move.setOrientation(findOrientation(m1,m2,m3));
+        }
+        else if (h2.getTerrainType() == Terrain.VOLCANO){
+            move.setBuildSpot(m2);
+            move.setOrientation(findOrientation(m2,m1,m3));
+        }
+        else {
+            move.setBuildSpot(m3);
+            move.setOrientation(findOrientation(m3,m1,m2));
+        }
+        return move;
+    }
+
+    private int findOrientation(MapSpot m1, MapSpot m2, MapSpot m3) throws CannotPerformActionException {
+        if((m1.topLeft() == m2 && m1.topRight() == m3)
+                ||( m1.topLeft() == m3 && m1.topRight() == m2))
+            return 1;
+        else if ((m1.topRight() == m2 && m1.right() == m3)
+                ||(m1.topRight() == m3 && m1.right() == m2))
+            return 2;
+        else if ((m1.right() == m2 && m1.bottomRight() == m3)
+                || (m1.right() == m3 && m1.bottomRight() == m2))
+            return 3;
+        else if ((m1.bottomRight() == m2 && m1.bottomLeft() == m3)
+                || (m1.bottomRight() == m3 && m1.bottomLeft() == m2))
+            return 4;
+        else if ((m1.bottomLeft() == m2 && m1.left() == m3)
+                || (m1.bottomLeft() == m3 && m1.left() == m2))
+            return 5;
+        else if ((m1.left() == m2 && m1.topLeft() == m3)
+                || (m1.left() == m3 && m1.topLeft() == m2))
+            return 6;
+        else
+            throw new CannotPerformActionException("Cannot find orientation of Tile");
     }
 
     private boolean goodMapSpots(MapSpot m1, MapSpot m2, MapSpot m3, final Map map) {

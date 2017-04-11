@@ -21,6 +21,7 @@ public class Updater {
     }
 
     public void setFirstTile(){
+
         MapSpot mapspot = new MapSpot(0,0,0);
         Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);
         map.setHexagon(mapspot, hex1);
@@ -44,7 +45,6 @@ public class Updater {
     //Move Number 1=Found Settlement 2=Expand 3=build Totoro 4=build tiger
     //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation
     //Order above, if doing Expand action use other method below
-
 
     public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
         Player Team = new Player(ENEMY);
