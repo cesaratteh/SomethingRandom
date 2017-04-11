@@ -14,6 +14,7 @@ public class WeJustDidThisMove implements Move {
     private int orientation;
     private Terrain terrain;
     private int buildType;
+    private int moveNumber; // MUST BE SET
 
     //-----------
     // Getters
@@ -23,9 +24,12 @@ public class WeJustDidThisMove implements Move {
     public int getOrientation(){return this.orientation;}
     public Terrain getTerrain(){return this.terrain;}
     public int getBuildType(){return this.buildType;}
+    public int getMoveNumber() {
+        return moveNumber;
+    }
 
-    // Setter
-
+    //--------
+    // Setters
 
     public void setTileSpot(MapSpot tileSpot) {
         this.tileSpot = tileSpot;
@@ -47,14 +51,7 @@ public class WeJustDidThisMove implements Move {
         this.buildType = buildType;
     }
 
-    @Override
-    public String toString() {
-        return "WeJustDidThisMove{" +
-                "tileSpot=" + tileSpot +
-                ", buildSpot=" + buildSpot +
-                ", orientation=" + orientation +
-                ", terrain=" + terrain +
-                ", buildType=" + buildType +
-                '}';
+    public void setMoveNumber(int moveNumber) {
+        this.moveNumber = moveNumber;
     }
 }

@@ -1,84 +1,122 @@
 package Everything.Server;
 
-import Everything.Server.MoveObjects.EnemyMove;
-import Everything.Server.MoveObjects.WeJustDidThisMove;
-import Everything.Server.MoveObjects.MakeMoveInstruction;
-import Everything.Server.MoveObjects.Move;
+import Everything.Server.MoveObjects.*;
 import Everything.models.*;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class TigerIslandProtocol {
-    private String gameID;              //Dave said can be alphanumeric, so has to be a string
-    private int moveNumber;
-    private String tile;
-    private int timeLimit;
 
-
-    public String authenticateTournament(String input){
+    public String authenticateTournament(String input, String tournamentPassword, String userName, String userPassword){
         String output = null;
-        if(input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")){
-            output = "ENTER THUNDERDOME " + "<tournament password>";             //FIXME: replace with actual tournament password
+        if (input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")) {
+
+            output = "ENTER THUNDERDOME " + tournamentPassword;             //FIXME: replace with actual tournament password
+        } else {
+            if (input.equals("TWO SHALL ENTER, ONE SHALL LEAVE")) {
+                output = "I AM " + userName + " " + userPassword;
             }
-            else if(input.equals("TWO SHALL ENTER, ONE SHALL LEAVE")) {
-            output = "I AM " + "<username> " + "<password>";                  //FIXME: replace with actual user/pass
-            }
+        }
             return output;
     }
 
     public String getPlayerID(String input){
         String PlayerID = null;
-        if(input.contains("WAIT FOR THE TOURNAMENT TO BEGIN")){
+        if (input.contains("WAIT FOR THE TOURNAMENT TO BEGIN")) {
             String[] info = input.split(" ");
             PlayerID = info[6];
         }
         return PlayerID;
     }
+
     public String getGameID(String input){
         String GameID = null;
         String tokens[] = input.split(" ");
         GameID = tokens[5];
         return GameID;
     }
-    public String parseMoveInput(String input, ConcurrentLinkedQueue<Move> queue) {
-        String[] tokens = input.split(" ");
-        gameID = tokens[5];
-        moveNumber = Integer.parseInt(tokens[10]);
-        tile = tokens[12];
-        timeLimit = Integer.parseInt(tokens[7]);
-        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
-        writeToBuffer(instruction);
-        WeJustDidThisMove ourmove = readFromBuffer();
-        int tileX = ourmove.getTileSpot().getXForServer();
-        int tileY = ourmove.getTileSpot().getyForServer();
-        int tileZ = ourmove.getTileSpot().getZForServer();
-        int buildX = ourmove.getBuildSpot().getXForServer();
-        int buildY = ourmove.getBuildSpot().getyForServer();
-        int buildZ = ourmove.getBuildSpot().getZForServer();
-        int orientation = ourmove.getOrientation();
-        Terrain terrain = ourmove.getTerrain();
 
-        String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
-        switch (ourmove.getBuildType()) {
+    public MakeMoveInstruction getMoveInstruction(final String input) {
+        String[] tokens = input.split(" ");
+        String gameID = tokens[5];
+        int moveNumber = Integer.parseInt(tokens[10]);
+        String tile = tokens[12];
+        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
+
+        return instruction;
+    }
+
+    public String createFriendlyMoveMessageToBeSent(WeJustDidThisMove ourMove, String gameID) {
+        int tileX = ourMove.getTileSpot().getXForServer();
+        int tileY = ourMove.getTileSpot().getyForServer();
+        int tileZ = ourMove.getTileSpot().getZForServer();
+        int buildX = ourMove.getBuildSpot().getXForServer();
+        int buildY = ourMove.getBuildSpot().getyForServer();
+        int buildZ = ourMove.getBuildSpot().getZForServer();
+        int orientation = ourMove.getOrientation();
+        Terrain terrain = ourMove.getTerrain();
+
+        String move = "GAME " + gameID + " MOVE " + ourMove.getMoveNumber() + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
+        switch (ourMove.getBuildType()) {
             case (1):
-                move.concat("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
+                move += ("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (2):
-                move.concat("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
+                move += ("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
                 break;
             case (3):
-                move.concat("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
+                move += ("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case(4):
-                move.concat("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
+                move += ("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case(5):
-                move.concat("UNABLE TO BUILD");
+                move += ("UNABLE TO BUILD");
                 break;
         }
+
         return move;
     }
+
+//    public String playFriendlyTurn(String input, ConcurrentLinkedQueue<Move> queue) {
+//        String[] tokens = input.split(" ");
+//        gameID = tokens[5];
+//        moveNumber = Integer.parseInt(tokens[10]);
+//        tile = tokens[12];
+//        timeLimit = Integer.parseInt(tokens[7]);
+//        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
+//        writeToBuffer(instruction);
+//        WeJustDidThisMove ourmove = readFromBuffer();
+//        int tileX = ourmove.getTileSpot().getXForServer();
+//        int tileY = ourmove.getTileSpot().getyForServer();
+//        int tileZ = ourmove.getTileSpot().getZForServer();
+//        int buildX = ourmove.getBuildSpot().getXForServer();
+//        int buildY = ourmove.getBuildSpot().getyForServer();
+//        int buildZ = ourmove.getBuildSpot().getZForServer();
+//        int orientation = ourmove.getOrientation();
+//        Terrain terrain = ourmove.getTerrain();
+//
+//        String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
+//        switch (ourmove.getBuildType()) {
+//            case (1):
+//                move.concat("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
+//                break;
+//            case (2):
+//                move.concat("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
+//                break;
+//            case (3):
+//                move.concat("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
+//                break;
+//            case(4):
+//                move.concat("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
+//                break;
+//            case(5):
+//                move.concat("UNABLE TO BUILD");
+//                break;
+//        }
+//        return move;
+//    }
 
     public EnemyMove parseOpponentMove(String input){
         String[] tokens = input.split(" ");
@@ -92,45 +130,45 @@ public class TigerIslandProtocol {
         int buildX;
         int buildY;
         int buildZ;
+        EnemyMove.BuildType buildType;
         Terrain terrain = null;
-        if(tokens[13] == "FOUNDED")
-        {
+
+        if (tokens[13].equals("FOUNDED")) {
+
             buildX = Integer.parseInt(tokens[16]);
             buildY = Integer.parseInt(tokens[17]);
             buildZ = Integer.parseInt(tokens[18]);
-        }
-        else if(tokens[13] == "EXPANDED")
-        {
+            buildType = EnemyMove.BuildType.MEEPLES_FOUNDING;
+        } else if (tokens[13].equals("EXPANDED")) {
             buildX = Integer.parseInt(tokens[16]);
             buildY = Integer.parseInt(tokens[17]);
             buildZ = Integer.parseInt(tokens[18]);
             terrain = Terrain.valueOf(tokens[19]);
-        }
-        else
-        {
+            buildType = EnemyMove.BuildType.MEEPLES_EXPANDING;
+        } else if (tokens[14].equals("TOTORO")) {
             buildX = Integer.parseInt(tokens[17]);
             buildY = Integer.parseInt(tokens[18]);
             buildZ = Integer.parseInt(tokens[19]);
+            buildType = EnemyMove.BuildType.TOTORO;
+
+        }else{
+            buildX = Integer.parseInt(tokens[17]);
+            buildY = Integer.parseInt(tokens[18]);
+            buildZ = Integer.parseInt(tokens[19]);
+            buildType = EnemyMove.BuildType.TIGER;
         }
 
-        EnemyMove theirMove = new EnemyMove(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, terrain);
-        return theirMove;
-
+        EnemyMove enemyMove = new EnemyMove(gameid, movenumber, playerID, tileX, tileY, tileZ, orientation, buildX, buildY, buildZ, buildType, terrain);
+        return enemyMove;
     }
 
     public String parseGameID(String input) {
         String tokens[] = input.split(" ");
-        return tokens[1];
-    }
 
-    public void writeToBuffer(Move move){
-        //FIXME: Write to buffer queue when buffer is set up
+        if (tokens[0].equals("GAME")) {
+            return tokens[1];
+        } else {
+            return tokens[5];
+        }
     }
-
-    public WeJustDidThisMove readFromBuffer(){
-        //FIXME: Read from buffer queue when buffer is set up
-        WeJustDidThisMove ourmove = null;
-        return ourmove;
-    }
-
 }

@@ -20,12 +20,7 @@ public class Updater {
         this.map = map;
     }
 
-
-
-
-    public void SetFirstTile(){
-
-
+    public void setFirstTile(){
         MapSpot mapspot = new MapSpot(0,0,0);
         Hexagon hex1 = new Hexagon(Terrain.VOLCANO,1,0);
         map.setHexagon(mapspot, hex1);
@@ -41,9 +36,6 @@ public class Updater {
 
         hex1 = new Hexagon(Terrain.GRASSLAND,1,0);
         map.setHexagon(mapspot.bottomRight(),hex1);
-
-
-
     }
 
 
@@ -54,7 +46,7 @@ public class Updater {
     //Order above, if doing Expand action use other method below
 
 
-    public void EnemyMove(int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
+    public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
         Player Team = new Player(ENEMY);
 
         int TileLevel = 0;
@@ -89,11 +81,11 @@ public class Updater {
 
 
         //Places Tiles
-        Hexagon hex1 = new Hexagon(Terrain.VOLCANO, TileLevel,MoveNumber);
+        Hexagon hex1 = new Hexagon(Terrain.VOLCANO, TileLevel,moveNumber);
         this.map.setHexagon(TileSpot, hex1);
-        Hexagon hex2 = new Hexagon(A,TileLevel,MoveNumber);
+        Hexagon hex2 = new Hexagon(A,TileLevel,moveNumber);
         this.map.setHexagon(hexSpot2, hex2);
-        Hexagon hex3 = new Hexagon(B,TileLevel,MoveNumber);
+        Hexagon hex3 = new Hexagon(B,TileLevel,moveNumber);
         this.map.setHexagon(hexSpot3, hex3);
 
 
