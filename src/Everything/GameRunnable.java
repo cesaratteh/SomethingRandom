@@ -41,16 +41,19 @@ public class GameRunnable implements Runnable {
                 final MoveData moveData = threadQueue.poll();
 
                 if (moveData.gameOver) {
+                    System.out.println("Runnable: shutting down thread, game over");
                     break;
                 }
 
                 if (moveData.move instanceof EnemyMove) {
                     tigerIsland.updateMapWithEnemyMove( (EnemyMove) moveData.move);
+                    System.out.println("Runnable: Updated map using enemy move");
                 } else {
                     final WeJustDidThisMove weJustDidThisMove
                             = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) moveData.move);
 
                     threadQueue.add(new MoveData(false, weJustDidThisMove, MoveData.Consumer.CLIENT));
+                    System.out.println("Runnable: Thread just played move, sending it to the client");
                 }
             }
         }

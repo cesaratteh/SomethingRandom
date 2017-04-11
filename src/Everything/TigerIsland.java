@@ -6,6 +6,7 @@ import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.Server.OrientationAndVolcanoLocationCalculator;
 import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.ai.StupiedBot;
+import Everything.game.action.ai.TestingBot;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
 import Everything.game.action.handlers.SettlementFoundingHandler;
 import Everything.game.action.scanners.PlacingOnLevelOne.RandomLevelOneTileScanner;
@@ -27,7 +28,7 @@ public class TigerIsland {
     private Player friendly;
     private Player enemy;
 
-    private StupiedBot friendlyAI;
+    private TestingBot testingBot;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -38,31 +39,33 @@ public class TigerIsland {
         this.friendlyPID = friendlyPID;
 
         this.map = new Map();
-        enemyMoveUpdater.setFirstTile();
 
         friendly = new Player(Team.FRIENDLY);
         enemy = new Player(Team.ENEMY);
 
-        StupiedBot stupiedBot = new StupiedBot(new OrientationAndVolcanoLocationCalculator(),
+        TestingBot testingBot = new TestingBot(new OrientationAndVolcanoLocationCalculator(),
                 new FirstLevelTileAdditionHandler(),
                 new SettlementFoundingHandler(),
                 new RandomLevelOneTileScanner(),
                 new RandomSettlementFoundingScanner());
 
         this.enemyMoveUpdater = new Updater(map);
+        enemyMoveUpdater.setFirstTile();
 
-        this.friendlyAI = stupiedBot;
+        this.testingBot = testingBot;
     }
 
     //--------
     // Methods
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
-        WeJustDidThisMove weJustDidThisMove = friendlyAI.playTurn(makeMoveInstruction, map, friendly);
+        System.out.println("TigerIsland: Game runnable asked me to play a move");
+        WeJustDidThisMove weJustDidThisMove = testingBot.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
 
     public void updateMapWithEnemyMove(final EnemyMove enemyMove) {
+        System.out.println("TigerIsland: Game runnable asked me update map with enemy move");
         try {
             enemyMoveUpdater.updateMap(enemyMove);
         } catch (Exception e) {

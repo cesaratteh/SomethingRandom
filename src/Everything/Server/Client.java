@@ -6,14 +6,19 @@ import Everything.Server.MoveObjects.*;
 import java.net.*;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class Client {
 
-    private static final String TOURNAMENT_PASSWORD = "";
-    private static final String USER_NAME = "";
-    private static final String USER_PASS = "";
+    private static final String TOURNAMENT_PASSWORD = "heygang";
+
+    static String alphabet = "ABCDEFGHIGKLMNOPQRSTUV";
+    static Random random = new Random();
+    static String userPass = "" + alphabet.charAt(random.nextInt(20));
+    private static final String USER_NAME = userPass;
+    private static final String USER_PASS = userPass;
 
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -25,12 +30,12 @@ public class Client {
         int portNumber = Integer.parseInt(args[1]);
 
         try (
-//              Socket MyClient = new Socket(hostName, portNumber);
+              Socket MyClient = new Socket(hostName, portNumber);
 
-                //  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
-                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
-                //PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true);
-                PrintWriter output = new PrintWriter("file.txt");
+                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
+//                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
+                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true);
+//                PrintWriter output = new PrintWriter("file.txt");
         ){
             String fromServer;
             String fromPlayer;
@@ -60,18 +65,21 @@ public class Client {
 
                     if(!runningThreadsMap.containsKey(gameID))
                     {
-                        runningThreadsMap.put(gameID, new ConcurrentLinkedQueue<MoveData>());
+                        System.out.println("Spinning up a new thread");
+                        runningThreadsMap.put(gameID, new ConcurrentLinkedQueue<>());
                         GameRunnable gameRunnable = new GameRunnable(runningThreadsMap.get(gameID),
                                 gameID,
                                 ourPlayerID);
-                        gameRunnable.run();
+                        Thread thread = new Thread(gameRunnable);
+                        thread.start();
+                        System.out.println("reached the end of running runnable");
                     }
 
                     if (fromServer.contains("OVER PLAYER") ||
                             fromServer.contains("FORFEITED:") ||
                             fromServer.contains("LOST")) {
 
-
+                        System.out.println("Client: server said game is over");
                         ConcurrentLinkedQueue<MoveData> threadBuffer = runningThreadsMap.get(gameID);
                         threadBuffer.add(new MoveData(true, null, MoveData.Consumer.THREAD));
                     }
@@ -79,6 +87,7 @@ public class Client {
 
                     if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
                     {
+                        System.out.println("Client: Server asked us to place a tile");
                         MakeMoveInstruction ourMoveInstruction = tip.getMoveInstruction(fromServer);
 
                         ConcurrentLinkedQueue<MoveData> threadQueue = runningThreadsMap.get(gameID);
@@ -88,6 +97,7 @@ public class Client {
 
                     if (fromServer.contains("PLACED") && !(fromServer.contains(ourPlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
                     {
+                        System.out.println("Client: server asked us to update map with enemy move");
                         EnemyMove enemyMove = tip.parseOpponentMove(fromServer);
 
                         ConcurrentLinkedQueue<MoveData> threadDataQueue = runningThreadsMap.get(enemyMove.getGameid());
@@ -96,8 +106,9 @@ public class Client {
                     }
 
                     for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
-                        if (!threadsQueue.isEmpty()) {
 
+                        if (!threadsQueue.isEmpty()) {
+                            System.out.println("Queue is not empty");
                             if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
 
                                 Move friendlyMove = threadsQueue.poll().move;
@@ -105,7 +116,10 @@ public class Client {
                                 if (friendlyMove instanceof WeJustDidThisMove) {
 
                                     String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) friendlyMove, gameID);
+                                    System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
                                     output.println(friendlyMoveMessageToBeSent);
+                                } else {
+                                    System.out.println("Reached invalid location in, instance of not working");
                                 }
                             }
                         }

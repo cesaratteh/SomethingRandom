@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import static Everything.models.Team.ENEMY;
 
 
-public class
-Updater {
+public class Updater {
 
     private Player player;
     private Map map;

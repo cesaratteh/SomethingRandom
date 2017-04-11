@@ -12,7 +12,7 @@ public class TigerIslandProtocol {
         String output = null;
         if (input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")) {
 
-            output = "ENTER THUNDERDOME " + tournamentPassword;             //FIXME: replace with actual tournament password
+            output = "ENTER THUNDERDOME " + tournamentPassword;
         } else {
             if (input.equals("TWO SHALL ENTER, ONE SHALL LEAVE")) {
                 output = "I AM " + userName + " " + userPassword;
@@ -40,13 +40,6 @@ public class TigerIslandProtocol {
             PlayerID = info[6];
         }
         return PlayerID;
-    }
-
-    public String getGameID(String input) {
-        String GameID = null;
-        String tokens[] = input.split(" ");
-        GameID = tokens[5];
-        return GameID;
     }
 
     public MakeMoveInstruction getMoveInstruction(final String input) {
