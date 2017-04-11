@@ -18,15 +18,27 @@ public class EnemyMove implements Move {
     private int buildY;
     private int buildZ;
     private int buildType;
-    private Terrain terrainA;
-    private Terrain terrainB;
+    private Terrain tileTerrainA;
+    private Terrain tileTerrainB;
+    private Terrain buildTerrain;
 
     //-----------
     // Constructors
 
-    public EnemyMove(final String gameid, final int movenumber, final String playerID, final int tileX,
-                     final int tileY, final int tileZ, final int orientation, final int buildX, final int buildY,
-                     final int buildZ, final int buildType, final Terrain terrainA, final Terrain terrainB) {
+    public EnemyMove(String gameid,
+                     int movenumber,
+                     String playerID,
+                     int tileX,
+                     int tileY,
+                     int tileZ,
+                     int orientation,
+                     int buildX,
+                     int buildY,
+                     int buildZ,
+                     int buildType,
+                     Terrain tileTerrainA,
+                     Terrain tileTerrainB,
+                     Terrain buildTerrain) {
         this.gameid = gameid;
         this.movenumber = movenumber;
         this.playerID = playerID;
@@ -38,10 +50,11 @@ public class EnemyMove implements Move {
         this.buildY = buildY;
         this.buildZ = buildZ;
         this.buildType = buildType;
-        this.terrainA = terrainA;
-        this.terrainB = terrainB;
-
+        this.tileTerrainA = tileTerrainA;
+        this.tileTerrainB = tileTerrainB;
+        this.buildTerrain = buildTerrain;
     }
+
 
     //-----------
     // Getters
@@ -95,12 +108,16 @@ public class EnemyMove implements Move {
         return buildType;
     }
 
-    public Terrain getTerrainA() {
-        return terrainA;
+    public Terrain getTileTerrainA() {
+        return tileTerrainA;
     }
 
-    public Terrain getTerrainB() {
-        return terrainB;
+    public Terrain getTileTerrainB() {
+        return tileTerrainB;
+    }
+
+    public Terrain getBuildTerrain() {
+        return buildTerrain;
     }
 }
 

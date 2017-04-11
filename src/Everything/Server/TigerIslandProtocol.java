@@ -3,10 +3,12 @@ package Everything.Server;
 import Everything.Server.MoveObjects.*;
 import Everything.models.*;
 
+import java.util.ArrayList;
+
 
 public class TigerIslandProtocol {
 
-    public String authenticateTournament(String input, String tournamentPassword, String userName, String userPassword){
+    public String authenticateTournament(String input, String tournamentPassword, String userName, String userPassword) {
         String output = null;
         if (input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")) {
 
@@ -16,10 +18,22 @@ public class TigerIslandProtocol {
                 output = "I AM " + userName + " " + userPassword;
             }
         }
-            return output;
+        return output;
     }
 
-    public String getPlayerID(String input){
+    private ArrayList<Terrain> parseTileTerrain(String tile) {
+        String[] split = tile.split("\\+");
+
+        ArrayList<Terrain> terrains = new ArrayList<>();
+
+        terrains.add(Terrain.valueOf(split[0]));
+        terrains.add(Terrain.valueOf(split[1]));
+
+        return terrains;
+    }
+
+
+    public String getPlayerID(String input) {
         String PlayerID = null;
         if (input.contains("WAIT FOR THE TOURNAMENT TO BEGIN")) {
             String[] info = input.split(" ");
@@ -28,7 +42,7 @@ public class TigerIslandProtocol {
         return PlayerID;
     }
 
-    public String getGameID(String input){
+    public String getGameID(String input) {
         String GameID = null;
         String tokens[] = input.split(" ");
         GameID = tokens[5];
@@ -40,7 +54,9 @@ public class TigerIslandProtocol {
         String gameID = tokens[5];
         int moveNumber = Integer.parseInt(tokens[10]);
         String tile = tokens[12];
-        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
+
+        ArrayList<Terrain> terrains = parseTileTerrain(tile);
+        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID, moveNumber, terrains.get(0), terrains.get(1));
 
         return instruction;
     }
@@ -61,15 +77,15 @@ public class TigerIslandProtocol {
                 move += ("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (2):
-                move += ("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
+                move += ("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain);
                 break;
             case (3):
                 move += ("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
                 break;
-            case(4):
+            case (4):
                 move += ("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
                 break;
-            case(5):
+            case (5):
                 move += ("UNABLE TO BUILD");
                 break;
         }
@@ -116,7 +132,7 @@ public class TigerIslandProtocol {
 //        return move;
 //    }
 
-    public EnemyMove parseOpponentMove(String input){
+    public EnemyMove parseOpponentMove(String input) {
         String[] tokens = input.split(" ");
         String gameid = tokens[1];
         int movenumber = Integer.parseInt(tokens[3]);
@@ -149,7 +165,7 @@ public class TigerIslandProtocol {
             buildZ = Integer.parseInt(tokens[19]);
             buildType = EnemyMove.BuildType.TOTORO;
 
-        }else{
+        } else {
             buildX = Integer.parseInt(tokens[17]);
             buildY = Integer.parseInt(tokens[18]);
             buildZ = Integer.parseInt(tokens[19]);
