@@ -1,5 +1,7 @@
 package Everything.Server.MoveObjects;
 
+import Everything.models.Terrain;
+
 public class MakeMoveInstruction implements Move{
 
     //-----------
@@ -7,15 +9,16 @@ public class MakeMoveInstruction implements Move{
 
     private String gameId;
     private int moveNumber;
-    private String tile;
+    private Terrain terrainA;
+    private Terrain terrainB;
 
     //-----------
     // Constructors
 
-    public MakeMoveInstruction(String gameId, int moveNumber, String tile){
+    public MakeMoveInstruction(String gameId, int moveNumber, Terrain terrainA, Terrain terrainB){
         this.gameId = gameId;
         this.moveNumber = moveNumber;
-        this.tile = tile;
+        this.terrainA = terrainB;
     }
 
     //-----------
@@ -29,7 +32,11 @@ public class MakeMoveInstruction implements Move{
         return moveNumber;
     }
 
-    public String getTile(){
-        return tile;
+    public Terrain getTerrainA(){
+        return terrainA;
+    }
+
+    public Terrain getTerrainB(){
+        return terrainB;
     }
 }

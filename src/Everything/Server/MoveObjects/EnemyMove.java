@@ -18,14 +18,15 @@ public class EnemyMove implements Move {
     private int buildY;
     private int buildZ;
     private int buildType;
-    private Terrain terrain;
+    private Terrain terrainA;
+    private Terrain terrainB;
 
     //-----------
     // Constructors
 
     public EnemyMove(final String gameid, final int movenumber, final String playerID, final int tileX,
                      final int tileY, final int tileZ, final int orientation, final int buildX, final int buildY,
-                     final int buildZ, final int buildType, final Terrain terrain) {
+                     final int buildZ, final int buildType, final Terrain terrainA, final Terrain terrainB) {
         this.gameid = gameid;
         this.movenumber = movenumber;
         this.playerID = playerID;
@@ -37,7 +38,8 @@ public class EnemyMove implements Move {
         this.buildY = buildY;
         this.buildZ = buildZ;
         this.buildType = buildType;
-        this.terrain = terrain;
+        this.terrainA = terrainA;
+        this.terrainB = terrainB;
 
     }
 
@@ -93,8 +95,12 @@ public class EnemyMove implements Move {
         return buildType;
     }
 
-    public Terrain getTerrain() {
-        return terrain;
+    public Terrain getTerrainA() {
+        return terrainA;
+    }
+
+    public Terrain getTerrainB() {
+        return terrainB;
     }
 }
 

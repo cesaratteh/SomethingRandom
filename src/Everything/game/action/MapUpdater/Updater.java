@@ -1,6 +1,7 @@
 package Everything.game.action.MapUpdater;
 
 
+import Everything.Server.MoveObjects.EnemyMove;
 import Everything.game.action.scanners.settlemenet.expanding.ExpansionToSpecificTerrainScanner;
 import Everything.models.*;
 import Everything.game.action.scanners.*;
@@ -18,6 +19,10 @@ public class Updater {
     public Updater(Map map){
 
         this.map = map;
+    }
+
+    public void updateMap(final EnemyMove enemyMove) {
+
     }
 
     public void setFirstTile(){
@@ -46,7 +51,7 @@ public class Updater {
     //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation
     //Order above, if doing Expand action use other method below
 
-    public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
+    public void executeEnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
         Player Team = new Player(ENEMY);
 
         int TileLevel = 0;
