@@ -48,9 +48,6 @@ public class TigerIsland {
     // Methods
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
-        // Call OUR AI
-        // Get the MapObject from our AI
-        // Push it to the ConnectionClient Queue
         WeJustDidThisMove weJustDidThisMove = friendlyAI.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
