@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Scans available map spots where a Totoro can be placed
- */
+**/
 public class SettlementTouchingExpansionScanner {
 
     //-----------

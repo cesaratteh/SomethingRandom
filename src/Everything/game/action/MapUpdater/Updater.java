@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import static Everything.models.Team.ENEMY;
 
 
-public class Updater {
+public class
+Updater {
 
     private Player player;
     private Map map;
@@ -21,9 +22,26 @@ public class Updater {
         this.map = map;
     }
 
-    public void updateMap(final EnemyMove enemyMove) {
+    public void Updatemap(EnemyMove enemymove) throws NoValidActionException {
+        if(enemymove.getBuildType() == 2){
 
+
+            MapSpot mapspot = new MapSpot(enemymove.getTileX(),enemymove.getTileY(),enemymove.getTileZ());
+            MapSpot mapspot2 = new MapSpot(enemymove.getBuildX(),enemymove.getBuildY(),enemymove.getBuildZ());
+
+            EnemyMoveExpand(enemymove.getMovenumber(), enemymove.getTileTerrainA(),enemymove.getTileTerrainB(), mapspot,enemymove.getOrientation(), 2,mapspot2,enemymove.getBuildTerrain());
+
+        }
+        else{
+            MapSpot mapspot = new MapSpot(enemymove.getTileX(),enemymove.getTileY(),enemymove.getTileZ());
+            MapSpot mapspot2 = new MapSpot(enemymove.getBuildX(),enemymove.getBuildY(),enemymove.getBuildZ());
+
+            EnemyMove(enemymove.getMovenumber(), enemymove.getTileTerrainA(),enemymove.getTileTerrainB(), mapspot,enemymove.getOrientation(), enemymove.getBuildType(),mapspot2);
+
+        }
     }
+
+
 
     public void setFirstTile(){
 
@@ -51,7 +69,7 @@ public class Updater {
     //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation
     //Order above, if doing Expand action use other method below
 
-    public void executeEnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
+    public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
         Player Team = new Player(ENEMY);
 
         int TileLevel = 0;
