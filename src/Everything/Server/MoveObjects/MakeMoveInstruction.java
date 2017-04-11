@@ -18,7 +18,8 @@ public class MakeMoveInstruction implements Move{
     public MakeMoveInstruction(String gameId, int moveNumber, Terrain terrainA, Terrain terrainB){
         this.gameId = gameId;
         this.moveNumber = moveNumber;
-        this.terrainA = terrainB;
+        this.terrainA = terrainA;
+        this.terrainB = terrainB;
     }
 
     //-----------

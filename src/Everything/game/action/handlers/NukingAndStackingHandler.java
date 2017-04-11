@@ -1,5 +1,6 @@
 package Everything.game.action.handlers;
 
+import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.game.action.scanners.SettlementsFactory;
 import Everything.models.*;
 
@@ -13,7 +14,7 @@ public class NukingAndStackingHandler {
     //--------
     // methods
 
-    void NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3, Map map){
+    public WeJustDidThisMove NukeSpots(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Hexagon h1, Hexagon h2, Hexagon h3, Map map) throws CannotPerformActionException {
         if(!MapSpotsCanBeNuked(nuked1,nuked2,nuked3, map)){
             throw new RuntimeException("Cannot nuke those spots");
         }
@@ -36,7 +37,47 @@ public class NukingAndStackingHandler {
         map.setHexagon(nuked1, h1);
         map.setHexagon(nuked2, h2);
         map.setHexagon(nuked3, h3);
+
+        WeJustDidThisMove move = new WeJustDidThisMove();
+
+
+        if (h1.getTerrainType() == Terrain.VOLCANO) {
+            move.setBuildSpot(nuked1);
+            move.setOrientation(findOrientation(nuked1, nuked2, nuked3));
+        } else if (h2.getTerrainType() == Terrain.VOLCANO) {
+            move.setBuildSpot(nuked2);
+            move.setOrientation(findOrientation(nuked2, nuked1, nuked3));
+        } else {
+            move.setBuildSpot(nuked3);
+            move.setOrientation(findOrientation(nuked3, nuked1, nuked2));
+        }
+
+        return move;
     }
+
+    private int findOrientation(MapSpot m1, MapSpot m2, MapSpot m3) throws CannotPerformActionException {
+        if((m1.topLeft() == m2 && m1.topRight() == m3)
+                ||( m1.topLeft() == m3 && m1.topRight() == m2))
+            return 1;
+        else if ((m1.topRight() == m2 && m1.right() == m3)
+                ||(m1.topRight() == m3 && m1.right() == m2))
+            return 2;
+        else if ((m1.right() == m2 && m1.bottomRight() == m3)
+                || (m1.right() == m3 && m1.bottomRight() == m2))
+            return 3;
+        else if ((m1.bottomRight() == m2 && m1.bottomLeft() == m3)
+                || (m1.bottomRight() == m3 && m1.bottomLeft() == m2))
+            return 4;
+        else if ((m1.bottomLeft() == m2 && m1.left() == m3)
+                || (m1.bottomLeft() == m3 && m1.left() == m2))
+            return 5;
+        else if ((m1.left() == m2 && m1.topLeft() == m3)
+                || (m1.left() == m3 && m1.topLeft() == m2))
+            return 6;
+        else
+            throw new CannotPerformActionException("Cannot find orientation of Tile");
+    }
+
 
     private boolean MapSpotsContainWholeSettlement(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map) {
         SettlementsFactory settlementsFactory = new SettlementsFactory();
@@ -88,7 +129,7 @@ public class NukingAndStackingHandler {
         return false;
     }
 
-    boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map){
+    private boolean MapSpotsCanBeNuked(MapSpot nuked1, MapSpot nuked2, MapSpot nuked3, Map map){
         if(nuked1 != null && nuked2 != null && nuked3 != null){
             Hexagon hex1 = map.getHexagon(nuked1);
             Hexagon hex2 = map.getHexagon(nuked2);
