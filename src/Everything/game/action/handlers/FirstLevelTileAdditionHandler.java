@@ -83,23 +83,23 @@ public class FirstLevelTileAdditionHandler {
     }
 
     private int findOrientation(MapSpot m1, MapSpot m2, MapSpot m3) throws CannotPerformActionException {
-        if((m1.topLeft() == m2 && m1.topRight() == m3)
-                ||( m1.topLeft() == m3 && m1.topRight() == m2))
+        if((m1.topLeft().isEqual(m2) && m1.topRight().isEqual(m3))
+                ||( m1.topLeft().isEqual(m3) && m1.topRight().isEqual(m2)))
             return 1;
-        else if ((m1.topRight() == m2 && m1.right() == m3)
-                ||(m1.topRight() == m3 && m1.right() == m2))
+        else if ((m1.topRight().isEqual(m2)&& m1.right().isEqual(m3))
+                ||(m1.topRight().isEqual(m3) && m1.right().isEqual(m2)))
             return 2;
-        else if ((m1.right() == m2 && m1.bottomRight() == m3)
-                || (m1.right() == m3 && m1.bottomRight() == m2))
+        else if ((m1.right().isEqual(m2) && m1.bottomRight().isEqual(m3))
+                || (m1.right().isEqual(m3) && m1.bottomRight().isEqual(m2)))
             return 3;
-        else if ((m1.bottomRight() == m2 && m1.bottomLeft() == m3)
-                || (m1.bottomRight() == m3 && m1.bottomLeft() == m2))
+        else if ((m1.bottomRight().isEqual(m2) && m1.bottomLeft().isEqual(m3))
+                || (m1.bottomRight().isEqual(m3) && m1.bottomLeft().isEqual(m2)))
             return 4;
-        else if ((m1.bottomLeft() == m2 && m1.left() == m3)
-                || (m1.bottomLeft() == m3 && m1.left() == m2))
+        else if ((m1.bottomLeft().isEqual(m2) && m1.left().isEqual(m3))
+                || (m1.bottomLeft().isEqual(m3) && m1.left().isEqual(m2)))
             return 5;
-        else if ((m1.left() == m2 && m1.topLeft() == m3)
-                || (m1.left() == m3 && m1.topLeft() == m2))
+        else if ((m1.left().isEqual(m2) && m1.topLeft().isEqual(m3))
+                || (m1.left().isEqual(m3) && m1.topLeft().isEqual(m2)))
             return 6;
         else
             throw new CannotPerformActionException("Cannot find orientation of Tile");
