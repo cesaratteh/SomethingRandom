@@ -1,9 +1,6 @@
 package Everything.game.action.handlers;
 
-import Everything.models.Hexagon;
-import Everything.models.Map;
-import Everything.models.MapSpot;
-import Everything.models.Terrain;
+import Everything.models.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,23 +8,76 @@ import org.junit.Test;
 public class SettlementFoundingHandlerTest {
 
     private Map map;
+    private SettlementFoundingHandler foundingHandler;
 
     @Before
     public void generateMapForTesting(){
         map = new Map();
-        MapSpot curr = map.getMiddleHexagonMapSpot();
+        FirstLevelTileAdditionHandler tileHandler = new FirstLevelTileAdditionHandler();
+        foundingHandler = new SettlementFoundingHandler();
 
-        map.setHexagon(curr, new Hexagon(Terrain.GRASSLAND, 1, 1));
-        map.setHexagon(curr.left(), new Hexagon(Terrain.ROCKY, 1, 1));
-        map.setHexagon(curr.topLeft(), new Hexagon(Terrain.VOLCANO, 1, 1));
+        tileHandler.addFirstTileToMap(map);
 
-        map.setHexagon(curr.topRight(), new Hexagon(Terrain.VOLCANO, 1, 2));
-        map.setHexagon(curr.topRight().topRight(), new Hexagon(Terrain.GRASSLAND, 1, 2));
-        map.setHexagon(curr.topRight().topLeft(), new Hexagon(Terrain.LAKE, 1, 2));
+        MapSpot curr = map.getMiddleHexagonMapSpot().topLeft().left().bottomLeft();
 
-        map.setHexagon(curr.left().left(), new Hexagon(Terrain.VOLCANO, 1, 3));
-        map.setHexagon(curr.topLeft().left(), new Hexagon(Terrain.LAKE, 1, 3));
-        map.setHexagon(curr.left().left().topLeft(), new Hexagon(Terrain.ROCKY, 1, 3));
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.VOLCANO, 1, 2),
+                new Hexagon(Terrain.GRASSLAND, 1, 2),
+                new Hexagon(Terrain.LAKE, 1, 2),
+                curr.topRight(),
+                curr.topRight().topRight(),
+                curr.topRight().topLeft(),
+                map);
+
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.GRASSLAND, 1, 1),
+                new Hexagon(Terrain.ROCKY, 1, 1),
+                new Hexagon(Terrain.VOLCANO, 1, 1),
+                curr,
+                curr.left(),
+                curr.topLeft(),
+                 map);
+
+        tileHandler.addTileToMap(
+                new Hexagon(Terrain.VOLCANO, 1, 3),
+                new Hexagon(Terrain.LAKE, 1, 3),
+                new Hexagon(Terrain.ROCKY, 1, 3),
+                curr.left().left(),
+                curr.topLeft().left(),
+                curr.left().left().topLeft(),
+                map);
+    }
+
+    @Test
+    public void testFoundSettlementWithValidMapSpot(){
+
+        Team team = RandomGenerator.generateRandomTeam();
+        try {
+            foundingHandler.foundSettlement(map.getMiddleHexagonMapSpot().topLeft(),
+                    map, team);
+        } catch (CannotPerformActionException e) {
+            Assert.fail();
+        }
+
+        Hexagon settlementHex = map.getHexagon(map.getMiddleHexagonMapSpot().topLeft());
+
+        Assert.assertTrue(!settlementHex.isEmpty()
+                && settlementHex.getOccupiedBy() == team);
 
     }
+
+    @Test
+    public void testFoundSettlementWithInvalidMapSpot(){
+
+        Team team = RandomGenerator.generateRandomTeam();
+        boolean caughtException = false;
+
+        try {
+            foundingHandler.foundSettlement(map.getMiddleHexagonMapSpot(), map, team);
+        } catch (CannotPerformActionException e) {
+            caughtException = true;
+        }
+        Assert.assertTrue(caughtException);
+    }
+
 }
