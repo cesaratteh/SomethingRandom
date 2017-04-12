@@ -151,51 +151,30 @@ public class AIBot {
                     }
                     else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
+                            return placeTileNextToSettlement(map, friendlySettlement, tile);
 
-                            TileMapSpot tileMapSpot
-                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
-
-                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
-                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
-                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
-                            return;
-                        } catch (NoValidActionException e) {}
+                        } catch (NoValidActionException | CannotPerformActionException e) {}
                     }
                     else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
-                            TileMapSpot tileMapSpot
-                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+                            return placeTileNextToSettlement(map, friendlySettlement, tile);
 
-                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
-                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
-                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
-                            return;
-                        } catch (NoValidActionException e) {}
+                        } catch (NoValidActionException | CannotPerformActionException e) {}
                     }
                     else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
-                            TileMapSpot tileMapSpot
-                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+                            return placeTileNextToSettlement(map, friendlySettlement, tile);
 
-                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
-                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
-                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
-                            return;
-                        } catch (NoValidActionException e) {}
+                        } catch (NoValidActionException | CannotPerformActionException e) {}
                     }
                     else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
-                            TileMapSpot tileMapSpot
-                                    = settlementLevelOneTilePlacementScanner.findTileMapSpotToPlaceTileAroundSettlment(map, friendlySettlement);
+                            return placeTileNextToSettlement(map, friendlySettlement, tile);
 
-                            map.setHexagon(tileMapSpot.getM1(), tile.getH1());
-                            map.setHexagon(tileMapSpot.getM2(), tile.getH2());
-                            map.setHexagon(tileMapSpot.getM3(), tile.getH3());
-                            return;
-                        } catch (NoValidActionException e) {}
+                        } catch (NoValidActionException | CannotPerformActionException e) {}
                     }
                     else {
                         // Place tile in any random spot
