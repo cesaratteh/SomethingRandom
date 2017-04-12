@@ -3,6 +3,7 @@ package Everything;
 import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
 import Everything.Server.OrientationAndVolcanoLocationCalculator;
+import Everything.Server.TigerIslandProtocol;
 import Everything.game.action.ai.AIBot;
 import Everything.game.action.ai.StupiedBot;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
@@ -30,6 +31,7 @@ public class SmartBotIntegrationTest {
 
     @Test
     public void runGame() {
+        TigerIslandProtocol tip = new TigerIslandProtocol();
 
         final Player friendly = new Player(Team.FRIENDLY);
         final Player enemy = new Player(Team.ENEMY);
@@ -73,10 +75,11 @@ public class SmartBotIntegrationTest {
                 new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
                 new RandomSettlementFoundingScanner());
 
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 20; i++) {
             WeJustDidThisMove friendlyMove = friendlyBot.playTurn(generateRandomInstruction(), map, friendly);
             WeJustDidThisMove enemyMove = enemyBot.playTurn(generateRandomInstruction(), map, enemy);
 
+            System.out.println(tip.createFriendlyMoveMessageToBeSent(friendlyMove, "game1"));
             System.out.println("FRIENDLY:");
             System.out.println(friendlyMove);
             System.out.println("ENEMY:");

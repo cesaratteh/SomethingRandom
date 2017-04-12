@@ -63,24 +63,36 @@ public class TigerIslandProtocol {
         int tileX = ourMove.getTileSpot().getXForServer();
         int tileY = ourMove.getTileSpot().getYForServer();
         int tileZ = ourMove.getTileSpot().getZForServer();
-        int buildX = ourMove.getBuildSpot().getXForServer();
-        int buildY = ourMove.getBuildSpot().getYForServer();
-        int buildZ = ourMove.getBuildSpot().getZForServer();
+        int buildX;
+        int buildY;
+        int buildZ;
         int orientation = ourMove.getOrientation();
         Terrain terrain = ourMove.getTerrain();
 
         String move = "GAME " + gameID + " MOVE " + ourMove.getMoveNumber() + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
         switch (ourMove.getBuildType()) {
             case (1):
+                buildX = ourMove.getBuildSpot().getXForServer();
+                buildY = ourMove.getBuildSpot().getYForServer();
+                buildZ = ourMove.getBuildSpot().getZForServer();
                 move += ("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (2):
+                buildX = ourMove.getBuildSpot().getXForServer();
+                buildY = ourMove.getBuildSpot().getYForServer();
+                buildZ = ourMove.getBuildSpot().getZForServer();
                 move += ("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain);
                 break;
             case (3):
+                buildX = ourMove.getBuildSpot().getXForServer();
+                buildY = ourMove.getBuildSpot().getYForServer();
+                buildZ = ourMove.getBuildSpot().getZForServer();
                 move += ("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (4):
+                buildX = ourMove.getBuildSpot().getXForServer();
+                buildY = ourMove.getBuildSpot().getYForServer();
+                buildZ = ourMove.getBuildSpot().getZForServer();
                 move += ("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
                 break;
             case (5):

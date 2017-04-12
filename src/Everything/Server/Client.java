@@ -30,12 +30,12 @@ public class Client {
         int portNumber = Integer.parseInt(args[1]);
 
         try (
-//              Socket MyClient = new Socket(hostName, portNumber);
+              Socket MyClient = new Socket(hostName, portNumber);
 
-//                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
-                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
-//                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true); REMOVE THE 1 SEC DELAY AT THE BOTTOM
-                PrintWriter output = new PrintWriter("file.txt");
+                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
+//                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
+                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true); //REMOVE THE 1 SEC DELAY AT THE BOTTOM
+//                PrintWriter output = new PrintWriter("file.txt");
         ){
             String fromServer;
             String fromPlayer;
@@ -109,9 +109,9 @@ public class Client {
 
                             threadDataQueue.add(new MoveData(false, enemyMove, MoveData.Consumer.THREAD));
                         }
-                        try {
-                            Thread.sleep(500);
-                        }catch (Exception e){} // FIXME: 4/11/2017 REMOVE THIS
+//                        try {
+//                            Thread.sleep(500);
+//                        }catch (Exception e){} // FIXME: 4/11/2017 REMOVE THIS
 
                         for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
 

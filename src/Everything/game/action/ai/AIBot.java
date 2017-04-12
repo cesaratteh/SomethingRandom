@@ -193,7 +193,8 @@ public class AIBot {
             } catch (NoValidActionException | CannotPerformActionException e) {
             }
         }
-
+        System.out.println(player.getNumberOfMeeplesLeft());
+        System.out.println(player.getNumberOfTotorosLeft());
 
         // Could not place tile anywhere
         WeJustDidThisMove gameOverMove = new WeJustDidThisMove();
