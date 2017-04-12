@@ -55,7 +55,7 @@ public class Client {
 
             System.out.println(fromPlayer);
 
-            final String ourPlayerID = tip.getPlayerID(input.readLine());                   //Grab our PlayerID for later comparisons
+            final String ourPlayerID = tip.waitForTournyToBeginAndGetPlayerId(input.readLine());                   //Grab our PlayerID for later comparisons
 
             while (true) {         //Keep going as long as we're in tournament
 
@@ -64,7 +64,6 @@ public class Client {
                     if (fromServer.contains("THANK YOU FOR PLAYING!")) {
                         break;
                     }
-
 
                     System.out.println("Server: " + fromServer);
 
@@ -79,7 +78,6 @@ public class Client {
                                     ourPlayerID);
                             Thread thread = new Thread(gameRunnable);
                             thread.start();
-                            System.out.println("reached the end of running runnable");
                         }
 
                         if (fromServer.contains("OVER PLAYER") ||
@@ -102,7 +100,7 @@ public class Client {
                             threadQueue.add(new MoveData(false, ourMoveInstruction, MoveData.Consumer.THREAD));
                         }
 
-                        if (fromServer.contains("PLACED") && !(fromServer.contains(ourPlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
+                        if (fromServer.contains("PLACED") && !tip.getPlayerIdFromGameCommand(fromServer).equals(ourPlayerID))       //if it contains placement details, and doesn't contain our PlayerID
                         {
                             System.out.println("Client: server asked us to update map with enemy move");
                             EnemyMove enemyMove = tip.parseOpponentMove(fromServer);

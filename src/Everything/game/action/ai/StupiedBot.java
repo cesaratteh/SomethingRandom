@@ -52,6 +52,7 @@ public class StupiedBot {
 
         //Tile placement move
         try{
+            weJustDidThisMove.setMoveNumber(makeMoveInstruction.getMoveNumber());
             final TileMapSpot tileMapSpot = randomLevelOneTileScanner.scan(map);
 
             firstLevelTileAdditionHandler.addTileToMap(tile.getH1(), tile.getH2(), tile.getH3(), tileMapSpot.getM1(), tileMapSpot.getM2(), tileMapSpot.getM3(), map);

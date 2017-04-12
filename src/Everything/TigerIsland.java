@@ -67,9 +67,11 @@ public class TigerIsland {
     public void updateMapWithEnemyMove(final EnemyMove enemyMove) {
         System.out.println("TigerIsland: Game runnable asked me update map with enemy move");
         try {
+            System.out.println("enemy move " + enemyMove);
             enemyMoveUpdater.updateMap(enemyMove);
         } catch (Exception e) {
             System.out.println("enemy move updater throws exception");
+            e.printStackTrace(System.out);
         }
     }
 }

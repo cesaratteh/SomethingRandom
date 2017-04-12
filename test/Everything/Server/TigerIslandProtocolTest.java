@@ -1,6 +1,5 @@
 package Everything.Server;
 
-import Everything.Server.MoveObjects.EnemyMove;
 import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.models.Terrain;
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class TigerIslandProtocolTest {
         String playerId = UUID.randomUUID().toString();
         String message = "WAIT FOR THE TOURNAMENT TO BEGIN " + playerId;
 
-        assertEquals(playerId, tigerIslandProtocol.getPlayerID(message));
+        assertEquals(playerId, tigerIslandProtocol.waitForTournyToBeginAndGetPlayerId(message));
     }
 
     @Test

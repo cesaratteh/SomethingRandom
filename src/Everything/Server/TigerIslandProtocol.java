@@ -33,13 +33,18 @@ public class TigerIslandProtocol {
     }
 
 
-    public String getPlayerID(String input) {
+    public String waitForTournyToBeginAndGetPlayerId(String input) {
         String PlayerID = null;
         if (input.contains("WAIT FOR THE TOURNAMENT TO BEGIN")) {
             String[] info = input.split(" ");
             PlayerID = info[6];
         }
         return PlayerID;
+    }
+
+    public String getPlayerIdFromGameCommand(String input) {
+        String playerId;
+        return input.split(" ")[5];
     }
 
     public MakeMoveInstruction getMoveInstruction(final String input) {
