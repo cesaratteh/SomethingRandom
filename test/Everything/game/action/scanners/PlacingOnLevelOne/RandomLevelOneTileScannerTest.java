@@ -17,7 +17,22 @@ public class RandomLevelOneTileScannerTest {
 
         RandomLevelOneTileScanner randomLevelOneTileScanner = new RandomLevelOneTileScanner();
 
-        randomLevelOneTileScanner.scan(map);
+        System.out.println("m1");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+
+        System.out.println("m2");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getZ());
+
+        System.out.println("m3");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getZ());
+
+
     }
 
     @Test
@@ -35,6 +50,21 @@ public class RandomLevelOneTileScannerTest {
 //        System.out.println(randomLevelOneTileScanner.scan(map).getM1());
 //        System.out.println(randomLevelOneTileScanner.scan(map).getM2());
 //        System.out.println(randomLevelOneTileScanner.scan(map).getM3());
+
+        System.out.println("m1");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+
+        System.out.println("m2");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getZ());
+
+        System.out.println("m3");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getZ());
     }
 
     @Test
@@ -50,5 +80,21 @@ public class RandomLevelOneTileScannerTest {
 //        System.out.println(tileMapSpot.getM1());
 //        System.out.println(tileMapSpot.getM2());
 //        System.out.println(tileMapSpot.getM3());
+
+        System.out.println("m1");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM1().getX());
+
+        System.out.println("m2");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM2().getZ());
+
+        System.out.println("m3");
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getX());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getY());
+        System.out.println(randomLevelOneTileScanner.scan(map).getM3().getZ());
     }
+
 }
