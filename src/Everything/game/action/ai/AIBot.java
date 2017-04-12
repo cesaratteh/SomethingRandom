@@ -117,7 +117,6 @@ public class AIBot {
     }
 
     private WeJustDidThisMove placeTileInRandomSpot(Map map, Tile tile) throws NoValidActionException, CannotPerformActionException {
-        randomLevelOneTileScanner.scan(map);
         TileMapSpot tileMapSpot = randomLevelOneTileScanner.scan(map);
 
         return firstLevelTileAdditionHandler.addTileToMap(tile.getH1(),

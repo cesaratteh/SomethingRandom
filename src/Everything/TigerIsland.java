@@ -3,8 +3,10 @@ package Everything;
 import Everything.Server.MoveObjects.EnemyMove;
 import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
+import Everything.Server.OrientationAndVolcanoLocationCalculator;
 import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.ai.AIBot;
+import Everything.game.action.ai.StupiedBot;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
 import Everything.game.action.handlers.NukingAndStackingHandler;
 import Everything.game.action.handlers.SettlementExpansionHandler;
@@ -35,7 +37,7 @@ public class TigerIsland {
     private Player friendly;
     private Player enemy;
 
-    private AIBot smartBot;
+    private StupiedBot stupiedBot;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -50,22 +52,28 @@ public class TigerIsland {
         friendly = new Player(Team.FRIENDLY);
         enemy = new Player(Team.ENEMY);
 
-        this.smartBot = new AIBot(new SettlementsFactory(),
+        this.stupiedBot = new StupiedBot(new OrientationAndVolcanoLocationCalculator(),
                 new FirstLevelTileAdditionHandler(),
-                new NukingAndStackingHandler(),
-                new SettlementExpansionHandler(),
                 new SettlementFoundingHandler(),
-                new SettlementAdjacentMapSpotsScanner(),
-                new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
-                new SettlementLevelOneTwoSpotsNukingScanner(new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner())),
                 new RandomLevelOneTileScanner(),
-                new SettlementLevelOneTilePlacementScanner(),
-                new ExpansionToSpecificTerrainScanner(),
-                new SettlementExpansionMeeplesCost(),
-                new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-                new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-                new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-                new RandomSettlementFoundingScanner());;
+                new RandomSettlementFoundingScanner());
+
+//                (new SettlementsFactory(),
+//                new FirstLevelTileAdditionHandler(),
+//                new NukingAndStackingHandler(),
+//                new SettlementExpansionHandler(),
+//                new SettlementFoundingHandler(),
+//                new SettlementAdjacentMapSpotsScanner(),
+//                new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
+//                new SettlementLevelOneTwoSpotsNukingScanner(new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner())),
+//                new RandomLevelOneTileScanner(),
+//                new SettlementLevelOneTilePlacementScanner(),
+//                new ExpansionToSpecificTerrainScanner(),
+//                new SettlementExpansionMeeplesCost(),
+//                new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+//                new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+//                new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+//                new RandomSettlementFoundingScanner());;
 
         this.enemyMoveUpdater = new Updater(map);
         enemyMoveUpdater.setFirstTile();
@@ -76,7 +84,7 @@ public class TigerIsland {
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         System.out.println("TigerIsland: Game runnable asked me to play a move");
-        WeJustDidThisMove weJustDidThisMove = smartBot.playTurn(makeMoveInstruction, map, friendly);
+        WeJustDidThisMove weJustDidThisMove = stupiedBot.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
 

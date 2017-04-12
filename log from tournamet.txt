@@ -1,0 +1,2289 @@
+ENTER THUNDERDOME TigersRule
+I AM TEAM_T PASS_T
+Server: NEW CHALLENGE 0 YOU WILL PLAY 15 MATCHES
+Server: BEGIN ROUND 1 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 12
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Spinning up a new thread
+Client: Server asked us to place a tile
+Queue is not empty
+1
+THREAD
+TigerIsland: Game runnable asked me to play a move
+Runnable: Thread just played move, sending it to the client
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+2
+CLIENT
+Sending this message to the server GAME A MOVE 0 AT 0 0 0 1 FOUND SETTLEMENT AT 1 -1 0
+Runnable: shutting down thread, game over
+Server: GAME B MOVE 0 PLAYER 12 PLACED GRASS+LAKE AT -3 0 3 1 FOUNDED SETTLEMENT AT 1 0 -1
+Spinning up a new thread
+Client: server asked us to update map with enemy move
+Queue is not empty
+1
+THREAD
+TigerIsland: Game runnable asked me update map with enemy move
+enemy move Everything.Server.MoveObjects.EnemyMove@f13cc89
+Runnable: Updated map using enemy move
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+TigerIsland: Game runnable asked me to play a move
+Runnable: Thread just played move, sending it to the client
+Queue is not empty
+1
+CLIENT
+Sending this message to the server GAME B MOVE 0 AT 0 0 0 1 FOUND SETTLEMENT AT 1 -1 0
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: MALFORMED MOVE
+Client: server said game is over
+Runnable: shutting down thread, game over
+Server: GAME B MOVE 1 PLAYER 12 PLACED GRASS+JUNGLE AT 0 -2 2 2 FOUNDED SETTLEMENT AT 1 -2 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+1
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 1 PLACE GRASS+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+2
+THREAD
+Server: GAME B MOVE 1 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+3
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+1
+THREAD
+Queue is not empty
+3
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+1
+THREAD
+Queue is not empty
+4
+THREAD
+Server: END OF ROUND 1 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 2 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 10
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+2
+THREAD
+Queue is not empty
+4
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+3
+THREAD
+Queue is not empty
+4
+THREAD
+Server: GAME B MOVE 0 PLAYER 10 PLACED GRASS+LAKE AT 1 -2 1 3 FOUNDED SETTLEMENT AT 1 -3 2
+Client: server asked us to update map with enemy move
+Queue is not empty
+3
+THREAD
+Queue is not empty
+5
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+3
+THREAD
+Queue is not empty
+6
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+3
+THREAD
+Queue is not empty
+7
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+4
+THREAD
+Queue is not empty
+7
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+4
+THREAD
+Queue is not empty
+8
+THREAD
+Server: END OF ROUND 2 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 3 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 8
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+5
+THREAD
+Queue is not empty
+8
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+6
+THREAD
+Queue is not empty
+8
+THREAD
+Server: GAME B MOVE 0 PLAYER 8 PLACED GRASS+LAKE AT -2 2 0 1 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+6
+THREAD
+Queue is not empty
+9
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+6
+THREAD
+Queue is not empty
+10
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+6
+THREAD
+Queue is not empty
+11
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+7
+THREAD
+Queue is not empty
+11
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+7
+THREAD
+Queue is not empty
+12
+THREAD
+Server: END OF ROUND 3 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 4 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 6
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+7
+THREAD
+Queue is not empty
+13
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+7
+THREAD
+Queue is not empty
+14
+THREAD
+Server: GAME A MOVE 0 PLAYER 6 PLACED GRASS+LAKE AT -1 1 0 5 FOUNDED SETTLEMENT AT -1 0 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+8
+THREAD
+Queue is not empty
+14
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+9
+THREAD
+Queue is not empty
+14
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+10
+THREAD
+Queue is not empty
+14
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+11
+THREAD
+Queue is not empty
+14
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+11
+THREAD
+Queue is not empty
+15
+THREAD
+Server: END OF ROUND 4 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 5 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 3
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+11
+THREAD
+Queue is not empty
+16
+THREAD
+Server: GAME A MOVE 0 PLAYER 3 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+12
+THREAD
+Queue is not empty
+16
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+12
+THREAD
+Queue is not empty
+17
+THREAD
+Server: GAME A OVER PLAYER 3 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+13
+THREAD
+Queue is not empty
+17
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 3 WIN
+Client: server said game is over
+Queue is not empty
+13
+THREAD
+Queue is not empty
+18
+THREAD
+Server: END OF ROUND 5 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 6 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 21
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+13
+THREAD
+Queue is not empty
+19
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+13
+THREAD
+Queue is not empty
+20
+THREAD
+Server: GAME A MOVE 0 PLAYER 21 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+14
+THREAD
+Queue is not empty
+20
+THREAD
+Server: GAME A OVER PLAYER 21 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+15
+THREAD
+Queue is not empty
+20
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 21 WIN
+Client: server said game is over
+Queue is not empty
+15
+THREAD
+Queue is not empty
+21
+THREAD
+Server: END OF ROUND 6 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 7 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 19
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+15
+THREAD
+Queue is not empty
+22
+THREAD
+Server: GAME A MOVE 0 PLAYER 19 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+16
+THREAD
+Queue is not empty
+22
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+16
+THREAD
+Queue is not empty
+23
+THREAD
+Server: GAME A OVER PLAYER 19 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+17
+THREAD
+Queue is not empty
+23
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 19 WIN
+Client: server said game is over
+Queue is not empty
+17
+THREAD
+Queue is not empty
+24
+THREAD
+Server: END OF ROUND 7 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 8 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 16
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+17
+THREAD
+Queue is not empty
+25
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+17
+THREAD
+Queue is not empty
+26
+THREAD
+Server: GAME A MOVE 0 PLAYER 16 PLACED GRASS+LAKE AT 0 -3 3 6 FOUNDED SETTLEMENT AT 0 -2 2
+Client: server asked us to update map with enemy move
+Queue is not empty
+18
+THREAD
+Queue is not empty
+26
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+19
+THREAD
+Queue is not empty
+26
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+20
+THREAD
+Queue is not empty
+26
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+21
+THREAD
+Queue is not empty
+26
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+21
+THREAD
+Queue is not empty
+27
+THREAD
+Server: END OF ROUND 8 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 9 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 11
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+21
+THREAD
+Queue is not empty
+28
+THREAD
+Server: GAME A MOVE 0 PLAYER 11 PLACED GRASS+LAKE AT 2 -1 -1 3 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+22
+THREAD
+Queue is not empty
+28
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+22
+THREAD
+Queue is not empty
+29
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+23
+THREAD
+Queue is not empty
+29
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+24
+THREAD
+Queue is not empty
+29
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+25
+THREAD
+Queue is not empty
+29
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+25
+THREAD
+Queue is not empty
+30
+THREAD
+Server: END OF ROUND 9 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 10 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 9
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+25
+THREAD
+Queue is not empty
+31
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+25
+THREAD
+Queue is not empty
+32
+THREAD
+Server: GAME A MOVE 0 PLAYER 9 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+26
+THREAD
+Queue is not empty
+32
+THREAD
+Server: GAME A OVER PLAYER 9 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+27
+THREAD
+Queue is not empty
+32
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 9 WIN
+Client: server said game is over
+Queue is not empty
+27
+THREAD
+Queue is not empty
+33
+THREAD
+Server: END OF ROUND 10 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 11 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 1
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+27
+THREAD
+Queue is not empty
+34
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+27
+THREAD
+Queue is not empty
+35
+THREAD
+Server: GAME A MOVE 0 PLAYER 1 PLACED GRASS+LAKE AT 0 2 -2 5 FOUNDED SETTLEMENT AT 0 -1 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+28
+THREAD
+Queue is not empty
+35
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+29
+THREAD
+Queue is not empty
+35
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+30
+THREAD
+Queue is not empty
+35
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+31
+THREAD
+Queue is not empty
+35
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+31
+THREAD
+Queue is not empty
+36
+THREAD
+Server: END OF ROUND 11 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 12 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 5
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+32
+THREAD
+Queue is not empty
+36
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+33
+THREAD
+Queue is not empty
+36
+THREAD
+Server: GAME B MOVE 0 PLAYER 5 FORFEITED: ILLEGAL TILE PLACEMENT
+Client: server said game is over
+Queue is not empty
+33
+THREAD
+Queue is not empty
+37
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 5 WIN
+Client: server said game is over
+Queue is not empty
+34
+THREAD
+Queue is not empty
+37
+THREAD
+Server: GAME B OVER PLAYER 5 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+34
+THREAD
+Queue is not empty
+38
+THREAD
+Server: END OF ROUND 12 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 13 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 2
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+35
+THREAD
+Queue is not empty
+38
+THREAD
+Server: GAME B MOVE 0 PLAYER 2 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+35
+THREAD
+Queue is not empty
+39
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+36
+THREAD
+Queue is not empty
+39
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 2 WIN
+Client: server said game is over
+Queue is not empty
+37
+THREAD
+Queue is not empty
+39
+THREAD
+Server: GAME B OVER PLAYER 2 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+37
+THREAD
+Queue is not empty
+40
+THREAD
+Server: END OF ROUND 13 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 14 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 20
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+38
+THREAD
+Queue is not empty
+40
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+39
+THREAD
+Queue is not empty
+40
+THREAD
+Server: GAME B MOVE 0 PLAYER 20 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+39
+THREAD
+Queue is not empty
+41
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 20 WIN
+Client: server said game is over
+Queue is not empty
+40
+THREAD
+Queue is not empty
+41
+THREAD
+Server: GAME B OVER PLAYER 20 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+40
+THREAD
+Queue is not empty
+42
+THREAD
+Server: END OF ROUND 14 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 15 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 18
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+LAKE
+Client: Server asked us to place a tile
+Queue is not empty
+41
+THREAD
+Queue is not empty
+42
+THREAD
+Server: GAME B MOVE 0 PLAYER 18 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+41
+THREAD
+Queue is not empty
+43
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+42
+THREAD
+Queue is not empty
+43
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 18 WIN
+Client: server said game is over
+Queue is not empty
+43
+THREAD
+Queue is not empty
+43
+THREAD
+Server: GAME B OVER PLAYER 18 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+43
+THREAD
+Queue is not empty
+44
+THREAD
+Server: END OF ROUND 15 OF 15
+Server: WAIT FOR THE NEXT CHALLENGE TO BEGIN
+Server: NEW CHALLENGE 1 YOU WILL PLAY 15 MATCHES
+Server: BEGIN ROUND 1 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 12
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+44
+THREAD
+Queue is not empty
+44
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+45
+THREAD
+Queue is not empty
+44
+THREAD
+Server: GAME B MOVE 0 PLAYER 12 PLACED LAKE+ROCK AT 1 1 -2 6 FOUNDED SETTLEMENT AT 1 0 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+45
+THREAD
+Queue is not empty
+45
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+45
+THREAD
+Queue is not empty
+46
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+45
+THREAD
+Queue is not empty
+47
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+46
+THREAD
+Queue is not empty
+47
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+46
+THREAD
+Queue is not empty
+48
+THREAD
+Server: END OF ROUND 1 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 2 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 10
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+47
+THREAD
+Queue is not empty
+48
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+48
+THREAD
+Queue is not empty
+48
+THREAD
+Server: GAME B MOVE 0 PLAYER 10 PLACED LAKE+ROCK AT 1 -2 1 3 FOUNDED SETTLEMENT AT 1 -3 2
+Client: server asked us to update map with enemy move
+Queue is not empty
+48
+THREAD
+Queue is not empty
+49
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+48
+THREAD
+Queue is not empty
+50
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+48
+THREAD
+Queue is not empty
+51
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+49
+THREAD
+Queue is not empty
+51
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+49
+THREAD
+Queue is not empty
+52
+THREAD
+Server: END OF ROUND 2 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 3 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 8
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+50
+THREAD
+Queue is not empty
+52
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+51
+THREAD
+Queue is not empty
+52
+THREAD
+Server: GAME B MOVE 0 PLAYER 8 PLACED LAKE+ROCK AT -2 2 0 1 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+51
+THREAD
+Queue is not empty
+53
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+51
+THREAD
+Queue is not empty
+54
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+51
+THREAD
+Queue is not empty
+55
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+52
+THREAD
+Queue is not empty
+55
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+52
+THREAD
+Queue is not empty
+56
+THREAD
+Server: END OF ROUND 3 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 4 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 6
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+52
+THREAD
+Queue is not empty
+57
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+52
+THREAD
+Queue is not empty
+58
+THREAD
+Server: GAME A MOVE 0 PLAYER 6 PLACED LAKE+ROCK AT -1 1 0 5 FOUNDED SETTLEMENT AT -1 0 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+53
+THREAD
+Queue is not empty
+58
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+54
+THREAD
+Queue is not empty
+58
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+55
+THREAD
+Queue is not empty
+58
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+56
+THREAD
+Queue is not empty
+58
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+56
+THREAD
+Queue is not empty
+59
+THREAD
+Server: END OF ROUND 4 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 5 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 3
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+56
+THREAD
+Queue is not empty
+60
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+56
+THREAD
+Queue is not empty
+61
+THREAD
+Server: GAME A MOVE 0 PLAYER 3 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+57
+THREAD
+Queue is not empty
+61
+THREAD
+Server: GAME A OVER PLAYER 3 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+58
+THREAD
+Queue is not empty
+61
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 3 WIN
+Client: server said game is over
+Queue is not empty
+58
+THREAD
+Queue is not empty
+62
+THREAD
+Server: END OF ROUND 5 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 6 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 21
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+58
+THREAD
+Queue is not empty
+63
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+58
+THREAD
+Queue is not empty
+64
+THREAD
+Server: GAME A MOVE 0 PLAYER 21 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+59
+THREAD
+Queue is not empty
+64
+THREAD
+Server: GAME A OVER PLAYER 21 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+60
+THREAD
+Queue is not empty
+64
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 21 WIN
+Client: server said game is over
+Queue is not empty
+60
+THREAD
+Queue is not empty
+65
+THREAD
+Server: END OF ROUND 6 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 7 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 19
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+60
+THREAD
+Queue is not empty
+66
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+60
+THREAD
+Queue is not empty
+67
+THREAD
+Server: GAME A MOVE 0 PLAYER 19 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+61
+THREAD
+Queue is not empty
+67
+THREAD
+Server: GAME A OVER PLAYER 19 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+62
+THREAD
+Queue is not empty
+67
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 19 WIN
+Client: server said game is over
+Queue is not empty
+62
+THREAD
+Queue is not empty
+68
+THREAD
+Server: END OF ROUND 7 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 8 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 16
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+62
+THREAD
+Queue is not empty
+69
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+62
+THREAD
+Queue is not empty
+70
+THREAD
+Server: GAME A MOVE 0 PLAYER 16 PLACED LAKE+ROCK AT 1 -3 2 6 FOUNDED SETTLEMENT AT 1 -2 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+63
+THREAD
+Queue is not empty
+70
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+64
+THREAD
+Queue is not empty
+70
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+65
+THREAD
+Queue is not empty
+70
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+66
+THREAD
+Queue is not empty
+70
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+66
+THREAD
+Queue is not empty
+71
+THREAD
+Server: END OF ROUND 8 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 9 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 11
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+66
+THREAD
+Queue is not empty
+72
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+66
+THREAD
+Queue is not empty
+73
+THREAD
+Server: GAME A MOVE 0 PLAYER 11 PLACED LAKE+ROCK AT -2 1 1 4 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+67
+THREAD
+Queue is not empty
+73
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+68
+THREAD
+Queue is not empty
+73
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+69
+THREAD
+Queue is not empty
+73
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+70
+THREAD
+Queue is not empty
+73
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+70
+THREAD
+Queue is not empty
+74
+THREAD
+Server: END OF ROUND 9 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 10 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 9
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+70
+THREAD
+Queue is not empty
+75
+THREAD
+Server: GAME A MOVE 0 PLAYER 9 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+71
+THREAD
+Queue is not empty
+75
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+71
+THREAD
+Queue is not empty
+76
+THREAD
+Server: GAME A OVER PLAYER 9 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+72
+THREAD
+Queue is not empty
+76
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 9 WIN
+Client: server said game is over
+Queue is not empty
+72
+THREAD
+Queue is not empty
+77
+THREAD
+Server: END OF ROUND 10 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 11 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 1
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+72
+THREAD
+Queue is not empty
+78
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+72
+THREAD
+Queue is not empty
+79
+THREAD
+Server: GAME A MOVE 0 PLAYER 1 PLACED LAKE+ROCK AT 2 0 -2 3 FOUNDED SETTLEMENT AT -1 0 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+73
+THREAD
+Queue is not empty
+79
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE GRASS+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+74
+THREAD
+Queue is not empty
+79
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+75
+THREAD
+Queue is not empty
+79
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+76
+THREAD
+Queue is not empty
+79
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+76
+THREAD
+Queue is not empty
+80
+THREAD
+Server: END OF ROUND 11 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 12 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 5
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+77
+THREAD
+Queue is not empty
+80
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+78
+THREAD
+Queue is not empty
+80
+THREAD
+Server: GAME B MOVE 0 PLAYER 5 FORFEITED: ILLEGAL TILE PLACEMENT
+Client: server said game is over
+Queue is not empty
+78
+THREAD
+Queue is not empty
+81
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 5 WIN
+Client: server said game is over
+Queue is not empty
+79
+THREAD
+Queue is not empty
+81
+THREAD
+Server: GAME B OVER PLAYER 5 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+79
+THREAD
+Queue is not empty
+82
+THREAD
+Server: END OF ROUND 12 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 13 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 2
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+80
+THREAD
+Queue is not empty
+82
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+81
+THREAD
+Queue is not empty
+82
+THREAD
+Server: GAME B MOVE 0 PLAYER 2 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+81
+THREAD
+Queue is not empty
+83
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 2 WIN
+Client: server said game is over
+Queue is not empty
+82
+THREAD
+Queue is not empty
+83
+THREAD
+Server: GAME B OVER PLAYER 2 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+82
+THREAD
+Queue is not empty
+84
+THREAD
+Server: END OF ROUND 13 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 14 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 20
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+83
+THREAD
+Queue is not empty
+84
+THREAD
+Server: GAME B MOVE 0 PLAYER 20 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+83
+THREAD
+Queue is not empty
+85
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+84
+THREAD
+Queue is not empty
+85
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 20 WIN
+Client: server said game is over
+Queue is not empty
+85
+THREAD
+Queue is not empty
+85
+THREAD
+Server: GAME B OVER PLAYER 20 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+85
+THREAD
+Queue is not empty
+86
+THREAD
+Server: END OF ROUND 14 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 15 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 18
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+86
+THREAD
+Queue is not empty
+86
+THREAD
+Server: GAME B MOVE 0 PLAYER 18 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+86
+THREAD
+Queue is not empty
+87
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+87
+THREAD
+Queue is not empty
+87
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 18 WIN
+Client: server said game is over
+Queue is not empty
+88
+THREAD
+Queue is not empty
+87
+THREAD
+Server: GAME B OVER PLAYER 18 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+88
+THREAD
+Queue is not empty
+88
+THREAD
+Server: END OF ROUND 15 OF 15
+Server: WAIT FOR THE NEXT CHALLENGE TO BEGIN
+Server: NEW CHALLENGE 2 YOU WILL PLAY 15 MATCHES
+Server: BEGIN ROUND 1 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 12
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+89
+THREAD
+Queue is not empty
+88
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+90
+THREAD
+Queue is not empty
+88
+THREAD
+Server: GAME B MOVE 0 PLAYER 12 PLACED LAKE+ROCK AT -1 -2 3 1 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+90
+THREAD
+Queue is not empty
+89
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+90
+THREAD
+Queue is not empty
+90
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+90
+THREAD
+Queue is not empty
+91
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+91
+THREAD
+Queue is not empty
+91
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 12 WIN
+Client: server said game is over
+Queue is not empty
+91
+THREAD
+Queue is not empty
+92
+THREAD
+Server: END OF ROUND 1 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 2 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 10
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+92
+THREAD
+Queue is not empty
+92
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+93
+THREAD
+Queue is not empty
+92
+THREAD
+Server: GAME B MOVE 0 PLAYER 10 PLACED LAKE+ROCK AT 1 -2 1 3 FOUNDED SETTLEMENT AT 1 -3 2
+Client: server asked us to update map with enemy move
+Queue is not empty
+93
+THREAD
+Queue is not empty
+93
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+93
+THREAD
+Queue is not empty
+94
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+93
+THREAD
+Queue is not empty
+95
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+94
+THREAD
+Queue is not empty
+95
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 10 WIN
+Client: server said game is over
+Queue is not empty
+94
+THREAD
+Queue is not empty
+96
+THREAD
+Server: END OF ROUND 2 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 3 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 8
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+95
+THREAD
+Queue is not empty
+96
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+96
+THREAD
+Queue is not empty
+96
+THREAD
+Server: GAME B MOVE 0 PLAYER 8 PLACED LAKE+ROCK AT -2 2 0 1 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+96
+THREAD
+Queue is not empty
+97
+THREAD
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+96
+THREAD
+Queue is not empty
+98
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+96
+THREAD
+Queue is not empty
+99
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+97
+THREAD
+Queue is not empty
+99
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 8 WIN
+Client: server said game is over
+Queue is not empty
+97
+THREAD
+Queue is not empty
+100
+THREAD
+Server: END OF ROUND 3 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 4 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 6
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+97
+THREAD
+Queue is not empty
+101
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+97
+THREAD
+Queue is not empty
+102
+THREAD
+Server: GAME A MOVE 0 PLAYER 6 PLACED LAKE+ROCK AT -1 1 0 5 FOUNDED SETTLEMENT AT -1 0 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+98
+THREAD
+Queue is not empty
+102
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+99
+THREAD
+Queue is not empty
+102
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+100
+THREAD
+Queue is not empty
+102
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+101
+THREAD
+Queue is not empty
+102
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 6 WIN
+Client: server said game is over
+Queue is not empty
+101
+THREAD
+Queue is not empty
+103
+THREAD
+Server: END OF ROUND 4 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 5 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 3
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+101
+THREAD
+Queue is not empty
+104
+THREAD
+Server: GAME A MOVE 0 PLAYER 3 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+102
+THREAD
+Queue is not empty
+104
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+102
+THREAD
+Queue is not empty
+105
+THREAD
+Server: GAME A OVER PLAYER 3 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+103
+THREAD
+Queue is not empty
+105
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 3 WIN
+Client: server said game is over
+Queue is not empty
+103
+THREAD
+Queue is not empty
+106
+THREAD
+Server: END OF ROUND 5 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 6 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 21
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+103
+THREAD
+Queue is not empty
+107
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+103
+THREAD
+Queue is not empty
+108
+THREAD
+Server: GAME A MOVE 0 PLAYER 21 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+104
+THREAD
+Queue is not empty
+108
+THREAD
+Server: GAME A OVER PLAYER 21 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+105
+THREAD
+Queue is not empty
+108
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 21 WIN
+Client: server said game is over
+Queue is not empty
+105
+THREAD
+Queue is not empty
+109
+THREAD
+Server: END OF ROUND 6 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 7 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 19
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+105
+THREAD
+Queue is not empty
+110
+THREAD
+Server: GAME A MOVE 0 PLAYER 19 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+106
+THREAD
+Queue is not empty
+110
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+106
+THREAD
+Queue is not empty
+111
+THREAD
+Server: GAME A OVER PLAYER 19 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+107
+THREAD
+Queue is not empty
+111
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 19 WIN
+Client: server said game is over
+Queue is not empty
+107
+THREAD
+Queue is not empty
+112
+THREAD
+Server: END OF ROUND 7 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 8 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 16
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+107
+THREAD
+Queue is not empty
+113
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+107
+THREAD
+Queue is not empty
+114
+THREAD
+Server: GAME A MOVE 0 PLAYER 16 PLACED LAKE+ROCK AT 1 -3 2 6 FOUNDED SETTLEMENT AT 0 -2 2
+Client: server asked us to update map with enemy move
+Queue is not empty
+108
+THREAD
+Queue is not empty
+114
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+109
+THREAD
+Queue is not empty
+114
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+110
+THREAD
+Queue is not empty
+114
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+111
+THREAD
+Queue is not empty
+114
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 16 WIN
+Client: server said game is over
+Queue is not empty
+111
+THREAD
+Queue is not empty
+115
+THREAD
+Server: END OF ROUND 8 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 9 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 11
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+111
+THREAD
+Queue is not empty
+116
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+111
+THREAD
+Queue is not empty
+117
+THREAD
+Server: GAME A MOVE 0 PLAYER 11 PLACED LAKE+ROCK AT -2 1 1 4 FOUNDED SETTLEMENT AT 0 1 -1
+Client: server asked us to update map with enemy move
+Queue is not empty
+112
+THREAD
+Queue is not empty
+117
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+113
+THREAD
+Queue is not empty
+117
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+114
+THREAD
+Queue is not empty
+117
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+115
+THREAD
+Queue is not empty
+117
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 11 WIN
+Client: server said game is over
+Queue is not empty
+115
+THREAD
+Queue is not empty
+118
+THREAD
+Server: END OF ROUND 9 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 10 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 9
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+115
+THREAD
+Queue is not empty
+119
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+115
+THREAD
+Queue is not empty
+120
+THREAD
+Server: GAME A MOVE 0 PLAYER 9 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+116
+THREAD
+Queue is not empty
+120
+THREAD
+Server: GAME A OVER PLAYER 9 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+117
+THREAD
+Queue is not empty
+120
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 9 WIN
+Client: server said game is over
+Queue is not empty
+117
+THREAD
+Queue is not empty
+121
+THREAD
+Server: END OF ROUND 10 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 11 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 1
+Server: MAKE YOUR MOVE IN GAME B WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+117
+THREAD
+Queue is not empty
+122
+THREAD
+Server: GAME B MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+117
+THREAD
+Queue is not empty
+123
+THREAD
+Server: GAME A MOVE 0 PLAYER 1 PLACED LAKE+ROCK AT 2 0 -2 6 FOUNDED SETTLEMENT AT -1 0 1
+Client: server asked us to update map with enemy move
+Queue is not empty
+118
+THREAD
+Queue is not empty
+123
+THREAD
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE ROCK+GRASS
+Client: Server asked us to place a tile
+Queue is not empty
+119
+THREAD
+Queue is not empty
+123
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+120
+THREAD
+Queue is not empty
+123
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+121
+THREAD
+Queue is not empty
+123
+THREAD
+Server: GAME B OVER PLAYER 7 FORFEITED PLAYER 1 WIN
+Client: server said game is over
+Queue is not empty
+121
+THREAD
+Queue is not empty
+124
+THREAD
+Server: END OF ROUND 11 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 12 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 5
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+122
+THREAD
+Queue is not empty
+124
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+123
+THREAD
+Queue is not empty
+124
+THREAD
+Server: GAME B MOVE 0 PLAYER 5 FORFEITED: ILLEGAL TILE PLACEMENT
+Client: server said game is over
+Queue is not empty
+123
+THREAD
+Queue is not empty
+125
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 5 WIN
+Client: server said game is over
+Queue is not empty
+124
+THREAD
+Queue is not empty
+125
+THREAD
+Server: GAME B OVER PLAYER 5 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+124
+THREAD
+Queue is not empty
+126
+THREAD
+Server: END OF ROUND 12 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 13 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 2
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+125
+THREAD
+Queue is not empty
+126
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+126
+THREAD
+Queue is not empty
+126
+THREAD
+Server: GAME B MOVE 0 PLAYER 2 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+126
+THREAD
+Queue is not empty
+127
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 2 WIN
+Client: server said game is over
+Queue is not empty
+127
+THREAD
+Queue is not empty
+127
+THREAD
+Server: GAME B OVER PLAYER 2 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+127
+THREAD
+Queue is not empty
+128
+THREAD
+Server: END OF ROUND 13 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 14 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 20
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+128
+THREAD
+Queue is not empty
+128
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+129
+THREAD
+Queue is not empty
+128
+THREAD
+Server: GAME B MOVE 0 PLAYER 20 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+129
+THREAD
+Queue is not empty
+129
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 20 WIN
+Client: server said game is over
+Queue is not empty
+130
+THREAD
+Queue is not empty
+129
+THREAD
+Server: GAME B OVER PLAYER 20 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+130
+THREAD
+Queue is not empty
+130
+THREAD
+Server: END OF ROUND 14 OF 15 WAIT FOR NEXT MATCH
+Server: BEGIN ROUND 15 OF 15
+Server: NEW MATCH BEGINNING NOW YOUR OPPONENT IS PLAYER 18
+Server: MAKE YOUR MOVE IN GAME A WITHIN 1.5 SECONDS: MOVE 0 PLACE LAKE+ROCK
+Client: Server asked us to place a tile
+Queue is not empty
+131
+THREAD
+Queue is not empty
+130
+THREAD
+Server: GAME A MOVE 0 PLAYER 7 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+132
+THREAD
+Queue is not empty
+130
+THREAD
+Server: GAME B MOVE 0 PLAYER 18 FORFEITED: TIMEOUT
+Client: server said game is over
+Queue is not empty
+132
+THREAD
+Queue is not empty
+131
+THREAD
+Server: GAME A OVER PLAYER 7 FORFEITED PLAYER 18 WIN
+Client: server said game is over
+Queue is not empty
+133
+THREAD
+Queue is not empty
+131
+THREAD
+Server: GAME B OVER PLAYER 18 FORFEITED PLAYER 7 WIN
+Client: server said game is over
+Queue is not empty
+133
+THREAD
+Queue is not empty
+132
+THREAD
+Server: END OF ROUND 15 OF 15
+Server: END OF CHALLENGES
