@@ -34,7 +34,7 @@ public class Client {
 
 //                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
                 BufferedReader input = new BufferedReader(new FileReader("input.txt"));
-//                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true);
+//                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true); REMOVE THE 1 SEC DELAY AT THE BOTTOM
                 PrintWriter output = new PrintWriter("file.txt");
         ){
             String fromServer;
@@ -117,21 +117,23 @@ public class Client {
 
                         for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
 
-                            if (!threadsQueue.isEmpty()) {
-                                System.out.println("Queue is not empty");
-                                System.out.println(threadsQueue.size());
-                                System.out.println(threadsQueue.peek().consumer);
-                                if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
+                            synchronized (threadsQueue) {
+                                if (!threadsQueue.isEmpty()) {
+                                    System.out.println("Queue is not empty");
+                                    System.out.println(threadsQueue.size());
+                                    System.out.println(threadsQueue.peek().consumer);
+                                    if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
 
-                                    MoveData moveData = threadsQueue.poll();
+                                        MoveData moveData = threadsQueue.poll();
 
-                                    if (moveData.move instanceof WeJustDidThisMove) {
+                                        if (moveData.move instanceof WeJustDidThisMove) {
 
-                                        String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) moveData.move, gameID);
-                                        System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
-                                        output.println(friendlyMoveMessageToBeSent);
-                                    } else {
-                                        System.out.println("Reached invalid location in, instance of not working");
+                                            String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) moveData.move, gameID);
+                                            System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
+                                            output.println(friendlyMoveMessageToBeSent);
+                                        } else {
+                                            System.out.println("Reached invalid location in, instance of not working");
+                                        }
                                     }
                                 }
                             }

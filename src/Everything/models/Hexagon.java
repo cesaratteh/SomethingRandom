@@ -119,7 +119,7 @@ public class Hexagon {
             break;
             case LAKE:       TerrainChar = 'L';
             break;
-            case ROCKY:      TerrainChar = 'R';
+            case ROCK:      TerrainChar = 'R';
             break;
         }
        return(TerrainChar);

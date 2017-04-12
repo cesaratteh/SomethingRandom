@@ -5,6 +5,6 @@ public enum Terrain {
     JUNGLE, // yellowish
     LAKE, // laky
     GRASS, //dark green
-    ROCKY // grey
+    ROCK // grey
 }
 

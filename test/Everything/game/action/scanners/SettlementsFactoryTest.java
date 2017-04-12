@@ -44,7 +44,7 @@ public class SettlementsFactoryTest {
 
     @Test
     public void scanCircleTest3() {
-        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASS, Terrain.ROCKY, Terrain.GRASS,
+        final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASS, Terrain.ROCK, Terrain.GRASS,
                 Team.FRIENDLY, Team.FRIENDLY, Team.FRIENDLY);
 
         SettlementsFactory settlementsFactory = new SettlementsFactory();

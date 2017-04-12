@@ -31,7 +31,7 @@ public class SettlementFoundingHandlerTest {
 
         tileHandler.addTileToMap(
                 new Hexagon(Terrain.GRASS, 1, 1),
-                new Hexagon(Terrain.ROCKY, 1, 1),
+                new Hexagon(Terrain.ROCK, 1, 1),
                 new Hexagon(Terrain.VOLCANO, 1, 1),
                 curr,
                 curr.left(),
@@ -41,7 +41,7 @@ public class SettlementFoundingHandlerTest {
         tileHandler.addTileToMap(
                 new Hexagon(Terrain.VOLCANO, 1, 3),
                 new Hexagon(Terrain.LAKE, 1, 3),
-                new Hexagon(Terrain.ROCKY, 1, 3),
+                new Hexagon(Terrain.ROCK, 1, 3),
                 curr.left().left(),
                 curr.topLeft().left(),
                 curr.left().left().topLeft(),

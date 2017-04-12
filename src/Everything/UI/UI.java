@@ -82,7 +82,7 @@ public class UI extends Application {
                         case VOLCANO:
                             gc.setFill(Color.DARKORANGE);
                             break;
-                        case ROCKY:
+                        case ROCK:
                             gc.setFill(Color.GRAY);
                             break;
                         default:
@@ -157,7 +157,7 @@ public class UI extends Application {
                         case VOLCANO:
                             gc.setFill(Color.DARKORANGE);
                             break;
-                        case ROCKY:
+                        case ROCK:
                             gc.setFill(Color.GRAY);
                             break;
                         default:

@@ -10,18 +10,18 @@ public class TigerIslandProtocol {
 
     public String authenticateTournament(String input, String tournamentPassword, String userName, String userPassword) {
         String output = null;
-        if (input.equals("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")) {
+        if (input.contains("WELCOME TO ANOTHER EDITION OF THUNDERDOME!")) {
 
             output = "ENTER THUNDERDOME " + tournamentPassword;
         } else {
-            if (input.equals("TWO SHALL ENTER, ONE SHALL LEAVE")) {
+            if (input.contains("TWO SHALL ENTER, ONE SHALL LEAVE")) {
                 output = "I AM " + userName + " " + userPassword;
             }
         }
         return output;
     }
 
-    private ArrayList<Terrain> parseTileTerrain(String tile) {
+    public ArrayList<Terrain> parseTileTerrain(String tile) {
         String[] split = tile.split("\\+");
 
         ArrayList<Terrain> terrains = new ArrayList<>();
@@ -85,45 +85,6 @@ public class TigerIslandProtocol {
 
         return move;
     }
-
-//    public String playFriendlyTurn(String input, ConcurrentLinkedQueue<Move> queue) {
-//        String[] tokens = input.split(" ");
-//        gameID = tokens[5];
-//        moveNumber = Integer.parseInt(tokens[10]);
-//        tile = tokens[12];
-//        timeLimit = Integer.parseInt(tokens[7]);
-//        MakeMoveInstruction instruction = new MakeMoveInstruction(gameID,moveNumber,tile);
-//        writeToBuffer(instruction);
-//        WeJustDidThisMove ourmove = readFromBuffer();
-//        int tileX = ourmove.getTileSpot().getXForServer();
-//        int tileY = ourmove.getTileSpot().getYForServer();
-//        int tileZ = ourmove.getTileSpot().getZForServer();
-//        int buildX = ourmove.getBuildSpot().getXForServer();
-//        int buildY = ourmove.getBuildSpot().getYForServer();
-//        int buildZ = ourmove.getBuildSpot().getZForServer();
-//        int orientation = ourmove.getOrientation();
-//        Terrain terrain = ourmove.getTerrain();
-//
-//        String move = "GAME " + gameID + " MOVE " + moveNumber + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
-//        switch (ourmove.getBuildType()) {
-//            case (1):
-//                move.concat("FOUND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ);
-//                break;
-//            case (2):
-//                move.concat("EXPAND SETTLEMENT AT " + buildX + " " + buildY + " " + buildZ + " " + terrain) ;
-//                break;
-//            case (3):
-//                move.concat("BUILD TOTORO SANCTUARY AT " + buildX + " " + buildY + " " + buildZ);
-//                break;
-//            case(4):
-//                move.concat("BUILD TIGER PLAYGROUND AT " + buildX + " " + buildY + " " + buildZ);
-//                break;
-//            case(5):
-//                move.concat("UNABLE TO BUILD");
-//                break;
-//        }
-//        return move;
-//    }
 
     public EnemyMove parseOpponentMove(String input) {
         String[] tokens = input.split(" ");

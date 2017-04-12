@@ -16,7 +16,7 @@ public class SettlementAdjacentVolcanoesScannerTest {
 
         final Map map = MapGenerator
                 .generateCircleWithOutsideLine(
-                        Terrain.ROCKY, Terrain.VOLCANO, Terrain.LAKE,
+                        Terrain.ROCK, Terrain.VOLCANO, Terrain.LAKE,
                         Team.FRIENDLY, Team.ENEMY, Team.FRIENDLY);
 
         map.setHexagon(map.getMiddleHexagonMapSpot().bottomRight().bottomRight().bottomRight(), new Hexagon(Terrain.VOLCANO, 1, 1));

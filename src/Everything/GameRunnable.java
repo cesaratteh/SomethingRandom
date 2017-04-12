@@ -35,24 +35,27 @@ public class GameRunnable implements Runnable {
 
         while (true) {
 
-            if (!threadQueue.isEmpty() && threadQueue.peek().consumer == MoveData.Consumer.THREAD) {
+            synchronized (threadQueue) {
 
-                final MoveData moveData = threadQueue.poll();
+                if (!threadQueue.isEmpty() && threadQueue.peek().consumer == MoveData.Consumer.THREAD) {
 
-                if (moveData.gameOver) {
-                    System.out.println("Runnable: shutting down thread, game over");
-                    break;
-                }
+                    final MoveData moveData = threadQueue.poll();
 
-                if (moveData.move instanceof EnemyMove) {
-                    tigerIsland.updateMapWithEnemyMove( (EnemyMove) moveData.move);
-                    System.out.println("Runnable: Updated map using enemy move");
-                } else {
-                    final WeJustDidThisMove weJustDidThisMove
-                            = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) moveData.move);
+                    if (moveData.gameOver) {
+                        System.out.println("Runnable: shutting down thread, game over");
+                        break;
+                    }
 
-                    threadQueue.add(new MoveData(false, weJustDidThisMove, MoveData.Consumer.CLIENT));
-                    System.out.println("Runnable: Thread just played move, sending it to the client");
+                    if (moveData.move instanceof EnemyMove) {
+                        tigerIsland.updateMapWithEnemyMove((EnemyMove) moveData.move);
+                        System.out.println("Runnable: Updated map using enemy move");
+                    } else {
+                        final WeJustDidThisMove weJustDidThisMove
+                                = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) moveData.move);
+
+                        threadQueue.add(new MoveData(false, weJustDidThisMove, MoveData.Consumer.CLIENT));
+                        System.out.println("Runnable: Thread just played move, sending it to the client");
+                    }
                 }
             }
         }

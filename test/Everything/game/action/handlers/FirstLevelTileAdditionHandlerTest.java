@@ -50,7 +50,7 @@ public class FirstLevelTileAdditionHandlerTest {
         Assert.assertTrue(map.getHexagon(middle.topLeft()).getTerrainType() == Terrain.JUNGLE
                 && map.getHexagon(middle.topRight()).getTerrainType() == Terrain.LAKE
                 && map.getHexagon(middle).getTerrainType() == Terrain.VOLCANO
-                && map.getHexagon(middle.bottomLeft()).getTerrainType() == Terrain.ROCKY
+                && map.getHexagon(middle.bottomLeft()).getTerrainType() == Terrain.ROCK
                 && map.getHexagon(middle.bottomRight()).getTerrainType() == Terrain.GRASS);
 
     }
@@ -142,7 +142,7 @@ public class FirstLevelTileAdditionHandlerTest {
     public void testNoVolcanos(){
         initTile();
 
-        h2 = new Hexagon(Terrain.ROCKY, 1, 1);
+        h2 = new Hexagon(Terrain.ROCK, 1, 1);
 
         try {
             handler.addTileToMap(h1, h2, h3, m1, m2, m3, map);

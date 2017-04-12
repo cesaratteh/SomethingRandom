@@ -45,7 +45,7 @@
 //            case 2:
 //                return Terrain.GRASS;
 //            case 3:
-//                return Terrain.ROCKY;
+//                return Terrain.ROCK;
 //        }
 //        return null;
 //    }
@@ -70,7 +70,7 @@
 //
 //        map = new Map();
 //        fh1 = new Hexagon(Terrain.LAKE, 1, 0);
-//        fh2 = new Hexagon(Terrain.ROCKY, 1, 0);
+//        fh2 = new Hexagon(Terrain.ROCK, 1, 0);
 //        fh3 = new Hexagon(Terrain.VOLCANO, 1, 0);
 //        fh4 = new Hexagon(Terrain.GRASS, 1, 0);
 //        fh5 = new Hexagon(Terrain.JUNGLE, 1, 0);

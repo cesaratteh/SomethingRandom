@@ -62,7 +62,7 @@ public class StupiedBotIntegrationTest {
     private Terrain generateRandomTerrain() {
 
 
-        final String[] terrainTypes = {"LAKE", "JUNGLE", "GRASS", "ROCKY"};
+        final String[] terrainTypes = {"LAKE", "JUNGLE", "GRASS", "ROCK"};
         Random random = new Random();
 
         return Terrain.valueOf(terrainTypes[random.nextInt(4)]);
