@@ -20,18 +20,32 @@ public class SettlementExpansionHandler {
 
     }
 
-    public void expandWithTotoro(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
-        if(satisfiesTotoroRequirements(mapSpot, map))
+    public WeJustDidThisMove expandWithTotoro(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
+        if (satisfiesTotoroRequirements(mapSpot, map)) {
             map.getHexagon(mapSpot).addTotoro(team);
-        else
+
+            WeJustDidThisMove move = new WeJustDidThisMove();
+            move.setBuildType(3);
+            move.setBuildSpot(mapSpot);
+
+            return move;
+        } else {
             throw new CannotPerformActionException("Cannot expand with totoro here");
+        }
     }
 
-    public void expandWithTiger(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
-        if(satisfiesTigerRequirements(mapSpot, map))
+    public WeJustDidThisMove expandWithTiger(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
+        if (satisfiesTigerRequirements(mapSpot, map)) {
             map.getHexagon(mapSpot).addTotoro(team);
-        else
+
+            WeJustDidThisMove move = new WeJustDidThisMove();
+            move.setBuildType(4);
+            move.setBuildSpot(mapSpot);
+
+            return move;
+        } else {
             throw new CannotPerformActionException("Cannot expand with tigers");
+        }
     }
 
     private boolean satisfiesMeeplesRequirements(final MapSpot mapSpot, final Map map) {

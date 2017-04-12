@@ -1,5 +1,6 @@
 package Everything.game.action.scanners.PlacingOnLevelOne;
 
+import Everything.game.action.MapUpdater.Updater;
 import Everything.game.action.scanners.MapGenerator;
 import Everything.game.action.scanners.NoValidActionException;
 import Everything.models.*;
@@ -8,7 +9,19 @@ import org.junit.Test;
 public class RandomLevelOneTileScannerTest {
 
     @Test
-    public void circleTest() throws NoValidActionException{
+    public void firstTileTest() throws NoValidActionException{
+        Map map = new Map();
+        Updater updater = new Updater(map);
+
+        updater.setFirstTile();
+
+        RandomLevelOneTileScanner randomLevelOneTileScanner = new RandomLevelOneTileScanner();
+
+        randomLevelOneTileScanner.scan(map);
+    }
+
+    @Test
+    public void circleTest() throws NoValidActionException {
 
         final Map map = MapGenerator.generateCircleWithOutsideLine(Terrain.GRASS,
                 Terrain.GRASS,

@@ -57,21 +57,7 @@ public class AIBot {
     //-------------
     // Constructors
 
-    public AIBot(final SettlementsFactory settlementsFactory,
-                 final FirstLevelTileAdditionHandler firstLevelTileAdditionHandler,
-                 final NukingAndStackingHandler nukingAndStackingHandler,
-                 final SettlementExpansionHandler settlementExpansionHandler,
-                 final SettlementFoundingHandler settlementFoundingHandler,
-                 final SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner,
-                 final SettlementAdjacentVolcanoesScanner settlementAdjacentVolcanoesScanner,
-                 final SettlementLevelOneTwoSpotsNukingScanner settlementLevelOneTwoSpotsNukingScanner,
-                 final SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner,
-                 final ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner,
-                 final SettlementExpansionMeeplesCost settlementExpansionMeeplesCost,
-                 final TotoroSpotScanner totoroSpotScanner,
-                 final TigerSpotScanner tigerSpotScanner,
-                 final FoundingNextToSettlementScanner foundingNextToSettlementScanner,
-                 final RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
+    public AIBot(SettlementsFactory settlementsFactory, FirstLevelTileAdditionHandler firstLevelTileAdditionHandler, NukingAndStackingHandler nukingAndStackingHandler, SettlementExpansionHandler settlementExpansionHandler, SettlementFoundingHandler settlementFoundingHandler, SettlementAdjacentMapSpotsScanner settlementAdjacentMapSpotsScanner, SettlementAdjacentVolcanoesScanner settlementAdjacentVolcanoesScanner, SettlementLevelOneTwoSpotsNukingScanner settlementLevelOneTwoSpotsNukingScanner, RandomLevelOneTileScanner randomLevelOneTileScanner, SettlementLevelOneTilePlacementScanner settlementLevelOneTilePlacementScanner, ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner, SettlementExpansionMeeplesCost settlementExpansionMeeplesCost, TigerSpotScanner tigerSpotScanner, TotoroSpotScanner totoroSpotScanner, FoundingNextToSettlementScanner foundingNextToSettlementScanner, RandomSettlementFoundingScanner randomSettlementFoundingScanner) {
         this.settlementsFactory = settlementsFactory;
         this.firstLevelTileAdditionHandler = firstLevelTileAdditionHandler;
         this.nukingAndStackingHandler = nukingAndStackingHandler;
@@ -80,14 +66,16 @@ public class AIBot {
         this.settlementAdjacentMapSpotsScanner = settlementAdjacentMapSpotsScanner;
         this.settlementAdjacentVolcanoesScanner = settlementAdjacentVolcanoesScanner;
         this.settlementLevelOneTwoSpotsNukingScanner = settlementLevelOneTwoSpotsNukingScanner;
+        this.randomLevelOneTileScanner = randomLevelOneTileScanner;
         this.settlementLevelOneTilePlacementScanner = settlementLevelOneTilePlacementScanner;
         this.expansionToSpecificTerrainScanner = expansionToSpecificTerrainScanner;
         this.settlementExpansionMeeplesCost = settlementExpansionMeeplesCost;
-        this.totoroSpotScanner = totoroSpotScanner;
         this.tigerSpotScanner = tigerSpotScanner;
+        this.totoroSpotScanner = totoroSpotScanner;
         this.foundingNextToSettlementScanner = foundingNextToSettlementScanner;
         this.randomSettlementFoundingScanner = randomSettlementFoundingScanner;
     }
+
 
     //--------
     // Methods
@@ -102,7 +90,8 @@ public class AIBot {
         WeJustDidThisMove placementMove = doATilePlacementMove(map, player, tile);
         WeJustDidThisMove buildMove = doABuildMove(map, player);
 
-        placementAndBuildMove.setMoveNumber(buildMove.getMoveNumber());
+        placementAndBuildMove.setMoveNumber(makeMoveInstruction.getMoveNumber());
+
         placementAndBuildMove.setBuildType(buildMove.getBuildType());
         placementAndBuildMove.setBuildSpot(buildMove.getBuildSpot());
         placementAndBuildMove.setTerrain(buildMove.getTerrain());
@@ -127,6 +116,7 @@ public class AIBot {
     }
 
     private WeJustDidThisMove placeTileInRandomSpot(Map map, Tile tile) throws NoValidActionException, CannotPerformActionException {
+        randomLevelOneTileScanner.scan(map);
         TileMapSpot tileMapSpot = randomLevelOneTileScanner.scan(map);
 
         return firstLevelTileAdditionHandler.addTileToMap(tile.getH1(),
@@ -202,7 +192,7 @@ public class AIBot {
                 return placeTileInRandomSpot(map, tile);
             } catch (NoValidActionException | CannotPerformActionException e) {
             }
-        } 
+        }
 
 
         // Could not place tile anywhere
@@ -212,6 +202,33 @@ public class AIBot {
         return gameOverMove;
     }
 
+    private WeJustDidThisMove expandIfResultingSettlementIsSizeX(Map map, Settlement settlement, Team team, int sizeX) throws NoValidActionException, CannotPerformActionException {
+
+        for (Terrain currentTerrain : Terrain.values()) {
+            if (currentTerrain != Terrain.VOLCANO) {
+                ArrayList<MapSpot> expansionSpots = expansionToSpecificTerrainScanner.scan(settlement, map, currentTerrain);
+
+                if (settlement.size() + expansionSpots.size() == sizeX) {
+                    settlementExpansionHandler.expandWithMeeples(expansionSpots, map, team);
+
+                    WeJustDidThisMove expansionMove = new WeJustDidThisMove();
+                    expansionMove.setBuildType(2);
+                    expansionMove.setBuildSpot(settlement.getMapSpots().get(0));
+                    expansionMove.setTerrain(currentTerrain);
+
+                    return expansionMove;
+                }
+            }
+        }
+
+        throw new NoValidActionException("expandIfResultingSettlementIsSizeFix couldn't make a move");
+    }
+
+    private WeJustDidThisMove foundMeepleToIncreaseSettlementSize(Map map, Settlement settlement, Team team) throws NoValidActionException, CannotPerformActionException {
+        ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(settlement, map);
+        return settlementFoundingHandler.foundSettlement(foundingSpots.get(0), map, team);
+    }
+
     private WeJustDidThisMove doABuildMove(final Map map, final Player player) {
         final ArrayList<Settlement> friendlySettlements
                 = settlementsFactory.generateSettlements(map, player.getTeam());
@@ -219,109 +236,84 @@ public class AIBot {
         if (player.getNumberOfTotorosLeft() > 0) {
             if (friendlySettlements.size() == 0) {
                 try {
-                    // Place villager on any hex
-                    final MapSpot foundingSpots;
-                    foundingSpots = randomSettlementFoundingScanner.scan(map);
-                    map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                    return;
-                } catch (NoValidActionException e) {
+                    MapSpot foundingSpot = randomSettlementFoundingScanner.scan(map);
+                    return settlementFoundingHandler.foundSettlement(foundingSpot, map, player.getTeam());
+                } catch (NoValidActionException | CannotPerformActionException e) {
                 }
-                return;
             } else {
                 for (Settlement friendlySettlement : friendlySettlements) {
                     if (friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
                             ArrayList<MapSpot> totoroSpots = totoroSpotScanner.scan(friendlySettlement, map);
+                            return settlementExpansionHandler.expandWithTotoro(totoroSpots.get(0), map, player.getTeam());
 
-                            for (MapSpot totoroSpot : totoroSpots) {
-                                if (map.getHexagon(totoroSpot).getLevel() < 3) {
-                                    map.getHexagon(totoroSpot).addTotoro(Team.FRIENDLY);
-                                    return;
-                                }
-                            }
-
-                            map.getHexagon(totoroSpots.get(0)).addTotoro(Team.FRIENDLY);
-                            return;
-
-                        } catch (NoValidActionException e) {
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
                     } else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
-                            final ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                            map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                            return;
-                        } catch (NoValidActionException e) {
+                            return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
 
                     } else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
 
-                            final ArrayList<MapSpot> expandableMapSpots
-                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
 
-                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else {
-                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                                return;
-                            }
-                        } catch (NoValidActionException e) {
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
+                        try {
+                            return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
                     } else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
-                            final ArrayList<MapSpot> expandableMapSpots
-                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
-
-                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else {
-                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                                return;
-                            }
-                        } catch (NoValidActionException e) {
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
+
+                        try {
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 4);
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
+                        try {
+                            return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
                     } else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
-                            final ArrayList<MapSpot> expandableMapSpots
-                                    = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
 
-                            if ((expandableMapSpots.size() + friendlySettlement.size()) == 5) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else if ((expandableMapSpots.size() + friendlySettlement.size()) == 4) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else if ((expandableMapSpots.size() + friendlySettlement.size()) == 3) {
-                                settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                                return;
-                            } else {
-                                ArrayList<MapSpot> foundingSpots = foundingNextToSettlementScanner.scan(friendlySettlement, map);
-                                map.getHexagon(foundingSpots.get(0)).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                                return;
-                            }
-                        } catch (NoValidActionException e) {
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
+                        try {
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 4);
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
+                        try {
+                            return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 3);
+                        } catch (NoValidActionException | CannotPerformActionException e) {
+                        }
+
+                        try {
+                            return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
                     } else {
                         try {
                             // Place villager on any hex
-                            final MapSpot foundingSpots;
-                            foundingSpots = randomSettlementFoundingScanner.scan(map);
-                            map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                            return;
-                        } catch (NoValidActionException e) {
+                            final MapSpot foundingSpots = randomSettlementFoundingScanner.scan(map);
+                            return settlementFoundingHandler.foundSettlement(foundingSpots, map, player.getTeam());
+                        } catch (NoValidActionException | CannotPerformActionException e) {
                         }
-                        return;
                     }
                 }
-
             }
         } else if (player.getNumberOfMeeplesLeft() > 0) {
             // Iterate through expansion options to exhaust meeple count ....
@@ -330,50 +322,67 @@ public class AIBot {
             //  c. if difference > 0, then check if new max is found
             //  d. if all costs for expansion are greater than meeple count, then found villager in any random spot
 
-            ArrayList<MapSpot> maxMapSpot = new ArrayList<MapSpot>();
-            Settlement maxSettlement = new Settlement(player.getTeam());
+            ArrayList<MapSpot> maxExpansionSpots = null;
+            Settlement maxSettlementToExpand = null;
+            Terrain maxTerrain = null;
+            int maxCost = Integer.MIN_VALUE;
 
             for (Settlement friendlySettlement : friendlySettlements) {
-                try {
-                    final ArrayList<MapSpot> expandableMapSpots
-                            = meeplesExpandableSpotsScanner.scan(friendlySettlement, map);
+                for (Terrain expansionTerrain : Terrain.values()) {
+                    try {
+                        if (expansionTerrain != Terrain.VOLCANO) {
 
-                    if ((player.getNumberOfMeeplesLeft() - expandableMapSpots.size()) == 0) {
-                        settlementExpansionHandler.expandWithMeeples(friendlySettlement.getMapSpots().get(0));
-                        return;
-                    }
+                            ArrayList<MapSpot> expandableSpots = expansionToSpecificTerrainScanner.scan(friendlySettlement, map, expansionTerrain);
+                            int meeplesCost = settlementExpansionMeeplesCost.calculate(expandableSpots, map);
+                            if (player.isHasEnoughMeeples(meeplesCost)) {
 
-                    if ((player.getNumberOfMeeplesLeft() - expandableMapSpots.size()) > 0) {
-                        if (expandableMapSpots.size() > maxMapSpot.size()) {
-                            maxMapSpot = expandableMapSpots;
-                            maxSettlement = friendlySettlement;
+                                if (meeplesCost == player.getNumberOfMeeplesLeft()) {
+                                    try {
+                                        settlementExpansionHandler.expandWithMeeples(expandableSpots, map, player.getTeam());
+                                        WeJustDidThisMove expansionMove = new WeJustDidThisMove();
+                                        expansionMove.setBuildType(2);
+                                        expansionMove.setBuildSpot(friendlySettlement.getMapSpots().get(0));
+                                        expansionMove.setTerrain(expansionTerrain);
+                                        return expansionMove;
+                                    } catch (CannotPerformActionException e) {
+                                    }
+                                } else {
+                                    if (meeplesCost > maxCost) {
+                                        maxCost = meeplesCost;
+                                        maxExpansionSpots = expandableSpots;
+                                        maxSettlementToExpand = friendlySettlement;
+                                        maxTerrain = expansionTerrain;
+                                    }
+                                }
+                            }
                         }
+                    } catch (NoValidActionException e) {
                     }
-
-                } catch (NoValidActionException e) {
                 }
-
             }
+            if (maxCost > 1 && maxExpansionSpots != null && maxSettlementToExpand != null && maxTerrain != null &&
+                    maxExpansionSpots.size() > 1) {
+                try {
+                    settlementExpansionHandler.expandWithMeeples(maxExpansionSpots, map, player.getTeam());
+                    WeJustDidThisMove expansionMove = new WeJustDidThisMove();
+                    expansionMove.setBuildType(2);
+                    expansionMove.setBuildSpot(maxSettlementToExpand.getMapSpots().get(0));
+                    expansionMove.setTerrain(maxTerrain);
+                    return expansionMove;
+                } catch (CannotPerformActionException e) {
+                }
+            }
+
 
             try {
-                if (maxMapSpot.size() > 1) {
-                    settlementExpansionHandler.expandWithMeeples(maxSettlement.getMapSpots().get(0));
-                    return;
-                } else {
-                    // Place villager on any hex
-                    final MapSpot foundingSpots;
-                    foundingSpots = randomSettlementFoundingScanner.scan(map);
-                    map.getHexagon(foundingSpots).addMeeplesAccordingToLevel(Team.FRIENDLY);
-                    return;
-                }
-
-            } catch (NoValidActionException e) {
+                MapSpot foundingSpot = randomSettlementFoundingScanner.scan(map);
+                return settlementFoundingHandler.foundSettlement(foundingSpot, map, player.getTeam());
+            } catch (NoValidActionException | CannotPerformActionException e) {
             }
-        } else {
-            return;
-            // Game Over
-            // FIXME: 4/9/2017 No More Build Options
         }
 
+        WeJustDidThisMove gameOverMove = new WeJustDidThisMove();
+        gameOverMove.setBuildType(5);
+        return gameOverMove;
     }
 }

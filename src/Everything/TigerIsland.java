@@ -3,14 +3,21 @@ package Everything;
 import Everything.Server.MoveObjects.EnemyMove;
 import Everything.Server.MoveObjects.MakeMoveInstruction;
 import Everything.Server.MoveObjects.WeJustDidThisMove;
-import Everything.Server.OrientationAndVolcanoLocationCalculator;
 import Everything.game.action.MapUpdater.Updater;
-import Everything.game.action.ai.StupiedBot;
-import Everything.game.action.ai.TestingBot;
+import Everything.game.action.ai.AIBot;
 import Everything.game.action.handlers.FirstLevelTileAdditionHandler;
+import Everything.game.action.handlers.NukingAndStackingHandler;
+import Everything.game.action.handlers.SettlementExpansionHandler;
 import Everything.game.action.handlers.SettlementFoundingHandler;
+import Everything.game.action.scanners.Nuking.SettlementAdjacentMapSpotsScanner;
+import Everything.game.action.scanners.Nuking.SettlementAdjacentVolcanoesScanner;
+import Everything.game.action.scanners.Nuking.SettlementLevelOneTwoSpotsNukingScanner;
 import Everything.game.action.scanners.PlacingOnLevelOne.RandomLevelOneTileScanner;
+import Everything.game.action.scanners.PlacingOnLevelOne.SettlementLevelOneTilePlacementScanner;
+import Everything.game.action.scanners.SettlementFounding.FoundingNextToSettlementScanner;
 import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
+import Everything.game.action.scanners.SettlementsFactory;
+import Everything.game.action.scanners.settlemenet.expanding.*;
 import Everything.models.Map;
 import Everything.models.Player;
 import Everything.models.Team;
@@ -28,7 +35,7 @@ public class TigerIsland {
     private Player friendly;
     private Player enemy;
 
-    private StupiedBot stupiedBot;
+    private AIBot smartBot;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -43,16 +50,25 @@ public class TigerIsland {
         friendly = new Player(Team.FRIENDLY);
         enemy = new Player(Team.ENEMY);
 
-        StupiedBot stupiedBot = new StupiedBot(new OrientationAndVolcanoLocationCalculator(),
+        this.smartBot = new AIBot(new SettlementsFactory(),
                 new FirstLevelTileAdditionHandler(),
+                new NukingAndStackingHandler(),
+                new SettlementExpansionHandler(),
                 new SettlementFoundingHandler(),
+                new SettlementAdjacentMapSpotsScanner(),
+                new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
+                new SettlementLevelOneTwoSpotsNukingScanner(new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner())),
                 new RandomLevelOneTileScanner(),
-                new RandomSettlementFoundingScanner());
+                new SettlementLevelOneTilePlacementScanner(),
+                new ExpansionToSpecificTerrainScanner(),
+                new SettlementExpansionMeeplesCost(),
+                new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new RandomSettlementFoundingScanner());;
 
         this.enemyMoveUpdater = new Updater(map);
         enemyMoveUpdater.setFirstTile();
-
-        this.stupiedBot = stupiedBot;
     }
 
     //--------
@@ -60,7 +76,7 @@ public class TigerIsland {
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         System.out.println("TigerIsland: Game runnable asked me to play a move");
-        WeJustDidThisMove weJustDidThisMove = stupiedBot.playTurn(makeMoveInstruction, map, friendly);
+        WeJustDidThisMove weJustDidThisMove = smartBot.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
 
