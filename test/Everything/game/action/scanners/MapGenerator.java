@@ -5,7 +5,7 @@ import Everything.models.*;
 public class MapGenerator {
 
     /**
-     * Generates a disk with a line of two hexagons sitcking out of it from the bottom right
+     * Generates a disk with a line of two hexagons sticking out of it from the bottom right
      */
     public static Map generateCircleWithOutsideLine(final Terrain circleTerrain,
                                final Terrain outsideTerrain,

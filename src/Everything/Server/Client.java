@@ -21,13 +21,13 @@ public class Client {
     private static final String USER_PASS = userPass;
 
     public static void main(String[] args) {
-        if (args.length != 2) {
-            System.err.println("Usage: <host name> <port number>");
-            System.exit(1);
-        }
+//        if (args.length != 2) {
+//            System.err.println("Usage: <host name> <port number>");
+//            System.exit(1);
+//        }
 
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+//        String hostName = args[0];
+//        int portNumber = Integer.parseInt(args[1]);
 
         try (
 //              Socket MyClient = new Socket(hostName, portNumber);
