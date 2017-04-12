@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package Everything.game.action.ai;
 
 import Everything.Server.MoveObjects.MakeMoveInstruction;
@@ -241,6 +241,7 @@ public class AIBot {
                     MapSpot foundingSpot = randomSettlementFoundingScanner.scan(map);
                     return settlementFoundingHandler.foundSettlement(foundingSpot, map, player.getTeam());
                 } catch (NoValidActionException | CannotPerformActionException e) {
+                    System.out.println("1 line 240");
                 }
             } else {
                 for (Settlement friendlySettlement : friendlySettlements) {
@@ -251,11 +252,13 @@ public class AIBot {
                             return settlementExpansionHandler.expandWithTotoro(totoroSpots.get(0), map, player.getTeam());
 
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("2 line 249");
                         }
                     } else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("3 line 258");
                         }
 
                     } else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
@@ -264,26 +267,31 @@ public class AIBot {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
 
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("4 line 270");
                         }
                         try {
                             return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("5 line 272");
                         }
 
                     } else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("6 line 279");
                         }
 
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 4);
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("7 line 285");
                         }
 
                         try {
                             return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("8 line 291");
                         }
 
                     } else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
@@ -291,21 +299,25 @@ public class AIBot {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 5);
 
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("9 line 298");
                         }
 
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 4);
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("10 line 305");
                         }
 
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player.getTeam(), 3);
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("11 line 311");
                         }
 
                         try {
                             return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player.getTeam());
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("12 line 317");
                         }
                     } else {
                         try {
@@ -313,6 +325,7 @@ public class AIBot {
                             final MapSpot foundingSpots = randomSettlementFoundingScanner.scan(map);
                             return settlementFoundingHandler.foundSettlement(foundingSpots, map, player.getTeam());
                         } catch (NoValidActionException | CannotPerformActionException e) {
+                            System.out.println("13 line 323");
                         }
                     }
                 }
@@ -388,7 +401,7 @@ public class AIBot {
         return gameOverMove;
     }
 }
-=======
+
 //package Everything.game.action.ai;
 //
 //import Everything.Server.MoveObjects.MakeMoveInstruction;
@@ -768,4 +781,3 @@ public class AIBot {
 //
 //    }
 //}
->>>>>>> 738a09d9415f23889b370f7e806834de6ce9bb53
