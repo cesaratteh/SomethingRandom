@@ -10,27 +10,36 @@ public class RandomSettlementFoundingScanner {
     public MapSpot scan(final Map map) throws NoValidActionException {
 
         final boolean visited[][][] = new boolean[Map.size()][Map.size()][Map.size()];
+        result = null;
 
-        return visit(map.getMiddleHexagonMapSpot(), visited, map);
+        visit(map.getMiddleHexagonMapSpot(), visited, map);
+
+        if (result == null) {
+            throw new NoValidActionException("No valid spots found");
+        }
+        return result;
     }
 
     //----------------
     // Private Methods
+    private MapSpot result;
+    private void visit(final MapSpot currentMapSpot, boolean visited[][][], final Map map) throws NoValidActionException {
 
-    private MapSpot visit(final MapSpot currentMapSpot, boolean visited[][][], final Map map) throws NoValidActionException {
+        if (result != null || visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()]) {
+            return;
+        }
 
         visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
 
-        if (satisfiesFoundingRequirements(currentMapSpot, map)) {
-            return currentMapSpot;
-        }
 
         for (final MapSpot adjMapSpot : currentMapSpot.getAdjacentMapSpots()) {
+            if (satisfiesFoundingRequirements(adjMapSpot, map)) {
+                result = adjMapSpot;
+            }
+
             if(map.getHexagon(adjMapSpot) != null && !visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()])
                 visit(adjMapSpot, visited, map);
         }
-
-        throw new NoValidActionException("No valid founding spot");
     }
 
     private boolean satisfiesFoundingRequirements(final MapSpot mapSpot, final Map map) {
