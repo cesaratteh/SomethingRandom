@@ -41,7 +41,7 @@ public class StupiedBotIntegrationTest {
                 new RandomLevelOneTileScanner(),
                 new RandomSettlementFoundingScanner());
 
-        for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < 15; i++) {
             WeJustDidThisMove friendlyMove = friendlyBot.playTurn(generateRandomInstruction(), map, friendly);
             WeJustDidThisMove enemyMove = enemyBot.playTurn(generateRandomInstruction(), map, enemy);
 

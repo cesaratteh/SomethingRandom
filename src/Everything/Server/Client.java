@@ -30,12 +30,12 @@ public class Client {
         int portNumber = Integer.parseInt(args[1]);
 
         try (
-              Socket MyClient = new Socket(hostName, portNumber);
+//              Socket MyClient = new Socket(hostName, portNumber);
 
-                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
-//                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
-                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true);
-//                PrintWriter output = new PrintWriter("file.txt");
+//                  BufferedReader input = new BufferedReader(new InputStreamReader(MyClient.getInputStream()));
+                BufferedReader input = new BufferedReader(new FileReader("input.txt"));
+//                PrintWriter output = new PrintWriter(MyClient.getOutputStream(), true);
+                PrintWriter output = new PrintWriter("file.txt");
         ){
             String fromServer;
             String fromPlayer;
@@ -57,73 +57,87 @@ public class Client {
 
             final String ourPlayerID = tip.getPlayerID(input.readLine());                   //Grab our PlayerID for later comparisons
 
-            while (!((fromServer = input.readLine()).contains("THANK YOU FOR PLAYING!"))){         //Keep going as long as we're in tournament
-                System.out.println("Server: " + fromServer);
+            while (true) {         //Keep going as long as we're in tournament
 
-                if(fromServer.contains("GAME")) {
-                    String gameID = tip.parseGameID(fromServer);
-
-                    if(!runningThreadsMap.containsKey(gameID))
-                    {
-                        System.out.println("Spinning up a new thread");
-                        runningThreadsMap.put(gameID, new ConcurrentLinkedQueue<>());
-                        GameRunnable gameRunnable = new GameRunnable(runningThreadsMap.get(gameID),
-                                gameID,
-                                ourPlayerID);
-                        Thread thread = new Thread(gameRunnable);
-                        thread.start();
-                        System.out.println("reached the end of running runnable");
-                    }
-
-                    if (fromServer.contains("OVER PLAYER") ||
-                            fromServer.contains("FORFEITED:") ||
-                            fromServer.contains("LOST")) {
-
-                        System.out.println("Client: server said game is over");
-                        ConcurrentLinkedQueue<MoveData> threadBuffer = runningThreadsMap.get(gameID);
-                        threadBuffer.add(new MoveData(true, null, MoveData.Consumer.THREAD));
+                fromServer = input.readLine();
+                if (fromServer != null) {
+                    if (fromServer.contains("THANK YOU FOR PLAYING!")) {
+                        break;
                     }
 
 
-                    if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
-                    {
-                        System.out.println("Client: Server asked us to place a tile");
-                        MakeMoveInstruction ourMoveInstruction = tip.getMoveInstruction(fromServer);
+                    System.out.println("Server: " + fromServer);
 
-                        ConcurrentLinkedQueue<MoveData> threadQueue = runningThreadsMap.get(gameID);
+                    if (fromServer.contains("GAME")) {
+                        String gameID = tip.parseGameID(fromServer);
 
-                        threadQueue.add(new MoveData(false, ourMoveInstruction, MoveData.Consumer.THREAD));
-                    }
+                        if (!runningThreadsMap.containsKey(gameID)) {
+                            System.out.println("Spinning up a new thread");
+                            runningThreadsMap.put(gameID, new ConcurrentLinkedQueue<>());
+                            GameRunnable gameRunnable = new GameRunnable(runningThreadsMap.get(gameID),
+                                    gameID,
+                                    ourPlayerID);
+                            Thread thread = new Thread(gameRunnable);
+                            thread.start();
+                            System.out.println("reached the end of running runnable");
+                        }
 
-                    if (fromServer.contains("PLACED") && !(fromServer.contains(ourPlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
-                    {
-                        System.out.println("Client: server asked us to update map with enemy move");
-                        EnemyMove enemyMove = tip.parseOpponentMove(fromServer);
+                        if (fromServer.contains("OVER PLAYER") ||
+                                fromServer.contains("FORFEITED:") ||
+                                fromServer.contains("LOST")) {
 
-                        ConcurrentLinkedQueue<MoveData> threadDataQueue = runningThreadsMap.get(enemyMove.getGameid());
+                            System.out.println("Client: server said game is over");
+                            ConcurrentLinkedQueue<MoveData> threadBuffer = runningThreadsMap.get(gameID);
+                            threadBuffer.add(new MoveData(true, null, MoveData.Consumer.THREAD));
+                        }
 
-                        threadDataQueue.add(new MoveData(false, enemyMove, MoveData.Consumer.THREAD));
-                    }
 
-                    for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
+                        if (fromServer.contains("WITHIN"))           //Wait for server prompt for move
+                        {
+                            System.out.println("Client: Server asked us to place a tile");
+                            MakeMoveInstruction ourMoveInstruction = tip.getMoveInstruction(fromServer);
 
-                        if (!threadsQueue.isEmpty()) {
-                            System.out.println("Queue is not empty");
-                            if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
+                            ConcurrentLinkedQueue<MoveData> threadQueue = runningThreadsMap.get(gameID);
 
-                                Move friendlyMove = threadsQueue.poll().move;
+                            threadQueue.add(new MoveData(false, ourMoveInstruction, MoveData.Consumer.THREAD));
+                        }
 
-                                if (friendlyMove instanceof WeJustDidThisMove) {
+                        if (fromServer.contains("PLACED") && !(fromServer.contains(ourPlayerID)))       //if it contains placement details, and doesn't contain our PlayerID
+                        {
+                            System.out.println("Client: server asked us to update map with enemy move");
+                            EnemyMove enemyMove = tip.parseOpponentMove(fromServer);
 
-                                    String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) friendlyMove, gameID);
-                                    System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
-                                    output.println(friendlyMoveMessageToBeSent);
-                                } else {
-                                    System.out.println("Reached invalid location in, instance of not working");
+                            ConcurrentLinkedQueue<MoveData> threadDataQueue = runningThreadsMap.get(enemyMove.getGameid());
+
+                            threadDataQueue.add(new MoveData(false, enemyMove, MoveData.Consumer.THREAD));
+                        }
+                        try {
+                            Thread.sleep(500);
+                        }catch (Exception e){} // FIXME: 4/11/2017 REMOVE THIS
+
+                        for (ConcurrentLinkedQueue<MoveData> threadsQueue : runningThreadsMap.values()) {
+
+                            if (!threadsQueue.isEmpty()) {
+                                System.out.println("Queue is not empty");
+                                System.out.println(threadsQueue.size());
+                                System.out.println(threadsQueue.peek().consumer);
+                                if (threadsQueue.peek().consumer == MoveData.Consumer.CLIENT) {
+
+                                    MoveData moveData = threadsQueue.poll();
+
+                                    if (moveData.move instanceof WeJustDidThisMove) {
+
+                                        String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) moveData.move, gameID);
+                                        System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
+                                        output.println(friendlyMoveMessageToBeSent);
+                                    } else {
+                                        System.out.println("Reached invalid location in, instance of not working");
+                                    }
                                 }
                             }
                         }
                     }
+
                 }
             }
         }catch (ConnectException e){

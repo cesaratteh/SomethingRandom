@@ -28,7 +28,7 @@ public class TigerIsland {
     private Player friendly;
     private Player enemy;
 
-    private TestingBot testingBot;
+    private StupiedBot stupiedBot;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -43,7 +43,7 @@ public class TigerIsland {
         friendly = new Player(Team.FRIENDLY);
         enemy = new Player(Team.ENEMY);
 
-        TestingBot testingBot = new TestingBot(new OrientationAndVolcanoLocationCalculator(),
+        StupiedBot stupiedBot = new StupiedBot(new OrientationAndVolcanoLocationCalculator(),
                 new FirstLevelTileAdditionHandler(),
                 new SettlementFoundingHandler(),
                 new RandomLevelOneTileScanner(),
@@ -52,7 +52,7 @@ public class TigerIsland {
         this.enemyMoveUpdater = new Updater(map);
         enemyMoveUpdater.setFirstTile();
 
-        this.testingBot = testingBot;
+        this.stupiedBot = stupiedBot;
     }
 
     //--------
@@ -60,7 +60,7 @@ public class TigerIsland {
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         System.out.println("TigerIsland: Game runnable asked me to play a move");
-        WeJustDidThisMove weJustDidThisMove = testingBot.playTurn(makeMoveInstruction, map, friendly);
+        WeJustDidThisMove weJustDidThisMove = stupiedBot.playTurn(makeMoveInstruction, map, friendly);
         return weJustDidThisMove;
     }
 

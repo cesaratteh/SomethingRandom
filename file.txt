@@ -1,2 +1,0 @@
-ENTER THUNDERDOME <tournament password>
-I AM <username> <password>

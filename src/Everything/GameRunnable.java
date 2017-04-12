@@ -1,7 +1,6 @@
 package Everything;
 
 import Everything.Server.MoveObjects.*;
-import Everything.TigerIsland;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
