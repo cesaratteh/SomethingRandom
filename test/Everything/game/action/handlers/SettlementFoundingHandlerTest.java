@@ -54,7 +54,7 @@ public class SettlementFoundingHandlerTest {
         Team team = RandomGenerator.generateRandomTeam();
         try {
             foundingHandler.foundSettlement(map.getMiddleHexagonMapSpot().topLeft(),
-                    map, team);
+                    map, new Player(team));
         } catch (CannotPerformActionException e) {
             Assert.fail();
         }
@@ -73,7 +73,7 @@ public class SettlementFoundingHandlerTest {
         boolean caughtException = false;
 
         try {
-            foundingHandler.foundSettlement(map.getMiddleHexagonMapSpot(), map, team);
+            foundingHandler.foundSettlement(map.getMiddleHexagonMapSpot(), map, new Player(team));
         } catch (CannotPerformActionException e) {
             caughtException = true;
         }

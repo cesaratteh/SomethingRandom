@@ -160,7 +160,7 @@ public class SettlementExpansionHandlerTest {
         MapSpot middle = map.getMiddleHexagonMapSpot();
         SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
         try {
-            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+            foundingHandler.foundSettlement(middle.topLeft(), map, new Player(team));
         } catch (CannotPerformActionException e) {
             Assert.fail();
         }
@@ -172,7 +172,7 @@ public class SettlementExpansionHandlerTest {
 
 
         try {
-            handler.expandWithMeeples(adjSpots, map, team);
+            handler.expandWithMeeples(adjSpots, map, new Player(team));
         } catch (CannotPerformActionException e) {
             System.out.println(e.getMessage());
             Assert.fail();
@@ -188,7 +188,7 @@ public class SettlementExpansionHandlerTest {
         MapSpot middle = map.getMiddleHexagonMapSpot();
         SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
         try {
-            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+            foundingHandler.foundSettlement(middle.topLeft(), map, new Player(team));
         } catch (CannotPerformActionException e) {
             Assert.fail();
         }
@@ -199,7 +199,7 @@ public class SettlementExpansionHandlerTest {
 
 
         try {
-            handler.expandWithTotoro(scanner.scan(currentSettlement, map).get(0), map, team);
+            handler.expandWithTotoro(scanner.scan(currentSettlement, map).get(0), map, new Player(team));
         } catch (CannotPerformActionException | NoValidActionException e) {
 
             Assert.assertTrue(currentSettlement.size() == 2);
@@ -214,7 +214,7 @@ public class SettlementExpansionHandlerTest {
         MapSpot middle = map.getMiddleHexagonMapSpot();
         SettlementFoundingHandler foundingHandler = new SettlementFoundingHandler();
         try {
-            foundingHandler.foundSettlement(middle.topLeft(), map, team);
+            foundingHandler.foundSettlement(middle.topLeft(), map, new Player(team));
         } catch (CannotPerformActionException e) {
             Assert.fail();
         }
@@ -225,7 +225,7 @@ public class SettlementExpansionHandlerTest {
 
 
         try {
-            handler.expandWithTiger(tigerSpotScanner.scan(currentSettlement, map).get(0), map, team);
+            handler.expandWithTiger(tigerSpotScanner.scan(currentSettlement, map).get(0), map, new Player(team));
         } catch (CannotPerformActionException | NoValidActionException e) {
             Assert.assertTrue(currentSettlement.size() == 1);
         }

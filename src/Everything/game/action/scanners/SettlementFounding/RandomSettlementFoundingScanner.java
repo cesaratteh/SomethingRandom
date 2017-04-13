@@ -7,8 +7,9 @@ import Everything.models.Terrain;
 
 public class RandomSettlementFoundingScanner {
 
+    static int temp = 0;
     public MapSpot scan(final Map map) throws NoValidActionException {
-
+        temp++;
         final boolean visited[][][] = new boolean[Map.size()][Map.size()][Map.size()];
         result = null;
 
@@ -25,7 +26,7 @@ public class RandomSettlementFoundingScanner {
     private MapSpot result;
     private void visit(final MapSpot currentMapSpot, boolean visited[][][], final Map map) throws NoValidActionException {
 
-        if (result != null || visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()]) {
+        if (result != null) {
             return;
         }
 
@@ -37,7 +38,7 @@ public class RandomSettlementFoundingScanner {
                 result = adjMapSpot;
             }
 
-            if(map.getHexagon(adjMapSpot) != null && !visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()])
+            if(map.getHexagon(adjMapSpot) != null && !visited[adjMapSpot.getX()][adjMapSpot.getY()][adjMapSpot.getZ()])
                 visit(adjMapSpot, visited, map);
         }
     }

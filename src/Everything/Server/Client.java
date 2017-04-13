@@ -20,13 +20,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
 
-    private static final String TOURNAMENT_PASSWORD = "TigersRule";
+    private static final String TOURNAMENT_PASSWORD = "heygang";
 
-//    static String alphabet = "ABCDEFGHIGKLMNOPQRSTUV";
-//    static Random random = new Random();
-//    static String userPass = "" + alphabet.charAt(random.nextInt(20));
-    private static final String USER_NAME = "TEAM_T";
-    private static final String USER_PASS = "PASS_T";
+    static String alphabet = "ABCDEFGHIGKLMNOPQRST";
+    static Random random = new Random();
+    static String userPass = "TEAM_" + alphabet.charAt(random.nextInt(20));
+    private static final String USER_NAME = userPass;
+    private static final String USER_PASS = userPass;
 
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -73,7 +73,7 @@ public class Client {
                         break;
                     }
 
-                    System.out.println("Server: " + fromServer);
+                    System.out.println("SERVER: " + fromServer);
 
                     if (fromServer.contains("GAME")) {
                         String gameID = tip.parseGameID(fromServer);
@@ -135,7 +135,7 @@ public class Client {
                                         if (moveData.move instanceof WeJustDidThisMove) {
 
                                             String friendlyMoveMessageToBeSent = tip.createFriendlyMoveMessageToBeSent((WeJustDidThisMove) moveData.move, gameID);
-                                            System.out.println("Sending this message to the server " + friendlyMoveMessageToBeSent);
+                                            System.out.println("CLIENT SENDING:" + friendlyMoveMessageToBeSent);
                                             output.println(friendlyMoveMessageToBeSent);
                                         } else {
                                             System.out.println("Reached invalid location in, instance of not working");

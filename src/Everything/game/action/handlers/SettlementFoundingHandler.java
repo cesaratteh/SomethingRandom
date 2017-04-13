@@ -1,10 +1,7 @@
 package Everything.game.action.handlers;
 
 import Everything.Server.MoveObjects.WeJustDidThisMove;
-import Everything.models.Map;
-import Everything.models.MapSpot;
-import Everything.models.Team;
-import Everything.models.Terrain;
+import Everything.models.*;
 
 /**
  * Shows available options for settlement expansion
@@ -14,12 +11,16 @@ public class SettlementFoundingHandler {
 
     public WeJustDidThisMove foundSettlement(final MapSpot mapSpotToFoundOn,
                                              final Map map,
-                                             final Team team) throws CannotPerformActionException {
+                                             final Player player) throws CannotPerformActionException {
 
-        if(mapSpotSatisfiesFoundingRequirements(map, mapSpotToFoundOn))
-            map.getHexagon(mapSpotToFoundOn).addMeeplesAccordingToLevel(team);
-        else
+        if (mapSpotSatisfiesFoundingRequirements(map, mapSpotToFoundOn) &&
+                player.isHasEnoughMeeples(1)) {
+
+            map.getHexagon(mapSpotToFoundOn).addMeeplesAccordingToLevel(player.getTeam());
+            player.takeXMeeplesFromPlayer(1);
+        } else {
             throw new CannotPerformActionException("Cannot found settlement here");
+        }
 
         WeJustDidThisMove move = new WeJustDidThisMove();
 

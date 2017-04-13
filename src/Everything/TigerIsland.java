@@ -38,6 +38,7 @@ public class TigerIsland {
     private Player enemy;
 
     private StupiedBot stupiedBot;
+    private AIBot smartBot;
     private Updater enemyMoveUpdater;
 
     //-------------
@@ -58,24 +59,25 @@ public class TigerIsland {
                 new RandomLevelOneTileScanner(),
                 new RandomSettlementFoundingScanner());
 
-//                (new SettlementsFactory(),
-//                new FirstLevelTileAdditionHandler(),
-//                new NukingAndStackingHandler(),
-//                new SettlementExpansionHandler(),
-//                new SettlementFoundingHandler(),
-//                new SettlementAdjacentMapSpotsScanner(),
-//                new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
-//                new SettlementLevelOneTwoSpotsNukingScanner(new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner())),
-//                new RandomLevelOneTileScanner(),
-//                new SettlementLevelOneTilePlacementScanner(),
-//                new ExpansionToSpecificTerrainScanner(),
-//                new SettlementExpansionMeeplesCost(),
-//                new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-//                new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-//                new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-//                new RandomSettlementFoundingScanner());;
+        this.smartBot = new AIBot(new SettlementsFactory(),
+                new FirstLevelTileAdditionHandler(),
+                new NukingAndStackingHandler(),
+                new SettlementExpansionHandler(),
+                new SettlementFoundingHandler(),
+                new SettlementAdjacentMapSpotsScanner(),
+                new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
+                new SettlementLevelOneTwoSpotsNukingScanner(new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner())),
+                new RandomLevelOneTileScanner(),
+                new SettlementLevelOneTilePlacementScanner(),
+                new ExpansionToSpecificTerrainScanner(),
+                new SettlementExpansionMeeplesCost(),
+                new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
+                new RandomSettlementFoundingScanner());;
 
         this.enemyMoveUpdater = new Updater(map);
+
         enemyMoveUpdater.setFirstTile();
     }
 

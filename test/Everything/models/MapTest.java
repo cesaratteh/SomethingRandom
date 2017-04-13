@@ -1,5 +1,6 @@
 package Everything.models;
 
+import Everything.game.action.MapUpdater.Updater;
 import org.junit.Test;
 
 import java.util.Random;
@@ -16,6 +17,20 @@ public class MapTest {
         assertEquals(200, Map.size());
     }
 
+    @Test
+    public void printMap() {
+        Map map = new Map();
+        Updater updater = new Updater(map);
+        updater.setFirstTile();
+        map.printMap();
+
+        MapSpot mapSpot = new MapSpot(0, 0, 0);
+
+        MapSpot mapSpot1 = mapSpot.right();
+
+        int col = mapSpot1.getXForServer() + (mapSpot1.getZForServer() - (mapSpot1.getZForServer()&1)) / 2;
+        int row = mapSpot1.getZForServer();
+    }
 
     @Test
     public void getMapTest() {
@@ -147,6 +162,6 @@ public class MapTest {
 //        hexagon = RandomGenerator.generateRandomHexagon();
 //        map.setHexagon(Spot3, hexagon);
 //
-//        map.PrintMap();
+//        map.printMap();
 //
 //    }

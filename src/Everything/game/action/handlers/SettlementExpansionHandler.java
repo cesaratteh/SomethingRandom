@@ -7,12 +7,15 @@ import java.util.ArrayList;
 
 public class SettlementExpansionHandler {
 
-    public void expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Team team) throws CannotPerformActionException {
+    public void expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Player player) throws CannotPerformActionException {
 
         for (final MapSpot mapSpot : expandableMapSpots) {
-            if (satisfiesMeeplesRequirements(mapSpot, map)) {
+            if (satisfiesMeeplesRequirements(mapSpot, map) &&
+                player.isHasEnoughMeeples(player.getNumberOfMeeplesLeft())) {
+
                 final Hexagon hex = map.getHexagon(mapSpot);
-                hex.addMeeplesAccordingToLevel(team);
+                hex.addMeeplesAccordingToLevel(player.getTeam());
+                player.takeXMeeplesFromPlayer(hex.getLevel());
             } else {
                 throw new CannotPerformActionException("Cannot expand with meeples");
             }
@@ -20,13 +23,15 @@ public class SettlementExpansionHandler {
 
     }
 
-    public WeJustDidThisMove expandWithTotoro(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
-        if (satisfiesTotoroRequirements(mapSpot, map)) {
-            map.getHexagon(mapSpot).addTotoro(team);
+    public WeJustDidThisMove expandWithTotoro(final MapSpot mapSpot, final Map map, final Player player) throws CannotPerformActionException {
+        if (satisfiesTotoroRequirements(mapSpot, map) &&
+                player.isHasTotorosLeft()) {
+            map.getHexagon(mapSpot).addTotoro(player.getTeam());
 
             WeJustDidThisMove move = new WeJustDidThisMove();
             move.setBuildType(3);
             move.setBuildSpot(mapSpot);
+            player.takeATotoroFromPlayer();
 
             return move;
         } else {
@@ -34,13 +39,15 @@ public class SettlementExpansionHandler {
         }
     }
 
-    public WeJustDidThisMove expandWithTiger(final MapSpot mapSpot, final Map map, final Team team) throws CannotPerformActionException {
-        if (satisfiesTigerRequirements(mapSpot, map)) {
-            map.getHexagon(mapSpot).addTotoro(team);
+    public WeJustDidThisMove expandWithTiger(final MapSpot mapSpot, final Map map, final Player player) throws CannotPerformActionException {
+        if (satisfiesTigerRequirements(mapSpot, map) &&
+                player.isHasTigersLeft()) {
+            map.getHexagon(mapSpot).addTotoro(player.getTeam());
 
             WeJustDidThisMove move = new WeJustDidThisMove();
             move.setBuildType(4);
             move.setBuildSpot(mapSpot);
+            player.takeATigerFromPlayer();
 
             return move;
         } else {

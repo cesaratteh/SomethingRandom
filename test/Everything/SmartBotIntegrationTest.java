@@ -75,30 +75,38 @@ public class SmartBotIntegrationTest {
                 new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
                 new RandomSettlementFoundingScanner());
 
-        for(int i = 0; i < 20; i++) {
+        for(int i = 0; i < 24; i++) {
+            System.out.println("FRIENDLY: ");
+//            map.printMapText();
             WeJustDidThisMove friendlyMove = friendlyBot.playTurn(generateRandomInstruction(), map, friendly);
-            WeJustDidThisMove enemyMove = enemyBot.playTurn(generateRandomInstruction(), map, enemy);
-
             System.out.println(tip.createFriendlyMoveMessageToBeSent(friendlyMove, "game1"));
-            System.out.println("FRIENDLY:");
-            System.out.println(friendlyMove);
-            System.out.println("ENEMY:");
-            System.out.println(enemyMove);
-            System.out.println("---------------------------------------");
+            System.out.println("Number of meeples left: " + friendly.getNumberOfMeeplesLeft());
+            System.out.println("Number of totoros left " + friendly.getNumberOfTotorosLeft());
+            System.out.println("----------------------------------------------------------------------------------------------------");
             System.out.println("");
+
+            System.out.println("ENEMY: ");
+//            map.printMapText();
+            WeJustDidThisMove enemyMove = enemyBot.playTurn(generateRandomInstruction(), map, enemy);
+            System.out.println(tip.createFriendlyMoveMessageToBeSent(enemyMove, "game1"));
+            System.out.println("Number of meeples left: " + enemy.getNumberOfMeeplesLeft());
+            System.out.println("Number of totoros left " + enemy.getNumberOfTotorosLeft());
+            System.out.println("----------------------------------------------------------------------------------------------------");
+            System.out.println("");
+
         }
     }
 
-    private static int moveNumber = 0;
+    private static int moveNumber = 1;
     private MakeMoveInstruction generateRandomInstruction() {
-        return new MakeMoveInstruction("gameId123", moveNumber, generateRandomTerrain(), generateRandomTerrain());
+        return new MakeMoveInstruction("gameId123", moveNumber++, generateRandomTerrain(), generateRandomTerrain());
     }
 
     private Terrain generateRandomTerrain() {
 
 
         final String[] terrainTypes = {"LAKE", "JUNGLE", "GRASS", "ROCK"};
-        Random random = new Random();
+        Random random = new Random(1);
 
         return Terrain.valueOf(terrainTypes[random.nextInt(4)]);
     }

@@ -64,12 +64,12 @@ public class StupiedBot {
 
             // build move
             if (tileMapSpot.getM1().isEqual(volcanoMapSpot)) {
-                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player.getTeam());
+                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player);
 
                 weJustDidThisMove.setBuildType(1);
                 weJustDidThisMove.setBuildSpot(tileMapSpot.getM2());
             } else {
-                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player.getTeam());
+                settlementFoundingHandler.foundSettlement(tileMapSpot.getM2(), map, player);
 
                 weJustDidThisMove.setBuildType(1);
                 weJustDidThisMove.setBuildSpot(tileMapSpot.getM1());
