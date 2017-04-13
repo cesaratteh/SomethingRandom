@@ -74,7 +74,7 @@ public class TigerIsland {
                 new TigerSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
                 new TotoroSpotScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
                 new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
-                new RandomSettlementFoundingScanner());;
+                new RandomSettlementFoundingScanner());
 
         this.enemyMoveUpdater = new Updater(map);
 
@@ -86,7 +86,8 @@ public class TigerIsland {
 
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         System.out.println("TigerIsland: Game runnable asked me to play a move");
-        WeJustDidThisMove weJustDidThisMove = stupiedBot.playTurn(makeMoveInstruction, map, friendly);
+        WeJustDidThisMove weJustDidThisMove = smartBot.playTurn(makeMoveInstruction, map, friendly);
+        System.out.println(weJustDidThisMove.getTileSpot());
         return weJustDidThisMove;
     }
 

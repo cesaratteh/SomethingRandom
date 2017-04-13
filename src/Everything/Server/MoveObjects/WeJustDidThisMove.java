@@ -10,6 +10,7 @@ public class WeJustDidThisMove implements Move {
     // Attributes
 
     private MapSpot tileSpot;
+    private String tileTerrain;
     private MapSpot buildSpot;
     private int orientation;
     private Terrain terrain;
@@ -26,6 +27,10 @@ public class WeJustDidThisMove implements Move {
     public int getBuildType(){return this.buildType;}
     public int getMoveNumber() {
         return moveNumber;
+    }
+
+    public String getTileTerrain(){
+        return tileTerrain;
     }
 
     //--------
@@ -58,5 +63,9 @@ public class WeJustDidThisMove implements Move {
 
     public void setMoveNumber(int moveNumber) {
         this.moveNumber = moveNumber;
+    }
+
+    public void setTileTerrain(String tileTerrain) {
+        this.tileTerrain = tileTerrain;
     }
 }

@@ -65,17 +65,19 @@ public class FirstLevelTileAdditionHandler {
         h3.setLevel(1);
 
         WeJustDidThisMove move = new WeJustDidThisMove();
-
         if (h1.getTerrainType() == Terrain.VOLCANO){
             move.setTileSpot(m1);
+            move.setTileTerrain(h2.getTerrainType() + "+" + h3.getTerrainType());
             move.setOrientation(findOrientation(m1,m2,m3));
         }
         else if (h2.getTerrainType() == Terrain.VOLCANO){
             move.setTileSpot(m2);
+            move.setTileTerrain(h1.getTerrainType() + "+" + h3.getTerrainType());
             move.setOrientation(findOrientation(m2,m1,m3));
         }
         else {
             move.setTileSpot(m3);
+            move.setTileTerrain(h1.getTerrainType() + "+" + h2.getTerrainType());
             move.setOrientation(findOrientation(m3,m1,m2));
         }
         return move;

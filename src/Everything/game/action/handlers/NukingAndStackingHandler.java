@@ -43,12 +43,15 @@ public class NukingAndStackingHandler {
 
         if (h1.getTerrainType() == Terrain.VOLCANO) {
             move.setTileSpot(nuked1);
+            move.setTileTerrain(h2.getTerrainType() + "+" + h3.getTerrainType());
             move.setOrientation(findOrientation(nuked1, nuked2, nuked3));
         } else if (h2.getTerrainType() == Terrain.VOLCANO) {
             move.setTileSpot(nuked2);
+            move.setTileTerrain(h1.getTerrainType() + "+" + h3.getTerrainType());
             move.setOrientation(findOrientation(nuked2, nuked1, nuked3));
         } else {
             move.setTileSpot(nuked3);
+            move.setTileTerrain(h1.getTerrainType() + "+" + h2.getTerrainType());
             move.setOrientation(findOrientation(nuked3, nuked1, nuked2));
         }
 

@@ -98,6 +98,7 @@ public class AIBot {
         placementAndBuildMove.setTerrain(buildMove.getTerrain());
 
         placementAndBuildMove.setTileSpot(placementMove.getTileSpot());
+        placementAndBuildMove.setTileTerrain(placementMove.getTileTerrain());
         placementAndBuildMove.setOrientation(placementMove.getOrientation());
 
         return placementAndBuildMove;

@@ -69,7 +69,7 @@ public class TigerIslandProtocol {
         int orientation = ourMove.getOrientation();
         Terrain terrain = ourMove.getTerrain();
 
-        String move = "GAME " + gameID + " MOVE " + ourMove.getMoveNumber() + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need to get orientation
+        String move = "GAME " + gameID + " MOVE " + ourMove.getMoveNumber() + " PLACE " + ourMove.getTileTerrain() + " AT " + tileX + " " + tileY + " " + tileZ + " " + orientation + " ";      //FIXME: Need TO ADD TILE HERE
         switch (ourMove.getBuildType()) {
             case (1):
                 buildX = ourMove.getBuildSpot().getXForServer();
