@@ -20,9 +20,9 @@ import Everything.game.action.scanners.SettlementFounding.FoundingNextToSettleme
 import Everything.game.action.scanners.SettlementFounding.RandomSettlementFoundingScanner;
 import Everything.game.action.scanners.SettlementsFactory;
 import Everything.game.action.scanners.settlemenet.expanding.*;
-import Everything.models.Map;
-import Everything.models.Player;
-import Everything.models.Team;
+import Everything.models.*;
+
+import java.util.ArrayList;
 
 public class TigerIsland {
 
@@ -87,6 +87,26 @@ public class TigerIsland {
     public WeJustDidThisMove doFriendlyMoveAndUpdateMap(final MakeMoveInstruction makeMoveInstruction) {
         System.out.println("TigerIsland: Game runnable asked me to play a move");
         WeJustDidThisMove weJustDidThisMove = smartBot.playTurn(makeMoveInstruction, map, friendly);
+        if (weJustDidThisMove.getBuildType() == 3) {
+            SettlementsFactory settlementsFactory = new SettlementsFactory();
+            ArrayList<Settlement> settlements = settlementsFactory.generateSettlements(map, friendly.getTeam());
+
+            MapSpot buildSpot = weJustDidThisMove.getBuildSpot();
+
+            for (Settlement s : settlements) {
+                if (s.size() >= 5) {
+                    for (MapSpot m : s.getMapSpots()) {
+                        for (MapSpot a : m.getAdjacentMapSpots()) {
+                            if (a.isEqual(buildSpot)) {
+                                System.out.println("IT EQUALS");
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
         System.out.println(weJustDidThisMove.getTileSpot());
         return weJustDidThisMove;
     }

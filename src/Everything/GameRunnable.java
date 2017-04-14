@@ -1,28 +1,36 @@
 package Everything;
 
+import Everything.Server.ConnectionClient;
 import Everything.Server.MoveObjects.*;
+import Everything.Server.SharedDataBuffer;
+import Everything.Server.TigerIslandProtocol;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.io.IOException;
+import java.util.Date;
 
 public class GameRunnable implements Runnable {
 
     //-----------
     // Attributes
 
-    private ConcurrentLinkedQueue<MoveData> threadQueue;
-    private String gameID;
-    private String playerID;
+    private SharedDataBuffer sharedDataBuffer;
+    private ConnectionClient connectionClient;
+    private String gameId;
+    private String playerId;
 
+    final private Date timeCreated = new Date();
     //-------------
     // Constructors
 
-    public GameRunnable(final ConcurrentLinkedQueue<MoveData> threadQueue,
-                      final String gameID,
-                      final String playerID) {
+    public GameRunnable(final SharedDataBuffer sharedDataBuffer,
+                        final ConnectionClient connectionClient,
+                        final String gameId,
+                        final String playerId) {
 
-        this.threadQueue = threadQueue;
-        this.gameID = gameID;
-        this.playerID = playerID;
+        this.sharedDataBuffer = sharedDataBuffer;
+        this.connectionClient = connectionClient;
+        this.gameId = gameId;
+        this.playerId = playerId;
     }
 
     //--------
@@ -31,33 +39,36 @@ public class GameRunnable implements Runnable {
     @Override
     public void run() {
 
-        final TigerIsland tigerIsland = new TigerIsland(gameID, playerID);
+        final TigerIslandProtocol tip = new TigerIslandProtocol();
+        final TigerIsland tigerIsland = new TigerIsland(gameId, playerId);
+        System.out.println("Spinning up a new thread for game " + gameId);
+        while (!Thread.currentThread().isInterrupted()) {
 
-        while (true) {
+            if (sharedDataBuffer.inputReady(gameId)) {
+                final String message = sharedDataBuffer.getNextMessage(gameId);
+                System.out.println("Thread just poped from the shared buffer" + gameId + " id: " + timeCreated.getTime());
 
-            synchronized (threadQueue) {
+                if (message.contains("WITHIN") && tip.parseGameId(message).equals(gameId)) {
 
-                if (!threadQueue.isEmpty() && threadQueue.peek().consumer == MoveData.Consumer.THREAD) {
-
-                    final MoveData moveData = threadQueue.poll();
-
-                    if (moveData.gameOver) {
-                        System.out.println("Runnable: shutting down thread, game over");
+                    WeJustDidThisMove weJustDidThisMove = tigerIsland.doFriendlyMoveAndUpdateMap(tip.getMoveInstruction(message));
+                    String moveWeMade = tip.createFriendlyMoveMessageToBeSent(weJustDidThisMove, gameId);
+                    try {
+                        if (Thread.currentThread().isInterrupted()) {
+                            break;
+                        }
+                        connectionClient.println(moveWeMade);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                         break;
                     }
 
-                    if (moveData.move instanceof EnemyMove) {
-                        tigerIsland.updateMapWithEnemyMove((EnemyMove) moveData.move);
-                        System.out.println("Runnable: Updated map using enemy move");
-                    } else {
-                        final WeJustDidThisMove weJustDidThisMove
-                                = tigerIsland.doFriendlyMoveAndUpdateMap((MakeMoveInstruction) moveData.move);
-
-                        threadQueue.add(new MoveData(false, weJustDidThisMove, MoveData.Consumer.CLIENT));
-                        System.out.println("Runnable: Thread just played move, sending it to the client");
-                    }
+                } else if (message.contains("PLACED") && tip.parseGameId(message).equals(gameId) && !tip.getPlayerIdFromGameCommand(message).equals(playerId)) {
+                    tigerIsland.updateMapWithEnemyMove(tip.parseOpponentMove(message));
                 }
             }
+
         }
+
+        System.out.println("Spinning down thread for game " + gameId);
     }
 }

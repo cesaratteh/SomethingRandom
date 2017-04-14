@@ -149,7 +149,7 @@ public class TigerIslandProtocol {
         return enemyMove;
     }
 
-    public String parseGameID(String input) {
+    public String parseGameId(String input) {
         String tokens[] = input.split(" ");
 
         if (tokens[0].equals("GAME")) {
