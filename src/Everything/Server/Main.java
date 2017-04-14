@@ -10,12 +10,12 @@ public class Main {
     //----------
     // Constants
 
-    private static final String TOURNAMENT_PASSWORD = "heygang";
-    private static String alphabet = "ABCDEFGHIGKLMNOPQRST";
-    private static Random random = new Random();
-    private static String userPass = "TEAM_" + alphabet.charAt(random.nextInt(20));
-    private static final String USER_NAME = userPass;
-    private static final String USER_PASS = userPass;
+    private static final String TOURNAMENT_PASSWORD = "Iwanttobelieve";
+//    private static String alphabet = "ABCDEFGHIGKLMNOPQRST";
+//    private static Random random = new Random();
+//    private static String userPass = "TEAM_" + alphabet.charAt(random.nextInt(20));
+    private static final String USER_NAME = "Team_T";
+    private static final String USER_PASS = "Team_T";
 
     //--------
     // Methods
