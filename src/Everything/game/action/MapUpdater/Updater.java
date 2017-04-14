@@ -3,6 +3,7 @@ package Everything.game.action.MapUpdater;
 
 import Everything.Server.MoveObjects.EnemyMove;
 import Everything.game.action.scanners.settlemenet.expanding.ExpansionToSpecificTerrainScanner;
+import Everything.game.action.scanners.settlemenet.expanding.SettlementFromMapSpotScanner;
 import Everything.models.*;
 import Everything.game.action.scanners.*;
 
@@ -14,11 +15,12 @@ import static Everything.models.Team.ENEMY;
 
 public class Updater {
 
-    private Player player;
     private Map map;
-    public Updater(Map map){
+    private Team team;
 
+    public Updater(final Map map, final Team team){
         this.map = map;
+        this.team = team;
     }
 
     public void updateMap(EnemyMove enemymove) throws NoValidActionException {
@@ -58,11 +60,9 @@ public class Updater {
 
     //Does Not cover expand will be a different method
     //Move Number 1=Found Settlement 2=Expand 3=build Totoro 4=build tiger
-    //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation
+    //int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int turnChoice, MapSpot expandLocation
     //Order above, if doing Expand action use other method below
-    public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation){
-        Player Team = new Player(ENEMY);
-
+    public void EnemyMove(int moveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int turnChoice, MapSpot expandLocation){
         int TileLevel = 0;
 
         MapSpot hexSpot2 = new MapSpot(0,0,0);
@@ -100,19 +100,20 @@ public class Updater {
         Hexagon hex3 = new Hexagon(B,TileLevel,moveNumber);
         this.map.setHexagon(hexSpot3, hex3);
 
-        switch(TurnChoice){
-            case 1: this.map.getHexagon(ExpandLocation).addMeeplesAccordingToLevel(Team.getTeam());
-            break;
-            case 3: this.map.getHexagon(ExpandLocation).addTotoro(Team.getTeam());
-            break;
-            case 4: this.map.getHexagon(ExpandLocation).addTiger(Team.getTeam());
-            break;
+        switch(turnChoice){
+            case 1:
+                this.map.getHexagon(expandLocation).addMeeplesAccordingToLevel(team);
+                break;
+            case 3:
+                this.map.getHexagon(expandLocation).addTotoro(team);
+                break;
+            case 4:
+                this.map.getHexagon(expandLocation).addTiger(team);
+                break;
         }
     }
 
     public void EnemyMoveExpand(int MoveNumber, Terrain A, Terrain B, MapSpot TileSpot, int Orientation, int TurnChoice, MapSpot ExpandLocation, Terrain ExpandTerrain) throws NoValidActionException {
-        Player Team = new Player(ENEMY);
-
         MapSpot hexSpot2 = new MapSpot(0,0,0);
         MapSpot hexSpot3 = new MapSpot(0,0,0);
 
@@ -149,25 +150,38 @@ public class Updater {
         this.map.setHexagon(hexSpot3, hex3);
         //
 
-        Settlement EnemySettlements = new Settlement(Team.getTeam());
+//        Settlement EnemySettlements = new Settlement(Team.getTeam());
+//
+//        SettlementsFactory Settlementfinder = new SettlementsFactory();
+//
+//        ArrayList<Settlement> ListOfSettlements = Settlementfinder.generateSettlements(map, Team.getTeam());
+//
+//        ExpansionToSpecificTerrainScanner Scanner = new ExpansionToSpecificTerrainScanner();
+//
+//
+//        for(int i =0; i < ListOfSettlements.get(0).getMapSpots().size(); i++){
+//            if(ListOfSettlements.get(0).getMapSpots().get(i).isEqual(ExpandLocation)){
+//                EnemySettlements = ListOfSettlements.get(i);
+//            }
+//        }
+//
+//        ArrayList<MapSpot> ExpansionSpots =  Scanner.scan(EnemySettlements, this.map, ExpandTerrain);
+//
+//        for(int i = 0; i < ExpansionSpots.size(); i++){
+//            this.map.getHexagon(ExpansionSpots.get(i)).addMeeplesAccordingToLevel(Team.getTeam());
+//        }
 
-        SettlementsFactory Settlementfinder = new SettlementsFactory();
+        SettlementFromMapSpotScanner settlementFromMapSpotScanner = new SettlementFromMapSpotScanner();
+        Settlement settlementToBeExpanded = settlementFromMapSpotScanner.scan(map, ExpandLocation);
 
-        ArrayList<Settlement> ListOfSettlements = Settlementfinder.generateSettlements(map, Team.getTeam());
+        ExpansionToSpecificTerrainScanner expansionToSpecificTerrainScanner = new ExpansionToSpecificTerrainScanner();
+        ArrayList<MapSpot> spotsToBeExpandedTo = expansionToSpecificTerrainScanner.scan(settlementToBeExpanded, map, ExpandTerrain);
 
-        ExpansionToSpecificTerrainScanner Scanner = new ExpansionToSpecificTerrainScanner();
-
-
-        for(int i =0; i < ListOfSettlements.get(0).getMapSpots().size(); i++){
-            if(ListOfSettlements.get(0).getMapSpots().get(i).isEqual(ExpandLocation)){
-                EnemySettlements = ListOfSettlements.get(i);
-            }
+        for (MapSpot m : spotsToBeExpandedTo) {
+            map.getHexagon(m).addMeeplesAccordingToLevel(team);
         }
 
-        ArrayList<MapSpot> ExpansionSpots =  Scanner.scan(EnemySettlements, this.map, ExpandTerrain);
-
-        for(int i = 0; i < ExpansionSpots.size(); i++){
-            this.map.getHexagon(ExpansionSpots.get(i)).addMeeplesAccordingToLevel(Team.getTeam());
-        }
+//        SettlementFromMapSpotScanner expansionFromMapSpotScanner = new SettlementFromMapSpotScanner();
+//        expansionFromMapSpotScanner.scan(map, ExpandLocation, ExpandTerrain)
     }
 }

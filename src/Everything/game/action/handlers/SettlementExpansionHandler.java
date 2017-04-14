@@ -1,17 +1,32 @@
 package Everything.game.action.handlers;
 
 import Everything.Server.MoveObjects.WeJustDidThisMove;
+import Everything.game.action.scanners.NoValidActionException;
+import Everything.game.action.scanners.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import Everything.models.*;
 
 import java.util.ArrayList;
 
 public class SettlementExpansionHandler {
 
+    private SettlementExpansionMeeplesCost settlementExpansionMeeplesCost;
+
+    public SettlementExpansionHandler(final SettlementExpansionMeeplesCost settlementExpansionMeeplesCost) {
+        this.settlementExpansionMeeplesCost = settlementExpansionMeeplesCost;
+    }
+
     public void expandWithMeeples(final ArrayList<MapSpot> expandableMapSpots, final Map map, final Player player) throws CannotPerformActionException {
+
+        int meeplesCost;
+        try {
+            meeplesCost = settlementExpansionMeeplesCost.calculate(expandableMapSpots, map);
+        } catch (NoValidActionException e) {
+            throw new CannotPerformActionException("Cost is 0");
+        }
 
         for (final MapSpot mapSpot : expandableMapSpots) {
             if (satisfiesMeeplesRequirements(mapSpot, map) &&
-                player.isHasEnoughMeeples(player.getNumberOfMeeplesLeft())) {
+                player.isHasEnoughMeeples(meeplesCost)) {
 
                 final Hexagon hex = map.getHexagon(mapSpot);
                 hex.addMeeplesAccordingToLevel(player.getTeam());

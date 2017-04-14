@@ -3,6 +3,7 @@ package Everything.game.action.handlers;
 import Everything.game.action.scanners.NoValidActionException;
 import Everything.game.action.scanners.Nuking.SettlementAdjacentMapSpotsScanner;
 import Everything.game.action.scanners.SettlementsFactory;
+import Everything.game.action.scanners.settlemenet.expanding.SettlementExpansionMeeplesCost;
 import Everything.game.action.scanners.settlemenet.expanding.SettlementTouchingExpansionScanner;
 import Everything.game.action.scanners.settlemenet.expanding.TigerSpotScanner;
 import Everything.game.action.scanners.settlemenet.expanding.TotoroSpotScanner;
@@ -23,7 +24,7 @@ public class SettlementExpansionHandlerTest {
     public void generateMapForTesting() throws Exception{
         map = new Map();
         FirstLevelTileAdditionHandler tileHandler = new FirstLevelTileAdditionHandler();
-        handler = new SettlementExpansionHandler();
+        handler = new SettlementExpansionHandler(new SettlementExpansionMeeplesCost());
 
         tileHandler.addFirstTileToMap(map);
 

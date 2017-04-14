@@ -139,7 +139,6 @@ public class AIBot {
                 settlementsFactory.generateSettlements(map, (player.getTeam() == Team.FRIENDLY) ? Team.ENEMY : Team.FRIENDLY);
 
         if (player.getNumberOfTotorosLeft() > 0) {
-            System.out.println("Entering if statement, Number of totoros is > 0");
             if (friendlySettlements.size() == 0) {
                 try {
                     return placeTileInRandomSpot(map, tile);
@@ -242,17 +241,17 @@ public class AIBot {
 
         if (player.getNumberOfTotorosLeft() > 0) {
             if (friendlySettlements.size() == 0) {
-                System.out.println("friendlySettlements.size() == 0");
+//                System.out.println("friendlySettlements.size() == 0");
                 try {
                     MapSpot foundingSpot = randomSettlementFoundingScanner.scan(map);
                     return settlementFoundingHandler.foundSettlement(foundingSpot, map, player);
                 } catch (NoValidActionException | CannotPerformActionException e) {
                 }
             } else {
-                System.out.println("friendlySettlements.size() != 0");
+//                System.out.println("friendlySettlements.size() != 0");
                 for (Settlement friendlySettlement : friendlySettlements) {
                     if (friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1) {
-                        System.out.println("friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1");
+//                        System.out.println("friendlySettlement.size() >= 5 && friendlySettlement.getNumberOfTotoros() < 1");
                         try {
 
                             ArrayList<MapSpot> totoroSpots = totoroSpotScanner.scan(friendlySettlement, map);
@@ -261,14 +260,14 @@ public class AIBot {
                         } catch (NoValidActionException | CannotPerformActionException e) {
                         }
                     } else if (friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1) {
-                        System.out.println("friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1");
+//                        System.out.println("friendlySettlement.size() == 4 && friendlySettlement.getNumberOfTotoros() < 1");
                         try {
                             return foundMeepleToIncreaseSettlementSize(map, friendlySettlement, player);
                         } catch (NoValidActionException | CannotPerformActionException e) {
                         }
 
                     } else if (friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1) {
-                        System.out.println("friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1");
+//                        System.out.println("friendlySettlement.size() == 3 && friendlySettlement.getNumberOfTotoros() < 1");
                         try {
 
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player, 5);
@@ -281,7 +280,7 @@ public class AIBot {
                         }
 
                     } else if (friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1) {
-                        System.out.println("friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1");
+//                        System.out.println("friendlySettlement.size() == 2 && friendlySettlement.getNumberOfTotoros() < 1");
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player, 5);
                         } catch (NoValidActionException | CannotPerformActionException e) {
@@ -298,7 +297,7 @@ public class AIBot {
                         }
 
                     } else if (friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1) {
-                        System.out.println("friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1");
+//                        System.out.println("friendlySettlement.size() == 1 && friendlySettlement.getNumberOfTotoros() < 1");
                         try {
                             return expandIfResultingSettlementIsSizeX(map, friendlySettlement, player, 5);
 
@@ -320,7 +319,6 @@ public class AIBot {
                         } catch (NoValidActionException | CannotPerformActionException e) {
                         }
                     } else {
-                        System.out.println("else");
                         try {
                             // Place villager on any hex
                             final MapSpot foundingSpots = randomSettlementFoundingScanner.scan(map);

@@ -11,7 +11,7 @@ public class RandomLevelOneTileScannerTest {
     @Test
     public void firstTileTest() throws NoValidActionException{
         Map map = new Map();
-        Updater updater = new Updater(map);
+        Updater updater = new Updater(map, Team.ENEMY);
 
         updater.setFirstTile();
 

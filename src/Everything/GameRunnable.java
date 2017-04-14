@@ -46,7 +46,6 @@ public class GameRunnable implements Runnable {
 
             if (sharedDataBuffer.inputReady(gameId)) {
                 final String message = sharedDataBuffer.getNextMessage(gameId);
-                System.out.println("Thread just poped from the shared buffer" + gameId + " id: " + timeCreated.getTime());
 
                 if (message.contains("WITHIN") && tip.parseGameId(message).equals(gameId)) {
 
@@ -63,6 +62,7 @@ public class GameRunnable implements Runnable {
                     }
 
                 } else if (message.contains("PLACED") && tip.parseGameId(message).equals(gameId) && !tip.getPlayerIdFromGameCommand(message).equals(playerId)) {
+//                    System.out.println("Runnable: Updated map with this move " + message + " I am player " + playerId);
                     tigerIsland.updateMapWithEnemyMove(tip.parseOpponentMove(message));
                 }
             }

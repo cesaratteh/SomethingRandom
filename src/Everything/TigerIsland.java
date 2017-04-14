@@ -62,7 +62,7 @@ public class TigerIsland {
         this.smartBot = new AIBot(new SettlementsFactory(),
                 new FirstLevelTileAdditionHandler(),
                 new NukingAndStackingHandler(),
-                new SettlementExpansionHandler(),
+                new SettlementExpansionHandler(new SettlementExpansionMeeplesCost()),
                 new SettlementFoundingHandler(),
                 new SettlementAdjacentMapSpotsScanner(),
                 new SettlementAdjacentVolcanoesScanner(new SettlementAdjacentMapSpotsScanner()),
@@ -76,7 +76,7 @@ public class TigerIsland {
                 new FoundingNextToSettlementScanner(new SettlementTouchingExpansionScanner(new SettlementAdjacentMapSpotsScanner())),
                 new RandomSettlementFoundingScanner());
 
-        this.enemyMoveUpdater = new Updater(map);
+        this.enemyMoveUpdater = new Updater(map, Team.ENEMY);
 
         enemyMoveUpdater.setFirstTile();
     }

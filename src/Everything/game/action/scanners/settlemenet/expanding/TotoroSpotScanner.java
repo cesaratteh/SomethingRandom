@@ -4,6 +4,7 @@ import Everything.game.action.scanners.NoValidActionException;
 import Everything.models.Map;
 import Everything.models.MapSpot;
 import Everything.models.Settlement;
+import Everything.models.Team;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,36 @@ public class TotoroSpotScanner {
         if(settlement.size() < 5)
             throw new NoValidActionException("Settlement must be bigger than 5 to place totoro");
 
-        return settlementTouchingExpansionScanner.scan(settlement, map);
+
+
+
+        ArrayList<MapSpot> scannerSpots = settlementTouchingExpansionScanner.scan(settlement, map);
+        ArrayList<MapSpot> validSpots = new ArrayList<>();
+
+        // FIXME: 4/13/2017 REMOVE THIS IF SERVER TEAM FIX THEIR BUG
+        for (MapSpot m : scannerSpots) {
+            boolean badSpot = false;
+            for (MapSpot adj : m.getAdjacentMapSpots()) {
+                if (map.getHexagon(adj) != null && map.getHexagon(adj).getOccupiedBy() == Team.FRIENDLY &&
+                        !settlement.isMapSpotInSettlement(adj)) {
+
+                    badSpot = true;
+                }
+            }
+
+            if (!badSpot) {
+                validSpots.add(m);
+            }
+        }
+
+        if (validSpots.isEmpty()) {
+            throw new NoValidActionException("No valid spots for totoros");
+        }
+
+        return validSpots;
+
+
+
+//        return scannerSpots;
     }
 }

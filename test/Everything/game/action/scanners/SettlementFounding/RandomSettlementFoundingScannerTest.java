@@ -14,7 +14,7 @@ public class RandomSettlementFoundingScannerTest {
     public void scanTest() throws Exception {
 
         Map map = new Map();
-        Updater updater = new Updater(map);
+        Updater updater = new Updater(map, Team.ENEMY);
         updater.setFirstTile();
 
         RandomSettlementFoundingScanner randomSettlementFoundingScanner = new RandomSettlementFoundingScanner();

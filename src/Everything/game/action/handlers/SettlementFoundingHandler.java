@@ -19,7 +19,9 @@ public class SettlementFoundingHandler {
             map.getHexagon(mapSpotToFoundOn).addMeeplesAccordingToLevel(player.getTeam());
             player.takeXMeeplesFromPlayer(1);
         } else {
-            throw new CannotPerformActionException("Cannot found settlement here");
+            throw new CannotPerformActionException("Cannot found settlement here because:" +
+                    " number of meepels left " + player.getNumberOfMeeplesLeft() +
+                    " OR mapSpotSatisfies " + mapSpotSatisfiesFoundingRequirements(map, mapSpotToFoundOn));
         }
 
         WeJustDidThisMove move = new WeJustDidThisMove();

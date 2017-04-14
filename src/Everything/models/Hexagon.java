@@ -40,12 +40,19 @@ public class Hexagon {
 
     public void addMeeplesAccordingToLevel(final Team team)
     {
-        if(!isEmpty())
-            throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: 3/19/2017 Replace with LOGGING
+        if (!isEmpty()) {
+            System.out.println("\n\n\n");
+            System.out.println("!!" +
+                    "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!-------------------------------------------------------------------------" +
+                    "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!-------------------------------------------------------------------------");
+            System.out.println(this);
+            System.out.println("\n\n\n");
+//            throw new RuntimeException("Hexagon is not empty, can't add units"); // TODO: FIND THE BUG TRIGGERING THIS
+        }
 
-        this.occupiedBy = team;
-        this.numberOfMeeples = this.level;
-    }
+            this.occupiedBy = team;
+            this.numberOfMeeples = this.level;
+        }
 
     public void addTotoro(final Team team) {
         if(!isEmpty())
@@ -96,6 +103,19 @@ public class Hexagon {
 
     public Terrain getTerrainType() {
         return terrainType;
+    }
+
+    @Override
+    public String toString() {
+        return "Hexagon{" +
+                "occupiedBy=" + occupiedBy +
+                ", tileId=" + tileId +
+                ", level=" + level +
+                ", terrainType=" + terrainType +
+                ", numberOfMeeples=" + numberOfMeeples +
+                ", hasTotoro=" + hasTotoro +
+                ", hasTiger=" + hasTiger +
+                '}';
     }
 
     //----------

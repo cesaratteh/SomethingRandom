@@ -36,7 +36,7 @@ public class Settlement {
 
     public boolean isMapSpotInSettlement(final MapSpot mapSpot){
         for(final MapSpot settlementMapSpot: mapSpots){
-            if(settlementMapSpot == mapSpot) return true;
+            if(settlementMapSpot.isEqual(mapSpot)) return true;
         }
 
         return false;

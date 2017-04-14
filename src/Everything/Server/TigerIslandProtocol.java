@@ -154,8 +154,10 @@ public class TigerIslandProtocol {
 
         if (tokens[0].equals("GAME")) {
             return tokens[1];
-        } else {
+        } else if(tokens[4].equals("GAME")){
             return tokens[5];
         }
+
+        throw new RuntimeException("you're calling parseGameId Wrong");
     }
 }

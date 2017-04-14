@@ -20,7 +20,7 @@ public class MapTest {
     @Test
     public void printMap() {
         Map map = new Map();
-        Updater updater = new Updater(map);
+        Updater updater = new Updater(map, Team.ENEMY);
         updater.setFirstTile();
         map.printMap();
 

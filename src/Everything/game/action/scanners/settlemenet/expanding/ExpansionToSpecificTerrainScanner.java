@@ -43,8 +43,8 @@ public class ExpansionToSpecificTerrainScanner {
 
         if(visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()])
             return;
-        else
-            visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
+
+        visited[currentMapSpot.getX()][currentMapSpot.getY()][currentMapSpot.getZ()] = true;
 
 
         if (satisfiesExpansionRequirements(currentMapSpot, map, settlement, terraintype)) {
@@ -58,7 +58,7 @@ public class ExpansionToSpecificTerrainScanner {
     }
 
     private boolean satisfiesExpansionRequirements(final MapSpot mapSpot, final Map map, final Settlement settlement, Terrain terraintype) {
-        return satisfiesVisitingRequirements(mapSpot, map, settlement, terraintype) &&
+        return map.getHexagon(mapSpot) != null &&
                 map.getHexagon(mapSpot).isEmpty() &&
                 map.getHexagon(mapSpot).getTerrainType() == terraintype;
     }
