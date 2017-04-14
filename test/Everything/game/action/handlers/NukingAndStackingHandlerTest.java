@@ -42,17 +42,6 @@
 //    }
 //
 //    @Test
-//    public void TestNonAdjacentHexesCantBeNuked(){
-//        NukingAndStackingHandler handler = new NukingAndStackingHandler();
-//
-//        MapSpot m1 = map.getMiddleHexagonMapSpot();
-//        MapSpot m2 = m1.left();
-//        MapSpot m3 = m1.topRight();
-//
-//        Assert.assertEquals(handler.MapSpotsCanBeNuked(m1,m2,m3,map),false);
-//    }
-//
-//    @Test
 //    public void TestMultipleVolcanoesCanBeNuked(){
 //        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 //
@@ -86,7 +75,7 @@
 //    }
 //
 //    @Test
-//    public void TestValidNuking(){
+//    public void TestValidNuking() throws CannotPerformActionException{
 //        NukingAndStackingHandler handler = new NukingAndStackingHandler();
 //
 //        MapSpot m1 = map.getMiddleHexagonMapSpot().left();
@@ -132,7 +121,7 @@
 //        try {
 //            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
 //        }
-//        catch(RuntimeException e){
+//        catch(CannotPerformActionException e){
 //            if(e.getMessage().equals("Cannot nuke those spots")) Assert.assertTrue(true);
 //        }
 //    }
@@ -152,7 +141,7 @@
 //        try {
 //            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
 //        }
-//        catch(RuntimeException e){
+//        catch(CannotPerformActionException e){
 //            if(e.getMessage().equals("Cannot nuke those spots")) Assert.assertTrue(true);
 //        }
 //    }
@@ -172,7 +161,7 @@
 //        try {
 //            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
 //        }
-//        catch(RuntimeException e){
+//        catch(CannotPerformActionException e){
 //            if(e.getMessage().equals("Not 1 volcano")) Assert.assertTrue(true);
 //        }
 //    }
@@ -192,7 +181,7 @@
 //        try {
 //            handler.NukeSpots(m1, m2, m3, h1, h2, h3, map);
 //        }
-//        catch(RuntimeException e){
+//        catch(CannotPerformActionException e){
 //            if(e.getMessage().equals("Volcanoes do not match up")) Assert.assertTrue(true);
 //        }
 //    }
