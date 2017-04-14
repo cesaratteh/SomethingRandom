@@ -1,0 +1,43 @@
+Organization
+  All files are under the Everthing directory in the Src
+  The Server folder handels instructions from the server and instructions we send to the server
+    Main - takes in info for server connection and creates the threads to run the game etc, Main method
+    TigerIslandProtocol handles the game for each thread made
+    
+  UI folder has an outdated interface created to allow us to view the map
+  Game.action has logic classes for finding specific things about the map
+  
+  MapUpdater - takes in the information already split into the appropriate models and adds them to the map
+  
+  
+  AI - Contains our Ai for winning the game. 
+    Stupidbot was the first iteration and only places tiles and founds settlements
+    Ai bot is our current AI and it places tiles, settlements, expands, and places totoros. Doesn't place tiger playgrounds as it is not needed for our logic to win
+    Testing bot is a simple bot to run the other two against in a game.
+  
+  Handlers - basically handles our action moves and checks if they are valid
+  
+  Scanner - Things that check the map for certain things
+    Nuking - Each class handles a different game rule, to nuke all threee must pass
+    Placing on level one - looks for places on level one where tiles can be placed
+    Settlement Founding - finds places where you can place settlements
+    Settlement Expanding- contains expansion, totoro, tiger playground logic
+      Expansion to specific terrain - does as its name
+      Settlement expansion meeple cost - determines how much villigers/meeples an expansion will cost
+      SettlementTouchingExpansionScanner - Scans available map spots where a Totoro can be placed
+      TigerSpotScanner - finds locations where a tiger playground can be placed
+      TotoroSpotScanner - scans the map for locations where a totoro can be placed
+    Settlement Factory - Very important class as it creates settlements, an arraylist of settlements that allows other logic to run from
+                       - A settlement is an arraylist of mapspots of the hexs where pieces are placed on.
+                      
+Models- Contains all objects of our AI
+  Hexagon - the base object for our project
+  Map - the 3 dimensional list of hexagons placed in the organization as the server. Initialized at size 200,200,200
+  MapSpot - the object for the location a hexagon,etc is placed on the map
+  Player - Handles the values associated with a player in a game
+  Settlement - is an arraylist of mapspots of the hexs where pieces are placed on.
+  Team - an enumeration of Enemy, friendly, none so we know if we own the villigers etc or the enemy
+  terrain - enumeration of the different terrain types in the game, volcano, rocky, grass etc
+  Tile - the association of three hexs to form a tile
+  Tilemapspot - mapspots for parts of the tile
+  
